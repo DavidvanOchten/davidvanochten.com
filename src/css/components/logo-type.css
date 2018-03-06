@@ -1,0 +1,5 @@
+.logoType {
+  &__secondary {
+    color: var(--grey-dark);
+  }
+}

@@ -1,0 +1,96 @@
+.grid {
+  display: flex;
+
+  &__cell {
+    position: relative;
+    padding: calc(var(--bsl) * 2) var(--col-1);
+    overflow: hidden;
+
+    &--4 {
+      width: var(--col-4);
+    }
+
+    &--6 {
+      width: var(--col-6);
+    }
+
+    &--border {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 1px;
+        background-color: var(--grey-light);
+      }
+    }
+
+    &--profile {
+      padding-top: var(--bsl);
+    }
+
+    &--offset {
+      margin-top: calc(var(--bsl) * 3);
+    }
+  }
+
+  &__column {
+    position: sticky;
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    background-color: var(--light);
+
+    &--narrow {
+      width: var(--col-10);
+    }
+
+    &--wide {
+      width: var(--col-14);
+    }
+  }
+
+  &__heading {
+    margin-bottom: var(--bsl);
+    color: var(--grey-dark);
+
+    &--l {
+      font-size: var(--ms-l); 
+      line-height: calc(var(--bsl) * 2);
+      color: var(--dark);
+    }
+
+    &--rotated {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: calc(var(--bsl) * 2);
+      width: var(--col-1);
+      transform: rotate(90deg);
+      transform-origin: bottom left;
+    }
+  }
+
+  &__link {
+    &::before {
+      content: '\27f6';
+      margin-right: calc(var(--bsl) / 2);
+    }
+  }
+
+  &__row {
+    position: relative;
+    display: flex;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: var(--grey-light);
+    }
+  }
+}

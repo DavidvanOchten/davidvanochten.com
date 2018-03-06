@@ -1,0 +1,68 @@
+<article class="grid">
+  <div class="grid__column grid__column--narrow" data-grid-column="1">
+    <div class="grid__row" data-toggle-display="trigger">
+      <header class="grid__cell grid__cell--6 logoType">
+        <h1 class="logoType__primary">David van Ochten</h1>
+        <h2 class="logoType__secondary">Developer + designer</h2>
+      </header>
+      <ul class="grid__cell grid__cell--4 grid__cell--border grid__cell--offset">
+        <li><a href="/work">Work</a></li>
+        <li><a href="/news">News</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+    <section class="grid__cell">
+      <h1 class="grid__heading">Latest</h1>
+
+      <div class="slider" data-slider>
+        <button data-slider="previous">Previous</button>
+        <button data-slider="next">Next</button>
+  
+        <ul class="slider__list" data-slider="container">
+        {{#each latestPosts}}
+          <li class="slider__item" data-slider="item">
+            <article>
+              <div class="lazyLoader">
+                <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+              </div>
+              <header>
+                <h1><button>{{{title}}}</button></h1>
+              </header>
+            </article>
+          </li>
+        {{/each}}
+        </ul>
+      </div>
+    </section>
+    <section class="grid__cell">
+      <h1 class="grid__heading grid__heading--l">Let’s do something awesome together</h1>
+      <a class="grid__link" href="/contact">Hit me up</a>
+    </section>
+  </div>
+
+  <div class="grid__column grid__column--wide grid__cell grid__cell--border grid__cell--offset" data-grid-column="2">
+    <section class="grid__cell grid__cell--profile">
+      <h1 class="grid__heading grid__heading--l">{{{headline}}}</h1>
+      <a class="grid__link" href="/about">Show profile</a>
+    </section>
+    <section class="grid__cell">
+      <h1 class="grid__heading grid__heading--rotated">Work</h1>
+      <ul>
+        {{#each latestCases}}
+        <li>
+          <article>
+            <a class="lazyLoader" href="/cases/{{title}}">
+              <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+            </a>
+            <header>
+              <h1>{{{headline}}}</h1>
+            </header>
+          </article>
+        </li>
+        {{/each}}
+      </ul>
+    </section>
+  </div>
+</article>

@@ -1,0 +1,72 @@
+[debug] [2018-03-05T23:34:31.193Z] ----------------------------------------------------------------------
+[debug] [2018-03-05T23:34:31.197Z] Command:       /Users/davidvanochten/.nvm/versions/node/v8.1.4/bin/node /Users/davidvanochten/.nvm/versions/node/v8.1.4/bin/firebase serve --only functions,hosting
+[debug] [2018-03-05T23:34:31.198Z] CLI Version:   3.17.4
+[debug] [2018-03-05T23:34:31.198Z] Platform:      darwin
+[debug] [2018-03-05T23:34:31.198Z] Node Version:  v8.1.4
+[debug] [2018-03-05T23:34:31.268Z] Time:          Tue Mar 06 2018 10:34:31 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:31.269Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-05T23:34:31.339Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-05T23:34:31.340Z] > authorizing via signed-in user
+[debug] [2018-03-05T23:34:31.347Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/davidvanochten-com  
+  
+ Tue Mar 06 2018 10:34:31 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:33.641Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-05T23:34:33.644Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/davidvanochten-com/tokens  
+  
+ Tue Mar 06 2018 10:34:33 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:34.608Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/davidvanochten/Desktop/apps/davidvanochten.com'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-03-05T23:34:37.932Z] Fetching environment
+[debug] [2018-03-05T23:34:37.935Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/davidvanochten-com  
+  
+ Tue Mar 06 2018 10:34:37 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:37.936Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/davidvanochten-com/apiKeys  
+  
+ Tue Mar 06 2018 10:34:37 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:37.936Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/davidvanochten-com  
+  
+ Tue Mar 06 2018 10:34:37 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:39.451Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-05T23:34:39.455Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-05T23:34:39.455Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/538784738334/clients/_:getWebAppConfig  
+  
+ Tue Mar 06 2018 10:34:39 GMT+1100 (AEDT)
+[debug] [2018-03-05T23:34:39.503Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-05T23:34:39.504Z] Starting @google-cloud/functions-emulator
+[debug] [2018-03-05T23:34:41.502Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-03-05T23:34:48.983Z] Parsing function triggers
+[info] ✔  functions: app: http://localhost:5001/davidvanochten-com/us-central1/app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app

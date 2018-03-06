@@ -1,0 +1,50 @@
+a {
+  font-weight: 400;
+  color: var(--dark);
+  text-decoration: none;
+  outline: none;
+
+  &:focus {
+    color: var(--grey-dark);
+  }
+}
+
+body {
+  width: 100vw;
+  font-family: var(--primary-font);
+	font-weight: 300;
+	letter-spacing: var(--spacing);
+  line-height: var(--bsl);
+  color: var(--dark);
+}
+
+button {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+img {
+  width: 100%;
+}
+
+input,
+textarea {
+  font-family: var(--primary-font);
+  outline: 0;
+}
+
+:--headings {
+  font-size: var(--ms-r);
+  font-weight: 300;
+}
+
+p {
+  hyphens: auto;
+}
+
+textarea {
+  display: block;
+  resize: none;
+}

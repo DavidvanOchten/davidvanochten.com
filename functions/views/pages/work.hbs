@@ -1,0 +1,13 @@
+<h1 style="margin-top: 9rem;">{{title}}</h1>
+<ul style="width: 50vw; display: grid;">
+  {{#each cases}}
+  <li>
+    <h2>{{headline}}</h2>
+    <a class="lazyLoader" href="/cases/{{title}}">
+      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{title}}">
+    </a>
+  </li>
+  {{/each}}
+</ul>
+
+{{!-- <ul data-work></ul> --}}

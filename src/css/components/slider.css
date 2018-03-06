@@ -1,0 +1,14 @@
+.slider {
+  
+  &__list {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: transform .5s cubic-bezier(.75, 0, .25, 1);
+  }
+
+  &__item {
+    flex-shrink: 0;
+    width: var(--col-6);
+    padding-right: var(--col-1);
+  }
+}

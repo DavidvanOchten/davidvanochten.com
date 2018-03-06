@@ -1,0 +1,35 @@
+.layout {
+  position: fixed;
+  top: 3rem;
+  right: var(--col-1);
+  z-index: 100;
+
+  & input[type="checkbox"] {
+    position: fixed;
+    z-index: 100;
+  }
+
+  & input[type="checkbox"]:checked+label {
+    display: block;
+  }
+
+  & label {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    margin: 0 auto;
+    pointer-events: none;
+    /* Set background-image and -size for mobile */
+
+    @media (--tablet-landscape-up) {
+      /* Adjust window width to 1270px to match the grid */
+      width: 1280px;
+      background-image: -webkit-linear-gradient(left, rgba(255, 0, 0, 0.15) 0, rgba(255, 0, 0, 0.15) 52px, transparent 0), -webkit-linear-gradient(top, transparent 23px, rgba(33, 150, 243, 0.5) 24px);
+      background-size: 53px 24px;
+    }
+  }
+}

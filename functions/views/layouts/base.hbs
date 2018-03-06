@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} | David van Ochten</title>
+  <meta name="description" content="{{description}}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="white">
+  <link rel="apple-touch-icon" href="/static/img/icons/app-icon-144x144.png" sizes="144x144">
+  <link rel="apple-touch-icon" href="/static/img/icons/app-icon-512x512.png" sizes="512x512">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="/app.bundle.css">
+</head>
+  <body>
+    {{> includes/header}}
+
+    <!-- Remove in production -->
+    <div class="layout">
+      <input type="checkbox">
+      <label></label>
+    </div>
+    <!-- / -->
+    
+    <div class="splash splash--isVisible" data-splash>
+      <h1>Intro
+        <sup style="color: grey;">Loading...</sup>
+      </h1>
+    </div>
+
+    <main role="main">
+      {{> includes/loader}}
+      <div data-view="{{view}}">
+        {{{body}}}
+      </div>
+    </main>
+
+    {{!-- {{> includes/footer}} --}}
+    {{> includes/error}}
+    <script src="/app.bundle.js"></script>
+  </body>
+</html>

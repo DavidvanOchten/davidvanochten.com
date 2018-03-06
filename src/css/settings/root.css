@@ -1,0 +1,52 @@
+:root {
+  /* Colors */
+  --light: #FFFFFF;
+  --dark: #212121;
+
+  --grey-light: #E9E9E9;
+  --grey-dark: #9B9B9B;
+
+  /* Baseline */
+  --bsl: 1.5rem;
+
+  /* Border */
+  --radius: calc(var(--bsl) / 6);
+
+  /* Typography */
+  --primary-font: 'Neue Haas Unica W1G', Helvetica, sans-serif; 
+  --spacing: 0.025rem;
+  --spacing-wide: 0.05rem;
+
+  /* Modular scale */
+  --ms-xs: 0.618rem;
+  --ms-s: 0.75rem;
+  --ms-r: 1rem;
+  --ms-m: 1.618rem;
+  --ms-l: 2.618rem;
+
+  /* Columns */
+  --col-1: calc(100vw / 24);
+  --col-2: calc((100vw / 24) * 2);
+  --col-3: calc((100vw / 24) * 3);
+  --col-4: calc((100vw / 24) * 4);
+  --col-5: calc((100vw / 24) * 5);
+  --col-6: calc((100vw / 24) * 6);
+  --col-7: calc((100vw / 24) * 7);
+  --col-8: calc((100vw / 24) * 8);
+  --col-9: calc((100vw / 24) * 9);
+  --col-10: calc((100vw / 24) * 10);
+  --col-11: calc((100vw / 24) * 11);
+  --col-12: calc((100vw / 24) * 12);
+  --col-13: calc((100vw / 24) * 13);
+  --col-14: calc((100vw / 24) * 14);
+  --col-15: calc((100vw / 24) * 15);
+  --col-16: calc((100vw / 24) * 16);
+  --col-17: calc((100vw / 24) * 17);
+  --col-18: calc((100vw / 24) * 18);
+  --col-19: calc((100vw / 24) * 19);
+  --col-20: calc((100vw / 24) * 20);
+  --col-21: calc((100vw / 24) * 21);
+  --col-22: calc((100vw / 24) * 22);
+  --col-23: calc((100vw / 24) * 23);
+  --col-24: calc((100vw / 24) * 24);
+}
