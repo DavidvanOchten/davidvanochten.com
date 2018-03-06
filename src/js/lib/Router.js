@@ -19,21 +19,22 @@ const Router = (() => {
   };
 
   const _createRouterLinks = () => {
-    // If routerlinks disabled classes > remove classes
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
     ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews));
   };
 
   const _setActiveNavLink = () => {
     const MENU_LINKS = [...document.querySelectorAll('[data-menu="link"]')];
-    const TARGET_LINK = MENU_LINKS.filter(link => link.href === window.location.href)[0];
+    const TARGET_LINK = MENU_LINKS.filter(link => {
+      return link.pathname.split('/')[1] === window.location.pathname.split('/')[1];
+    })[0];
 
     MENU_LINKS.map((link) => {
       if (link.classList.contains(LINK_ACTIVE_CLASS)) {
         link.classList.remove(LINK_ACTIVE_CLASS);
       }
     });
-
+    
     TARGET_LINK.classList.add(LINK_ACTIVE_CLASS);
   };
 
@@ -70,16 +71,11 @@ const Router = (() => {
         };
 
         removeContent(DOM_DATA);
-        // Update removeContent function to handle lazyImages as well.
-        // Still necessary below?
-        // [...document.querySelectorAll('[data-src]')].forEach(item => item.parentNode.removeChild(item));
-        // console.log('From router', document.querySelectorAll('[data-src]'));
-        // Add routerlinks disabled classes
         return appendContent(resp.data, DOM_DATA);
       })
       .then((view) => {
         window.history.pushState(null, null, URL);
-
+        // Set a default title?
         _setActiveView(view);
         _setUpView(view.dataset.view);
         _setLoader(false);

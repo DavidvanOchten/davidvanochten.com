@@ -9,6 +9,7 @@
   background-color: var(--light);
   opacity: 0;
   transition: opacity .5s linear .5s;
+  pointer-events: none;
 
   & h1 {
     font-size: var(--ms-l);

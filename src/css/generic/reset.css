@@ -21,6 +21,10 @@ html {
 	@media (--big-desktop-up) {
 		font-size: 125%;
 	}
+
+  @media (--huge-desktop-up) {
+		font-size: 150%;
+	}
 }
 
 body {
