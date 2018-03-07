@@ -10,10 +10,7 @@ app.engine('hbs', hbs({
   extname: 'hbs', 
   defaultLayout: 'base', 
   layoutDir: path.join(__dirname, '/views/layouts'),
-  partialsDir: [ path.join(__dirname, '/views/partials') ],
-  helpers: {
-    // toURL (str) { return str.toLowerCase().replace(/\s\s+/g, '-'); }
-  }
+  partialsDir: [ path.join(__dirname, '/views/partials') ]
 }));
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'hbs');
@@ -69,13 +66,15 @@ app.get('/work', (req, resp) => {
 
 app.get('/work/:id', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  // Get case of that :id
+
   axios.get('https://vue-admin.firebaseio.com/cases.json')
     .then((response) => {
-      // const cases = Object.keys(response.data).map(i => response.data[i]).reverse();
+      const caseObj = Object.keys(response.data).map(i => response.data[i]).filter(obj => obj.path === req.params.id)[0];
 
       return resp.render('pages/case', { 
-        title: 'Get from admin',
+        title: caseObj.title,
+        headline: caseObj.headline,
+        thumbnail: caseObj.thumbnailUrl,
         view: 'case'
       });
     })

@@ -9,13 +9,18 @@
 
 .loader {
   position: fixed;
-  right: 3rem;
-  top: 1.5rem;
+  top: calc(var(--bsl) * 1.5);
+  left: 50%;
   z-index: 10;
-  color: red;
+  height: calc(var(--bsl) / 2);
+  width: calc(var(--bsl) / 2);
+  border-radius: 50%;
+  background-color: red;
   opacity: 0;
   pointer-events: none;
   transition: opacity .25s linear;
+  transform-origin: left; /* Fix this, check translate value */
+  animation: pulse .5s infinite alternate;
 
   &--isActive {
     opacity: 1;

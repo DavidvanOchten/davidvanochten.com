@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="/app.bundle.css">
 </head>
   <body>
-    {{> includes/header}}
+    {{> header}}
 
     <!-- Remove in production -->
     <div class="layout">
@@ -22,21 +22,17 @@
     </div>
     <!-- / -->
     
-    <div class="splash splash--isVisible" data-splash>
-      <h1>Intro
-        <sup style="color: grey;">Loading...</sup>
-      </h1>
-    </div>
+    {{> splash}}
 
     <main role="main">
-      {{> includes/loader}}
+      {{> loader}}
       <div data-view="{{view}}">
         {{{body}}}
       </div>
     </main>
 
-    {{!-- {{> includes/footer}} --}}
-    {{> includes/error}}
+    {{!-- {{> footer}} --}}
+    {{> error}}
     <script src="/app.bundle.js"></script>
   </body>
 </html>

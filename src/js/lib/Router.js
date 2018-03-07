@@ -55,10 +55,6 @@ const Router = (() => {
     e.preventDefault();
 
     const LINK = e.currentTarget;
-    if (LINK.classList.contains(LINK_ACTIVE_CLASS)) {
-      return;
-    }
-
     const URL = LINK.href;
     _setLoader(true);
 

@@ -1,20 +1,10 @@
 .grid {
   display: flex;
 
-  &__cell {
+  &__border {
     position: relative;
-    padding: calc(var(--bsl) * 2) var(--col-1);
-    overflow: hidden;
 
-    &--4 {
-      width: var(--col-4);
-    }
-
-    &--6 {
-      width: var(--col-6);
-    }
-
-    &--border {
+    &--left {
       &::before {
         content: "";
         position: absolute;
@@ -24,6 +14,31 @@
         width: 1px;
         background-color: var(--grey-light);
       }
+    }
+
+    &--bottom {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--grey-light);
+      }
+    }
+  }
+
+  &__cell {
+    padding: calc(var(--bsl) * 2) var(--col-1);
+    overflow: hidden;
+
+    &--4 {
+      width: var(--col-4);
+    }
+
+    &--6 {
+      width: var(--col-6);
     }
 
     &--profile {
@@ -40,6 +55,7 @@
     display: flex;
     align-self: flex-start;
     flex-direction: column;
+    padding-bottom: calc(var(--bsl) * 1);
     background-color: var(--light);
 
     &--narrow {
@@ -76,21 +92,6 @@
     &::before {
       content: '\27f6';
       margin-right: calc(var(--bsl) / 2);
-    }
-  }
-
-  &__row {
-    position: relative;
-    display: flex;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      background-color: var(--grey-light);
     }
   }
 }
