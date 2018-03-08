@@ -64,6 +64,7 @@ const HomeController = (() => {
     window.addEventListener('resize', toggleElements);
     toggleElements();
 
+    // Improve this entire _toggleDisplay function (e.g. naming)
     const _cb = (mutationsList) => {
       if (mutationsList[0].removedNodes.length > 0) {
         if (window.location.pathname === '/') {

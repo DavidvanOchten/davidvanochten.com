@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Controllers from '../controllers/Controllers.js';
+import Scroller from '../lib/Scroller.js';
 import { appendContent } from '../utils/appendContent.js';
 import { removeContent } from '../utils/removeContent.js';
 import { showError } from '../utils/showError.js';
@@ -56,6 +57,12 @@ const Router = (() => {
 
     const LINK = e.currentTarget;
     const URL = LINK.href;
+
+    if (URL === window.location.href) {
+      Scroller.init({ target: document.body });
+      return;
+    }
+
     _setLoader(true);
 
     axios.get(URL)

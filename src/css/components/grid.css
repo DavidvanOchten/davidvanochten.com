@@ -1,35 +1,8 @@
 .grid {
   display: flex;
 
-  &__border {
-    position: relative;
-
-    &--left {
-      &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 1px;
-        background-color: var(--grey-light);
-      }
-    }
-
-    &--bottom {
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 1px;
-        width: 100%;
-        background-color: var(--grey-light);
-      }
-    }
-  }
-
   &__cell {
+    position: relative;
     padding: calc(var(--bsl) * 2) var(--col-1);
     overflow: hidden;
 
@@ -43,6 +16,30 @@
 
     &--8 {
       width: var(--col-8);
+    }
+
+    &--borderTop {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--grey-light);
+      }
+    }
+
+    &--borderLeft {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 1px;
+        background-color: var(--grey-light);
+      }
     }
 
     &--profile {

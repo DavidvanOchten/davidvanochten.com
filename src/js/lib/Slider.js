@@ -1,6 +1,6 @@
 const Slider = (() => {
-  let sliderWidth = 0;
   let sliderPosition = 0;
+  let sliderWidth = 0;
   let activeIndex = 0;
 
   const _getItemWidth = (item) => {
@@ -9,6 +9,9 @@ const Slider = (() => {
   };
   
   const _setSliderWidth = (items, container) => {
+    if (sliderWidth !== 0) {
+      sliderWidth = 0;
+    }
     items.map((item) => {
       sliderWidth += _getItemWidth(item);
     });
@@ -37,25 +40,6 @@ const Slider = (() => {
     sliderItems[activeIndex].classList.remove('slider__item--isActive');
   };
 
-  // Probably want to make this more generic by passing in data via params
-  const _createSliderItem = () => {
-    const ITEM = document.createElement('li');
-    const HEADLINE = document.createElement('h2');
-    const HEADLINE_COPY = document.createTextNode('But wait... there’s more.');
-    const LINK = document.createElement('a');
-    const LINK_COPY = document.createTextNode('See all news');
-    const LINK_HREF = LINK.setAttribute('href', '/news');
-    LINK.classList.add('grid__link');
-    LINK.appendChild(LINK_COPY);
-    HEADLINE.classList.add('grid__heading', 'grid__heading--l');
-    HEADLINE.appendChild(HEADLINE_COPY);
-    ITEM.appendChild(HEADLINE);
-    ITEM.appendChild(LINK);
-    ITEM.classList.add('slider__item');
-    ITEM.dataset.slider = 'item';
-    return ITEM;
-  };
-
   const construct = () => {
     const SLIDER = document.querySelector('[data-slider]');
     const SLIDER_CONTAINER = SLIDER.querySelector('[data-slider="container"]');
@@ -63,21 +47,16 @@ const Slider = (() => {
     const SLIDER_BUTTON_PREV = SLIDER.querySelector('[data-slider="previous"]');
     const SLIDER_ITEMS = [...SLIDER.querySelectorAll('[data-slider="item"]')];
 
-    const LAST_ITEM = _createSliderItem();
-    SLIDER_CONTAINER.appendChild(LAST_ITEM);
-    SLIDER_ITEMS.push(LAST_ITEM);
-
     _setSliderWidth(SLIDER_ITEMS, SLIDER_CONTAINER);
 
+    sliderPosition = 0; // Reset slider position on every construct
     SLIDER_ITEMS[0].classList.add('slider__item--isActive');
-
     SLIDER_BUTTON_PREV.addEventListener('click', (e) => {
       _moveSlider('prev', SLIDER, SLIDER_CONTAINER, SLIDER_ITEMS);   
     });
     SLIDER_BUTTON_NEXT.addEventListener('click', (e) => {
       _moveSlider('next', SLIDER, SLIDER_CONTAINER, SLIDER_ITEMS);
     });
-
   };
   
   return {
