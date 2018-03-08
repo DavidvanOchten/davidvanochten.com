@@ -2,6 +2,12 @@ const LazyLoader = (() => {
   const READY_CLASS = 'lazyLoader--isDone';
   let ticking = false;
 
+  const _addReadyClass = (img) => {
+    if (window.getComputedStyle(img).width) {
+      img.parentNode.classList.add(READY_CLASS);
+    }
+  };
+
   const _loadImage = (src) => {
     return new Promise((resolve, reject) => {
       const image = new Image()
@@ -13,7 +19,10 @@ const LazyLoader = (() => {
 
   const _showImage = (img, src) => {
     img.src = src;
-    img.parentNode.classList.add(READY_CLASS);
+
+    img.complete
+      ? _addReadyClass(img)
+      : img.addEventListener('load', e => _addReadyClass(e.target));
   };
 
   const _intersectionObserverCB = (content) => {
@@ -43,7 +52,7 @@ const LazyLoader = (() => {
     ticking = false;
 
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
-    const observableContentEvents = LAZY_CONTENT.map(img => {
+    const observableContentEvents = LAZY_CONTENT.map((img) => {
 
       if (img.parentNode.classList.contains(READY_CLASS)) {
         return;

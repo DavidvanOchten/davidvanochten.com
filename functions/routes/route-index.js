@@ -11,7 +11,7 @@ router.get('/', (req, resp) => {
       return resp.render('pages/index', {
         title: siteData.pages.index.title,
         aboutHeadline: siteData.pages.index.aboutHeadline,
-        view: 'home',
+        view: 'index',
         latestCases: Object.keys(siteData.cases).map(i => siteData.cases[i]).reverse().slice(0, 3),
         latestPosts: Object.keys(siteData.posts).map(i => siteData.posts[i]).reverse().slice(0, 3)
       });

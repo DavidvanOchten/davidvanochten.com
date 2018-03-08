@@ -19,7 +19,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity .25s linear;
-  transform-origin: top left; /* Fix this, check translate value */
+  transform-origin: top left;
   animation: pulse .5s infinite alternate;
 
   &--isActive {
@@ -49,29 +49,17 @@
     transition: transform .75s cubic-bezier(.75, 0, .25, 1);
   }
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 2;
-    height: calc(var(--bsl) / 2);
-    width: calc(var(--bsl) / 2);
-    border-radius: 50%;
-    background-color: var(--grey-dark);
-    opacity: 1;
-    transition: opacity .25s linear;
-    transform-origin: top left;
-    animation: pulse .5s infinite alternate;
-  }
-
   &--isDone {
     &::before {
-      transform: translate3d(100%, 0, 0);
+      transform: translate3d(0, 100%, 0);
     }
 
     &::after {
       opacity: 0;
+    }
+
+    & .lazyLoader__image {
+      transform: none;
     }
   }
 
@@ -83,6 +71,9 @@
     left: 0;
     height: 100%;
     object-fit: cover;
+    transform:  scale(1.075);
+    transform-origin: bottom center;
+    transition: transform .75s cubic-bezier(.75, 0, .25, 1);
   }
 }
 

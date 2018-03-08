@@ -78,9 +78,11 @@ const Router = (() => {
       })
       .then((view) => {
         window.history.pushState(null, null, URL);
-        // Set a default title?
+        // document.title = 'David van Ochten';
+
         _setActiveView(view);
         _setUpView(view.dataset.view);
+        document.title = `${view.dataset.view} | David van Ochten`;
         _setLoader(false);
       })
       .catch((err) => {
@@ -103,23 +105,7 @@ const Router = (() => {
     VIEW.classList.add(VIEW_ACTIVE_CLASS);
     _setUpView(VIEW.dataset.view);
 
-    window.addEventListener('popstate', (e) => {
-      const _setWindowLocation = () => {
-        _setLoader(false);
-        window.location = window.location.href;
-      };
-
-      const DOM_DATA = {
-        targetNode: VIEW_SELECTOR,
-        parentNode: VIEW_PARENT_SELECTOR,
-        activeClass: VIEW_ACTIVE_CLASS,
-        cb: _setWindowLocation
-      };
-
-      _setLoader(true);
-      removeContent(DOM_DATA);
-      // TODO: Fix back/forward button error (especially Firefox)
-    });
+    window.addEventListener('popstate', e => window.location = window.location.href);
   };
 
   return {

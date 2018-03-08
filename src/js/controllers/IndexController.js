@@ -1,6 +1,6 @@
 import Slider from '../lib/Slider.js';
 
-const HomeController = (() => {
+const IndexController = (() => {
   const _createStickyColumn = () => {
     const COL_1 = document.querySelector('[data-grid-column="1"]');
     // const COL_2 = document.querySelector('[data-grid-column="2"]');
@@ -94,4 +94,4 @@ const HomeController = (() => {
   };
 })();
 
-export default HomeController;
+export default IndexController;
