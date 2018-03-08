@@ -17,7 +17,6 @@
     transition: opacity .25s linear;
 
     &--isInvisible {
-      /* Animate individual lines */
       opacity: 0;
     }
   }
@@ -107,6 +106,7 @@
   &__links {
     font-size: var(--ms-m);
     line-height: calc(var(--bsl) * 2);
+    margin-bottom: calc(var(--bsl) * 2);
   }
 
   &__panel {

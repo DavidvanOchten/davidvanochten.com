@@ -1,0 +1,13 @@
+<h1>{{headline}}</h1>
+<div class="grid">
+{{#each posts}}
+  <article class="grid__cell grid__cell--8">
+    <div class="lazyLoader">
+      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+    </div>
+    <header>
+      <h1><button>{{{title}}}</button></h1>
+    </header>
+  </article>
+{{/each}}
+</div>

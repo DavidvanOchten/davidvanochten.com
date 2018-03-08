@@ -40,6 +40,10 @@ textarea {
   font-weight: 300;
 }
 
+main {
+  padding-top: calc(var(--bsl) * 3);
+}
+
 p {
   hyphens: auto;
 }

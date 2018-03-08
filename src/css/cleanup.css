@@ -19,7 +19,7 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity .25s linear;
-  transform-origin: left; /* Fix this, check translate value */
+  transform-origin: top left; /* Fix this, check translate value */
   animation: pulse .5s infinite alternate;
 
   &--isActive {
@@ -44,9 +44,9 @@
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: var(--light);
-    /* background-color: #F9F9F9; */
-    transition: transform 1.5s cubic-bezier(.88, 0, 0, 1);
+    /* background-color: var(--light); */
+    background-color: #F9F9F9;
+    transition: transform .75s cubic-bezier(.75, 0, .25, 1);
   }
 
   &::after {
@@ -61,12 +61,13 @@
     background-color: var(--grey-dark);
     opacity: 1;
     transition: opacity .25s linear;
+    transform-origin: top left;
     animation: pulse .5s infinite alternate;
   }
 
   &--isDone {
     &::before {
-      transform: translate3d(0, 100%, 0);
+      transform: translate3d(100%, 0, 0);
     }
 
     &::after {

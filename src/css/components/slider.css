@@ -1,5 +1,23 @@
 .slider {
-  
+  &__button {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    height: 100%;
+
+    &--next {
+      right: 0;
+      width: 50%;
+      cursor: e-resize;
+    }
+
+    &--prev {
+      left: 0;
+      width: 50%;
+      cursor: w-resize;
+    }
+  }
+
   &__list {
     display: flex;
     flex-wrap: nowrap;

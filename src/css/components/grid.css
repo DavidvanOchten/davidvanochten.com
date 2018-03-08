@@ -41,12 +41,12 @@
       width: var(--col-6);
     }
 
-    &--profile {
-      padding-top: var(--bsl);
+    &--8 {
+      width: var(--col-8);
     }
 
-    &--offset {
-      margin-top: calc(var(--bsl) * 3);
+    &--profile {
+      padding-top: var(--bsl);
     }
   }
 

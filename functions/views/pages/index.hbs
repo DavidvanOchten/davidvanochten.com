@@ -1,14 +1,14 @@
 <article class="grid">
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid grid__border grid__border--bottom" data-toggle-display="trigger">
-      <header class="grid__cell grid__cell--6 logoType">
+      <header class="grid__cell grid__cell--6 logoType logoType--index">
         <h1 class="logoType__primary">David van Ochten</h1>
         <h2 class="logoType__secondary">Developer + designer</h2>
       </header>
-      <ul class="grid__cell grid__cell--4 grid__cell--offset grid__border grid__border--left">
+      <ul class="grid__cell grid__cell--4 grid__border grid__border--left">
         <li><a href="/work">Work</a></li>
         <li><a href="/news">News</a></li>
-        <li><a href="/blog">Blog</a></li>
+        <li><a href="/" target="_blank" data-bypass>Blog</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -17,8 +17,8 @@
       <h1 class="grid__heading">Latest</h1>
 
       <div class="slider" data-slider>
-        <button data-slider="previous">Previous</button>
-        <button data-slider="next">Next</button>
+        <button class="slider__button slider__button--prev" data-slider="previous"></button>
+        <button class="slider__button slider__button--next" data-slider="next"></button>
   
         <ul class="slider__list" data-slider="container">
         {{#each latestPosts}}
@@ -42,9 +42,9 @@
     </section>
   </div>
 
-  <div class="grid__column grid__column--wide grid__cell grid__cell--offset grid__border grid__border--left" data-grid-column="2">
+  <div class="grid__column grid__column--wide grid__cell grid__border grid__border--left" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
-      <h1 class="grid__heading grid__heading--l">{{{headline}}}</h1>
+      <h1 class="grid__heading grid__heading--l">{{{aboutHeadline}}}</h1>
       <a class="grid__link" href="/about">Show profile</a>
     </section>
     <section class="grid__cell">
