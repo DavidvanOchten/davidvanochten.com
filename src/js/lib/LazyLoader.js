@@ -10,10 +10,10 @@ const LazyLoader = (() => {
 
   const _loadImage = (src) => {
     return new Promise((resolve, reject) => {
-      const image = new Image()
-      image.src = src
-      image.onload = resolve
-      image.onerror = reject
+      const IMAGE = new Image()
+      IMAGE.src = src
+      IMAGE.onload = resolve
+      IMAGE.onerror = reject
     });
   };
 
@@ -27,16 +27,16 @@ const LazyLoader = (() => {
 
   const _intersectionObserverCB = (content) => {
     content.map((item) => {
-      const img = item.target;
-      const src = img.dataset.src;
+      const IMG = item.target;
+      const SRC = IMG.dataset.src;
 
-      if (img.parentNode && img.parentNode.classList.contains(READY_CLASS)) {
+      if (IMG.parentNode && IMG.parentNode.classList.contains(READY_CLASS)) {
         return;
       }
 
       if (item.isIntersecting) {
-        _loadImage(src)
-          .then(() => _showImage(img, src))
+        _loadImage(SRC)
+          .then(() => _showImage(IMG, SRC))
           .catch(err => console.log('[LazyLoader] Error: ', err));
       }
     });
@@ -44,30 +44,42 @@ const LazyLoader = (() => {
 
   const _useIntersectionObserver = () => {
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
-    const io = new IntersectionObserver(_intersectionObserverCB, { threshold: 0 });
-    const observableContentIO = LAZY_CONTENT.map(content => io.observe(content));
+    const IO = new IntersectionObserver(_intersectionObserverCB, { threshold: 0 });
+    const OBSERVABLE_CONTENT_IO = LAZY_CONTENT.map(content => IO.observe(content));
   };
 
   const _eventsCB = () => {
     ticking = false;
 
+    // if (LAZY_CONTENT) {
+    //   console.log('Lazy content leak', LAZY_CONTENT);
+    //   while (LAZY_CONTENT.firstChild) {
+    //     LAZY_CONTENT.removeChild(myNode.firstChild);
+    //   }
+    // }
+    // let LAZY_CONTENT = [];
+    // console.log('1', LAZY_CONTENT);
+    // while (LAZY_CONTENT.firstChild) {
+    //   LAZY_CONTENT.removeChild(myNode.firstChild);
+    // }
+    // console.log('2', LAZY_CONTENT);
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
-    const observableContentEvents = LAZY_CONTENT.map((img) => {
-
+    // console.log('3', LAZY_CONTENT);
+    const OBSERVABLE_CONTENT_EVENTS = LAZY_CONTENT.map((img) => {
       if (img.parentNode.classList.contains(READY_CLASS)) {
         return;
       }
 
-      const src = img.dataset.src;
-      const imgTop = img.getBoundingClientRect().top;
-      const imgBottom = img.getBoundingClientRect().bottom;
-      const topInView = imgTop >= 0 && imgTop <= window.innerHeight;
-      const bottomInView = imgBottom >= 0 && imgBottom <= window.innerHeight;
-      const inFullView = imgTop <= 0 && imgBottom >= window.innerHeight;
+      const SRC = img.dataset.src;
+      const IMG_TOP = img.getBoundingClientRect().top;
+      const IMG_BOTTOM = img.getBoundingClientRect().bottom;
+      const TOP_IN_VIEW = IMG_TOP >= 0 && IMG_TOP <= window.innerHeight;
+      const BOTTOM_IN_VIEW = IMG_BOTTOM >= 0 && IMG_BOTTOM <= window.innerHeight;
+      const IN_FULL_VIEW = IMG_TOP <= 0 && IMG_BOTTOM >= window.innerHeight;
 
-      if (topInView || bottomInView || inFullView) {
-        _loadImage(src)
-          .then(() => _showImage(img, src))
+      if (TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW) {
+        _loadImage(SRC)
+          .then(() => _showImage(img, SRC))
           .catch((err) => {
             console.log('[LazyLoader] Error: ', err);
           })
@@ -85,7 +97,12 @@ const LazyLoader = (() => {
   const _useEvents = () => {
     window.addEventListener('scroll', _requestTick);
     window.addEventListener('resize', _requestTick);
-    _requestTick();
+    // Not firing consistently on subsequent page loads
+    setTimeout(() => {
+      console.log('wait');
+      _requestTick();
+    }, 1000);
+    // _requestTick();
   };
 
   const _chooseIntersectionTechnique = () => {

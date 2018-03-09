@@ -1,31 +1,26 @@
 import Slider from '../lib/Slider.js';
 
 const IndexController = (() => {
-  const _createStickyColumn = () => {
-    const COL_1 = document.querySelector('[data-grid-column="1"]');
-    // const COL_2 = document.querySelector('[data-grid-column="2"]');
-
-    // Compare COLs. Check which container is the smallest
-    // Set that element to position: sticky and with a top offset
-
-    COL_1.style.top = `-${COL_1.offsetHeight - window.innerHeight}px`;
-  };
-
-
+  let minScreenSize = window.innerWidth >= 600;
+  let stickyColumn = null;
   let ticking = false;
+
   const SITE_HEADER = document.querySelector('[data-site-header]');
-  // Pick better names for these units
   const TOGGLE_LOGO = document.querySelector('[data-toggle-display="logo"]');
   const TOGGLE_MENU = document.querySelector('[data-toggle-display="menu"]');
   const SITE_HEADER_TOGGLE_CLASS = 'siteHeader__logo--isInvisible';
   const MENU_BURGER_TOGGLE_CLASS = 'menu__burger--isInvisible';
 
-  // Make global function / import
-  const requestTick = (cb) => {
-    if (!ticking) {
-      requestAnimationFrame(cb);
+  const _removeCreateStickyColumn = () => {
+    if (stickyColumn) {
+      stickyColumn.style.top = '';
     }
-    ticking = true
+  };
+
+  const _removeToggleDisplay = () => {
+    window.removeEventListener('scroll', _toggleElements);
+    window.removeEventListener('resize', _toggleElements);
+    _handleToggleClasses('remove');
   };
 
   const _handleToggleClasses = (action) => {
@@ -54,38 +49,65 @@ const IndexController = (() => {
     }
   };
 
-  const toggleElements = (e) => {
+  // Make global function / import
+  const requestTick = (cb) => {
+    if (!ticking) {
+      requestAnimationFrame(cb);
+    }
+    ticking = true
+  };
+
+  const _toggleElements = (e) => {
     requestTick(_eventsCB);
   };
 
   const _toggleDisplay = () => {
-    // use Intersection Observer as well
-    window.addEventListener('scroll', toggleElements);
-    window.addEventListener('resize', toggleElements);
-    toggleElements();
+    // Use Intersection Observer as well
+    window.addEventListener('scroll', _toggleElements);
+    window.addEventListener('resize', _toggleElements);
+    _toggleElements();
 
     // Improve this entire _toggleDisplay function (e.g. naming)
     const _cb = (mutationsList) => {
-      if (mutationsList[0].removedNodes.length > 0) {
+      if (mutationsList[0].removedNodes.length > 0 && minScreenSize) {
         if (window.location.pathname === '/') {
           _handleToggleClasses('add');
         } else {
-          window.removeEventListener('scroll', toggleElements);
-          window.removeEventListener('resize', toggleElements);
-          _handleToggleClasses('remove');
+          _removeToggleDisplay();
         }
       }
     };
 
     const MO = new MutationObserver(_cb);
-    // Observe a different element/change selector
     MO.observe(document.querySelector('main'), { childList: true });
   };
 
+  const _createStickyColumn = () => {
+    const COL_1 = document.querySelector('[data-grid-column="1"]');
+    const COL_2 = document.querySelector('[data-grid-column="2"]');
+
+    COL_1.offsetHeight < COL_2.offsetHeight
+      ? stickyColumn = COL_1
+      : stickyColumn = COL_2
+
+    stickyColumn.style.top = `-${stickyColumn.offsetHeight - window.innerHeight}px`;
+  };
+
+  const _constructForMinSize = () => {
+    minScreenSize = window.innerWidth >= 600;
+
+    if (minScreenSize) {
+      _createStickyColumn();
+      _toggleDisplay();
+    } else {
+      _removeCreateStickyColumn();
+      _removeToggleDisplay();
+    }
+  };
+
   const construct = () => {
-    _createStickyColumn();
-    // Improve this crappy naming
-    _toggleDisplay();
+    _constructForMinSize();
+    window.addEventListener('resize', e => _constructForMinSize());
     Slider.init();
   };
 

@@ -24,7 +24,6 @@ const Menu = (() => {
       if (SITE_HEADER.classList.contains('siteHeader--isActive')) {
         _toggleMenu();
       }
-      // If homepage scroll to top?
     });
 
     MENU_TOGGLE.addEventListener('click', _toggleMenu);

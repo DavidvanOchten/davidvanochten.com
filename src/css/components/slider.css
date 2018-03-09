@@ -1,4 +1,6 @@
 .slider {
+  width: var(--col-22);
+
   &__button {
     position: absolute;
     top: 0;
@@ -27,8 +29,12 @@
 
   &__item {
     flex-shrink: 0;
-    width: var(--col-6);
+    width: var(--col-16);
     padding-right: var(--col-1);
+
+    @media (--tablet-landscape-up) {
+      width: var(--col-6);
+    }
 
     &:last-child {
       & .grid__link {

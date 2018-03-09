@@ -1,6 +1,8 @@
 .logoType {
-  &--index {
-    margin-top: calc(var(--bsl) * -3);
+  @media (--tablet-portrait-up) {
+    &--index {
+      margin-top: calc(var(--bsl) * -3);
+    }
   }
 
   &__secondary {

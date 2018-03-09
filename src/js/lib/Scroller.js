@@ -9,8 +9,16 @@ const Scroller = (() => {
     return BODY;
   };
 
-  const _getElmTopPosition = (elm, body) => {
-    return elm.getBoundingClientRect().top + body.scrollTop
+  const _getElmTopPosition = (elm) => {
+    // return elm.getBoundingClientRect().top + body.scrollTop
+    let elmTopPosition = 0;
+
+    while (elm) {
+        elmTopPosition += (elm.offsetTop + elm.clientTop);
+        elm = elm.offsetParent;
+    }
+
+    return elmTopPosition;
   };
 
   const _scrollTo = (target, duration = 1000, easing = 'easeInOutCubic', cb) => {
@@ -34,7 +42,7 @@ const Scroller = (() => {
       const DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
       const WINDOW_HEIGHT = window.innerHeight;
 
-      const TARGET_TOP = _getElmTopPosition(target, BODY);
+      const TARGET_TOP = _getElmTopPosition(target);
       const DESTINATION = DOCUMENT_HEIGHT - TARGET_TOP < WINDOW_HEIGHT
         ? DOCUMENT_HEIGHT - WINDOW_HEIGHT
         : TARGET_TOP;
