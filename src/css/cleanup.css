@@ -49,6 +49,22 @@
     transition: transform .75s cubic-bezier(.75, 0, .25, 1);
   }
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    height: calc(var(--bsl) / 2);
+    width: calc(var(--bsl) / 2);
+    border-radius: 50%;
+    background-color: var(--grey-dark);
+    transform: translate(-50%, -50%);
+    transition: opacity .25s linear;
+    transform-origin: top left;
+    animation: pulse .5s infinite alternate;
+  }
+
   &--isDone {
     &::before {
       transform: translate3d(0, 100%, 0);

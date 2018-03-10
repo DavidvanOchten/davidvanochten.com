@@ -122,16 +122,6 @@
     transition: transform .5s cubic-bezier(.75, 0, .25, 1);
     pointer-events: none;
 
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      background-color: var(--grey-light);
-    }
-
     &::before {
       content: "";
       position: absolute;
