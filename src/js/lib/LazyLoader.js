@@ -1,3 +1,5 @@
+import { afterViewRemoval } from '../utils/afterViewRemoval.js';
+
 const LazyLoader = (() => {
   const READY_CLASS = 'lazyLoader--isDone';
   let ticking = false;
@@ -51,20 +53,7 @@ const LazyLoader = (() => {
   const _eventsCB = () => {
     ticking = false;
 
-    // if (LAZY_CONTENT) {
-    //   console.log('Lazy content leak', LAZY_CONTENT);
-    //   while (LAZY_CONTENT.firstChild) {
-    //     LAZY_CONTENT.removeChild(myNode.firstChild);
-    //   }
-    // }
-    // let LAZY_CONTENT = [];
-    // console.log('1', LAZY_CONTENT);
-    // while (LAZY_CONTENT.firstChild) {
-    //   LAZY_CONTENT.removeChild(myNode.firstChild);
-    // }
-    // console.log('2', LAZY_CONTENT);
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
-    // console.log('3', LAZY_CONTENT);
     const OBSERVABLE_CONTENT_EVENTS = LAZY_CONTENT.map((img) => {
       if (img.parentNode.classList.contains(READY_CLASS)) {
         return;
@@ -97,12 +86,10 @@ const LazyLoader = (() => {
   const _useEvents = () => {
     window.addEventListener('scroll', _requestTick);
     window.addEventListener('resize', _requestTick);
-    // Not firing consistently on subsequent page loads
-    setTimeout(() => {
-      console.log('[Lazy loader] Wait');
-      _requestTick();
-    }, 1000);
-    // _requestTick();
+
+    afterViewRemoval(_requestTick);
+
+    _requestTick();
   };
 
   const _chooseIntersectionTechnique = () => {

@@ -1,4 +1,5 @@
 import Slider from '../lib/Slider.js';
+import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 
 const IndexController = (() => {
   let minScreenSize = window.innerWidth >= 600;
@@ -67,19 +68,15 @@ const IndexController = (() => {
     window.addEventListener('resize', _toggleElements);
     _toggleElements();
 
-    // Improve this entire _toggleDisplay function (e.g. naming)
-    const _cb = (mutationsList) => {
-      if (mutationsList[0].removedNodes.length > 0 && minScreenSize) {
+    afterViewRemoval(() => {
+      if (minScreenSize) {
         if (window.location.pathname === '/') {
           _handleToggleClasses('add');
         } else {
           _removeToggleDisplay();
         }
       }
-    };
-
-    const MO = new MutationObserver(_cb);
-    MO.observe(document.querySelector('main'), { childList: true });
+    });
   };
 
   const _createStickyColumn = () => {

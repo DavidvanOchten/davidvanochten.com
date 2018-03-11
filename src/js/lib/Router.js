@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Controllers from '../controllers/Controllers.js';
 import Scroller from '../lib/Scroller.js';
+import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 import { appendContent } from '../utils/appendContent.js';
 import { removeContent } from '../utils/removeContent.js';
 import { showError } from '../utils/showError.js';
@@ -39,18 +40,11 @@ const Router = (() => {
     TARGET_LINK.classList.add(LINK_ACTIVE_CLASS);
   };
 
-  const _setActiveView = (view) => {
-    const _onRemovedView = (mutationsList) => {
-      if (mutationsList[0].removedNodes.length > 0) {
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-        view.classList.add(VIEW_ACTIVE_CLASS);
-      }
-    };
-
-    const MO = new MutationObserver(_onRemovedView);
-    MO.observe(view.parentNode, {childList: true});
-  };
+  // const _setActiveView = (view) => {
+  //   document.documentElement.scrollTop = 0;
+  //   document.body.scrollTop = 0;
+  //   view.classList.add(VIEW_ACTIVE_CLASS);
+  // };
 
   const _switchViews = (e) => {
     e.preventDefault();
@@ -77,12 +71,17 @@ const Router = (() => {
         return appendContent(resp.data, DOM_DATA);
       })
       .then((view) => {
+        const VIEW_NAME = view.dataset.view
         window.history.pushState(null, null, URL);
-        // document.title = 'David van Ochten';
 
-        _setActiveView(view);
-        _setUpView(view.dataset.view);
-        document.title = `${view.dataset.view} | David van Ochten`;
+        afterViewRemoval(() => {
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+          view.classList.add(VIEW_ACTIVE_CLASS);
+        });
+
+        _setUpView(VIEW_NAME);
+        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
         _setLoader(false);
       })
       .catch((err) => {

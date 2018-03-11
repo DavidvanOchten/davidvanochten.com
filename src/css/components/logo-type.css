@@ -1,7 +1,0 @@
-.logoType {
-  @media (--tablet-portrait-up) {
-    &--index {
-      margin-top: calc(var(--bsl) * -3);
-    }
-  }
-}

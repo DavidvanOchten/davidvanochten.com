@@ -51,6 +51,12 @@
       }
     }
 
+    &--offset {
+      @media (--tablet-portrait-up) {
+        margin-top: calc(var(--bsl) * -3);
+      }
+    }
+
     &--profile {
       padding-top: var(--bsl);
       @media (--phone-only) {
