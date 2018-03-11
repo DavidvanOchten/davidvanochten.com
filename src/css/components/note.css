@@ -1,0 +1,14 @@
+.note {
+  &__header {
+    margin-top: calc(var(--bsl) / 3);
+  }
+
+  &__headline {
+    display: inline;
+    font-weight: 400;
+  }
+
+  &__summary {
+    display: inline;
+  }
+}

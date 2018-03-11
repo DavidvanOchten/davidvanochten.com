@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/notes', (req, resp) => {
   // Make this one global?
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  axios.get('https://vue-admin.firebaseio.com/posts.json')
+  axios.get('https://davidvanochten-admin.firebaseio.com/notes.json')
     .then((response) => {
       const notes = Object.keys(response.data).map(i => response.data[i]).reverse();
 

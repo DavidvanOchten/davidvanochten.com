@@ -22,18 +22,19 @@
         <button class="slider__button slider__button--next" data-slider="next"></button>
   
         <ul class="slider__list" data-slider="container">
-        {{!-- {{#each latestPosts}}
+          {{#each latestNotes}}
           <li class="slider__item" data-slider="item">
-            <article>
+            <article class="note">
               <div class="lazyLoader">
-                <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+                <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
               </div>
-              <header>
-                <h1><button>{{{title}}}</button></h1>
+              <header class="note__header">
+                <h1 class="note__headline">{{{headline}}}</h1>
+                <p class="note__summary">&nbsp;&#8212;&nbsp;&nbsp;{{{summary}}}</p>
               </header>
             </article>
           </li>
-        {{/each}} --}}
+          {{/each}}
           <li class="slider__item" data-slider="item">
             <h2 class="grid__heading grid__heading--l">But wait... there’s more.</h2>
             <a class="grid__link" href="/notes">See all notes</a>
@@ -62,7 +63,8 @@
               <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
             </a>
             <header>
-              <h1>{{{headline}}}</h1>
+              <h1>{{{name}}}</h1>
+              <h2>&nbsp;&#8212;&nbsp;&nbsp;{{{headline}}}</h2>
             </header>
           </article>
         </li>
