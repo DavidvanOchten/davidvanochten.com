@@ -8,10 +8,11 @@ router.get('/contact', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   axios.get('https://vue-admin.firebaseio.com/pages/contact.json')
     .then((response) => {
-      return resp.render('pages/contact', { 
+      return resp.render('pages/contact', {
+        view: 'contact',
         title: 'contact',
+        description: 'test',
         headline: response.data.headline,
-        view: 'contact'
       });
     })
     .catch((error) => {

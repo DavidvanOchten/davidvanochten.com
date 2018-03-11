@@ -1,2 +1,10 @@
-<h1 style="padding-top: 9rem;">{{headline}}</h1>
-<img src="{{thumbnail}}" alt="{{headline}}">
+<header>
+  <h1 style="padding-top: 9rem;">{{name}}</h1>
+  <h2>{{headline}}</h2>
+</header>
+<p>{{{summary}}}</p>
+<img src="{{hero}}" alt="{{headline}}">
+
+{{#each content}}
+  <img data-src="{{src}}" alt="{{{name}}}">
+{{/each}}

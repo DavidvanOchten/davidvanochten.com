@@ -2,13 +2,14 @@
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid" data-toggle-display="trigger">
       <header class="grid__cell grid__cell--6 logoType logoType--index">
-        <h1 class="logoType__primary">David van Ochten</h1>
-        <h2 class="logoType__secondary">Developer + designer</h2>
+        <h1>David van Ochten</h1>
+        <h2 class="grid__heading">Developer + designer</h2>
       </header>
       <ul class="grid__cell grid__cell--borderLeft grid__cell--4">
+        <li>Index</li>
         <li><a href="/work">Work</a></li>
-        <li><a href="/news">News</a></li>
-        <li><a href="/" target="_blank" data-bypass>Blog</a></li>
+        <li><a href="/notes">Notes</a></li>
+        {{!-- <li><a href="/" target="_blank" data-bypass>Blog</a></li> --}}
         <li><a href="/about">About</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul>
@@ -21,7 +22,7 @@
         <button class="slider__button slider__button--next" data-slider="next"></button>
   
         <ul class="slider__list" data-slider="container">
-        {{#each latestPosts}}
+        {{!-- {{#each latestPosts}}
           <li class="slider__item" data-slider="item">
             <article>
               <div class="lazyLoader">
@@ -32,10 +33,10 @@
               </header>
             </article>
           </li>
-        {{/each}}
+        {{/each}} --}}
           <li class="slider__item" data-slider="item">
             <h2 class="grid__heading grid__heading--l">But wait... there’s more.</h2>
-            <a class="grid__link" href="/news">See all news</a>
+            <a class="grid__link" href="/notes">See all notes</a>
           </li>
         </ul>
       </div>
@@ -49,10 +50,10 @@
   <div class="grid__column grid__column--wide grid__cell grid__cell--borderLeft" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
       <h1 class="grid__heading grid__heading--l">{{{aboutHeadline}}}</h1>
-      <a class="grid__link" href="/about">Show profile</a>
+      <a class="grid__link" href="/about">{{aboutLink}}</a>
     </section>
     <section class="grid__cell">
-      <h1 class="grid__heading grid__heading--rotated">Work</h1>
+      <h1 class="grid__heading grid__heading--rotated">{{workHeadline}}</h1>
       <ul>
         {{#each latestCases}}
         <li>
@@ -66,6 +67,7 @@
           </article>
         </li>
         {{/each}}
+        <li><a class="grid__link" href="/work">{{workLink}}</a></li>
       </ul>
     </section>
   </div>

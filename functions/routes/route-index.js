@@ -5,15 +5,19 @@ const router = express.Router();
 
 router.get('/', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  axios.get('https://vue-admin.firebaseio.com/.json')
+  axios.get('https://davidvanochten-admin.firebaseio.com/.json')
     .then(response => response.data)
     .then((siteData) => {
       return resp.render('pages/index', {
-        title: siteData.pages.index.title,
-        aboutHeadline: siteData.pages.index.aboutHeadline,
         view: 'index',
-        latestCases: Object.keys(siteData.cases).map(i => siteData.cases[i]).reverse().slice(0, 3),
-        latestPosts: Object.keys(siteData.posts).map(i => siteData.posts[i]).reverse().slice(0, 3)
+        title: siteData.home.title,
+        description: siteData.home.description,
+        aboutHeadline: siteData.home.aboutHeadline,
+        aboutLink: siteData.home.aboutLink,
+        workHeadline: siteData.home.workHeadline,
+        workLink: siteData.home.workLink,
+        latestCases: Object.keys(siteData.cases).map(i => siteData.cases[i]).reverse().slice(0, siteData.home.workItems)
+        // latestPosts: Object.keys(siteData.posts).map(i => siteData.posts[i]).reverse().slice(0, 3)
       });
     })
     .catch((error) => {

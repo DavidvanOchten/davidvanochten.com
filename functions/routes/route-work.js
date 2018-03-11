@@ -5,15 +5,14 @@ const router = express.Router();
 
 router.get('/work', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  // How to attach the cases to the work JSON file?
-  // Or do two separate fetch requests (work and cases)?
-  axios.get('https://vue-admin.firebaseio.com/cases.json')
+  axios.get('https://davidvanochten-admin.firebaseio.com/cases.json')
     .then((response) => {
       const cases = Object.keys(response.data).map(i => response.data[i]).reverse();
 
       return resp.render('pages/work', { 
-        title: 'Get from admin',
         view: 'work',
+        title: 'Get from admin',
+        description: 'test',
         cases
       });
     })
@@ -25,15 +24,19 @@ router.get('/work', (req, resp) => {
 router.get('/work/:id', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
 
-  axios.get('https://vue-admin.firebaseio.com/cases.json')
+  axios.get('https://davidvanochten-admin.firebaseio.com/cases.json')
     .then((response) => {
       const caseObj = Object.keys(response.data).map(i => response.data[i]).filter(obj => obj.path === req.params.id)[0];
 
-      return resp.render('pages/case', { 
+      return resp.render('pages/case', {
+        view: 'case',
         title: caseObj.title,
+        description: 'test',
+        name: caseObj.name,
         headline: caseObj.headline,
-        thumbnail: caseObj.thumbnailUrl,
-        view: 'case'
+        hero: caseObj.heroUrl,
+        summary: caseObj.summary,
+        content: caseObj.content
       });
     })
     .catch((error) => {

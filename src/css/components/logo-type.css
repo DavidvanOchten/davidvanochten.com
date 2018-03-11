@@ -4,8 +4,4 @@
       margin-top: calc(var(--bsl) * -3);
     }
   }
-
-  &__secondary {
-    color: var(--grey-dark);
-  }
 }

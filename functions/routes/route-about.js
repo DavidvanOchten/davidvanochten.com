@@ -10,10 +10,11 @@ router.get('/about', (req, resp) => {
     .then((response) => {
       // const skills = Object.keys(response.data).map(i => response.data[i]).reverse();
 
-      return resp.render('pages/about', { 
+      return resp.render('pages/about', {
+        view: 'about',
         title: 'About',
+        description: 'test',
         headline: response.data.headline,
-        view: 'about'
         // skills
       });
     })

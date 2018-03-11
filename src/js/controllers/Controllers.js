@@ -3,7 +3,7 @@ import BaseController from './BaseController.js';
 import CaseController from './CaseController.js';
 import ContactController from './ContactController.js';
 import IndexController from './IndexController.js';
-import NewsController from './NewsController.js';
+import NotesController from './NotesController.js';
 import OfflineController from './OfflineController.js';
 import WorkController from './WorkController.js';
 
@@ -13,7 +13,7 @@ const Controllers = {
   case: CaseController,
   contact: ContactController,
   index: IndexController,
-  news: NewsController,
+  notes: NotesController,
   offline: OfflineController,
   work: WorkController
 };

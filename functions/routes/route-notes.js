@@ -3,18 +3,19 @@ const axios = require('axios');
 
 const router = express.Router();
 
-router.get('/news', (req, resp) => {
+router.get('/notes', (req, resp) => {
   // Make this one global?
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   axios.get('https://vue-admin.firebaseio.com/posts.json')
     .then((response) => {
-      const posts = Object.keys(response.data).map(i => response.data[i]).reverse();
+      const notes = Object.keys(response.data).map(i => response.data[i]).reverse();
 
-      return resp.render('pages/news', { 
-        title: 'News',
-        headline: 'News page',
-        view: 'news',
-        posts
+      return resp.render('pages/notes', { 
+        title: 'Notes',
+        description: 'test',
+        headline: 'Notes page',
+        view: 'notes',
+        notes
       });
     })
     .catch((error) => {

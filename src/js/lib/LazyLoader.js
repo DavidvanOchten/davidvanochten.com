@@ -99,7 +99,7 @@ const LazyLoader = (() => {
     window.addEventListener('resize', _requestTick);
     // Not firing consistently on subsequent page loads
     setTimeout(() => {
-      console.log('wait');
+      console.log('[Lazy loader] Wait');
       _requestTick();
     }, 1000);
     // _requestTick();
