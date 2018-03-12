@@ -40,7 +40,7 @@ const Slider = (() => {
     sliderItems[activeIndex].classList.remove('slider__item--isActive');
   };
 
-  const construct = () => {
+  const _construct = () => {
     const SLIDER = document.querySelector('[data-slider]');
     const SLIDER_CONTAINER = SLIDER.querySelector('[data-slider="container"]');
     const SLIDER_BUTTON_NEXT = SLIDER.querySelector('[data-slider="next"]');
@@ -60,7 +60,7 @@ const Slider = (() => {
   };
   
   return {
-    init: construct
+    init: _construct
   };
 
 })();

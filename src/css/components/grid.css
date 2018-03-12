@@ -7,9 +7,8 @@
 
   &__cell {
     position: relative;
-    /*width: var(--col-24);*/
+    flex-shrink: 0;
     padding: var(--bsl) var(--col-1);
-    overflow: hidden;
 
     @media (--tablet-portrait-up) {
       padding: calc(var(--bsl) * 2) var(--col-1);
@@ -24,6 +23,14 @@
 
       &--8 {
         width: var(--col-8);
+      }
+
+      &--10 {
+        width: var(--col-10);
+      }
+
+      &--12 {
+        width: var(--col-12);
       }
     }
 

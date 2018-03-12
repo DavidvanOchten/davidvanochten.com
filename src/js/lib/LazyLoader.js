@@ -88,7 +88,6 @@ const LazyLoader = (() => {
     window.addEventListener('resize', _requestTick);
 
     afterViewRemoval(_requestTick);
-
     _requestTick();
   };
 
@@ -98,12 +97,12 @@ const LazyLoader = (() => {
       : _useEvents();
   };
 
-  const construct = () => {
+  const _construct = () => {
     _chooseIntersectionTechnique();
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 

@@ -17,7 +17,7 @@ const Menu = (() => {
     document.body.classList.toggle('u-isUnscrollable');
   };
 
-  const construct = () => {
+  const _construct = () => {
     SITE_HEADER_BG.addEventListener('click', _toggleMenu);
     SITE_HEADER_LOGO.addEventListener('click', (e) => {
       e.currentTarget.blur();
@@ -39,7 +39,7 @@ const Menu = (() => {
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 

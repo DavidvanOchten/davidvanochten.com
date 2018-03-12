@@ -1,0 +1,52 @@
+.card {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  &:hover {
+    & .card__header {
+      transform: translate3d(0, 0, 0);
+    }
+    & .card__heading {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  &__header {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--light);
+    transform: translate3d(0, 100%, 0);
+    transition: transform 1s cubic-bezier(.75, 0, 0, 1);
+  }
+
+  &__heading {
+    font-size: var(--ms-m);
+    transform: translate3d(0, 100%, 0);
+    transition: transform 1s cubic-bezier(.75, 0, 0, 1) .25s;
+  }
+
+  &__link {
+    display: flex;
+    padding-top: var(--bsl);
+  }
+
+  &__thumbnail {
+    height: 100%;
+
+    &--index {
+      padding-bottom: 100%;
+
+      & img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+}

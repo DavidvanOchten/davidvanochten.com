@@ -40,12 +40,6 @@ const Router = (() => {
     TARGET_LINK.classList.add(LINK_ACTIVE_CLASS);
   };
 
-  // const _setActiveView = (view) => {
-  //   document.documentElement.scrollTop = 0;
-  //   document.body.scrollTop = 0;
-  //   view.classList.add(VIEW_ACTIVE_CLASS);
-  // };
-
   const _switchViews = (e) => {
     e.preventDefault();
 
@@ -99,7 +93,7 @@ const Router = (() => {
     Controllers[view].init();
   };
 
-  const construct = () => {
+  const _construct = () => {
     const VIEW = document.querySelector(VIEW_SELECTOR);
     VIEW.classList.add(VIEW_ACTIVE_CLASS);
     _setUpView(VIEW.dataset.view);
@@ -108,7 +102,7 @@ const Router = (() => {
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 

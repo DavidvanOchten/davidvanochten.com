@@ -1,14 +1,16 @@
-<h1>{{headline}}</h1>
-<div class="grid">
-{{#each notes}}
-  <article class="note grid__cell grid__cell--8">
-    <div class="lazyLoader">
-      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
-    </div>
-    <header class="note__header">
-      <h1 class="note__headline">{{{headline}}}</h1>
-      <p class="note__summary">&nbsp;&#8212;&nbsp;&nbsp;{{{summary}}}</p>
-    </header>
-  </article>
-{{/each}}
-</div>
+<article>
+  <h1>{{headline}}</h1>
+  <div class="grid">
+  {{#each notes}}
+    <article class="note grid__cell grid__cell--8">
+      <div class="note__thumbnail lazyLoader">
+        <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+      </div>
+      <header class="note__header">
+        <h1 class="note__headline">{{{headline}}}</h1>
+        <p class="note__summary">{{{summary}}}</p>
+      </header>
+    </article>
+  {{/each}}
+  </div>
+</article>

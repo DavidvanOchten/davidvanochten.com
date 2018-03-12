@@ -68,13 +68,13 @@ const Scroller = (() => {
       requestAnimationFrame(_scroll);
   };
 
-  const construct = (options) => {
+  const _construct = (options) => {
     const { target, duration, easing, cb } = options;
     _scrollTo(target, duration, easing, cb);
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 

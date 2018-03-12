@@ -14,8 +14,10 @@ router.get('/', (req, resp) => {
         description: siteData.home.description,
         aboutHeadline: siteData.home.aboutHeadline,
         aboutLink: siteData.home.aboutLink,
-        workHeadline: siteData.home.workHeadline,
+        // workHeadline: siteData.home.workHeadline,
         workLink: siteData.home.workLink,
+        notesHeadline: siteData.home.notesHeadline,
+        notesLink: siteData.home.notesLink,
         latestCases: Object.keys(siteData.cases).map(i => siteData.cases[i]).reverse().slice(0, siteData.home.workItems),
         latestNotes: Object.keys(siteData.notes).map(i => siteData.notes[i]).reverse().slice(0, 3)
       });
