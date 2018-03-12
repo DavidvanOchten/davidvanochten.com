@@ -1,0 +1,8 @@
+.gallery {
+  margin-bottom: calc(var(--bsl) * 2);
+
+  &__picture {
+    min-height: calc(var(--bsl) * 20);
+    margin-bottom: calc(var(--bsl) * 3);
+  }
+}

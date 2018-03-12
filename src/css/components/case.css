@@ -16,6 +16,7 @@
   &__hero {
     position: relative;
     z-index: -2;
+    margin-bottom: calc(var(--bsl) * 5);
     padding-top: calc(9 / 21 * 100%);
 
     & img {
