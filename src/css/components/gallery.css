@@ -2,7 +2,21 @@
   margin-bottom: calc(var(--bsl) * 2);
 
   &__picture {
-    min-height: calc(var(--bsl) * 20);
-    margin-bottom: calc(var(--bsl) * 3);
+    margin-bottom: var(--bsl);
+    padding-top: calc(9 / 16 * 100%);
+
+    &.lazyLoader--isDone {
+      padding-top: 0;
+
+      & .lazyLoader__image {
+        position: relative;
+      }
+    }
+  }
+
+  @media (--desktop-up) {
+    &__picture {
+      margin-bottom: calc(var(--bsl) * 3);
+    }
   }
 }

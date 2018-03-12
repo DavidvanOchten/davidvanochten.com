@@ -46,6 +46,18 @@
       }
     }
 
+    &--borderBottom {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--grey-light);
+      }
+    }
+
     &--borderLeft {
       &::after {
         content: "";
@@ -65,7 +77,6 @@
     }
 
     &--profile {
-      padding-top: var(--bsl);
       @media (--phone-only) {
         order: 1;
       }
@@ -77,7 +88,6 @@
     display: flex;
     align-self: flex-start;
     flex-direction: column;
-    padding-bottom: calc(var(--bsl) * 1);
     background-color: var(--light);
 
     @media (--tablet-portrait-up) {
@@ -87,6 +97,17 @@
 
       &--wide {
         width: var(--col-14);
+        padding: var(--bsl) var(--col-1);
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 1px;
+          background-color: var(--grey-light);
+        }
       }
     }
   }

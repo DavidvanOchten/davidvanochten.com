@@ -13,7 +13,10 @@
   &__header {
     position: absolute;
     top: 50%;
-    left: var(--col-1);
+    left: 0;
+    padding-right: var(--col-1);
+    padding-left: var(--col-1);
+    line-height: calc(var(--bsl) * 2);
     opacity: 0;
     transition: opacity .25s linear;
     transform: translateY(-50%);
@@ -21,7 +24,6 @@
 
   &__title {
     font-size: var(--ms-l);
-    line-height: calc(var(--bsl) * 3);
   }
 
   &__subtitle {

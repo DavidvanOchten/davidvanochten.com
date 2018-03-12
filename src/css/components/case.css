@@ -10,21 +10,17 @@
   }
 
   &__header {
+    position: relative;
+    z-index: 1;
     align-items: baseline;
   }
 
   &__hero {
-    position: relative;
-    z-index: -2;
-    margin-bottom: calc(var(--bsl) * 5);
+    margin-bottom: var(--bsl);
     padding-top: calc(9 / 21 * 100%);
 
-    & img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+    @media (--desktop-up) {
+      margin-bottom: calc(var(--bsl) * 5);
     }
   }
 
