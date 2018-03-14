@@ -1,0 +1,62 @@
+.accordion {
+  &__content {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height .75s cubic-bezier(.75, 0, 0, 1);
+    will-change: height;
+
+    & p {
+      opacity: 0;
+      transform: translate3d(0, -100%, 0);
+      transition: transform .75s cubic-bezier(.75, 0, 0, 1), opacity .25s linear;
+    }
+
+    &--isVisible {
+      & p {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: transform .75s cubic-bezier(.75, 0, 0, 1) .25s, opacity .25s linear .5s;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1px;
+      width: 100%;
+      background-color: var(--grey-light);
+    }
+
+    &:last-child {
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 1px;
+        width: 100%;
+        background-color: var(--grey-light);
+      }
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    justify-content: space-between;
+    padding-top: calc(var(--bsl) / 2);
+    padding-bottom: calc(var(--bsl) / 2);
+    font-weight: 400;
+
+    &::after {
+      content: "+";
+    }
+  }
+}

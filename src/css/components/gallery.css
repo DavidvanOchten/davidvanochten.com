@@ -1,9 +1,15 @@
 .gallery {
   margin-bottom: calc(var(--bsl) * 2);
+  padding-right: var(--col-1);
+  padding-left: var(--col-1);
 
   &__picture {
     margin-bottom: var(--bsl);
     padding-top: calc(9 / 16 * 100%);
+
+    & .lazyLoader__image {
+      transform: scale(1.05);
+    }
 
     &.lazyLoader--isDone {
       padding-top: 0;

@@ -1,0 +1,22 @@
+.profile {
+  flex-direction: column;
+
+  &__header {
+    padding-top: calc(var(--bsl) * 6);
+    padding-bottom: calc(var(--bsl) * 3);
+  }
+
+  &__intro {
+    display: inline;
+  }
+
+  &__subtitle {
+    margin-bottom: calc(var(--bsl) / 2);
+    color: var(--grey-dark);
+  }
+
+  &__title {
+    display: inline;
+    font-weight: 400;
+  }
+}

@@ -1,6 +1,10 @@
+import Accordion from '../lib/Accordion.js';
+
 const AboutController = (() => {
+
   const construct = () => {
-    console.log('About');
+    const accordionToggles = [...document.querySelectorAll('[data-accordion="toggle"]')];
+    Accordion.init(accordionToggles);
   };
 
   return {
