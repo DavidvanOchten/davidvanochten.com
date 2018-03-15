@@ -1,7 +1,6 @@
 .gallery {
   margin-bottom: calc(var(--bsl) * 2);
-  padding-right: var(--col-1);
-  padding-left: var(--col-1);
+  padding: calc(var(--bsl) * 5) var(--col-1);
 
   &__picture {
     margin-bottom: var(--bsl);

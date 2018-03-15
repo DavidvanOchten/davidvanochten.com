@@ -52,6 +52,9 @@ const Router = (() => {
     }
 
     _setLoader(true);
+    // Pointer event none for all links. Change cursor
+    // Reset this in the catch.
+    // E.g. _disableLinks(true) and _disableLinks(false)
 
     axios.get(URL)
       .then((resp) => {

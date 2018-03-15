@@ -5,15 +5,15 @@ const Accordion = (() => {
   const _construct = (arr) => {
     arr.map((item) => {
       item.addEventListener('click', (e) => {
-        const accordionContent = e.currentTarget.querySelector('[data-accordion="content"]');
+        const CONTENT = e.currentTarget.querySelector('[data-accordion="content"]');
         item.classList.toggle(ACTIVE_ITEM_CLASS);
   
         if (item.classList.contains(ACTIVE_ITEM_CLASS)) {
-          accordionContent.style.height = `${item.offsetHeight + accordionContent.offsetHeight + 24}px`;
-          accordionContent.classList.add(VISIBLE_CONTENT_CLASS);
+          CONTENT.style.height = `${item.offsetHeight + CONTENT.offsetHeight + 24}px`;
+          CONTENT.classList.add(VISIBLE_CONTENT_CLASS);
         } else {
-          accordionContent.style.height = 0;
-          accordionContent.classList.remove(VISIBLE_CONTENT_CLASS);
+          CONTENT.style.height = 0;
+          CONTENT.classList.remove(VISIBLE_CONTENT_CLASS);
         }
       })
     });

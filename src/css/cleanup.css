@@ -11,7 +11,7 @@
 .loader {
   position: fixed;
   top: calc(var(--bsl) * 1.5);
-  left: 50%;
+  left: var(--col-5);
   z-index: 10;
   height: calc(var(--bsl) / 2);
   width: calc(var(--bsl) / 2);
@@ -44,7 +44,6 @@
     z-index: 1;
     height: 100%;
     width: 100%;
-    /* background-color: var(--light); */
     background-color: #F9F9F9;
     transition: transform .75s cubic-bezier(.75, 0, .25, 1);
   }
