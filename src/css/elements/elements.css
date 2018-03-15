@@ -48,6 +48,10 @@ p {
   hyphens: auto;
 }
 
+strong {
+  font-weight: 400;
+}
+
 textarea {
   display: block;
   resize: none;

@@ -20,6 +20,16 @@ const Router = (() => {
       : LOADER.classList.remove('loader--isActive');
   };
 
+  const _disableRouterLinks = (status) => {
+    const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
+
+    ROUTER_LINKS.map((item) => {
+      status === true
+        ? item.classList.add('u-isUnclickable')
+        : item.classList.remove('u-isUnclickable');
+    })
+  };
+
   const _createRouterLinks = () => {
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
     ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews));
@@ -52,9 +62,7 @@ const Router = (() => {
     }
 
     _setLoader(true);
-    // Pointer event none for all links. Change cursor
-    // Reset this in the catch.
-    // E.g. _disableLinks(true) and _disableLinks(false)
+    _disableRouterLinks(true);
 
     axios.get(URL)
       .then((resp) => {
@@ -70,20 +78,22 @@ const Router = (() => {
       .then((view) => {
         const VIEW_NAME = view.dataset.view
         window.history.pushState(null, null, URL);
+        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
 
         afterViewRemoval(() => {
           document.documentElement.scrollTop = 0;
           document.body.scrollTop = 0;
           view.classList.add(VIEW_ACTIVE_CLASS);
         });
-
+        
         _setUpView(VIEW_NAME);
-        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
         _setLoader(false);
+        _disableRouterLinks(false);
       })
       .catch((err) => {
         console.log(err);
         _setLoader(false);
+        _disableRouterLinks(false);
         showError(err);
       });
   };

@@ -30,10 +30,17 @@
   </header>
 
   <div class="gallery">
-    {{#each content}}
+    {{!-- {{#each content}}
     <picture class="gallery__picture lazyLoader">
       <img class="lazyLoader__image" data-src="{{src}}" alt="{{name}}">
     </picture>
+    {{/each}} --}}
+    {{#each content}}
+    <!-- Animate in view, set up in CaseController -->
+    <div class="gallery__item">
+      {{!-- Add src-set with different --}}
+      <img class="" src="{{src}}" alt="{{name}}">
+    </div>
     {{/each}}
   </div>
   <div class="grid">

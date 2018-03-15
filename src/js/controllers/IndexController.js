@@ -50,8 +50,7 @@ const IndexController = (() => {
     }
   };
 
-  // Make global function / import
-  const requestTick = (cb) => {
+  const _requestTick = (cb) => {
     if (!ticking) {
       requestAnimationFrame(cb);
     }
@@ -59,7 +58,7 @@ const IndexController = (() => {
   };
 
   const _toggleElements = (e) => {
-    requestTick(_eventsCB);
+    _requestTick(_eventsCB);
   };
 
   const _toggleDisplay = () => {

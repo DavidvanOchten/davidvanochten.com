@@ -71,8 +71,10 @@
       transform: translate3d(0, 100%, 0);
     }
 
-    &::after {
-      opacity: 0;
+    @media (--phone-only) {
+      &::after {
+        opacity: 0;
+      }
     }
 
     & .lazyLoader__image {

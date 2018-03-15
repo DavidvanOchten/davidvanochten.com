@@ -2,25 +2,12 @@
   margin-bottom: calc(var(--bsl) * 2);
   padding: calc(var(--bsl) * 5) var(--col-1);
 
-  &__picture {
+  &__item {
     margin-bottom: var(--bsl);
-    padding-top: calc(9 / 16 * 100%);
-
-    & .lazyLoader__image {
-      transform: scale(1.05);
-    }
-
-    &.lazyLoader--isDone {
-      padding-top: 0;
-
-      & .lazyLoader__image {
-        position: relative;
-      }
-    }
   }
 
   @media (--desktop-up) {
-    &__picture {
+    &__item {
       margin-bottom: calc(var(--bsl) * 3);
     }
   }

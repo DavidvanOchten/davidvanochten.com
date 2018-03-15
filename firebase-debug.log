@@ -1,0 +1,166 @@
+[debug] [2018-03-15T05:45:51.488Z] ----------------------------------------------------------------------
+[debug] [2018-03-15T05:45:51.513Z] Command:       /Users/davidvanochten/.nvm/versions/node/v8.1.4/bin/node /Users/davidvanochten/.nvm/versions/node/v8.1.4/bin/firebase serve --only functions,hosting
+[debug] [2018-03-15T05:45:51.514Z] CLI Version:   3.17.6
+[debug] [2018-03-15T05:45:51.514Z] Platform:      darwin
+[debug] [2018-03-15T05:45:51.514Z] Node Version:  v8.1.4
+[debug] [2018-03-15T05:45:51.584Z] Time:          Thu Mar 15 2018 16:45:51 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:45:51.584Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-03-15T05:45:51.723Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-03-15T05:45:51.723Z] > authorizing via signed-in user
+[debug] [2018-03-15T05:45:51.727Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/davidvanochten-com  
+  
+ Thu Mar 15 2018 16:45:51 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:45:56.220Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-15T05:45:56.221Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/davidvanochten-com/tokens  
+  
+ Thu Mar 15 2018 16:45:56 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:45:59.089Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-15T05:45:59.090Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/davidvanochten-com  
+  
+ Thu Mar 15 2018 16:45:59 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:46:03.114Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/davidvanochten/Desktop/apps/davidvanochten/davidvanochten.com'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-03-15T05:46:11.084Z] Fetching environment
+[debug] [2018-03-15T05:46:11.109Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/538784738334:getServerAppConfig  
+  
+ Thu Mar 15 2018 16:46:11 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:46:11.110Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/538784738334/clients/_:getWebAppConfig  
+  
+ Thu Mar 15 2018 16:46:11 GMT+1100 (AEDT)
+[debug] [2018-03-15T05:46:12.522Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-15T05:46:12.692Z] <<< HTTP RESPONSE 200
+[debug] [2018-03-15T05:46:12.692Z] Starting @google-cloud/functions-emulator
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[debug] [2018-03-15T05:46:27.172Z] Parsing function triggers
+[info] ✔  functions: app: http://localhost:5001/davidvanochten-com/us-central1/app
+[info] [hosting] Rewriting /contact to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /contact to local function app
+[info] [hosting] Rewriting /contact to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /about to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /favicon.ico to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting /about to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /about to local function app
+[info] [hosting] Rewriting /work to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /work/ima to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /contact to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /notes to local function app
+[info] [hosting] Rewriting / to local function app
+[info] [hosting] Rewriting /contact to local function app
