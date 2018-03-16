@@ -90,12 +90,12 @@
 
   &__link {
     display: inline-block;
-    font-weight: 300;
+    font-family: var(--primary-font);
     transform: translate3d(0, 100%, 0);
     transition: transform .5s cubic-bezier(.75, 0, .25, 1);
 
     &--isActive {
-      font-weight: 400;
+      font-family: var(--secondary-font);
     }
 
     &--isVisible {

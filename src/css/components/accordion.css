@@ -53,7 +53,7 @@
     justify-content: space-between;
     padding-top: calc(var(--bsl) / 2);
     padding-bottom: calc(var(--bsl) / 2);
-    font-weight: 400;
+    font-family: var(--secondary-font);
 
     &::after {
       content: "+";

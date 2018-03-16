@@ -12,7 +12,7 @@ router.get('/contact', (req, resp) => {
         view: 'contact',
         title: 'contact',
         description: 'test',
-        headline: response.data.headline,
+        headline: 'Contact',
       });
     })
     .catch((error) => {

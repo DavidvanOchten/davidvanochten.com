@@ -126,3 +126,39 @@
     background-color: red;
   }
 }
+
+.form {
+  &__input {
+    font-size: inherit;
+    height: 3rem;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    color: var(--grey-dark);
+    font-family: var(--primary-font);
+    background-color: transparent;
+  }
+
+  &__select {
+    color: #bdbdbd;
+    border-bottom: 1px solid #e0e0e0;
+    height: 3rem;
+    display: inline-block;
+    cursor: pointer;
+
+    &::after {
+      content: "\2b0e";
+      font-size: 1.618rem;
+      margin-left: .75rem;
+    }
+  }
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #bdbdbd;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #bdbdbd;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #bdbdbd;
+}

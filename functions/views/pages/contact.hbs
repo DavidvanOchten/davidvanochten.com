@@ -1,5 +1,28 @@
-<article>
-  <div class="grid">
-    <h1 class="grid__cell grid__heading grid__heading--l">{{{headline}}}</h1>
+<article class="contact grid">
+  <div class="grid__cell grid__cell--6">
+    <h1 class="grid__heading grid__heading--l"><strong>{{{headline}}}</strong></h1>
+    <ul>
+      <li>
+        <a href="" data-bypass>Email</a>
+      </li>
+      <li>
+        <a href="" target="_blank" data-bypass>LinkedIn</a>
+      </li>
+      <li>
+        <a href="" target="_blank" data-bypass>Instagram</a>
+      </li>
+    </ul>
   </div>
+  <form class="form grid__cell grid__cell--18 grid__cell--borderLeft" data-form="contact">
+    <input class="form__input" type="email" placeholder="this email address *" data-form-input="email" autofocus required>
+    <input class="form__input" type="text" placeholder="Your name *" data-form-input="name" required>
+    <input type="submit" value="Send" data-form-input="submit">
+    {{!-- <div class="grid__cell grid__heading grid__heading--l">
+      <p>David, my man. Listen, I have <span class="form__select">a project</span> I wanted to talk to you about. You can use <input class="form__input" type="email" placeholder="this email address *" autofocus required> to get back to me.</p>
+      <br>
+      <p>Cheers,</p>
+      <input class="form__input" type="text" placeholder="Your name *" required>
+      <input type="submit" value="Send">
+    </div> --}}
+  </form>
 </article>

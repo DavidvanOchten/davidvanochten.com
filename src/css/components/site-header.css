@@ -68,7 +68,7 @@
   }
 
   &__logoType {
-    font-weight: 400;
+    font-family: var(--secondary-font);
     transition: opacity .25s linear;
 
     &::after {

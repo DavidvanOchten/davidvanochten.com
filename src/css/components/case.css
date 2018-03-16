@@ -45,7 +45,7 @@
 
   &__title {
     display: inline;
-    font-weight: 400;
+    font-family: var(--secondary-font);
   }
 
   &__subtitle {

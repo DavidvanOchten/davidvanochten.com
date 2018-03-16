@@ -2,3 +2,6 @@
 node_modules
 functions/node_modules
 .vscode
+
+firebase.config.js
+public/static/fonts

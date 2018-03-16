@@ -32,6 +32,10 @@
       &--12 {
         width: var(--col-12);
       }
+
+      &--18 {
+        width: var(--col-18);
+      }
     }
 
     &--borderTop {
