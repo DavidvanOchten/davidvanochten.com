@@ -117,20 +117,12 @@
     height: 100vh;
     width: 100%;
     padding: calc(var(--bsl) * 6) var(--col-2) calc(var(--bsl) * 3);
+    border-left: 1px solid var(--grey-light);
+    border-bottom: 1px solid var(--grey-light);
     background-color: var(--light);
     transform: translate3d(0, calc((100% - (var(--bsl) * 3)) * -1), 0);
     transition: transform .5s cubic-bezier(.75, 0, .25, 1);
     pointer-events: none;
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 1px;
-      background-color: var(--grey-light);
-    }
 
     &--isActive {
       overflow: auto;
@@ -146,29 +138,11 @@
     height: calc(var(--bsl) * 3);
     width: 100%;
     padding: var(--bsl) var(--col-1);
+    border-bottom: 1px solid var(--grey-light);
+    border-left: 1px solid var(--grey-light);
     background-color: var(--light);
     cursor: pointer;
     outline: none;
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 1px;
-      width: 100%;
-      background-color: var(--grey-light);
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 1px;
-      background-color: var(--grey-light);
-    }
 
     &:focus {
       & .menu__burger {

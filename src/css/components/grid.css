@@ -39,7 +39,7 @@
     }
 
     &--borderTop {
-      &::before {
+      /* &::before {
         content: "";
         position: absolute;
         top: 0;
@@ -47,11 +47,12 @@
         height: 1px;
         width: 100%;
         background-color: var(--grey-light);
-      }
+      } */
+      border-top: 1px solid var(--grey-light);
     }
 
     &--borderBottom {
-      &::after {
+      /* &::after {
         content: "";
         position: absolute;
         bottom: 0;
@@ -59,11 +60,12 @@
         height: 1px;
         width: 100%;
         background-color: var(--grey-light);
-      }
+      }*/
+      border-bottom: 1px solid var(--grey-light);
     }
 
     &--borderLeft {
-      &::after {
+      /*&::after {
         content: "";
         position: absolute;
         top: 0;
@@ -71,7 +73,8 @@
         height: 100%;
         width: 1px;
         background-color: var(--grey-light);
-      }
+      }*/
+      border-left: 1px solid var(--grey-light);
     }
 
     &--offset {

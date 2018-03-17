@@ -37,10 +37,10 @@
     {{/each}} --}}
     {{#each content}}
     {{!-- Animate in view, set up in CaseController --}}
-    <div class="gallery__item">
-      {{!-- Add src-set with different --}}
-      <img class="" src="{{src}}" alt="{{name}}">
-    </div>
+    <picture class="gallery__item">
+      <source media="(min-width: 900px)" srcset="{{src}} 2x, {{srcMd}} 1x">
+      <img src="{{srcMd}}" alt="{{name}}">
+    </picture>
     {{/each}}
   </div>
   <div class="grid">

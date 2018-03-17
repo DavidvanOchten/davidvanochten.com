@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "firebase": "^4.11.0",
     "idb": "^2.0.4"
   }
 }

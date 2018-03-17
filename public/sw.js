@@ -6,10 +6,14 @@ const STATIC_CACHE = 'static_01';
 const STATIC_FILES = [
   // '/',
   // '/work',
-  '/offline',
-  '/app.bundle.css',
-  '/app.bundle.js'
-  // fonts
+  // '/offline',
+  // '/app.bundle.css',
+  // '/app.bundle.js',
+  // 'https://www.gstatic.com/firebasejs/4.11.0/firebase.js', // Fix CORS error
+  '/static/fonts/1491978/b681571f-aab2-4935-a99c-6ee1063ce638.woff',
+  '/static/fonts/1491978/e5716290-d41e-4c97-a27c-7a20a46ddf45.woff2',
+  '/static/fonts/1491988/27645c8a-608b-4abf-a2f1-c4407b576723.woff',
+  '/static/fonts/1491988/e0d80810-f7e3-4fea-8c57-ef8116f0465d.woff2'
 ];
 
 self.addEventListener('install', (e) => {

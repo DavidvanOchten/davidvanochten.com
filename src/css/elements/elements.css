@@ -44,8 +44,8 @@ main {
   padding-top: calc(var(--bsl) * 3);
 }
 
-p {
-  hyphens: auto;
+picture {
+  display: block;
 }
 
 strong {

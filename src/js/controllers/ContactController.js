@@ -1,13 +1,21 @@
-import * as firebase from 'firebase';
 import { firebaseConfig } from '../../../firebase.config.js';
 
 const ContactController = (() => {
   firebase.initializeApp(firebaseConfig);
   const MESSAGES_REF = firebase.database().ref('messages');
+  let form = null;
 
   const _saveMessage = (email, name) => {
-    console.log(email, name);
-    MESSAGES_REF.push({ email, name });
+    MESSAGES_REF.push({ email, name })
+      .then((data) => {
+        console.log('Data', data);
+        // Display pop up with confirmation message. Email has been sent to me.
+        form.style.display = 'none';
+      })
+      .catch((err) => {
+        console.log(err);
+        // Display pop up with error message
+      });
   };
 
   const _handleSubmit = (e) => {
@@ -19,10 +27,8 @@ const ContactController = (() => {
 
   const construct = () => {
     // Add 'check' if form input is valid
-    const FORM = document.querySelector('[data-form="contact"]');
-    // console.log(FORM, FORM.querySelectorAll('[data-form-input]'));
-    // const FORM_SUBMIT = FORM.querySelector('[data-form-input="submit"]');
-    FORM.addEventListener('submit', _handleSubmit);
+    form = document.querySelector('[data-form="contact"]');
+    form.addEventListener('submit', _handleSubmit);
   };
 
   return {

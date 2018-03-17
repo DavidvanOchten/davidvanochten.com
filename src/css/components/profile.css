@@ -2,8 +2,12 @@
   flex-direction: column;
 
   &__header {
-    padding-top: calc(var(--bsl) * 6);
+    padding-top: calc(var(--bsl) * 3);
     padding-bottom: calc(var(--bsl) * 3);
+
+    @media (--tablet-portrait-up) {
+      padding-top: calc(var(--bsl) * 6);
+    }
   }
 
   &__intro {

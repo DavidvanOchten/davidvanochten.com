@@ -25,3 +25,11 @@ app.use(require(path.join(__dirname, '/routes/route-about')));
 app.use(require(path.join(__dirname, '/routes/route-contact')));
 
 exports.app = functions.https.onRequest(app);
+
+/**
+ * Send notification email once a form submission has taken place.
+ */
+exports.onFormSubmit = functions.database.ref('messages').onWrite((e) => {
+  console.log(e.data.val());
+  return;
+});
