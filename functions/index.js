@@ -21,7 +21,7 @@ app.use(cors({
 app.use(require(path.join(__dirname, '/routes/route-index')));
 app.use(require(path.join(__dirname, '/routes/route-work')));
 app.use(require(path.join(__dirname, '/routes/route-notes')));
-app.use(require(path.join(__dirname, '/routes/route-about')));
+app.use(require(path.join(__dirname, '/routes/route-profile')));
 app.use(require(path.join(__dirname, '/routes/route-contact')));
 
 exports.app = functions.https.onRequest(app);

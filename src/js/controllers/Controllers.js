@@ -1,20 +1,20 @@
-import AboutController from './AboutController.js';
 import BaseController from './BaseController.js';
 import CaseController from './CaseController.js';
 import ContactController from './ContactController.js';
 import IndexController from './IndexController.js';
 import NotesController from './NotesController.js';
 import OfflineController from './OfflineController.js';
+import ProfileController from './ProfileController.js';
 import WorkController from './WorkController.js';
 
 const Controllers = {
-  about: AboutController,
   base: BaseController,
   case: CaseController,
   contact: ContactController,
   index: IndexController,
   notes: NotesController,
   offline: OfflineController,
+  profile: ProfileController,
   work: WorkController
 };
 

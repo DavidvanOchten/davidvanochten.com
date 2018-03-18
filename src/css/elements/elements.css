@@ -32,6 +32,7 @@ input,
 textarea {
   font-family: var(--primary-font);
   outline: 0;
+  background-color: transparent;
 }
 
 :--headings {

@@ -1,0 +1,7 @@
+.contact {
+
+  &__form {
+    min-height: 100vh;
+    padding-top: calc(var(--bsl) * 6);
+  }
+}

@@ -1,23 +1,22 @@
 .accordion {
-  &__content {
+  &__container {
     position: relative;
     height: 0;
     overflow: hidden;
     transition: height .75s cubic-bezier(.75, 0, 0, 1);
     will-change: height;
+  }
 
-    & p {
-      opacity: 0;
-      transform: translate3d(0, -100%, 0);
-      transition: transform .75s cubic-bezier(.75, 0, 0, 1), opacity .25s linear;
-    }
+  &__content {
+    padding-bottom: calc(var(--bsl) / 2);
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+    transition: transform .75s cubic-bezier(.75, 0, 0, 1), opacity .25s linear;
 
     &--isVisible {
-      & p {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        transition: transform .75s cubic-bezier(.75, 0, 0, 1) .25s, opacity .25s linear .5s;
-      }
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+      transition: transform .75s cubic-bezier(.75, 0, 0, 1) .25s, opacity .25s linear .5s;
     }
   }
 
@@ -32,7 +31,7 @@
       left: 0;
       height: 1px;
       width: 100%;
-      background-color: var(--grey-light);
+      border-top: 1px solid var(--grey-light);
     }
 
     &:last-child {
@@ -48,7 +47,7 @@
     }
   }
 
-  &__toggle {
+  &__title {
     display: flex;
     justify-content: space-between;
     padding-top: calc(var(--bsl) / 2);

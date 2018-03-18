@@ -129,28 +129,18 @@
 }
 
 .form {
+  &--contact {
+    padding-top: .85rem; /* Vertical rhythm */
+  }
+
   &__input {
-    font-size: inherit;
-    height: 3rem;
+    width: 100%;
+    margin-bottom: calc(var(--bsl) - 1px); /* Vertical rhythm */
+    font-size: var(--ms-l);
+    line-height: calc(var(--bsl) * 3);
     border: none;
     border-bottom: 1px solid #e0e0e0;
     color: var(--grey-dark);
-    font-family: var(--primary-font);
-    background-color: transparent;
-  }
-
-  &__select {
-    color: #bdbdbd;
-    border-bottom: 1px solid #e0e0e0;
-    height: 3rem;
-    display: inline-block;
-    cursor: pointer;
-
-    &::after {
-      content: "\2b0e";
-      font-size: 1.618rem;
-      margin-left: .75rem;
-    }
   }
 }
 

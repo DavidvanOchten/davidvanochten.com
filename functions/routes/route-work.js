@@ -7,7 +7,8 @@ router.get('/work', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   axios.get('https://davidvanochten-admin.firebaseio.com/cases.json')
     .then((response) => {
-      const cases = Object.keys(response.data).map(i => response.data[i]).reverse();
+      const cases = Object.keys(response.data).map(i => response.data[i]);
+      cases.sort((a, b) => a.order - b.order);
 
       return resp.render('pages/work', { 
         view: 'work',

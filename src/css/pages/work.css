@@ -1,4 +1,4 @@
-.cases {
+.work {
   display: grid;
   grid-template-columns: repeat(24,[col] 1fr);
   grid-auto-rows: var(--bsl);

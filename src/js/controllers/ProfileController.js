@@ -1,6 +1,6 @@
 import Accordion from '../lib/Accordion.js';
 
-const AboutController = (() => {
+const ProfileController = (() => {
 
   const construct = () => {
     const TOGGLES = [...document.querySelectorAll('[data-accordion="toggle"]')];
@@ -12,4 +12,4 @@ const AboutController = (() => {
   };
 })();
 
-export default AboutController;
+export default ProfileController;

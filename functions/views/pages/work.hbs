@@ -1,17 +1,15 @@
-<article>
-  <div class="cases">
-    {{#each cases}}
-    <article class="cases__item card">
-      <a class="card__thumbnail lazyLoader" href="/work/{{path}}">
-        <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+<article class="work">
+  {{#each cases}}
+  <article class="work__item card">
+    <a class="card__thumbnail lazyLoader" href="/work/{{path}}">
+      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+    </a>
+    <header class="card__header">
+      <a class="card__link" href="/work/{{path}}">
+        <h1 class="card__heading">{{{name}}}</h1>
+        <h2 class="card__subtitle">&nbsp;&#8212;&nbsp;&nbsp;{{{headline}}}</h2>
       </a>
-      <header class="card__header">
-        <a class="card__link" href="/work/{{path}}">
-          <h1 class="card__heading">{{{name}}}</h1>
-          <h2 class="card__subtitle">&nbsp;&#8212;&nbsp;&nbsp;{{{headline}}}</h2>
-        </a>
-      </header>
-    </article>
-    {{/each}}
-  </div>
+    </header>
+  </article>
+  {{/each}}
 </article>
