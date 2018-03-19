@@ -20,8 +20,10 @@
 
   &__headings {
     background-color: var(--light);
+
     @media (--tablet-landscape-up) {
       width: var(--col-12);
+      background-color: transparent;
     }
   }
 

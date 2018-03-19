@@ -73,6 +73,7 @@ const IndexController = (() => {
           _handleToggleClasses('add');
         } else {
           _removeToggleDisplay();
+          window.removeEventListener('resize', _constructForMinSize);
         }
       }
     });
@@ -103,7 +104,7 @@ const IndexController = (() => {
 
   const construct = () => {
     _constructForMinSize();
-    window.addEventListener('resize', e => _constructForMinSize());
+    window.addEventListener('resize', _constructForMinSize);
     Slider.init();
   };
 

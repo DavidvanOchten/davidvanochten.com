@@ -111,7 +111,10 @@ const Router = (() => {
     VIEW.classList.add(VIEW_ACTIVE_CLASS);
     _setUpView(VIEW.dataset.view);
 
-    window.addEventListener('popstate', e => window.location = window.location.href);
+    window.addEventListener('popstate', e => {
+      document.body.style.visibility = 'hidden';
+      window.location = window.location.href;
+    });
   };
 
   return {

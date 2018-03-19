@@ -1,7 +1,7 @@
 <article class="case">
   <header class="case__header">
     <div class="case__info grid">
-      <div class="case__headings grid__cell">
+      <div class="case__headings grid__cell u-isShowOff u-isShowOff--skewed" data-show-off="skewed">
         <h1 class="case__title grid__heading grid__heading--l">{{name}}</h1>
         <h2 class="case__subtitle grid__heading grid__heading--l">{{headline}}</h2>
       </div>
@@ -37,7 +37,7 @@
     {{/each}} --}}
     {{#each content}}
     {{!-- Animate in view, set up in CaseController --}}
-    <picture class="gallery__item">
+    <picture class="gallery__item u-isShowOff u-isShowOff--skewed" data-show-off="skewed">
       <source media="(min-width: 900px)" srcset="{{src}} 2x, {{srcMd}} 1x">
       <img src="{{srcMd}}" alt="{{name}}">
     </picture>
