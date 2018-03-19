@@ -145,9 +145,26 @@
   }
 
   &__link {
+    display: inline-block;
+    overflow: hidden;
+    transition: transform .5s cubic-bezier(.75, 0, 0, 1);
+
     &::before {
-      content: '\27f6';
-      margin-right: calc(var(--bsl) / 2);
+      content: '\2197';
+      display: inline-block;
+      margin-right: calc(var(--bsl) / 3);
+      margin-left: 2px;
+      transform: rotate(45deg);
+      transition: transform .5s cubic-bezier(.75, 0, 0, 1);
+    }
+
+    &:hover {
+      transform: translate3d(0.5rem, 0, 0);
+
+      &::before {
+        transform-origin: left center;
+        transform: rotate(45deg) translate3d(-0.5rem, 0, 0);
+      }
     }
   }
 }

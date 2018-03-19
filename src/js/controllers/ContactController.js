@@ -1,6 +1,9 @@
 import { firebaseConfig } from '../../../firebase.config.js';
 
 const ContactController = (() => {
+  // Put in in a Firebase function instead?
+  // Handle from the server
+  console.log('Handle form submit Firebase possibly in Node?')
   firebase.initializeApp(firebaseConfig);
   const MESSAGES_REF = firebase.database().ref('messages');
   let form = null;

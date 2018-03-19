@@ -12,10 +12,10 @@ const LazyLoader = (() => {
 
   const _loadImage = (src) => {
     return new Promise((resolve, reject) => {
-      const IMAGE = new Image()
-      IMAGE.src = src
-      IMAGE.onload = resolve
-      IMAGE.onerror = reject
+      const IMAGE = new Image();
+      IMAGE.src = src;
+      IMAGE.onload = resolve;
+      IMAGE.onerror = reject;
     });
   };
 
@@ -80,7 +80,7 @@ const LazyLoader = (() => {
     if (!ticking) {
       requestAnimationFrame(_eventsCB);
     }
-    ticking = true
+    ticking = true;
   };
 
   const _useEvents = () => {

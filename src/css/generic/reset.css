@@ -36,7 +36,7 @@ body {
 }
 
 button {
-  font-family: inherit;
+  font-family: var(--secondary-font);
   font-size: inherit;
   letter-spacing: inherit;
   cursor: pointer;

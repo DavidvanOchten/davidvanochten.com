@@ -127,29 +127,3 @@
     background-color: red;
   }
 }
-
-.form {
-  &--contact {
-    padding-top: .85rem; /* Vertical rhythm */
-  }
-
-  &__input {
-    width: 100%;
-    margin-bottom: calc(var(--bsl) - 1px); /* Vertical rhythm */
-    font-size: var(--ms-l);
-    line-height: calc(var(--bsl) * 3);
-    border: none;
-    border-bottom: 1px solid #e0e0e0;
-    color: var(--grey-dark);
-  }
-}
-
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #bdbdbd;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: #bdbdbd;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: #bdbdbd;
-}

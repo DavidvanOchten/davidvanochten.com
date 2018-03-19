@@ -20,10 +20,13 @@ const App = (() => {
     setTimeout(() => {
       SPLASH.classList.remove('splash--isVisible');
       document.body.classList.remove('u-isUnscrollable');
+      console.log('[App] Init Router and Menu after splash');
+      Router.init();
+      Menu.init();
     }, 1500);
 
-    Router.init();
-    Menu.init();
+    // Router.init();
+    // Menu.init();
   });
 
 })();
