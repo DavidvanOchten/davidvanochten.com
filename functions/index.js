@@ -1,8 +1,12 @@
 const functions = require('firebase-functions');
+// const admin = require('firebase-admin'); // Potentially need it for onWrite below.
 const express = require('express');
 const hbs = require('express-handlebars');
 const cors = require('cors');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+// admin.initializeApp(functions.config().firebase);
 
 const app =  express();
 app.engine('hbs', hbs({
@@ -17,6 +21,8 @@ app.set('view engine', 'hbs');
 app.use(cors({
   origin: true
 }));
+
+app.use(bodyParser.urlencoded());
 
 app.use(require(path.join(__dirname, '/routes/route-index')));
 app.use(require(path.join(__dirname, '/routes/route-work')));

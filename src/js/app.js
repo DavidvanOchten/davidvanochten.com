@@ -19,9 +19,6 @@ const App = (() => {
       Router.init();
       Menu.init();
     }, 1500);
-
-    // Router.init();
-    // Menu.init();
   });
 
 })();
