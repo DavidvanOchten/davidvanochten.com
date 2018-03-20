@@ -66,17 +66,6 @@ const IndexController = (() => {
     window.addEventListener('scroll', _toggleElements);
     window.addEventListener('resize', _toggleElements);
     _toggleElements();
-
-    afterViewRemoval(() => {
-      if (minScreenSize) {
-        if (window.location.pathname === '/') {
-          _handleToggleClasses('add');
-        } else {
-          _removeToggleDisplay();
-          window.removeEventListener('resize', _constructForMinSize);
-        }
-      }
-    });
   };
 
   const _createStickyColumn = () => {
@@ -100,6 +89,18 @@ const IndexController = (() => {
       _removeCreateStickyColumn();
       _removeToggleDisplay();
     }
+
+    afterViewRemoval(() => {
+      console.log('test');
+      if (minScreenSize) {
+        if (window.location.pathname === '/') {
+          _handleToggleClasses('add');
+        } else {
+          _removeToggleDisplay();
+          window.removeEventListener('resize', _constructForMinSize);
+        }
+      }
+    });
   };
 
   const construct = () => {

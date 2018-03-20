@@ -22,7 +22,6 @@ const ContactController = (() => {
     const EMAIL_VAL = form.querySelector('[data-form-input="email"]').value;
     const MESSAGE_VAL = form.querySelector('[data-form-input="message"]').value;
     const SUBMIT_BTN = e.target.querySelector('[data-form-input="submit"]');
-    const SPINNER = document.querySelector('[data-spinner');
 
     SUBMIT_BTN.classList.add('form__submit--isProcessing');
     setSpinner(true);

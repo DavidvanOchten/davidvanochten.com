@@ -33,6 +33,7 @@
 
   &--isVisible {
     opacity: 1;
+    pointer-events: auto;
 
     & .splash__header {
       opacity: 1;

@@ -53,7 +53,7 @@
     }
 
     &:hover {
-      color: red;
+      color: var(--alert);
       /* Make more exciting */
     }
 

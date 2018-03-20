@@ -5,13 +5,41 @@ import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 import { appendContent } from '../utils/appendContent.js';
 import { removeContent } from '../utils/removeContent.js';
 import { setSpinner } from '../utils/setSpinner.js';
-import { showError } from '../utils/showError.js';
+import { showNotification } from '../utils/showNotification.js';
 
 const Router = (() => {
   const LINK_ACTIVE_CLASS = 'menu__link--isActive';
   const VIEW_ACTIVE_CLASS = 'is-active';
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
+  const VIEW_UPDATE_OPTIONS = {
+    targetNode: VIEW_SELECTOR,
+    parentNode: VIEW_PARENT_SELECTOR,
+    activeClass: VIEW_ACTIVE_CLASS
+  };
+
+  const _appendView = (data) => {
+    const { targetNode, parentNode } = VIEW_UPDATE_OPTIONS;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, 'text/html');
+    const content = doc.querySelector(targetNode);
+    console.log('[Router] 4');
+    return document.querySelector(parentNode).appendChild(content);
+  };
+
+  const _removeView = () => {
+    return new Promise((resolve, reject) => {
+      const { targetNode, parentNode, activeClass } = VIEW_UPDATE_OPTIONS;
+      const removableElement = document.querySelector(targetNode);
+      removableElement.addEventListener('transitionend', (e) => {
+        console.log('[Router] 2');
+        document.querySelector(parentNode).removeChild(removableElement);
+        resolve();
+      });
+  
+      removableElement.classList.remove(activeClass);
+    });
+  };
 
   const _disableRouterLinks = (status) => {
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
@@ -57,28 +85,28 @@ const Router = (() => {
     setSpinner(true);
     _disableRouterLinks(true);
 
+    let newView = null;
+
     axios.get(URL)
       .then((resp) => {
-        const DOM_DATA = {
-          targetNode: VIEW_SELECTOR,
-          parentNode: VIEW_PARENT_SELECTOR,
-          activeClass: VIEW_ACTIVE_CLASS
-        };
-
-        removeContent(DOM_DATA);
-        return appendContent(resp.data, DOM_DATA);
+        console.log('[Router] 1');
+        newView = resp.data;
+        window.history.pushState(null, null, URL);
+        return _removeView();
+      })
+      .then(() => {
+        console.log('[Router] 3');
+        return _appendView(newView);
       })
       .then((view) => {
-        const VIEW_NAME = view.dataset.view
-        window.history.pushState(null, null, URL);
+        const VIEW_NAME = view.dataset.view;
+        // window.history.pushState(null, null, URL);
         document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
 
-        afterViewRemoval(() => {
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-          view.classList.add(VIEW_ACTIVE_CLASS);
-        });
-        
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        console.log('[Router] 5');
+        view.classList.add(VIEW_ACTIVE_CLASS);
         _setUpView(VIEW_NAME);
         setSpinner(false);
         _disableRouterLinks(false);
@@ -87,7 +115,7 @@ const Router = (() => {
         console.log(err);
         setSpinner(false);
         _disableRouterLinks(false);
-        showError(err);
+        showNotification('error');
       });
   };
 
