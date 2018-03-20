@@ -25,7 +25,6 @@
     {{> splash}}
 
     <main role="main">
-      {{> loader}}
       <div data-view="{{view}}">
         {{{body}}}
       </div>
@@ -33,6 +32,8 @@
 
     {{!-- {{> footer}} --}}
     {{!-- {{> error}} --}}
+    <div class="spinner" data-spinner></div>
+
     <script src="/app.bundle.js"></script>
   </body>
 </html>

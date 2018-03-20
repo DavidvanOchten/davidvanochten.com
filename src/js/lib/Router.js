@@ -4,6 +4,7 @@ import Scroller from '../lib/Scroller.js';
 import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 import { appendContent } from '../utils/appendContent.js';
 import { removeContent } from '../utils/removeContent.js';
+import { setSpinner } from '../utils/setSpinner.js';
 import { showError } from '../utils/showError.js';
 
 const Router = (() => {
@@ -11,14 +12,6 @@ const Router = (() => {
   const VIEW_ACTIVE_CLASS = 'is-active';
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
-
-  const _setLoader = (loadState) => {
-    const LOADER = document.querySelector('[data-loader]');
-
-    loadState === true
-      ? LOADER.classList.add('loader--isActive')
-      : LOADER.classList.remove('loader--isActive');
-  };
 
   const _disableRouterLinks = (status) => {
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
@@ -61,7 +54,7 @@ const Router = (() => {
       return;
     }
 
-    _setLoader(true);
+    setSpinner(true);
     _disableRouterLinks(true);
 
     axios.get(URL)
@@ -87,12 +80,12 @@ const Router = (() => {
         });
         
         _setUpView(VIEW_NAME);
-        _setLoader(false);
+        setSpinner(false);
         _disableRouterLinks(false);
       })
       .catch((err) => {
         console.log(err);
-        _setLoader(false);
+        setSpinner(false);
         _disableRouterLinks(false);
         showError(err);
       });

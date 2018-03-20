@@ -7,4 +7,9 @@
     opacity: 0;
     transform: translate3d(0, calc(var(--bsl) * 2), 0) skewY(2deg);
   }
+
+  &--scale {
+    opacity: 0;
+    transform: scale(1.05);
+  }
 }

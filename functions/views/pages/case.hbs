@@ -37,7 +37,7 @@
     {{/each}} --}}
     {{#each content}}
     {{!-- Animate in view, set up in CaseController --}}
-    <picture class="gallery__item u-isShowOff u-isShowOff--skewed" data-show-off="skewed">
+    <picture class="gallery__item u-isShowOff u-isShowOff--scale" data-show-off="scale">
       <source media="(min-width: 900px)" srcset="{{src}} 2x, {{srcMd}} 1x">
       <img src="{{srcMd}}" alt="{{name}}">
     </picture>

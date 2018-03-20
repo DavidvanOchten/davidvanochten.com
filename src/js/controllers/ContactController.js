@@ -1,5 +1,5 @@
-import { firebaseConfig } from '../../../firebase.config.js';
 import axios from 'axios';
+import { setSpinner } from '../utils/setSpinner.js';
 
 const ContactController = (() => {
   let form = null;
@@ -7,34 +7,49 @@ const ContactController = (() => {
   const _showStatus = (res) => {
     console.log('Handle status', res);
     if (res.status === 200) {
-      // hide form
+      // show success
       console.log(res.data);
     } else {
-      // show errors / enable form
+      // show errors
       console.log(res.data);
     }
   };
 
   const _handleSubmit = (e) => {
     e.preventDefault();
-    const NAME_VAL = e.target.querySelector('[data-form-input="name"]').value;
-    const EMAIL_VAL = e.target.querySelector('[data-form-input="email"]').value;
-    const MESSAGE_VAL = e.target.querySelector('[data-form-input="message"]').value;
 
-    // Set loader / disable form
-    axios.post('/contact', {
-      name: NAME_VAL,
-      email: EMAIL_VAL,
-      message: MESSAGE_VAL
-    })
-      .then((resp) => {
-        // Remove loader
-        _showStatus(resp);
-      })
-      .catch((err) => {
-        // Remove loader
-        _showStatus(err);
-      });
+    const NAME_VAL = form.querySelector('[data-form-input="name"]').value;
+    const EMAIL_VAL = form.querySelector('[data-form-input="email"]').value;
+    const MESSAGE_VAL = form.querySelector('[data-form-input="message"]').value;
+    const SUBMIT_BTN = e.target.querySelector('[data-form-input="submit"]');
+    const SPINNER = document.querySelector('[data-spinner');
+
+    SUBMIT_BTN.classList.add('form__submit--isProcessing');
+    setSpinner(true);
+
+    // axios.post('/contact', {
+    //   name: NAME_VAL,
+    //   email: EMAIL_VAL,
+    //   message: MESSAGE_VAL
+    // })
+    //   .then((resp) => {
+    //     // Remove loader
+    //     setSpinner(false);
+
+    //     form.classList.add('form--isHidden');
+    //     // transition delay to show button animation?
+    //     // form eventlistener transitionend > showstatus
+    //     // Remove eventlistener on page transition
+    //     SUBMIT_BTN.classList.remove('form__submit--isProcessing');
+    //     SUBMIT_BTN.classList.add('form__submit--isDone');
+    //     _showStatus(resp);
+    //   })
+    //   .catch((err) => {
+    //     // Remove loader
+    //     setSpinner(false);
+    //     SUBMIT_BTN.classList.remove('form__submit--isProcessing');
+    //     _showStatus(err);
+    //   });
   };
 
   const construct = () => {

@@ -7,25 +7,25 @@
   }
 }
 
-/* Create without the positioning. Reuse in app. */
-.loader {
+.spinner {
   position: fixed;
   top: calc(var(--bsl) * 1.5);
   left: var(--col-5);
-  z-index: 10;
+  z-index: 25;
   height: calc(var(--bsl) / 2);
   width: calc(var(--bsl) / 2);
   border-radius: 50%;
   background-color: red;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity .25s linear; /* Set delay here? See if this works live */
+  transition: opacity .25s linear;
+  transform: translate3d(-50%, -50%, 0);
   transform-origin: top left;
-  animation: pulse .5s infinite alternate;
+  pointer-events: none;
 
-  &--isActive {
+  &--isVisible {
     opacity: 1;
-    transition-delay: .5s;
+    animation: pulse .5s infinite alternate;
+    transition: opacity .25s linear .75s;
   }
 }
 
@@ -100,8 +100,8 @@
 }
 
 @keyframes pulse {
-  0% { transform: scale(.75) translate(-50%, -50%); }
-  100% { transform: scale(1) translate(-50%, -50%); }
+  0% { transform: scale(.75) translate3d(-50%, -50%, 0); }
+  100% { transform: scale(1) translate3d(-50%, -50%, 0); }
 }
 
 .popup {
