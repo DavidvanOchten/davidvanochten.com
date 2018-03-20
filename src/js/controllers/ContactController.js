@@ -27,29 +27,27 @@ const ContactController = (() => {
     SUBMIT_BTN.classList.add('form__submit--isProcessing');
     setSpinner(true);
 
-    // axios.post('/contact', {
-    //   name: NAME_VAL,
-    //   email: EMAIL_VAL,
-    //   message: MESSAGE_VAL
-    // })
-    //   .then((resp) => {
-    //     // Remove loader
-    //     setSpinner(false);
+    axios.post('/contact', {
+      name: NAME_VAL,
+      email: EMAIL_VAL,
+      message: MESSAGE_VAL
+    })
+      .then((resp) => {
+        setSpinner(false);
 
-    //     form.classList.add('form--isHidden');
-    //     // transition delay to show button animation?
-    //     // form eventlistener transitionend > showstatus
-    //     // Remove eventlistener on page transition
-    //     SUBMIT_BTN.classList.remove('form__submit--isProcessing');
-    //     SUBMIT_BTN.classList.add('form__submit--isDone');
-    //     _showStatus(resp);
-    //   })
-    //   .catch((err) => {
-    //     // Remove loader
-    //     setSpinner(false);
-    //     SUBMIT_BTN.classList.remove('form__submit--isProcessing');
-    //     _showStatus(err);
-    //   });
+        form.classList.add('form--isHidden');
+        // transition delay to show button animation?
+        // form eventlistener transitionend > showstatus
+        // Remove eventlistener on page transition
+        SUBMIT_BTN.classList.remove('form__submit--isProcessing');
+        SUBMIT_BTN.classList.add('form__submit--isDone');
+        _showStatus(resp);
+      })
+      .catch((err) => {
+        setSpinner(false);
+        SUBMIT_BTN.classList.remove('form__submit--isProcessing');
+        _showStatus(err);
+      });
   };
 
   const construct = () => {
