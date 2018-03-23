@@ -7,7 +7,7 @@
   }
 
   @media (--desktop-up) {
-    padding: calc(var(--bsl) * 5) var(--col-1);
+    padding: calc(var(--bsl) * 4) var(--col-1);
 
     &__item {
       margin-bottom: calc(var(--bsl) * 3);

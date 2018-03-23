@@ -6,18 +6,27 @@ import { setSpinner } from '../utils/setSpinner.js';
 import { showNotification } from '../utils/showNotification.js';
 
 const Router = (() => {
+  // Router constants
   const LINK_ACTIVE_CLASS = 'menu__link--isActive';
   const VIEW_ACTIVE_CLASS = 'is-active';
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
 
+  /**
+   * 8) Creates the new view and adds it to the DOM
+   * @param {*} data The view source
+   */
   const _appendView = (data) => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(data, 'text/html');
-    const content = doc.querySelector(VIEW_SELECTOR);
-    return document.querySelector(VIEW_PARENT_SELECTOR).appendChild(content);
+    const PARSER = new DOMParser();
+    const DOC = PARSER.parseFromString(data, 'text/html');
+    const CONTENT = DOC.querySelector(VIEW_SELECTOR);
+    return document.querySelector(VIEW_PARENT_SELECTOR).appendChild(CONTENT);
   };
 
+  /**
+   * 7) Resolves promise when the view has been removed from the DOM
+   * TODO: Figure out why the transitionend doesn't work as expected
+   */
   const _removeView = () => {
     return new Promise((resolve, reject) => {
       let removableElm = document.querySelector(VIEW_SELECTOR);
@@ -32,7 +41,7 @@ const Router = (() => {
       
       removableElm.classList.remove(VIEW_ACTIVE_CLASS);
 
-      // TODO: Figure out why the transitionend doesn't work as expected.
+      // Fallback used
       setTimeout(() => {
         document.querySelector(VIEW_PARENT_SELECTOR).removeChild(removableElm);
         removableElm = null;
@@ -41,6 +50,10 @@ const Router = (() => {
     });
   };
 
+  /**
+   * 6) Toggles the interactiveness of the router links
+   * @param {*} status Boolean whether the links should be disabled or not
+   */
   const _disableRouterLinks = (status) => {
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
 
@@ -51,6 +64,10 @@ const Router = (() => {
     })
   };
 
+  /**
+   * 5) Handles the page transitions
+   * @param {*} e Event object from the clicked router link
+   */
   const _switchViews = (e) => {
     e.preventDefault();
 
@@ -60,10 +77,10 @@ const Router = (() => {
     if (URL === window.location.href) {
       Scroller.init({ target: document.body });
       return;
-    }
+    } // "Scroll to top" functionality kicks in if the user is already on the requested page
 
-    setSpinner(true);
-    _disableRouterLinks(true);
+    setSpinner(true); // Import
+    _disableRouterLinks(true); // 6
 
     let newView = null;
 
@@ -71,36 +88,35 @@ const Router = (() => {
       .then((resp) => {
         newView = resp.data;
         window.history.pushState(null, null, URL);
-        return _removeView();
+        setSpinner(false);
+        return _removeView(); // 7
       })
       .then(() => {
-        return _appendView(newView);
+        return _appendView(newView); // 8
       })
       .then((view) => {
         const VIEW_NAME = view.dataset.view;
 
         document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
         document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
 
         _setUpView(view);
-        setSpinner(false);
         _disableRouterLinks(false);
       })
       .catch((err) => {
         console.log(err);
         setSpinner(false);
         _disableRouterLinks(false);
-        showNotification('error');
+        showNotification('error'); // Import
       });
   };
 
   /**
-   * 4) ...
+   * 4) Creates links that trigger the page transitions
    */
   const _createRouterLinks = () => {
     const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
-    ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews));
+    ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews)); // 5
   };
 
   /**
@@ -145,7 +161,7 @@ const Router = (() => {
     window.addEventListener('popstate', e => {
       document.body.style.visibility = 'hidden';
       window.location = window.location.href;
-    });
+    }); // Use normal page loading whenever the user uses the back/forward buttons
   };
 
   /**
