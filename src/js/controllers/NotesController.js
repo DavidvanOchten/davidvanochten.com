@@ -1,6 +1,5 @@
 const NotesController = (() => {
   const construct = () => {
-    console.log('Notes');
   };
 
   return {

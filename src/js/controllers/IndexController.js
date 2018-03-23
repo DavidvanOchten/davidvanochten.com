@@ -18,6 +18,8 @@ const IndexController = (() => {
     }
   };
 
+
+  // IMPROVE THIS TOGGLE STUFF
   const _removeToggleDisplay = () => {
     window.removeEventListener('scroll', _toggleElements);
     window.removeEventListener('resize', _toggleElements);
@@ -91,7 +93,6 @@ const IndexController = (() => {
     }
 
     afterViewRemoval(() => {
-      console.log('test');
       if (minScreenSize) {
         if (window.location.pathname === '/') {
           _handleToggleClasses('add');

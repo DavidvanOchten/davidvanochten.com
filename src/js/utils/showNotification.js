@@ -1,10 +1,4 @@
 export const showNotification = (type) => {
-//   <div class="popup popup--error" role="alert" data-popup="error">
-//   <strong>Error</strong>
-//   <p>Can't fetch this page right now. Do you have an internet connection? Please try again later.</p>
-//   <button data-popup="close">Close</button>
-// </div>
-
   const CLOSE_BTN = document.createElement('button');
   const CLOSE_BTN_TEXT = document.createTextNode('Close');
   CLOSE_BTN.appendChild(CLOSE_BTN_TEXT);

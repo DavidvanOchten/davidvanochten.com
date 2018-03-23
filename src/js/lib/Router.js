@@ -2,8 +2,6 @@ import axios from 'axios';
 import Controllers from '../controllers/Controllers.js';
 import Scroller from '../lib/Scroller.js';
 import { afterViewRemoval } from '../utils/afterViewRemoval.js';
-import { appendContent } from '../utils/appendContent.js';
-import { removeContent } from '../utils/removeContent.js';
 import { setSpinner } from '../utils/setSpinner.js';
 import { showNotification } from '../utils/showNotification.js';
 
@@ -12,32 +10,34 @@ const Router = (() => {
   const VIEW_ACTIVE_CLASS = 'is-active';
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
-  const VIEW_UPDATE_OPTIONS = {
-    targetNode: VIEW_SELECTOR,
-    parentNode: VIEW_PARENT_SELECTOR,
-    activeClass: VIEW_ACTIVE_CLASS
-  };
 
   const _appendView = (data) => {
-    const { targetNode, parentNode } = VIEW_UPDATE_OPTIONS;
     const parser = new DOMParser();
     const doc = parser.parseFromString(data, 'text/html');
-    const content = doc.querySelector(targetNode);
-    console.log('[Router] 4');
-    return document.querySelector(parentNode).appendChild(content);
+    const content = doc.querySelector(VIEW_SELECTOR);
+    return document.querySelector(VIEW_PARENT_SELECTOR).appendChild(content);
   };
 
   const _removeView = () => {
     return new Promise((resolve, reject) => {
-      const { targetNode, parentNode, activeClass } = VIEW_UPDATE_OPTIONS;
-      const removableElement = document.querySelector(targetNode);
-      removableElement.addEventListener('transitionend', (e) => {
-        console.log('[Router] 2');
-        document.querySelector(parentNode).removeChild(removableElement);
+      let removableElm = document.querySelector(VIEW_SELECTOR);
+
+      // removableElm.addEventListener('transitionend', (e) => {
+      //   console.log('[Router] Wait for transition to end before doing anything');
+      //   document.querySelector(VIEW_PARENT_SELECTOR).removeChild(removableElm);
+      //   removableElm = null;
+      //   console.log(removableElm);
+      //   resolve();
+      // });
+      
+      removableElm.classList.remove(VIEW_ACTIVE_CLASS);
+
+      // TODO: Figure out why the transitionend doesn't work as expected.
+      setTimeout(() => {
+        document.querySelector(VIEW_PARENT_SELECTOR).removeChild(removableElm);
+        removableElm = null;
         resolve();
-      });
-  
-      removableElement.classList.remove(activeClass);
+      }, 500);
     });
   };
 
@@ -49,26 +49,6 @@ const Router = (() => {
         ? item.classList.add('u-isUnclickable')
         : item.classList.remove('u-isUnclickable');
     })
-  };
-
-  const _createRouterLinks = () => {
-    const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
-    ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews));
-  };
-
-  const _setActiveNavLink = () => {
-    const MENU_LINKS = [...document.querySelectorAll('[data-menu="link"]')];
-    const TARGET_LINK = MENU_LINKS.filter(link => {
-      return link.pathname.split('/')[1] === window.location.pathname.split('/')[1];
-    })[0];
-
-    MENU_LINKS.map((link) => {
-      if (link.classList.contains(LINK_ACTIVE_CLASS)) {
-        link.classList.remove(LINK_ACTIVE_CLASS);
-      }
-    });
-    
-    TARGET_LINK.classList.add(LINK_ACTIVE_CLASS);
   };
 
   const _switchViews = (e) => {
@@ -89,25 +69,21 @@ const Router = (() => {
 
     axios.get(URL)
       .then((resp) => {
-        console.log('[Router] 1');
         newView = resp.data;
         window.history.pushState(null, null, URL);
         return _removeView();
       })
       .then(() => {
-        console.log('[Router] 3');
         return _appendView(newView);
       })
       .then((view) => {
         const VIEW_NAME = view.dataset.view;
-        // window.history.pushState(null, null, URL);
-        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
 
+        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
-        console.log('[Router] 5');
-        view.classList.add(VIEW_ACTIVE_CLASS);
-        _setUpView(VIEW_NAME);
+
+        _setUpView(view);
         setSpinner(false);
         _disableRouterLinks(false);
       })
@@ -119,18 +95,52 @@ const Router = (() => {
       });
   };
 
-  const _setUpView = (view) => {
-    _setActiveNavLink();
-    _createRouterLinks();
-
-    Controllers['base'].init();
-    Controllers[view].init();
+  /**
+   * 4) ...
+   */
+  const _createRouterLinks = () => {
+    const ROUTER_LINKS = [...document.querySelectorAll('a:not([data-bypass])')];
+    ROUTER_LINKS.map(link => link.addEventListener('click', _switchViews));
   };
 
+  /**
+   * 3) Highlights the link for the current view
+   */
+  const _setActiveNavLink = () => {
+    const MENU_LINKS = [...document.querySelectorAll('[data-menu="link"]')];
+    const TARGET_LINK = MENU_LINKS.filter(link => {
+      return link.pathname.split('/')[1] === window.location.pathname.split('/')[1];
+    })[0]; // Filters out the link for the current view by comparing pathnames
+
+    MENU_LINKS.map((link) => {
+      if (link.classList.contains(LINK_ACTIVE_CLASS)) {
+        link.classList.remove(LINK_ACTIVE_CLASS);
+      }
+    }); // Resets all links first
+    
+    TARGET_LINK.classList.add(LINK_ACTIVE_CLASS); // Shows active link
+  };
+
+  /**
+   * 2) Sets up the view
+   * @param {*} view 
+   */
+  const _setUpView = (view) => {
+    _setActiveNavLink(); // 3
+    _createRouterLinks(); // 4
+
+    Controllers['base'].init(); // Intializes general functions
+    Controllers[view.dataset.view].init(); // Intializes view-specific functions
+
+    view.classList.add(VIEW_ACTIVE_CLASS); // Show view to user
+  };
+
+  /**
+   * 1) Constructs the Router
+   */
   const _construct = () => {
     const VIEW = document.querySelector(VIEW_SELECTOR);
-    VIEW.classList.add(VIEW_ACTIVE_CLASS);
-    _setUpView(VIEW.dataset.view);
+    _setUpView(VIEW); // 2
 
     window.addEventListener('popstate', e => {
       document.body.style.visibility = 'hidden';
@@ -138,6 +148,9 @@ const Router = (() => {
     });
   };
 
+  /**
+   * Defines methods for the Router.
+   */
   return {
     init: _construct
   };

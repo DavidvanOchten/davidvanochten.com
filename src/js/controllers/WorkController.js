@@ -6,7 +6,7 @@
 const WorkController = (() => {
   const construct = () => {
     // LazyLoader.init();
-    console.log('[Work Controller] Cases fetched via Node.js');
+    // console.log('[Work Controller] Cases fetched via Node.js');
     // const createArrayFromObject = (data) => {
     //   const arr = [];
     //   for (const key in data) {

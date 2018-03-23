@@ -16,6 +16,6 @@
   &--isVisible {
     opacity: 1;
     animation: pulse .5s infinite alternate;
-    transition: opacity .25s linear .5s;
+    transition: opacity .25s linear .75s;
   }
 }
