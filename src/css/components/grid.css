@@ -1,5 +1,6 @@
 .grid {
   display: flex;
+  flex-wrap: wrap;
 
   @media (--phone-only) {
     flex-direction: column;
@@ -39,41 +40,14 @@
     }
 
     &--borderTop {
-      /* &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 1px;
-        width: 100%;
-        background-color: var(--grey-light);
-      } */
       border-top: 1px solid var(--grey-light);
     }
 
     &--borderBottom {
-      /* &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 1px;
-        width: 100%;
-        background-color: var(--grey-light);
-      }*/
       border-bottom: 1px solid var(--grey-light);
     }
 
     &--borderLeft {
-      /*&::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 1px;
-        background-color: var(--grey-light);
-      }*/
       border-left: 1px solid var(--grey-light);
     }
 

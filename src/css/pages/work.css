@@ -2,12 +2,13 @@
   display: grid;
   grid-template-columns: repeat(24,[col] 1fr);
   grid-auto-rows: var(--bsl);
+  margin-top: calc(var(--bsl) * 2);
+  margin-bottom: calc(var(--bsl) * 2);
 
   &__item {
     position: relative;
     height: auto;
     width: auto;
-    margin-bottom: calc(var(--bsl) * 2);
 
     &:nth-child(5n + 1) {
       grid-column: col 2 / span 12;

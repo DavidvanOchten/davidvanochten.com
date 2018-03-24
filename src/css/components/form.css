@@ -22,7 +22,6 @@
   }
 
   &__submit {
-    align-self: flex-end;
     padding-top: calc(var(--bsl) / 5);
     padding-bottom: calc(var(--bsl) / 5);
     border: none;
@@ -41,14 +40,4 @@
       pointer-events: none;
     }
   }
-}
-
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: var(--grey-dark);
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: var(--grey-dark);
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: var(--grey-dark);
 }

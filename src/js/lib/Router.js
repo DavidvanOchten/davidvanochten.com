@@ -8,7 +8,7 @@ import { showNotification } from '../utils/showNotification.js';
 const Router = (() => {
   // Router constants
   const LINK_ACTIVE_CLASS = 'menu__link--isActive';
-  const VIEW_ACTIVE_CLASS = 'is-active';
+  const VIEW_ACTIVE_CLASS = 'page--isVisible';
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
 
@@ -98,7 +98,8 @@ const Router = (() => {
         const VIEW_NAME = view.dataset.view;
 
         document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
-        document.documentElement.scrollTop = 0;
+        document.documentElement.scrollTop = 0; // Desktop
+        document.body.scrollTop = 0; // Safari mobile
 
         _setUpView(view);
         _disableRouterLinks(false);

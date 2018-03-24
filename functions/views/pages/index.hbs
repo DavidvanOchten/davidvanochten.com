@@ -1,11 +1,11 @@
 <article class="grid">
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid" data-toggle-display="trigger">
-      <header class="grid__cell grid__cell--6 grid__cell--offset">
+      <header class="grid__cell grid__cell--6 grid__cell--offset u-isShowOff u-isShowOff--skew" data-show-off="skew">
         <h1>David van Ochten</h1>
         <h2 class="grid__heading">Developer + designer</h2>
       </header>
-      <ul class="grid__cell grid__cell--borderLeft grid__cell--4">
+      <ul class="grid__cell grid__cell--borderLeft grid__cell--4 u-isShowOff u-isShowOff--slide" data-show-off="slide">
         <li>Index</li>
         <li><a href="/work">Work</a></li>
         <li><a href="/notes">Notes</a></li>
@@ -14,7 +14,7 @@
       </ul>
     </div>
     <section class="grid__cell grid__cell--borderTop u-isUnscrollable">
-      <h1 class="grid__heading">Latest</h1>
+      <h1 class="grid__heading u-isShowOff u-isShowOff--skew" data-show-off="skew">Latest</h1>
       <div class="slider" data-slider>
         <button class="slider__button slider__button--prev" data-slider="previous"></button>
         <button class="slider__button slider__button--next" data-slider="next"></button>
@@ -43,19 +43,23 @@
       </div>
     </section>
     <section class="grid__cell grid__cell--borderTop grid__cell--borderBottom">
-      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skewed" data-show-off="skewed">Let’s <strong>do something awesome</strong> together.</h1>
-      <a class="button button--link" href="/contact">
-        <span class="button__text">Hit me up</span>
-      </a>
+      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">Let’s <strong>do something awesome</strong> together.</h1>
+      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
+        <a class="button button--link" href="/contact">
+          <span class="button__text">Hit me up</span>
+        </a>
+      </div>
     </section>
   </div>
 
   <div class="grid__column grid__column--wide" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
-      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skewed" data-show-off="skewed">{{{aboutHeadline}}}</h1>
-      <a class="button button--link" href="/profile">
-        <span class="button__text">{{aboutLink}}</span>
-      </a>
+      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
+      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
+        <a class="button button--link" href="/profile">
+          <span class="button__text">{{aboutLink}}</span>
+        </a>
+      </div>
     </section>
     <section class="grid__cell">
       <h1 class="grid__heading grid__heading--rotated">Work</h1>
@@ -74,12 +78,12 @@
           </article>
         </li>
         {{/each}}
-        <li>
-          <a class="button button--link" href="/work">
-            <span class="button__text">{{workLink}}</span>
-          </a>
-        </li>
       </ul>
+      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
+        <a class="button button--link" href="/work">
+          <span class="button__text">{{workLink}}</span>
+        </a>
+      </div>
     </section>
   </div>
 </article>

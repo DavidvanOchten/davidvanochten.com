@@ -5,6 +5,3 @@
 @import "components/_components-imports.css";
 @import "pages/_pages-imports.css";
 @import "utilities/_utilities-imports.css";
-
-/* Clean up below */
-@import 'cleanup.css';

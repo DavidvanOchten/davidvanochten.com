@@ -29,10 +29,10 @@
 
   &__hero {
     z-index: -2;
-    padding-top: calc(9 / 21 * 100%);
-    
-    & .lazyLoader__image {
-      transform:  scale(1.05);
+    padding-top: calc(9 / 16 * 100%);
+
+    @media (--tablet-landscape-up) {
+      padding-top: calc(9 / 21 * 100%);
     }
   }
 
