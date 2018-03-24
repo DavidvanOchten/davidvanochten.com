@@ -11,15 +11,17 @@ const Accordion = (() => {
         const CONTENT = e.currentTarget.querySelector('[data-accordion="content"]');
 
         item.classList.toggle(ACTIVE_ITEM_CLASS);
-  
+
         if (item.classList.contains(ACTIVE_ITEM_CLASS)) {
           CONTAINER.style.height = `${parseInt(window.getComputedStyle(CONTENT).height) + parseInt(window.getComputedStyle(CONTENT).paddingBottom)}px`;
           CONTENT.classList.add(VISIBLE_CONTENT_CLASS);
           TITLE.classList.add(ACTIVE_TITLE_CLASS);
+          item.setAttribute('aria-expanded', true);
         } else {
           CONTAINER.style.height = 0;
           CONTENT.classList.remove(VISIBLE_CONTENT_CLASS);
           TITLE.classList.remove(ACTIVE_TITLE_CLASS);
+          item.setAttribute('aria-expanded', false);
         }
       })
     });

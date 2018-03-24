@@ -35,21 +35,27 @@
           {{/each}}
           <li class="slider__item" data-slider="item">
             <h2 class="grid__heading grid__heading--l">{{{notesHeadline}}}</h2>
-            <a class="grid__link" href="/notes">{{notesLink}}</a>
+            <a class="button button--link" href="/notes">
+              <span class="button__text">{{notesLink}}</span>
+            </a>
           </li>
         </ul>
       </div>
     </section>
     <section class="grid__cell grid__cell--borderTop grid__cell--borderBottom">
       <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skewed" data-show-off="skewed">Let’s <strong>do something awesome</strong> together.</h1>
-      <a class="grid__link" href="/contact">Hit me up</a>
+      <a class="button button--link" href="/contact">
+        <span class="button__text">Hit me up</span>
+      </a>
     </section>
   </div>
 
   <div class="grid__column grid__column--wide" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
       <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skewed" data-show-off="skewed">{{{aboutHeadline}}}</h1>
-      <a class="grid__link" href="/profile">{{aboutLink}}</a>
+      <a class="button button--link" href="/profile">
+        <span class="button__text">{{aboutLink}}</span>
+      </a>
     </section>
     <section class="grid__cell">
       <h1 class="grid__heading grid__heading--rotated">Work</h1>
@@ -68,7 +74,11 @@
           </article>
         </li>
         {{/each}}
-        <li><a class="grid__link" href="/work">{{workLink}}</a></li>
+        <li>
+          <a class="button button--link" href="/work">
+            <span class="button__text">{{workLink}}</span>
+          </a>
+        </li>
       </ul>
     </section>
   </div>

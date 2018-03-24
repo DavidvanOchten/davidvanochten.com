@@ -1,0 +1,56 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+
+  &__text {
+    transform: translate3d(calc(var(--bsl) / 3), 0, 0);
+    transition: transform .5s cubic-bezier(.75, 0, 0, 1);
+  }
+
+  &::after {
+    opacity: 0;
+    transform: translate3d(calc(var(--bsl) / -1), 0, 0);
+  }
+
+  &:before {
+    opacity: 1;
+  }
+
+  &::after,
+  &::before {
+    content: "";
+    width: var(--bsl);
+    background-image: url('/static/icons/arrow.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: opacity .25s linear, transform .5s cubic-bezier(.75, 0, 0, 1);
+  }
+
+  &:hover {
+    & .button__text {
+      transform: translate(calc(var(--bsl) * -1), 0, 0);
+    }
+
+    &::after {
+      opacity: 1;
+      transform: translate3d(calc(var(--bsl) / -2), 0, 0);
+      transition: opacity .25s linear .25s, transform .75s cubic-bezier(.75, 0, 0, 1);
+    }
+
+    &::before {
+      opacity: 1;
+      transform: translate3d(calc(var(--bsl) / -0.5), 0, 0);
+    }
+  }
+
+  &__icon {
+    fill: var(--dark);
+
+    &--link {
+      width: var(--bsl);
+      transition: transform .5s cubic-bezier(.75, 0, 0, 1);
+    }
+  }
+}

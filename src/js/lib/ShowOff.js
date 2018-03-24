@@ -1,8 +1,8 @@
 import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 
 const ShowOff = (() => {
-  let hiddenClass = '';
   let ticking = false;
+  let hiddenClass = '';
 
   const _showItem = (item) => {
     item.classList.remove(hiddenClass);
@@ -56,7 +56,7 @@ const ShowOff = (() => {
     if (!ticking) {
       requestAnimationFrame(_eventsCB);
     }
-    ticking = true
+    ticking = true;
   };
 
   const _useEvents = () => {
