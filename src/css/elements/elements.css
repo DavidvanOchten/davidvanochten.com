@@ -1,5 +1,4 @@
 a {
-  display: inline-block;
   font-family: var(--secondary-font);
   color: var(--dark);
   text-decoration: none;
@@ -48,10 +47,6 @@ main {
 
 picture {
   display: block;
-}
-
-span {
-  display: inline-block;
 }
 
 strong {

@@ -1,5 +1,5 @@
 ::selection {
-  background: var(--alert);
+  background: var(--primary-color);
 }
 
 * {

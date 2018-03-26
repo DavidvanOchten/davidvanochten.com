@@ -2,6 +2,7 @@
 
   &__form {
     min-height: 100vh;
+    width: var(--col-18);
     padding-top: calc(var(--bsl) * 6);
   }
 }

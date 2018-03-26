@@ -14,7 +14,7 @@
     @media (--tablet-landscape-up) {
       width: var(--col-11);
       margin-left: var(--col-1);
-      padding: calc(var(--bsl) * 6) var(--col-1) calc(var(--bsl) * 3);
+      padding: calc(var(--bsl) * 6) var(--col-1) 0;
     }
   }
 
@@ -45,11 +45,6 @@
     }
   }
 
-  &__title {
-    display: inline;
-    font-family: var(--secondary-font);
-  }
-
   &__subtitle {
     display: inline;
 
@@ -62,7 +57,7 @@
     position: absolute;
     left: 0;
     z-index: -1;
-    padding: calc(var(--bsl) * 3) var(--col-1) calc(var(--bsl) * 2);
+    padding: calc(var(--bsl) * 2) var(--col-1);
     background-color: var(--light);
     transform: translate3d(0, -100%, 0);
     transition: transform .75s cubic-bezier(.75, 0, 0, 1);
@@ -80,5 +75,10 @@
         transition-delay: .5s;
       }
     }
+  }
+
+  &__title {
+    display: inline;
+    font-family: var(--secondary-font);
   }
 }

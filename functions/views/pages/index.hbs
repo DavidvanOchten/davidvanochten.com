@@ -1,17 +1,29 @@
 <article class="grid">
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid" data-toggle-display="trigger">
-      <header class="grid__cell grid__cell--6 grid__cell--offset u-isShowOff u-isShowOff--skew" data-show-off="skew">
-        <h1>David van Ochten</h1>
-        <h2 class="grid__heading">Developer + designer</h2>
+      <header class="grid__cell grid__cell--6 grid__cell--offset">
+        <h1 class="u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">David van Ochten</h1>
+        <h2 class="grid__heading u-isShowOff--2 u-isShowOff--slide" data-show-off="slide">Developer + designer</h2>
       </header>
-      <ul class="grid__cell grid__cell--borderLeft grid__cell--4 u-isShowOff u-isShowOff--slide" data-show-off="slide">
-        <li>Index</li>
-        <li><a href="/work">Work</a></li>
-        <li><a href="/notes">Notes</a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
+      <div class="grid__cell grid__cell--signage grid__cell--borderLeft grid__cell--4">
+        <ul>
+          <li class="u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">
+            <span>Index</span>
+          </li>
+          <li class="u-isShowOff--2 u-isShowOff--slide" data-show-off="slide">
+            <a href="/work">Work</a>
+          </li>
+          <li class="u-isShowOff--3 u-isShowOff--slide" data-show-off="slide">
+            <a href="/notes">Notes</a>
+          </li>
+          <li class="u-isShowOff--4 u-isShowOff--slide" data-show-off="slide">
+            <a href="/profile">Profile</a>
+          </li>
+          <li class="u-isShowOff--5 u-isShowOff--slide" data-show-off="slide">
+            <a href="/contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
     <section class="grid__cell grid__cell--borderTop u-isUnscrollable">
       <h1 class="grid__heading u-isShowOff u-isShowOff--skew" data-show-off="skew">Latest</h1>
@@ -54,15 +66,15 @@
 
   <div class="grid__column grid__column--wide" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
-      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
-      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
+      <h1 class="grid__heading grid__heading--l u-isShowOff--5 u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
+      <div class="u-isShowOff--5 u-isShowOff--slide" data-show-off="slide">
         <a class="button button--link" href="/profile">
           <span class="button__text">{{aboutLink}}</span>
         </a>
       </div>
     </section>
     <section class="grid__cell">
-      <h1 class="grid__heading grid__heading--rotated">Work</h1>
+      <h1 class="grid__heading grid__heading--rotated u-isShowOff u-isShowOff--fade" data-show-off="fade">Work</h1>
       <ul>
         {{#each latestCases}}
         <li>

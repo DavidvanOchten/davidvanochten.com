@@ -6,7 +6,7 @@
   height: calc(var(--bsl) / 2);
   width: calc(var(--bsl) / 2);
   border-radius: 50%;
-  background-color: var(--alert);
+  background-color: var(--primary-color);
   opacity: 0;
   transition: opacity .25s linear;
   transform: translate3d(-50%, -50%, 0);

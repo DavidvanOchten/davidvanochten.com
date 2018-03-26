@@ -4,15 +4,6 @@
   overflow: hidden;
 
   &--link {
-    &::after {
-      opacity: 0;
-      transform: translate3d(calc(var(--bsl) / -1), 0, 0);
-    }
-
-    &:before {
-      opacity: 1;
-    }
-
     &::after,
     &::before {
       content: "";
@@ -22,6 +13,15 @@
       background-repeat: no-repeat;
       background-size: contain;
       transition: opacity .25s linear, transform .5s cubic-bezier(.75, 0, 0, 1);
+    }
+
+    &::after {
+      opacity: 0;
+      transform: translate3d(calc(var(--bsl) / -1), 0, 0);
+    }
+
+    &:before {
+      opacity: 1;
     }
 
     &:hover {
