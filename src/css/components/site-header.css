@@ -53,7 +53,7 @@
     }
 
     &:hover {
-      color: var(--alert);
+      color: var(--primary-color);
     }
 
     &--isInvisible {

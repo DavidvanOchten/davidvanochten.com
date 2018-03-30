@@ -61,7 +61,7 @@
         border-top: 1px solid var(--grey-light);
 
         & .u-isShowOff--5 {
-          transition: transform 1s cubic-bezier(.75, 0, 0, 1), opacity .5s linear .1s;
+          transition: transform 1s cubic-bezier(.75, 0, 0, 1), opacity .75s linear .1s;
         }
       }
     }

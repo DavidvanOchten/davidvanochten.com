@@ -93,6 +93,7 @@ const IndexController = (() => {
     }
 
     afterViewRemoval(() => {
+      console.log('[Index] Remove view');
       if (minScreenSize) {
         if (window.location.pathname === '/') {
           _handleToggleClasses('add');

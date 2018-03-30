@@ -1,9 +1,12 @@
 <article class="grid">
+  {{!-- CHECK OLD WEBSITE FOR PRETTIER CLASSES --}}
+  {{!-- E.g. .u-flex .u-pad etc --}}
+  {{!-- Implement index specific classes. index__routes / index__columns --}}
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid" data-toggle-display="trigger">
       <header class="grid__cell grid__cell--6 grid__cell--offset">
-        <h1 class="u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">David van Ochten</h1>
-        <h2 class="grid__heading u-isShowOff--2 u-isShowOff--slide" data-show-off="slide">Developer + designer</h2>
+        <h1 class="u-isShowOff u-isShowOff--slide" data-show-off="slide">David van Ochten</h1>
+        <h2 class="grid__heading u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">Developer + designer</h2>
       </header>
       <div class="grid__cell grid__cell--signage grid__cell--borderLeft grid__cell--4">
         <ul>
@@ -26,7 +29,7 @@
       </div>
     </div>
     <section class="grid__cell grid__cell--borderTop u-isUnscrollable">
-      <h1 class="grid__heading u-isShowOff u-isShowOff--skew" data-show-off="skew">Latest</h1>
+      <h1 class="grid__heading u-isShowOff u-isShowOff--fade" data-show-off="fade">Latest</h1>
       <div class="slider" data-slider>
         <button class="slider__button slider__button--prev" data-slider="previous"></button>
         <button class="slider__button slider__button--next" data-slider="next"></button>
@@ -62,6 +65,12 @@
         </a>
       </div>
     </section>
+
+    {{!-- Index footer --}}
+    <footer class="grid__cell">
+      <small>© 2018</small>
+      <button>Scroll top</button>
+    </footer>
   </div>
 
   <div class="grid__column grid__column--wide" data-grid-column="2">
@@ -84,7 +93,7 @@
             </a>
             <header class="card__header">
               <a class="card__link" href="/work/{{path}}">
-                <h1 class="card__heading">{{{name}}}</h1>
+                <h1 class="card__heading">{{{name}}} +</h1>
               </a>
             </header>
           </article>

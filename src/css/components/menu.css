@@ -17,7 +17,7 @@
     transition: opacity .25s linear;
 
     &--isInvisible {
-      opacity: 0;
+      opacity: 0.05;
     }
   }
 
@@ -152,6 +152,10 @@
     }
 
     &:hover {
+      & .menu__burger {
+        opacity: 1;
+      }
+
       & .menu__burgerLine {
         transform: translate3d(200%, 0, 0);
       }

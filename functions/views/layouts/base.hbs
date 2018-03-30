@@ -15,21 +15,21 @@
   <body>
     {{> header}}
 
-    {{!-- <div class="layout">
+    <div class="layout">
       <input type="checkbox">
       <label></label>
-    </div> --}}
+    </div>
     
     {{> splash}}
 
     <main role="main">
+      <div class="spinner" data-spinner></div>
       <div class="page" data-view="{{view}}">
         {{{body}}}
       </div>
     </main>
 
     {{!-- {{> footer}} --}}
-    <div class="spinner" data-spinner></div>
 
     <script src="/app.bundle.js"></script>
   </body>

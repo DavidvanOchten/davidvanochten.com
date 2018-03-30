@@ -83,15 +83,14 @@ const Router = (() => {
     _disableRouterLinks(true); // 6
 
     let newView = null;
+    window.history.pushState(null, null, URL); // Set this before _removeView
 
-    axios.get(URL)
+    _removeView() // 7
+      .then(() => {
+        return axios.get(URL);
+      })
       .then((resp) => {
         newView = resp.data;
-        window.history.pushState(null, null, URL);
-        setSpinner(false);
-        return _removeView(); // 7
-      })
-      .then(() => {
         return _appendView(newView); // 8
       })
       .then((view) => {
@@ -101,6 +100,7 @@ const Router = (() => {
         document.documentElement.scrollTop = 0; // Desktop
         document.body.scrollTop = 0; // Safari mobile
 
+        setSpinner(false);
         _setUpView(view);
         _disableRouterLinks(false);
       })
