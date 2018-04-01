@@ -59,28 +59,18 @@
     </section>
     <section class="grid__cell grid__cell--borderTop grid__cell--borderBottom">
       <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">Let’s <strong>do something awesome</strong> together.</h1>
-      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
-        <a class="button button--link" href="/contact">
-          <span class="button__text">Hit me up</span>
-        </a>
-      </div>
+      <a class="button button--link" href="/contact">
+        <span class="button__text">Hit me up</span>
+      </a>
     </section>
-
-    {{!-- Index footer --}}
-    <footer class="grid__cell">
-      <small>© 2018</small>
-      <button>Scroll top</button>
-    </footer>
   </div>
 
   <div class="grid__column grid__column--wide" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
       <h1 class="grid__heading grid__heading--l u-isShowOff--5 u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
-      <div class="u-isShowOff--5 u-isShowOff--slide" data-show-off="slide">
-        <a class="button button--link" href="/profile">
-          <span class="button__text">{{aboutLink}}</span>
-        </a>
-      </div>
+      <a class="button button--link" href="/profile">
+        <span class="button__text">{{aboutLink}}</span>
+      </a>
     </section>
     <section class="grid__cell">
       <h1 class="grid__heading grid__heading--rotated u-isShowOff u-isShowOff--fade" data-show-off="fade">Work</h1>
@@ -100,11 +90,13 @@
         </li>
         {{/each}}
       </ul>
-      <div class="u-isShowOff u-isShowOff--slide" data-show-off="slide">
-        <a class="button button--link" href="/work">
-          <span class="button__text">{{workLink}}</span>
-        </a>
-      </div>
+      <a class="button button--link" href="/work">
+        <span class="button__text">{{workLink}}</span>
+      </a>
     </section>
+    <footer class="grid__cell grid__cell--borderTop">
+      <small>© 2018</small>
+      <button data-scroller="top">Scroll top</button>
+    </footer>
   </div>
 </article>

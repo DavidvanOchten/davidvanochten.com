@@ -2,7 +2,7 @@
   position: relative;
   height: 100%;
   width: 100%;
-  margin-bottom: calc(var(--bsl) * 3);
+  margin-bottom: calc(var(--bsl) * 2);
   overflow: hidden;
 
   &:hover {

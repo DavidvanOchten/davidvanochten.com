@@ -1,6 +1,7 @@
 .button {
   position: relative;
   display: inline-flex;
+  margin-top: calc(var(--bsl) / -3);
   overflow: hidden;
 
   &--link {

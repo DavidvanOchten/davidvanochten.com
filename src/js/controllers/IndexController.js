@@ -1,3 +1,4 @@
+import Scroller from '../lib/Scroller.js';
 import Slider from '../lib/Slider.js';
 import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 
@@ -93,7 +94,6 @@ const IndexController = (() => {
     }
 
     afterViewRemoval(() => {
-      console.log('[Index] Remove view');
       if (minScreenSize) {
         if (window.location.pathname === '/') {
           _handleToggleClasses('add');
@@ -109,6 +109,11 @@ const IndexController = (() => {
     _constructForMinSize();
     window.addEventListener('resize', _constructForMinSize);
     Slider.init();
+    
+    const scrollTopBtn = document.querySelector('[data-scroller="top"]');
+    scrollTopBtn.addEventListener('click', (e) => {
+      Scroller.init({ target: document.body });
+    });
   };
 
   return {

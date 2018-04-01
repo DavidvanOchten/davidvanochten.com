@@ -5,20 +5,27 @@
 
   &__details {
     position: relative;
-    align-items: flex-end;
+    align-self: flex-end;
     justify-content: space-between;
-    width: var(--col-22);
-    padding: var(--bsl) var(--col-1) calc(var(--bsl) * 2);
+    width: var(--col-24);
+    padding: 0 var(--col-1) calc(var(--bsl));
     background-color: var(--light);
 
     @media (--tablet-landscape-up) {
+      align-items: flex-end;
       width: var(--col-11);
       margin-left: var(--col-1);
-      padding: calc(var(--bsl) * 6) var(--col-1) 0;
+      padding: 0 var(--col-1) calc(var(--bsl) * 2);
     }
   }
 
+  &__header {
+    position:relative;
+    z-index: 1;
+  }
+
   &__headings {
+    margin-top: calc(var(--bsl) * 2);
     background-color: var(--light);
 
     @media (--tablet-landscape-up) {
