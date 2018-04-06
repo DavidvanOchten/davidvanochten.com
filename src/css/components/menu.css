@@ -152,10 +152,6 @@
     }
 
     &:hover {
-      & .menu__burger {
-        opacity: 1;
-      }
-
       & .menu__burgerLine {
         transform: translate3d(200%, 0, 0);
       }

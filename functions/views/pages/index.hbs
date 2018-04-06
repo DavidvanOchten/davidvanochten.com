@@ -2,6 +2,8 @@
   {{!-- CHECK OLD WEBSITE FOR PRETTIER CLASSES --}}
   {{!-- E.g. .u-flex .u-pad etc --}}
   {{!-- Implement index specific classes. index__routes / index__columns --}}
+
+  {{!-- Improve that show off stuff --}}
   <div class="grid__column grid__column--narrow" data-grid-column="1">
     <div class="grid" data-toggle-display="trigger">
       <header class="grid__cell grid__cell--6 grid__cell--offset">
@@ -59,7 +61,7 @@
     </section>
     <section class="grid__cell grid__cell--borderTop grid__cell--borderBottom">
       <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">Let’s <strong>do something awesome</strong> together.</h1>
-      <a class="button button--link" href="/contact">
+      <a class="button button--link u-isShowOff--5 u-isShowOff--slide" href="/contact" data-show-off="slide">
         <span class="button__text">Hit me up</span>
       </a>
     </section>
@@ -68,11 +70,11 @@
   <div class="grid__column grid__column--wide" data-grid-column="2">
     <section class="grid__cell grid__cell--profile">
       <h1 class="grid__heading grid__heading--l u-isShowOff--5 u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
-      <a class="button button--link" href="/profile">
+      <a class="button button--link u-isShowOff--5 u-isShowOff--slide" href="/profile" data-show-off="slide">
         <span class="button__text">{{aboutLink}}</span>
       </a>
     </section>
-    <section class="grid__cell">
+    <section class="grid__cell grid__cell--work">
       <h1 class="grid__heading grid__heading--rotated u-isShowOff u-isShowOff--fade" data-show-off="fade">Work</h1>
       <ul>
         {{#each latestCases}}

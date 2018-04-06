@@ -1,3 +1,5 @@
+/* TODO: CLEAN UP THIS FILE! */
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -70,6 +72,16 @@
     &--signage {
       @media (--phone-only) { 
         display: none;
+      }
+    }
+
+    &--work {
+      display: flex;
+      flex-direction: column;
+
+
+      & .button {
+        align-self: flex-end;
       }
     }
   }

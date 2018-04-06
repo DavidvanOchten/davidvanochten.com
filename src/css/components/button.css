@@ -17,24 +17,22 @@
     }
 
     &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
       opacity: 0;
       transform: translate3d(calc(var(--bsl) / -1), 0, 0);
     }
 
-    @keyframes inOut {
-      0% { transform: translate3d(0, 0, 0); }
-      25% { transform: translate3d(calc(var(--bsl)), 0, 0); }
-      100% { transform: translate3d(calc(var(--bsl) * -3), 0, 0); }
-    }
-
     &:hover {
       & .button__text {
-        transform: translate(calc(var(--bsl) * -1), 0, 0);
+        transform: translate(calc(var(--bsl) * -1.5), 0, 0);
       }
 
       &::after {
         opacity: 1;
-        transform: translate3d(calc(var(--bsl) / -2), 0, 0);
+        transform: translate3d(0, 0, 0);
         transition: opacity .25s linear .25s, transform .75s cubic-bezier(.75, 0, 0, 1);
       }
 
@@ -61,7 +59,8 @@
   }
 
   &__text {
-    transform: translate3d(calc(var(--bsl) / 2), 0, 0);
+    /*transform: translate3d(calc(var(--bsl) / 2), 0, 0);*/
     transition: transform .5s cubic-bezier(.75, 0, 0, 1);
+    margin-left: calc(var(--bsl) / 2);
   }
 }
