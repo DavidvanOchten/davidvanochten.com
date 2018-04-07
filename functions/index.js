@@ -36,6 +36,7 @@ exports.app = functions.https.onRequest(app);
  * Send notification email once a form submission has taken place.
  */
 exports.onFormSubmit = functions.database.ref('messages').onWrite((e) => {
+  // https://firebase.google.com/docs/functions/beta-v1-diff
   console.log(e.data.val());
   return;
 });

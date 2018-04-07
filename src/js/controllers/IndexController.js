@@ -8,10 +8,10 @@ const IndexController = (() => {
   let ticking = false;
 
   const SITE_HEADER = document.querySelector('[data-site-header]');
-  const TOGGLE_LOGO = document.querySelector('[data-toggle-display="logo"]');
-  const TOGGLE_MENU = document.querySelector('[data-toggle-display="menu"]');
-  const SITE_HEADER_TOGGLE_CLASS = 'siteHeader__logo--isInvisible';
-  const MENU_BURGER_TOGGLE_CLASS = 'menu__burger--isInvisible';
+  // const TOGGLE_LOGO = document.querySelector('[data-toggle-display="logo"]');
+  // const TOGGLE_MENU = document.querySelector('[data-toggle-display="menu"]');
+  const SITE_HEADER_TOGGLE_CLASS = 'siteHeader--isInvisible';
+  // const MENU_BURGER_TOGGLE_CLASS = 'menu__burger--isInvisible';
 
   const _removeCreateStickyColumn = () => {
     if (stickyColumn) {
@@ -29,13 +29,15 @@ const IndexController = (() => {
 
   const _handleToggleClasses = (action) => {
     if (action === 'add') {
-      TOGGLE_LOGO.classList.add(SITE_HEADER_TOGGLE_CLASS);
-      TOGGLE_MENU.classList.add(MENU_BURGER_TOGGLE_CLASS);
+      SITE_HEADER.classList.add(SITE_HEADER_TOGGLE_CLASS);
+      // TOGGLE_LOGO.classList.add(SITE_HEADER_TOGGLE_CLASS);
+      // TOGGLE_MENU.classList.add(MENU_BURGER_TOGGLE_CLASS);
     }
 
     if (action === 'remove') {
-      TOGGLE_LOGO.classList.remove(SITE_HEADER_TOGGLE_CLASS);
-      TOGGLE_MENU.classList.remove(MENU_BURGER_TOGGLE_CLASS);
+      SITE_HEADER.classList.remove(SITE_HEADER_TOGGLE_CLASS);
+      // TOGGLE_LOGO.classList.remove(SITE_HEADER_TOGGLE_CLASS);
+      // TOGGLE_MENU.classList.remove(MENU_BURGER_TOGGLE_CLASS);
     }
   };
 
@@ -44,9 +46,9 @@ const IndexController = (() => {
     const TOGGLE_TRIGGER = document.querySelector('[data-toggle-display="trigger"]');
 
     if (TOGGLE_TRIGGER.getBoundingClientRect().bottom <= SITE_HEADER.offsetHeight) {
-      if (!TOGGLE_MENU.classList.contains(MENU_BURGER_TOGGLE_CLASS)) {
-        return;
-      }
+      // if (!TOGGLE_MENU.classList.contains(MENU_BURGER_TOGGLE_CLASS)) {
+      //   return;
+      // }
       _handleToggleClasses('remove');
     } else {
       _handleToggleClasses('add');
@@ -72,8 +74,8 @@ const IndexController = (() => {
   };
 
   const _createStickyColumn = () => {
-    const COL_1 = document.querySelector('[data-grid-column="1"]');
-    const COL_2 = document.querySelector('[data-grid-column="2"]');
+    const COL_1 = document.querySelector('[data-index-column="1"]');
+    const COL_2 = document.querySelector('[data-index-column="2"]');
 
     COL_1.offsetHeight < COL_2.offsetHeight
       ? stickyColumn = COL_1

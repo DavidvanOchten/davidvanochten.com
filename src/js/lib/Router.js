@@ -12,6 +12,7 @@ const Router = (() => {
   const VIEW_SELECTOR = '[data-view]';
   const VIEW_PARENT_SELECTOR = 'main';
 
+
   /**
    * 8) Creates the new view and adds it to the DOM
    * @param {*} data The view source
@@ -159,7 +160,7 @@ const Router = (() => {
     const VIEW = document.querySelector(VIEW_SELECTOR);
     _setUpView(VIEW); // 2
 
-    window.addEventListener('popstate', e => {
+    window.addEventListener('popstate', (e) => {
       document.body.style.visibility = 'hidden';
       window.location = window.location.href;
     }); // Use normal page loading whenever the user uses the back/forward buttons

@@ -1,0 +1,37 @@
+.index {
+
+  @media (--tablet-portrait-up) {
+    margin-top: calc(var(--bsl) * -3);
+  }
+
+  &__column {
+    position: sticky;
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    width: var(--col-24);
+    background-color: var(--light);
+
+    @media (--tablet-portrait-up) {
+      &--narrow {
+        width: var(--col-10);
+      }
+
+      &--wide {
+        width: var(--col-14);
+        padding: var(--bsl) var(--col-1);
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 1px;
+          background-color: var(--grey-light);
+        }
+      }
+    }
+  }
+}
+

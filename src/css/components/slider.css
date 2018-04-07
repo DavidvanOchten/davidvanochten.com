@@ -1,22 +1,31 @@
 .slider {
   width: var(--col-22);
 
-  &__button {
+  &__actions {
     position: absolute;
     top: 0;
+    left: 0;
     z-index: 0;
+    display: flex;
     height: 100%;
+    width: 100%;
+  }
+
+  &__button {
+    flex-grow: 1;
 
     &--next {
-      right: 0;
-      width: 50%;
       cursor: e-resize;
     }
 
     &--prev {
-      left: 0;
-      width: 50%;
       cursor: w-resize;
+    }
+
+    &--isInactive {
+      flex-grow: 0;
+      cursor: default;
+      pointer-events: none;
     }
   }
 
@@ -32,7 +41,7 @@
     width: var(--col-16);
     padding-right: var(--col-1);
 
-    @media (--tablet-landscape-up) {
+    @media (--tablet-portrait-up) {
       width: var(--col-6);
     }
 

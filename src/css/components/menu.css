@@ -145,12 +145,6 @@
     cursor: pointer;
     outline: none;
 
-    &:focus {
-      & .menu__burger {
-        opacity: 1;
-      }
-    }
-
     &:hover {
       & .menu__burgerLine {
         transform: translate3d(200%, 0, 0);

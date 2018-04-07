@@ -50,15 +50,10 @@
       border-left: 1px solid var(--grey-light);
     }
 
-    &--offset {
-      margin-top: var(--bsl);
-
-      @media (--tablet-portrait-up) {
-        margin-top: calc(var(--bsl) * -3);
-      }
-    }
-
     &--profile {
+      padding-top: calc(var(--bsl) * 5);
+      padding-bottom: 0;
+
       @media (--phone-only) { 
         order: 1;
         border-top: 1px solid var(--grey-light);
@@ -70,6 +65,8 @@
     }
 
     &--signage {
+      padding-top: calc(var(--bsl) * 3);
+
       @media (--phone-only) { 
         display: none;
       }
@@ -82,36 +79,6 @@
 
       & .button {
         align-self: flex-end;
-      }
-    }
-  }
-
-  &__column {
-    position: sticky;
-    display: flex;
-    align-self: flex-start;
-    flex-direction: column;
-    width: var(--col-24);
-    background-color: var(--light);
-
-    @media (--tablet-portrait-up) {
-      &--narrow {
-        width: var(--col-10);
-      }
-
-      &--wide {
-        width: var(--col-14);
-        padding: var(--bsl) var(--col-1);
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 1px;
-          background-color: var(--grey-light);
-        }
       }
     }
   }

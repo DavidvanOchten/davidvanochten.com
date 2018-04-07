@@ -6,3 +6,5 @@ functions/node_modules
 firebase.config.js
 firebase-debug.log
 public/static/fonts
+
+cloud-functions-emulator.log
