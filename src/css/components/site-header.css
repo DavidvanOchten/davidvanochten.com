@@ -57,26 +57,9 @@
       background-color: var(--grey-light);
     }
 
-    /* &:focus {
-      transform: none;
-
-      & .siteHeader__logoType {
-        opacity: 1;
-      }
-    } */
-
     &:hover {
       color: var(--primary-color);
     }
-
-    /*&--isInvisible {
-      transform: translate3d(0, -100%, 0);
-      transition: transform .25s cubic-bezier(.75, 0, .25, 1);
-
-      & .siteHeader__logoType {
-        opacity: 0;
-      }
-    }*/
   }
 
   &__logoType {

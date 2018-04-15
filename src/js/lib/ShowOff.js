@@ -1,5 +1,6 @@
 import { afterViewRemoval } from '../utils/afterViewRemoval.js';
 
+// Change naming to Reveal.js
 const ShowOff = (() => {
   let ticking = false;
   let hiddenClass = '';
@@ -9,6 +10,8 @@ const ShowOff = (() => {
   };
 
   const _intersectionObserverCB = (content) => {
+    console.log('[ShowOff] What is content?', content);
+
     content.map((item) => {
       const TARGET = item.target;
       hiddenClass = `u-isShowOff--${TARGET.dataset.showOff}`;

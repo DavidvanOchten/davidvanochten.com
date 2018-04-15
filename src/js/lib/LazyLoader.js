@@ -45,6 +45,7 @@ const LazyLoader = (() => {
   };
 
   const _useIntersectionObserver = () => {
+    // Make LAZY_CONTENT a let and put on top of LazyLoader
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
     const IO = new IntersectionObserver(_intersectionObserverCB, { threshold: 0 });
     const OBSERVABLE_CONTENT_IO = LAZY_CONTENT.map(content => IO.observe(content));
@@ -53,6 +54,8 @@ const LazyLoader = (() => {
   const _eventsCB = () => {
     ticking = false;
 
+    // Continue from comment above. This double setting might not be necessary anymore.
+    // Set lazyContent during _construct.
     const LAZY_CONTENT = [...document.querySelectorAll('[data-src]')];
     const OBSERVABLE_CONTENT_EVENTS = LAZY_CONTENT.map((img) => {
       if (img.parentNode.classList.contains(READY_CLASS)) {

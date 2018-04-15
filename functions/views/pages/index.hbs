@@ -1,37 +1,36 @@
-<article class="index grid">
+<article class="index">
   {{!-- CHECK OLD WEBSITE FOR PRETTIER CLASSES --}}
-  {{!-- E.g. .u-flex .u-pad etc --}}
-  {{!-- Implement index specific classes. index__routes / index__columns --}}
+  {{!-- E.g. .u-flex .u-p2 / .u-px2 / .u-mb2 etc. --}}
 
-  {{!-- Improve that show off stuff --}}
   <div class="index__column index__column--narrow" data-index-column="1">
-    <div class="grid" data-toggle-display="trigger">
-      <header class="grid__cell grid__cell--6">
-        <h1 class="u-isShowOff u-isShowOff--slide" data-show-off="slide">David van Ochten</h1>
-        <h2 class="grid__heading u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">Developer + designer</h2>
+    <div data-toggle-display="trigger">
+      <header>
+        <h1>David van Ochten</h1>
+        <h2>Developer + designer</h2>
       </header>
-      <div class="grid__cell grid__cell--signage grid__cell--4 grid__cell--borderLeft">
+      <div>
         <ul>
-          <li class="u-isShowOff--1 u-isShowOff--slide" data-show-off="slide">
+          <li>
             <span>Index</span>
           </li>
-          <li class="u-isShowOff--2 u-isShowOff--slide" data-show-off="slide">
+          <li>
             <a href="/work">Work</a>
           </li>
-          <li class="u-isShowOff--3 u-isShowOff--slide" data-show-off="slide">
+          <li>
             <a href="/notes">Notes</a>
           </li>
-          <li class="u-isShowOff--4 u-isShowOff--slide" data-show-off="slide">
+          <li>
             <a href="/profile">Profile</a>
           </li>
-          <li class="u-isShowOff--5 u-isShowOff--slide" data-show-off="slide">
+          <li>
             <a href="/contact">Contact</a>
           </li>
         </ul>
       </div>
     </div>
-    <section class="grid__cell grid__cell--borderTop u-isUnscrollable">
-      <h1 class="grid__heading u-isShowOff u-isShowOff--fade" data-show-off="fade">Latest</h1>
+    {{!-- u-isUnscrollable  > u-noOverflow? --}}
+    <section class="u-isUnscrollable">
+      <h1>Latest</h1>
       <div class="slider" data-slider>
         <div class="slider__actions">
           <button class="slider__button slider__button--prev" data-slider="previous"></button>
@@ -60,23 +59,23 @@
         </ul>
       </div>
     </section>
-    <section class="grid__cell grid__cell--borderTop grid__cell--borderBottom">
-      <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--skew" data-show-off="skew">Let’s <strong>do something awesome</strong> together.</h1>
-      <a class="button button--link u-isShowOff--5 u-isShowOff--slide" href="/contact" data-show-off="slide">
+    <section>
+      <h1>Let’s <strong>do something awesome</strong> together.</h1>
+      <a class="button button--link" href="/contact">
         <span class="button__text">Hit me up</span>
       </a>
     </section>
   </div>
 
   <div class="index__column index__column--wide" data-index-column="2">
-    <section class="grid__cell grid__cell--profile">
-      <h1 class="grid__heading grid__heading--l u-isShowOff--5 u-isShowOff--skew" data-show-off="skew">{{{aboutHeadline}}}</h1>
-      <a class="button button--link u-isShowOff--5 u-isShowOff--slide" href="/profile" data-show-off="slide">
+    <section>
+      <h1>{{{aboutHeadline}}}</h1>
+      <a class="button button--link" href="/profile">
         <span class="button__text">{{aboutLink}}</span>
       </a>
     </section>
-    <section class="grid__cell grid__cell--work">
-      <h1 class="grid__heading grid__heading--rotated u-isShowOff u-isShowOff--fade" data-show-off="fade">Work</h1>
+    <section>
+      <h1>Work</h1>
       <ul>
         {{#each latestCases}}
         <li>
@@ -97,8 +96,7 @@
         <span class="button__text">{{workLink}}</span>
       </a>
     </section>
-    {{!-- This borderTop below is crap. Fix all the grid stuff --}}
-    <footer class="grid__cell grid__cell--borderTop">
+    <footer>
       <button data-scroller="top">Scroll top</button>
       <small>© 2018</small>
     </footer>
