@@ -10,17 +10,18 @@
   <link rel="apple-touch-icon" href="/static/img/icons/app-icon-144x144.png" sizes="144x144">
   <link rel="apple-touch-icon" href="/static/img/icons/app-icon-512x512.png" sizes="512x512">
   <link rel="manifest" href="/manifest.json">
+  <style>
+  </style>
   <link rel="stylesheet" href="/app.bundle.css">
 </head>
   <body>
+    {{> splash}}
     {{> header}}
 
     <div class="layout">
       <input type="checkbox">
       <label></label>
     </div>
-    
-    {{> splash}}
 
     <main role="main">
       <div class="spinner" data-spinner></div>
