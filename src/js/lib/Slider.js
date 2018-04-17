@@ -1,137 +1,189 @@
-const Slider = (() => {
-  // Slider variables
-  let sliderPosition = 0;
-  let sliderWidth = 0;
-  let activeIndex = 0;
-  const BTN_INACTIVE_CLASS = 'slider__button--isInactive';
+const Slider = (id) => {
 
-
-  /**
-   * 5)
-   * @param {*} sliderObj 
-   */
-  const _resetSlider = (sliderObj) => {
-    const { sliderContainer, sliderItems, prevButton, nextButton } = sliderObj;
-
-    activeIndex = 0;
-    sliderPosition = 0;
-
-    sliderItems[0].classList.add('slider__item--isActive');
-    sliderContainer.style.transform = `translate3d(0, 0, 0)`;
-    prevButton.classList.add(BTN_INACTIVE_CLASS);
-    nextButton.classList.remove(BTN_INACTIVE_CLASS);
-
-    _setSliderWidth(sliderItems, sliderContainer);
+  const SLIDER = {
+    ROOT: document.querySelector(`[data-slider="${id}"]`),
+    DRAGGING_CLASS: 'slider__content--isDragging',
+    activeIndex: 0,
+    position: 0
   };
 
-  /**
-   * 4)
-   * @param {*} direction 
-   * @param {*} sliderObj 
-   */
-  const _moveSlider = (direction, sliderObj) => {
-    const { slider, sliderContainer, sliderItems, prevButton, nextButton } = sliderObj;
+  const USER = {
+    hasMouseDown: false,
+    isDragging: false
+  };
 
-    activeIndex = sliderItems.findIndex(item => item.classList.contains('slider__item--isActive'));
+  const _moveSlider = () => {
+    if (!USER.isDragging) {
+      SLIDER.position = parseInt(SLIDER.CONTENT.querySelector(`[data-index="${SLIDER.activeIndex}"]`).dataset.offset);
 
-    if ((direction === 'prev' && activeIndex <= 0) || 
-        (direction === 'next' && activeIndex >= sliderItems.length - 1)) {
-      return;
+      SLIDER.CONTENT.style.webkitTransform = `translate3d(-${SLIDER.position}px, 0, 0)`;
+      SLIDER.CONTENT.style.transform = `translate3d(-${SLIDER.position}px, 0, 0)`;
+    } else {
+      SLIDER.CONTENT.style.webkitTransform = `translate3d(${SLIDER.position}px, 0, 0)`;
+      SLIDER.CONTENT.style.transform = `translate3d(${SLIDER.position}px, 0, 0)`;
     }
-
-    if (direction === 'prev') {
-      if (nextButton.classList.contains(BTN_INACTIVE_CLASS)) {
-        nextButton.classList.remove(BTN_INACTIVE_CLASS);
-      }
-
-      activeIndex <= 1 // Check if next item is first item
-        ? prevButton.classList.add(BTN_INACTIVE_CLASS)
-        : prevButton.classList.remove(BTN_INACTIVE_CLASS);
-
-      activeIndex >= sliderItems.length - 1 // Check if next item is second-to-last item
-        ? sliderPosition += slider.querySelector('.slider__item--isActive').offsetWidth / 2
-        : sliderPosition += slider.querySelector('.slider__item--isActive').offsetWidth;
-
-      sliderItems[activeIndex - 1].classList.add('slider__item--isActive');  
-    } else if (direction === 'next') {
-      if (prevButton.classList.contains(BTN_INACTIVE_CLASS)) {
-        prevButton.classList.remove(BTN_INACTIVE_CLASS);
-      }
-
-      if (activeIndex >= sliderItems.length - 2) { // Check if next item is last item
-        nextButton.classList.add(BTN_INACTIVE_CLASS);
-        sliderPosition -= slider.querySelector('.slider__item--isActive').offsetWidth / 2;
-      } else {
-        sliderPosition -= slider.querySelector('.slider__item--isActive').offsetWidth;
-      }
-
-      sliderItems[activeIndex + 1].classList.add('slider__item--isActive');
-    }
-
-    sliderContainer.style.webkitTransform = `translate3d(${sliderPosition}px, 0, 0)`;
-    sliderContainer.style.transform = `translate3d(${sliderPosition}px, 0, 0)`;
-
-    sliderItems[activeIndex].classList.remove('slider__item--isActive');
   };
 
-  /**
-   * 3) 
-   * @param {*} item 
-   */
-  const _getItemWidth = (item) => {
-    const ITEM_STYLE = window.getComputedStyle(item);
-    return parseFloat(ITEM_STYLE.width) + parseFloat(ITEM_STYLE.paddingRight);
-  };
+  const _setSlider = () => {
+    SLIDER.CONTENT.classList.remove(SLIDER.DRAGGING_CLASS);
 
-  /**
-   * 2) 
-   * @param {*} items 
-   * @param {*} container 
-   */
-  const _setSliderWidth = (items, container) => {
-    if (sliderWidth !== 0) { // Reset sliderWidth
-      sliderWidth = 0;
-    }
-    items.map((item) => {
-      sliderWidth += _getItemWidth(item); // 3
-    });
-    container.style.width = `${sliderWidth}px`;
-  };
+    let draggedX = Math.abs(SLIDER.position);
 
-  /**
-   * 1) Constructs the Slider
-   */
-  const _construct = () => {
-    const SLIDER = document.querySelector('[data-slider]');
-    const SLIDER_CONTAINER = SLIDER.querySelector('[data-slider="container"]');
-    const SLIDER_BUTTON_NEXT = SLIDER.querySelector('[data-slider="next"]');
-    const SLIDER_BUTTON_PREV = SLIDER.querySelector('[data-slider="previous"]');
-    const SLIDER_ITEMS = [...SLIDER.querySelectorAll('[data-slider="item"]')];
-
-    _setSliderWidth(SLIDER_ITEMS, SLIDER_CONTAINER); // 2
-
-    sliderPosition = 0;
-    SLIDER_ITEMS[0].classList.add('slider__item--isActive');
-    SLIDER_BUTTON_PREV.classList.add(BTN_INACTIVE_CLASS);
-
-    const SLIDER_OBJ = { 
-      slider: SLIDER, 
-      sliderContainer: SLIDER_CONTAINER, 
-      sliderItems: SLIDER_ITEMS,
-      prevButton: SLIDER_BUTTON_PREV, 
-      nextButton: SLIDER_BUTTON_NEXT
-    };
-
-    SLIDER_BUTTON_PREV.addEventListener('click', (e) => _moveSlider('prev', SLIDER_OBJ)); // 4
-    SLIDER_BUTTON_NEXT.addEventListener('click', (e) => _moveSlider('next', SLIDER_OBJ)); // 4
-
-    window.addEventListener('resize', (e) => _resetSlider(SLIDER_OBJ)); // 5
-  };
+    if (SLIDER.position > 0) {
+      SLIDER.activeIndex = parseInt(SLIDER.ITEMS[0].dataset.index);
+    } else if (draggedX > parseInt(SLIDER.ITEMS[SLIDER.ITEMS.length - 1].dataset.activeArea.split('|')[1])) {
+      SLIDER.activeIndex = parseInt(SLIDER.ITEMS[SLIDER.ITEMS.length - 1].dataset.index);
+    } else {
+      const ACTIVE_ITEM = SLIDER.ITEMS.filter(item => {
+        let activeAreaStart = parseInt(item.dataset.activeArea.split('|')[0]);
+        let activeAreaEnd = parseInt(item.dataset.activeArea.split('|')[1]);
   
-  return {
-    init: _construct
+        if (draggedX > activeAreaStart && draggedX < activeAreaEnd) {
+          return item;
+        }
+      });
+
+      SLIDER.activeIndex = parseInt(ACTIVE_ITEM[0].dataset.index);
+    }
+
+    _moveSlider();
   };
 
-})();
+  const _onArrowClick = (direction) => {
+    if (direction === 'prev' && SLIDER.activeIndex > 0) {
+      SLIDER.activeIndex = SLIDER.activeIndex - 1;
+    } else if (direction === 'next' && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
+      SLIDER.activeIndex = SLIDER.activeIndex + 1;
+    }
+
+    _moveSlider();
+  };
+
+  const _onKeyUp = (e) => {
+    if (e.keyCode === 37 && SLIDER.activeIndex > 0) {
+      SLIDER.activeIndex = SLIDER.activeIndex - 1;
+    } else if (e.keyCode === 39 && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
+      SLIDER.activeIndex = SLIDER.activeIndex + 1;
+    }
+
+    _moveSlider();
+  };
+
+  const _onMouseUp = () => {
+    USER.hasMouseDown = false;
+
+    if (USER.isDragging) {
+      USER.isDragging = false;
+      _setSlider();
+    }
+  };
+
+  const _onMouseMove = (e) => {
+    if (USER.hasMouseDown) {
+      USER.isDragging = true;
+
+      if (!SLIDER.CONTENT.classList.contains(SLIDER.DRAGGING_CLASS)) {
+        SLIDER.CONTENT.classList.add(SLIDER.DRAGGING_CLASS);
+      }
+
+      if (e.target.dataset.slider !== 'item') {
+        _onMouseUp();
+        return;
+      }
+
+      SLIDER.position = e.clientX - SLIDER.startX;
+      _moveSlider();
+    }
+  };
+
+  const _onMouseDown = (e) => {
+    USER.hasMouseDown = true;
+    SLIDER.startX = e.clientX + SLIDER.position;
+  };
+
+  const _onTouchEnd = (e) => {
+    if (USER.isDragging) {
+      USER.isDragging = false;
+      _setSlider();
+    }
+  };
+
+  const _onTouchMove = (e) => {
+    USER.isDragging = true;
+
+    if (!SLIDER.CONTENT.classList.contains(SLIDER.DRAGGING_CLASS)) {
+      SLIDER.CONTENT.classList.add(SLIDER.DRAGGING_CLASS);
+    }
+
+    const OFFSET_X = e.touches[0].clientX - SLIDER.startX;
+    const OFFSET_Y = e.touches[0].clientY - SLIDER.startY;
+
+    // Prevent vertical scroll if the user is swiping left or right
+    if (Math.abs(OFFSET_X) > Math.abs(OFFSET_Y) && e.cancelable) {
+      e.preventDefault();
+    }
+
+    SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
+    _moveSlider();
+  };
+
+  const _onTouchStart = (e) => {
+    SLIDER.startX = e.touches[0].clientX;
+    SLIDER.startY = e.touches[0].clientY;
+    SLIDER.adjustedStartX = e.touches[0].clientX + SLIDER.position;
+  };
+
+  const _setUpSliderItems = () => {
+    const FIRST_ITEM_WIDTH = SLIDER.ITEMS[0].offsetWidth;
+    const FIRST_ITEM_THRESHOLD = FIRST_ITEM_WIDTH - (SLIDER.ROOT.offsetWidth / 2);
+    let offset = 0;
+    let previousThreshold = 0;
+    let currentThreshold = 0;
+
+    SLIDER.ITEMS.map((item, i) => {
+      item.dataset.index = i;
+      item.dataset.offset = offset;
+
+      offset = item.offsetWidth + offset;
+
+      currentThreshold = FIRST_ITEM_THRESHOLD + offset - FIRST_ITEM_WIDTH;
+      item.dataset.activeArea = `${previousThreshold}|${currentThreshold}`;
+
+      previousThreshold = currentThreshold;
+      
+      item.addEventListener('click', e => {
+        SLIDER.activeIndex = parseInt(e.target.dataset.index);
+        _moveSlider();
+      });
+    });
+  };
+
+  const construct = () => {
+    // SLIDER.ROOT = document.querySelector(`[data-slider="${id}"]`);
+    SLIDER.CONTENT = SLIDER.ROOT.querySelector('[data-slider="content"]');
+    SLIDER.ITEMS = [].slice.call(SLIDER.ROOT.querySelectorAll('[data-slider="item"]'));
+    
+    _setUpSliderItems();
+
+    SLIDER.CONTENT.addEventListener('touchstart', _onTouchStart);
+    SLIDER.CONTENT.addEventListener('touchmove', _onTouchMove);
+    SLIDER.CONTENT.addEventListener('touchend', _onTouchEnd);
+
+    SLIDER.CONTENT.addEventListener('mousedown', _onMouseDown);
+    SLIDER.CONTENT.addEventListener('mouseup', _onMouseUp);
+    window.addEventListener('mousemove', _onMouseMove);
+
+    window.addEventListener('keyup', _onKeyUp);
+
+    window.addEventListener('resize', e => {
+      _setUpSliderItems();
+      _moveSlider();
+    });
+  };
+
+  return {
+    init: construct
+  }
+};
 
 export default Slider;

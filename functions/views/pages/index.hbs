@@ -3,7 +3,7 @@
   {{!-- E.g. .u-flex .u-p2 / .u-px2 / .u-mb2 etc. --}}
 
   <div class="index__column index__column--narrow" data-index-column="1">
-    <div data-toggle-display="trigger">
+    <div data-trigger-animation="header">
       <header>
         <h1>David van Ochten</h1>
         <h2>Developer + designer</h2>
@@ -28,10 +28,41 @@
         </ul>
       </div>
     </div>
-    {{!-- u-isUnscrollable  > u-noOverflow? --}}
+
     <section class="u-isUnscrollable">
       <h1>Latest</h1>
-      <div class="slider" data-slider>
+      <div class="slider u-mb2" data-slider="notes">
+
+        {{!-- <div class="slider__actions">
+          <button class="slider__button slider__button--prev" data-slider="prev"></button>
+          <button class="slider__button slider__button--next" data-slider="next"></button>
+        </div> --}}
+
+        <div class="slider__container" data-slider="container">
+          <ul class="slider__content" data-slider="content">
+            {{#each latestNotes}}
+            <li class="slider__item" data-slider="item">
+              <article class="note">
+                <div class="note__thumbnail lazyLoader">
+                  <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+                </div>
+                <header class="note__header">
+                  <h1 class="note__headline">{{{headline}}}</h1>
+                  <p class="note__summary">{{{summary}}}</p>
+                </header>
+              </article>
+            </li>
+            {{/each}}
+            <li class="slider__item" data-slider="item">
+              <h2 class="">{{{notesHeadline}}}</h2>
+              <a class="button button--link" href="/notes">
+                <span class="button__text">{{notesLink}}</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      {{!-- <div class="slider" data-slider>
         <div class="slider__actions">
           <button class="slider__button slider__button--prev" data-slider="previous"></button>
           <button class="slider__button slider__button--next" data-slider="next"></button>
@@ -57,7 +88,7 @@
             </a>
           </li>
         </ul>
-      </div>
+      </div> --}}
     </section>
     <section>
       <h1>Let’s <strong>do something awesome</strong> together.</h1>
@@ -97,7 +128,7 @@
       </a>
     </section>
     <footer>
-      <button data-scroller="top">Scroll top</button>
+      <button data-scroller-trigger="top">Scroll top</button>
       <small>© 2018</small>
     </footer>
   </div>

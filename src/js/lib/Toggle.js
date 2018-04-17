@@ -1,21 +1,30 @@
-const Toggle = (() => {
-  let toggleButton = null;
-  let toggleTarget = null;
+// const Toggle = (() => {
+//   const TOGGLE = {
+//     BUTTON: null,
+//     BUTTON_CLASS: null,
+//     TARGET: null,
+//     TARGET_CLASS: null
+//   };
 
-  const _toggleTarget = (buttonClass, targetClass) => {
-    toggleButton.classList.toggle(`${buttonClass}`);
-    toggleTarget.classList.toggle(`${targetClass}`);
-  };
+//   const _toggleElements = (e) => {
+//     TOGGLE.BUTTON.classList.toggle(`${TOGGLE.BUTTON_CLASS}`);
+//     TOGGLE.TARGET.classList.toggle(`${TOGGLE.TARGET_CLASS}`);
+//   };
 
-  const _construct = (val, buttonClass, targetClass) => {
-    toggleButton = document.querySelector(`[data-toggle-button="${val}"]`)
-    toggleTarget = document.querySelector(`[data-toggle-target="${val}"]`);
-    toggleButton.addEventListener('click', e => _toggleTarget(buttonClass, targetClass));
-  };
+//   const construct = (obj) => {
+//     const { id, activeButtonClass, activeTargetClass } = obj;
 
-  return {
-    init: _construct
-  }
-})();
+//     TOGGLE.BUTTON = document.querySelector(`[data-toggle-button="${id}"]`)
+//     TOGGLE.TARGET = document.querySelector(`[data-toggle-target="${id}"]`);
+//     TOGGLE.BUTTON_CLASS = activeButtonClass;
+//     TOGGLE.TARGET_CLASS = activeTargetClass;
 
-export default Toggle;
+//     TOGGLE.BUTTON.addEventListener('click', _toggleElements);
+//   };
+
+//   return {
+//     init: construct
+//   }
+// })();
+
+// export default Toggle;

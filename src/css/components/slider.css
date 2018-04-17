@@ -1,54 +1,42 @@
-.slider {
-  width: var(--col-22);
+.slider { 
 
-  &__actions {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    display: flex;
-    height: 100%;
-    width: 100%;
+  &__container {
+    overflow: hidden;
   }
 
-  &__button {
-    flex-grow: 1;
-
-    &--next {
-      cursor: e-resize;
-    }
-
-    &--prev {
-      cursor: w-resize;
-    }
-
-    &--isInactive {
-      flex-grow: 0;
-      cursor: default;
-      pointer-events: none;
-    }
-  }
-
-  &__list {
+  &__content {
     display: flex;
     flex-wrap: nowrap;
-    transition: transform .5s cubic-bezier(.75, 0, .25, 1);
-    pointer-events: none;
+    transition: transform 1s cubic-bezier(.75, 0, 0, 1);
+    will-change: transform;
+    cursor: move;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &--isDragging {
+      transition: none;
+    }
   }
 
   &__item {
     flex-shrink: 0;
     width: var(--col-16);
     padding-right: var(--col-1);
+    pointer-events: auto;
 
     @media (--tablet-portrait-up) {
       width: var(--col-6);
     }
 
-    &:last-child {
-      & .button {
-        pointer-events: auto;
-      }
+    & > * {
+      pointer-events: none;
     }
+  }
+
+  & .button--link {
+    pointer-events: auto;
   }
 }

@@ -49,14 +49,14 @@ const ContactController = (() => {
       });
   };
 
-  const construct = () => {
+  const _construct = () => {
     // Add 'check' if form input is valid
     form = document.querySelector('[data-form="contact"]');
     form.addEventListener('submit', _handleSubmit);
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 

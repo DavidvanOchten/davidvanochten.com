@@ -1,81 +1,106 @@
-const Scroller = (() => {
+// const Scroller = (() => {
+//   const SCROLLER = {
+//     ID: null,
+//     TARGET: null,
+//     TRIGGER: null,
+//     DURATION: 1000,
+//     EASING: 'easeInOutCubic',
+//     CB: null
+//   };
 
-  const _checkBody = () => {
-    document.documentElement.scrollTop += 1;
-    const BODY = (document.documentElement.scrollTop !== 0)
-      ? document.documentElement
-      : document.body;
-    document.documentElement.scrollTop -= 1;
-    return BODY;
-  };
+//   const EASINGS = {
+//     linear(t) {
+//       return t;
+//     },
+//     easeInOutCubic(t) {
+//       return t < 0.5
+//         ? 4 * t * t * t
+//         : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+//     }
+//   };
 
-  const _getElmTopPosition = (elm) => {
-    // return elm.getBoundingClientRect().top + body.scrollTop
-    let elmTopPosition = 0;
+//   const _checkBody = () => {
+//     document.documentElement.scrollTop += 1;
+//     const BODY = (document.documentElement.scrollTop !== 0)
+//       ? document.documentElement
+//       : document.body;
+//     document.documentElement.scrollTop -= 1;
+//     return BODY;
+//   };
 
-    while (elm) {
-        elmTopPosition += (elm.offsetTop + elm.clientTop);
-        elm = elm.offsetParent;
-    }
+//   const _getTargetTop = (target) => {
+//     let topPosition = 0;
 
-    return elmTopPosition;
-  };
+//     while (target) {
+//         topPosition += (target.offsetTop + target.clientTop);
+//         target = target.offsetParent;
+//     }
 
-  const _scrollTo = (target, duration = 1000, easing = 'easeInOutCubic', cb) => {
-    
-    const EASINGS = {
-      linear(t) {
-        return t;
-      },
-      easeInOutCubic(t) {
-        return t < 0.5
-          ? 4 * t * t * t
-          : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-        }
-      };
+//     return topPosition;
+//   };
 
-      const START_TIME = window.performance.now
-        ? (performance.now() + performance.timing.navigationStart)
-        : Date.now();
+//   const _scrollTo = () => {
+//     const BODY = _checkBody();
+//     const START_POS = BODY.scrollTop;
+//     const START_TIME = window.performance.now
+//       ? (performance.now() + performance.timing.navigationStart)
+//       : Date.now();
 
-      const BODY = _checkBody();
-      const DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
-      const WINDOW_HEIGHT = window.innerHeight;
+//     const WINDOW_HEIGHT = window.innerHeight;
+//     const DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
 
-      const TARGET_TOP = _getElmTopPosition(target);
-      const DESTINATION = DOCUMENT_HEIGHT - TARGET_TOP < WINDOW_HEIGHT
-        ? DOCUMENT_HEIGHT - WINDOW_HEIGHT
-        : TARGET_TOP;
-      const START_POS = BODY.scrollTop;
+//     let targetTop = null;
 
-      const _scroll = () => {
-        const NOW = window.performance.now
-          ? (performance.now() + performance.timing.navigationStart)
-          : Date.now();
+//     SCROLLER.ID === 'top'
+//       ? targetTop = 0
+//       : targetTop = _getTargetTop(SCROLLER.TARGET);
 
-        const TIME = Math.min(1, ((NOW - START_TIME) / duration));
-        const EASED_TIME = EASINGS[easing](TIME);
-        BODY.scrollTop = (EASED_TIME * (DESTINATION - START_POS)) + START_POS;
+//     const DESTINATION = DOCUMENT_HEIGHT - targetTop < WINDOW_HEIGHT
+//       ? DOCUMENT_HEIGHT - WINDOW_HEIGHT
+//       : targetTop;
 
-        if (BODY.scrollTop === DESTINATION) {
-          if (cb) {
-            cb();
-          }
-          return;
-        }
-        requestAnimationFrame(_scroll);
-      };
-      requestAnimationFrame(_scroll);
-  };
+//     const _scroll = () => {
+//       const NOW = window.performance.now
+//         ? (performance.now() + performance.timing.navigationStart)
+//         : Date.now();
 
-  const _construct = (options) => {
-    const { target, duration, easing, cb } = options;
-    _scrollTo(target, duration, easing, cb);
-  };
+//       const TIME = Math.min(1, ((NOW - START_TIME) / SCROLLER.DURATION));
+//       const EASED_TIME = EASINGS[SCROLLER.EASING](TIME);
+//       BODY.scrollTop = (EASED_TIME * (DESTINATION - START_POS)) + START_POS;
 
-  return {
-    init: _construct
-  };
-})();
+//       if (BODY.scrollTop === DESTINATION) {
+//         if (SCROLLER.CB !== null) {
+//           SCROLLER.CB();
+//         }
+//         return;
+//       }
+//       requestAnimationFrame(_scroll);
+//     };
+//     requestAnimationFrame(_scroll);
+//   };
 
-export default Scroller;
+//   const construct = (obj) => {
+//     if (obj.duration) {
+//       SCROLLER.DURATION = obj.duration;
+//     }
+
+//     if (obj.easing) {
+//       SCROLLER.EASING = obj.easing;
+//     }
+
+//     if (obj.callback) {
+//       SCROLLER.CB = obj.callback;
+//     }
+
+//     SCROLLER.ID = obj.id;
+//     SCROLLER.TARGET = document.querySelector(`[data-scroller-target="${SCROLLER.ID}"]`);
+//     SCROLLER.TRIGGER = document.querySelector(`[data-scroller-trigger="${SCROLLER.ID}"]`);
+//     SCROLLER.TRIGGER.addEventListener('click', _scrollTo);
+//   };
+
+//   return {
+//     init: construct
+//   };
+// })();
+
+// export default Scroller;

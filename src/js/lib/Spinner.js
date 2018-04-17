@@ -1,28 +1,33 @@
-const Spinner = (() => {
-  let spinner = null;
+// const Spinner = (() => {
+//   const SPINNER = {
+//     NODE: null
+//   };
 
-  const _trackSpinner = (e) => {
-    const MOUSE_X = e.clientX;
-    const MOUSE_Y = e.clientY;
+//   const USER = {
+//     MOUSE_X: 0,
+//     MOUSE_Y: 0
+//   }
 
-    spinner.style.top = `${MOUSE_Y - 6}px`;
-    spinner.style.left = `${MOUSE_X + 10}px`;
-  };
+//   const _trackSpinner = (e) => {
+//     USER.MOUSE_X = e.clientX;
+//     USER.MOUSE_Y = e.clientY;
 
-  const _construct = (status) => {
-    spinner = document.querySelector('[data-spinner]');
+//     SPINNER.NODE.style.top = `${USER.MOUSE_Y - 6}px`;
+//     SPINNER.NODE.style.left = `${USER.MOUSE_X + 10}px`;
+//   };
 
-    // Check if the current device is not a touch device
-    if ('ontouchstart' in window || navigator.maxTouchPoints) {
-      return;
-    }
+//   const construct = (status) => {
+//     if ('ontouchstart' in window || navigator.maxTouchPoints) {
+//       return;
+//     }
 
-    window.addEventListener('mousemove', _trackSpinner);
-  };
+//     SPINNER.NODE = document.querySelector('[data-spinner]');
+//     window.addEventListener('mousemove', _trackSpinner);
+//   };
 
-  return {
-    init: _construct
-  };
-})();
+//   return {
+//     init: construct
+//   };
+// })();
 
-export default Spinner;
+// export default Spinner;

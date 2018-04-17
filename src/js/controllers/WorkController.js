@@ -4,7 +4,7 @@
 // import LazyLoader from '../lib/LazyLoader.js';
 
 const WorkController = (() => {
-  const construct = () => {
+  const _construct = () => {
     // LazyLoader.init();
     // console.log('[Work Controller] Cases fetched via Node.js');
     // const createArrayFromObject = (data) => {
@@ -76,7 +76,7 @@ const WorkController = (() => {
   };
 
   return {
-    init: construct
+    init: _construct
   };
 })();
 
