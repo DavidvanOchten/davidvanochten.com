@@ -2,6 +2,21 @@
 
   &__container {
     overflow: hidden;
+
+   /* test */
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      background: red;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      width: 1px;
+      pointer-events: none;
+    }
+     /* test */
   }
 
   &__content {
@@ -25,7 +40,7 @@
   &__item {
     flex-shrink: 0;
     width: var(--col-16);
-    padding-right: var(--col-1);
+    padding-left: var(--col-1);
     pointer-events: auto;
 
     @media (--tablet-portrait-up) {

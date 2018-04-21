@@ -9,7 +9,7 @@ const IntersectionTracker = (obj) => {
 
   const BROWSER = {
     ticking: false
-  }
+  };
 
   const _intersectionObserverCB = (entries) => {
     entries.map(entry => {
@@ -35,9 +35,9 @@ const IntersectionTracker = (obj) => {
 
       const ITEM_TOP = item.getBoundingClientRect().top;
       const ITEM_BOTTOM = item.getBoundingClientRect().bottom;
-      const TOP_IN_VIEW = ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight;
-      const BOTTOM_IN_VIEW = ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight;
-      const IN_FULL_VIEW = ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight;
+      const TOP_IN_VIEW = (ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight);
+      const BOTTOM_IN_VIEW = (ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight);
+      const IN_FULL_VIEW = (ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight);
 
       if (TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW) {
         item.dataset.intersected = 'true';

@@ -1,5 +1,6 @@
 import Scroller from '../lib/Scroller.js';
 import Slider from '../lib/Slider.js';
+import Tracker from '../lib/Tracker.js';
 import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IndexController = (() => {
@@ -51,9 +52,39 @@ const IndexController = (() => {
 
   const _remove = () => {
     window.removeEventListener('resize', _constructForMinSize);
+
+    // Remove hidden class on page change
+    if (document.querySelector('[data-toggle="site-header"]').classList.contains('siteHeader--isHidden')) {
+      // INDEX.SITE_HEADER_TOGGLE.toggle();
+      siteHeader.classList.toggle('siteHeader--isHidden');
+    }
+  };
+
+  const _toggleSiteHeader = (beforeThreshold) => {
+    let siteHeader = document.querySelector('[data-toggle="site-header"]');
+
+    if ((beforeThreshold && !siteHeader.classList.contains('siteHeader--isHidden')) || 
+        (!beforeThreshold && siteHeader.classList.contains('siteHeader--isHidden'))) {
+      siteHeader.classList.toggle('siteHeader--isHidden');
+    }
   };
 
   const construct = () => {
+
+    let siteHeaderTrigger = document.querySelector('[data-toggle-trigger="site-header"]');
+    let siteHeader = document.querySelector('[data-toggle="site-header"]');
+
+    const test = Tracker({
+      end: _getBottomPosition(siteHeaderTrigger),
+      callback: _toggleSiteHeader
+    });
+
+    test.init();
+
+    // make sure to check data-toggle and data-toggle-trigger if not using them.
+    // See index.hbs and header.hbs
+
+
     INDEX.COL_1 = document.querySelector('[data-index-column="1"]');
     INDEX.COL_2 = document.querySelector('[data-index-column="2"]');
 

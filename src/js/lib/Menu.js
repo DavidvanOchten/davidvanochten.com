@@ -1,6 +1,3 @@
-
-// Add Scroll Motion here? If index page, do stuff. Else remove.
-// Maybe cleaner than inside IndexController
 const Menu = () => {
 
   const MENU = {

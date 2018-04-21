@@ -1,3 +1,7 @@
+/* Create a cooler spinner 
+  e.g. like https://riviera1920.com/en/
+*/
+
 .spinner {
   position: fixed;
   top: calc(var(--bsl) * 1.5);
@@ -8,7 +12,8 @@
   height: calc(var(--bsl) * 1);
   width: calc(var(--bsl) * 1);
   border-radius: 50%;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
+  background-color: red;
   opacity: 0;
   transition: opacity .25s linear;
   transform: translate3d(-50%, -50%, 0);

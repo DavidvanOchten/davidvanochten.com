@@ -16,6 +16,7 @@ const Slider = (id) => {
 
   const _moveSlider = () => {
     if (!USER.isDragging) {
+      console.log(SLIDER.activeIndex);
       SLIDER.position = parseInt(SLIDER.CONTENT.querySelector(`[data-index="${SLIDER.activeIndex}"]`).dataset.offset);
 
       SLIDER.CONTENT.style.webkitTransform = `translate3d(-${SLIDER.position}px, 0, 0)`;
@@ -138,7 +139,8 @@ const Slider = (id) => {
   const _setUpSliderItems = () => {
     const FIRST_ITEM_WIDTH = SLIDER.ITEMS[0].offsetWidth;
     // Tweak threshold in obj?
-    const FIRST_ITEM_THRESHOLD = FIRST_ITEM_WIDTH - (SLIDER.ROOT.offsetWidth / 2);
+    const FIRST_ITEM_THRESHOLD = (FIRST_ITEM_WIDTH - (SLIDER.ROOT.offsetWidth / 2)) * 2;
+
     let offset = 0;
     let previousThreshold = 0;
     let currentThreshold = 0;
@@ -154,10 +156,12 @@ const Slider = (id) => {
 
       previousThreshold = currentThreshold;
       
-      item.addEventListener('click', e => {
-        SLIDER.activeIndex = parseInt(e.currentTarget.dataset.index);
-        _moveSlider();
-      });
+      // Change to two invisible buttons on top
+
+      // item.addEventListener('click', e => {
+      //   SLIDER.activeIndex = parseInt(e.currentTarget.dataset.index);
+      //   _moveSlider();
+      // });
     });
   };
 

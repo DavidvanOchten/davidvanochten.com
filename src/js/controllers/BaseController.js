@@ -1,5 +1,4 @@
 import IntersectionTracker from '../lib/IntersectionTracker.js';
-import Toggler from '../lib/Toggler.js';
 import { lazyLoad } from '../utils/lazyLoad.js';
 
 const BaseController = (() => {

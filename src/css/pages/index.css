@@ -1,6 +1,7 @@
 .index {
 
   @media (--tablet-portrait-up) {
+    display: flex;
     margin-top: calc(var(--bsl) * -3);
   }
 
