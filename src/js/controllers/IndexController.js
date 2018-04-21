@@ -56,6 +56,7 @@ const IndexController = (() => {
     // Remove hidden class on page change
     if (document.querySelector('[data-toggle="site-header"]').classList.contains('siteHeader--isHidden')) {
       // INDEX.SITE_HEADER_TOGGLE.toggle();
+      let siteHeader = document.querySelector('[data-toggle="site-header"]');
       siteHeader.classList.toggle('siteHeader--isHidden');
     }
   };

@@ -16,7 +16,6 @@ const Slider = (id) => {
 
   const _moveSlider = () => {
     if (!USER.isDragging) {
-      console.log(SLIDER.activeIndex);
       SLIDER.position = parseInt(SLIDER.CONTENT.querySelector(`[data-index="${SLIDER.activeIndex}"]`).dataset.offset);
 
       SLIDER.CONTENT.style.webkitTransform = `translate3d(-${SLIDER.position}px, 0, 0)`;
@@ -41,7 +40,7 @@ const Slider = (id) => {
         let activeAreaStart = parseInt(item.dataset.activeArea.split('|')[0]);
         let activeAreaEnd = parseInt(item.dataset.activeArea.split('|')[1]);
   
-        if (draggedX > activeAreaStart && draggedX < activeAreaEnd) {
+        if (draggedX >= activeAreaStart && draggedX < activeAreaEnd) {
           return item;
         }
       });
@@ -52,32 +51,16 @@ const Slider = (id) => {
     _moveSlider();
   };
 
-  const _onArrowClick = (direction) => {
-    if (direction === 'prev' && SLIDER.activeIndex > 0) {
-      SLIDER.activeIndex = SLIDER.activeIndex - 1;
-    } else if (direction === 'next' && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
-      SLIDER.activeIndex = SLIDER.activeIndex + 1;
-    }
-
-    _moveSlider();
-  };
-
-  const _onKeyUp = (e) => {
-    if (e.keyCode === 37 && SLIDER.activeIndex > 0) {
-      SLIDER.activeIndex = SLIDER.activeIndex - 1;
-    } else if (e.keyCode === 39 && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
-      SLIDER.activeIndex = SLIDER.activeIndex + 1;
-    }
-
-    _moveSlider();
-  };
-
-  const _onMouseUp = () => {
+  const _onMouseUp = (e) => {
     USER.hasMouseDown = false;
 
     if (USER.isDragging) {
       USER.isDragging = false;
       _setSlider();
+    } else if (e.target.dataset.index !== undefined) {
+      // Checks if the clicked element is a slider item (with an index)
+      SLIDER.activeIndex = parseInt(e.target.dataset.index);
+      _moveSlider();
     }
   };
 
@@ -136,10 +119,20 @@ const Slider = (id) => {
     SLIDER.adjustedStartX = e.touches[0].clientX + SLIDER.position;
   };
 
+  const _onKeyUp = (e) => {
+    if (e.keyCode === 37 && SLIDER.activeIndex > 0) {
+      SLIDER.activeIndex = SLIDER.activeIndex - 1;
+    } else if (e.keyCode === 39 && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
+      SLIDER.activeIndex = SLIDER.activeIndex + 1;
+    }
+
+    _moveSlider();
+  };
+
   const _setUpSliderItems = () => {
     const FIRST_ITEM_WIDTH = SLIDER.ITEMS[0].offsetWidth;
-    // Tweak threshold in obj?
-    const FIRST_ITEM_THRESHOLD = (FIRST_ITEM_WIDTH - (SLIDER.ROOT.offsetWidth / 2)) * 2;
+    const SLIDER_OFFSET = parseInt(window.getComputedStyle(SLIDER.CONTENT).marginLeft);
+    const FIRST_ITEM_THRESHOLD = FIRST_ITEM_WIDTH + SLIDER_OFFSET - (SLIDER.ROOT.offsetWidth / 2);
 
     let offset = 0;
     let previousThreshold = 0;
@@ -150,18 +143,12 @@ const Slider = (id) => {
       item.dataset.offset = offset;
 
       offset = item.offsetWidth + offset;
-
+      // Make dynamic for variable widths?
+      // Don't use first item here anymore?
       currentThreshold = FIRST_ITEM_THRESHOLD + offset - FIRST_ITEM_WIDTH;
       item.dataset.activeArea = `${previousThreshold}|${currentThreshold}`;
 
       previousThreshold = currentThreshold;
-      
-      // Change to two invisible buttons on top
-
-      // item.addEventListener('click', e => {
-      //   SLIDER.activeIndex = parseInt(e.currentTarget.dataset.index);
-      //   _moveSlider();
-      // });
     });
   };
 
