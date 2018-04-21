@@ -2,16 +2,16 @@ import axios from 'axios';
 import Controllers from '../controllers/Controllers.js';
 import Scroller from '../lib/Scroller.js';
 
-import { setSpinner } from '../utils/setSpinner.js';
+import { showSpinner } from '../utils/showSpinner.js';
 import { showNotification } from '../utils/showNotification.js';
 
 const Router = () => {
 
-  // Update this stuff
+  // Update this stuff!
   const ROUTER = {
     LINKS: [],
   };
-
+  // Update this stuff!
   const LINK_ACTIVE_CLASS = 'menu__link--isActive';
   const VIEW_ACTIVE_CLASS = 'page--isVisible';
   const VIEW_SELECTOR = '[data-view]';
@@ -72,11 +72,12 @@ const Router = () => {
     const URL = LINK.href;
 
     if (URL === window.location.href) {
-      Scroller.init({ target: document.body });
+      // Create Scroller button for LINK
+      // Scroller({ id: 'top' }).init();
       return;
     } // "Scroll to top" functionality kicks in if the user is already on the requested page
 
-    setSpinner(true); // Import
+    showSpinner(true); // Import
     _disableRouterLinks(true); // 6
 
     let newView = null;
@@ -86,24 +87,24 @@ const Router = () => {
       .then(() => {
         return axios.get(URL);
       })
-      .then((resp) => {
+      .then(resp => {
         newView = resp.data;
         return _appendView(newView); // 8
       })
-      .then((view) => {
+      .then(view => {
         const VIEW_NAME = view.dataset.view;
 
         document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
         document.documentElement.scrollTop = 0; // Desktop
         document.body.scrollTop = 0; // Safari mobile
 
-        setSpinner(false);
+        showSpinner(false);
         _setUpView(view);
         _disableRouterLinks(false);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
-        setSpinner(false);
+        showSpinner(false);
         _disableRouterLinks(false);
         showNotification('error'); // Import
       });

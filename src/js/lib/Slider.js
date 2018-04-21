@@ -1,3 +1,5 @@
+import { beforeViewChange } from '../utils/beforeViewChange.js';
+
 const Slider = (id) => {
 
   const SLIDER = {
@@ -118,7 +120,7 @@ const Slider = (id) => {
     const OFFSET_X = e.touches[0].clientX - SLIDER.startX;
     const OFFSET_Y = e.touches[0].clientY - SLIDER.startY;
 
-    // Prevent vertical scroll if the user is swiping left or right
+    // Prevents vertical scroll if the user is swiping left/right
     if (Math.abs(OFFSET_X) > Math.abs(OFFSET_Y) && e.cancelable) {
       e.preventDefault();
     }
@@ -135,6 +137,7 @@ const Slider = (id) => {
 
   const _setUpSliderItems = () => {
     const FIRST_ITEM_WIDTH = SLIDER.ITEMS[0].offsetWidth;
+    // Tweak threshold in obj?
     const FIRST_ITEM_THRESHOLD = FIRST_ITEM_WIDTH - (SLIDER.ROOT.offsetWidth / 2);
     let offset = 0;
     let previousThreshold = 0;
@@ -152,17 +155,23 @@ const Slider = (id) => {
       previousThreshold = currentThreshold;
       
       item.addEventListener('click', e => {
-        SLIDER.activeIndex = parseInt(e.target.dataset.index);
+        SLIDER.activeIndex = parseInt(e.currentTarget.dataset.index);
         _moveSlider();
       });
     });
   };
 
+  const _remove = () => {
+    window.removeEventListener('mousemove', _onMouseMove);
+    window.removeEventListener('resize', _setUpSliderItems);
+    window.removeEventListener('resize', _moveSlider);
+    window.removeEventListener('keyup', _onKeyUp);
+  }
+
   const construct = () => {
-    // SLIDER.ROOT = document.querySelector(`[data-slider="${id}"]`);
     SLIDER.CONTENT = SLIDER.ROOT.querySelector('[data-slider="content"]');
     SLIDER.ITEMS = [].slice.call(SLIDER.ROOT.querySelectorAll('[data-slider="item"]'));
-    
+
     _setUpSliderItems();
 
     SLIDER.CONTENT.addEventListener('touchstart', _onTouchStart);
@@ -175,10 +184,10 @@ const Slider = (id) => {
 
     window.addEventListener('keyup', _onKeyUp);
 
-    window.addEventListener('resize', e => {
-      _setUpSliderItems();
-      _moveSlider();
-    });
+    window.addEventListener('resize', _setUpSliderItems);
+    window.addEventListener('resize', _moveSlider);
+
+    beforeViewChange(_remove);
   };
 
   return {

@@ -1,9 +1,10 @@
+import { beforeViewChange } from '../utils/beforeViewChange.js';
+
 const IntersectionTracker = (obj) => {
 
   const INTERSECTION_TRACKER = {
-    TARGETS: obj.targets,
+    CONTENT: obj.content,
     CB: obj.callback
-    // CANCEL_FLAG (for Events CB)
   };
 
   const BROWSER = {
@@ -11,8 +12,6 @@ const IntersectionTracker = (obj) => {
   }
 
   const _intersectionObserverCB = (entries) => {
-    console.log('From IO CB');
-
     entries.map(entry => {
       if (entry.isIntersecting) {
         INTERSECTION_TRACKER.CB(entry.target);
@@ -23,19 +22,17 @@ const IntersectionTracker = (obj) => {
 
   const _useIntersectionObserver = () => {
     INTERSECTION_TRACKER.IO = new IntersectionObserver(_intersectionObserverCB, { threshold: 0 });
-    INTERSECTION_TRACKER.TARGETS.map(content => INTERSECTION_TRACKER.IO.observe(content));
+    INTERSECTION_TRACKER.CONTENT.map(item => INTERSECTION_TRACKER.IO.observe(item));
   };
 
   const _eventsCB = () => {
     BROWSER.ticking = false;
 
-    console.log('From Events CB');
-    // Pass in the cancel condition
-    // if () {
+    INTERSECTION_TRACKER.CONTENT.map(item => {
+      if (item.dataset.intersected === 'true') {
+        return;
+      }
 
-    // }
-
-    INTERSECTION_TRACKER.TARGETS.map(item => {
       const ITEM_TOP = item.getBoundingClientRect().top;
       const ITEM_BOTTOM = item.getBoundingClientRect().bottom;
       const TOP_IN_VIEW = ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight;
@@ -43,6 +40,7 @@ const IntersectionTracker = (obj) => {
       const IN_FULL_VIEW = ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight;
 
       if (TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW) {
+        item.dataset.intersected = 'true';
         INTERSECTION_TRACKER.CB(item);
       }
     });
@@ -61,13 +59,13 @@ const IntersectionTracker = (obj) => {
     _requestTick();
   };
 
-  const _selectScrollingTechnique = () => {
+  const _selectIntersectionTechnique = () => {
     'IntersectionObserver' in window
       ? _useIntersectionObserver()
       : _useEvents();
   };
 
-  const remove = () => {
+  const _remove = () => {
     window.removeEventListener('scroll', _requestTick);
     window.removeEventListener('resize', _requestTick);
 
@@ -77,12 +75,12 @@ const IntersectionTracker = (obj) => {
   };
 
   const construct = () => {
-    _selectScrollingTechnique();
+    _selectIntersectionTechnique();
+    beforeViewChange(_remove);
   };
 
   return {
-    init: construct,
-    terminate: remove
+    init: construct
   };
 
 };

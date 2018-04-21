@@ -14,11 +14,6 @@
     height: calc(var(--bsl) / 2);
     width: var(--bsl);
     overflow: hidden;
-    transition: opacity .25s linear;
-
-    &--isInvisible {
-      opacity: 0.05;
-    }
   }
 
   &__burgerLine {
@@ -53,38 +48,38 @@
     opacity: 0;
     transition: opacity .25s linear;
 
-    &:nth-child(1) {
-      & .menu__link {
-        transition-delay: .2s;
-      }
-    }
-
-    &:nth-child(2) {
-      & .menu__link {
-        transition-delay: .3s;
-      }
-    }
-
-    &:nth-child(3) {
-      & .menu__link {
-        transition-delay: .4s;
-      }
-    }
-
-    &:nth-child(4) {
-      & .menu__link {
-        transition-delay: .5s;
-      }
-    }
-
-    &:nth-child(5) {
-      & .menu__link {
-        transition-delay: .6s;
-      }
-    }
-
     &--isVisible {
       opacity: 1;
+
+      &:nth-child(1) {
+        & .menu__link {
+          transition-delay: .2s;
+        }
+      }
+
+      &:nth-child(2) {
+        & .menu__link {
+          transition-delay: .3s;
+        }
+      }
+
+      &:nth-child(3) {
+        & .menu__link {
+          transition-delay: .4s;
+        }
+      }
+
+      &:nth-child(4) {
+        & .menu__link {
+          transition-delay: .5s;
+        }
+      }
+
+      &:nth-child(5) {
+        & .menu__link {
+          transition-delay: .6s;
+        }
+      }
     }
   }
 
@@ -124,9 +119,9 @@
     transition: transform .25s cubic-bezier(.75, 0, .25, 1);
     pointer-events: none;
 
-    &--isActive {
+    &--isVisible {
       overflow: auto;
-      transform: translate3d(0, 0, 0);
+      transform: none;
       transition: transform .5s cubic-bezier(.75, 0, .25, 1);
       pointer-events: auto;
     }
@@ -145,7 +140,8 @@
     cursor: pointer;
     outline: none;
 
-    &:hover {
+    &:hover,
+    &:focus {
       & .menu__burgerLine {
         transform: translate3d(200%, 0, 0);
       }

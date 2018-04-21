@@ -1,33 +1,33 @@
-// const Spinner = (() => {
-//   const SPINNER = {
-//     NODE: null
-//   };
+const Spinner = () => {
 
-//   const USER = {
-//     MOUSE_X: 0,
-//     MOUSE_Y: 0
-//   }
+  const SPINNER = document.querySelector('[data-spinner]');
 
-//   const _trackSpinner = (e) => {
-//     USER.MOUSE_X = e.clientX;
-//     USER.MOUSE_Y = e.clientY;
+  const USER = {
+    MOUSE_X: 0,
+    MOUSE_Y: 0
+  }
 
-//     SPINNER.NODE.style.top = `${USER.MOUSE_Y - 6}px`;
-//     SPINNER.NODE.style.left = `${USER.MOUSE_X + 10}px`;
-//   };
+  const _trackSpinner = (e) => {
+    USER.MOUSE_X = e.clientX;
+    USER.MOUSE_Y = e.clientY;
 
-//   const construct = (status) => {
-//     if ('ontouchstart' in window || navigator.maxTouchPoints) {
-//       return;
-//     }
+    // SPINNER.style.top = `${USER.MOUSE_Y - 6}px`;
+    // SPINNER.style.left = `${USER.MOUSE_X + 10}px`;
+    SPINNER.style.top = `${USER.MOUSE_Y}px`;
+    SPINNER.style.left = `${USER.MOUSE_X}px`;
+  };
 
-//     SPINNER.NODE = document.querySelector('[data-spinner]');
-//     window.addEventListener('mousemove', _trackSpinner);
-//   };
+  const construct = () => {
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      return;
+    }
 
-//   return {
-//     init: construct
-//   };
-// })();
+    window.addEventListener('mousemove', _trackSpinner);
+  };
 
-// export default Spinner;
+  return {
+    init: construct
+  };
+};
+
+export default Spinner;

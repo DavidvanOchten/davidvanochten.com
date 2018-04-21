@@ -1,3 +1,6 @@
+// Toggle.js with callback. See Pepto project.
+
+
 // const Accordion = (() => {
 //   const ACTIVE_ITEM_CLASS = 'accordion__item--isActive';
 //   const VISIBLE_CONTENT_CLASS = 'accordion__content--isVisible';
@@ -18,7 +21,7 @@
 //           TITLE.classList.add(ACTIVE_TITLE_CLASS);
 //           item.setAttribute('aria-expanded', true);
 //         } else {
-//           CONTAINER.style.height = 0;
+//           CONTAINER.removeAttribute('style');
 //           CONTENT.classList.remove(VISIBLE_CONTENT_CLASS);
 //           TITLE.classList.remove(ACTIVE_TITLE_CLASS);
 //           item.setAttribute('aria-expanded', false);

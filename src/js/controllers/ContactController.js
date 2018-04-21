@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setSpinner } from '../utils/setSpinner.js';
+import { showSpinner } from '../utils/showSpinner.js';
 
 const ContactController = (() => {
   let form = null;
@@ -24,7 +24,7 @@ const ContactController = (() => {
     const SUBMIT_BTN = e.target.querySelector('[data-form-input="submit"]');
 
     SUBMIT_BTN.classList.add('form__submit--isProcessing');
-    setSpinner(true);
+    showSpinner(true);
 
     axios.post('/contact', {
       name: NAME_VAL,
@@ -32,7 +32,7 @@ const ContactController = (() => {
       message: MESSAGE_VAL
     })
       .then((resp) => {
-        setSpinner(false);
+        showSpinner(false);
 
         form.classList.add('form--isHidden');
         // transition delay to show button animation?
@@ -43,7 +43,7 @@ const ContactController = (() => {
         _showStatus(resp);
       })
       .catch((err) => {
-        setSpinner(false);
+        showSpinner(false);
         SUBMIT_BTN.classList.remove('form__submit--isProcessing');
         _showStatus(err);
       });

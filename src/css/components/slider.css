@@ -11,6 +11,7 @@
     will-change: transform;
     cursor: move;
     cursor: grab;
+    user-select: none;
 
     &:active {
       cursor: grabbing;

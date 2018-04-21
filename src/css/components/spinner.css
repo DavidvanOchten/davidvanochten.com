@@ -3,8 +3,10 @@
   top: calc(var(--bsl) * 1.5);
   right: var(--col-2);
   z-index: 25;
-  height: calc(var(--bsl) / 2);
-  width: calc(var(--bsl) / 2);
+  /* height: calc(var(--bsl) / 2);
+  width: calc(var(--bsl) / 2); */
+  height: calc(var(--bsl) * 1);
+  width: calc(var(--bsl) * 1);
   border-radius: 50%;
   background-color: var(--primary-color);
   opacity: 0;

@@ -6,18 +6,10 @@
   width: var(--col-24);
   transition: transform .25s cubic-bezier(.75, 0, .25, 1);
 
-  &--isActive {
-    & .siteHeader__background {
-      opacity: .25;
-      cursor: pointer;
-      pointer-events: auto;
-    }
-  }
-
   &--isInvisible {
     transform: translate3d(0, -100%, 0);
     
-    & .siteHeader__logoType {
+    & .siteHeader__logotype {
       opacity: 0;
     }
 
@@ -37,6 +29,12 @@
     opacity: 0;
     transition: opacity .25s linear;
     pointer-events: none;
+
+    &--isActive {
+      opacity: .25;
+      cursor: pointer;
+      pointer-events: auto;
+    }
   }
 
   &__logo {
@@ -62,7 +60,7 @@
     }
   }
 
-  &__logoType {
+  &__logotype {
     font-family: var(--secondary-font);
     transition: opacity .25s linear .25s;
 

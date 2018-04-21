@@ -1,4 +1,4 @@
-export const setSpinner = (state) => {
+export const showSpinner = (state) => {
   const SPINNER = document.querySelector('[data-spinner]');
 
   state === true

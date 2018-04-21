@@ -1,106 +1,111 @@
-// const Scroller = (() => {
-//   const SCROLLER = {
-//     ID: null,
-//     TARGET: null,
-//     TRIGGER: null,
-//     DURATION: 1000,
-//     EASING: 'easeInOutCubic',
-//     CB: null
-//   };
+import { beforeViewChange } from '../utils/beforeViewChange.js';
 
-//   const EASINGS = {
-//     linear(t) {
-//       return t;
-//     },
-//     easeInOutCubic(t) {
-//       return t < 0.5
-//         ? 4 * t * t * t
-//         : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-//     }
-//   };
+const Scroller = (obj) => {
 
-//   const _checkBody = () => {
-//     document.documentElement.scrollTop += 1;
-//     const BODY = (document.documentElement.scrollTop !== 0)
-//       ? document.documentElement
-//       : document.body;
-//     document.documentElement.scrollTop -= 1;
-//     return BODY;
-//   };
+  const SCROLLER = {
+    TARGET: document.querySelector(`[data-scroller-target="${obj.id}"]`),
+    TRIGGER: document.querySelector(`[data-scroller-trigger="${obj.id}"]`),
+    DURATION: obj.duration || 1000,
+    EASING: obj.easing || 'easeInOutCubic',
+    OFFSET: obj.offset || 0,
+    CB: obj.callback
+  };
 
-//   const _getTargetTop = (target) => {
-//     let topPosition = 0;
+  const BROWSER = {
+    WINDOW_HEIGHT: window.innerHeight,
+    DOCUMENT_HEIGHT: Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
+  };
 
-//     while (target) {
-//         topPosition += (target.offsetTop + target.clientTop);
-//         target = target.offsetParent;
-//     }
+  const EASINGS = {
+    linear(t) {
+      return t;
+    },
+    easeInOutCubic(t) {
+      return t < 0.5
+        ? 4 * t * t * t
+        : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    }
+  };
 
-//     return topPosition;
-//   };
+  const _checkBody = () => {
+    document.documentElement.scrollTop += 1;
+    const BODY = (document.documentElement.scrollTop !== 0)
+      ? document.documentElement
+      : document.body;
+    document.documentElement.scrollTop -= 1;
+    return BODY;
+  };
 
-//   const _scrollTo = () => {
-//     const BODY = _checkBody();
-//     const START_POS = BODY.scrollTop;
-//     const START_TIME = window.performance.now
-//       ? (performance.now() + performance.timing.navigationStart)
-//       : Date.now();
+  const _getTargetTop = () => {
+    if (obj.id === 'top') {
+      return 0;
+    }
 
-//     const WINDOW_HEIGHT = window.innerHeight;
-//     const DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    let target = SCROLLER.TARGET;
+    let topPosition = 0;
 
-//     let targetTop = null;
+    while (target) {
+        topPosition += (target.offsetTop + target.clientTop);
+        target = target.offsetParent;
+    }
 
-//     SCROLLER.ID === 'top'
-//       ? targetTop = 0
-//       : targetTop = _getTargetTop(SCROLLER.TARGET);
+    return topPosition;
+  };
 
-//     const DESTINATION = DOCUMENT_HEIGHT - targetTop < WINDOW_HEIGHT
-//       ? DOCUMENT_HEIGHT - WINDOW_HEIGHT
-//       : targetTop;
+  const _scrollTo = (e) => {
+    const START_TIME = window.performance.now
+      ? (performance.now() + performance.timing.navigationStart)
+      : Date.now();
 
-//     const _scroll = () => {
-//       const NOW = window.performance.now
-//         ? (performance.now() + performance.timing.navigationStart)
-//         : Date.now();
+    const START_POS = BROWSER.BODY.scrollTop;
+    const DESTINATION = BROWSER.DOCUMENT_HEIGHT - SCROLLER.TARGET_TOP < BROWSER.WINDOW_HEIGHT
+      ? BROWSER.DOCUMENT_HEIGHT - BROWSER.WINDOW_HEIGHT
+      : Math.abs(SCROLLER.TARGET_TOP - SCROLLER.OFFSET);
 
-//       const TIME = Math.min(1, ((NOW - START_TIME) / SCROLLER.DURATION));
-//       const EASED_TIME = EASINGS[SCROLLER.EASING](TIME);
-//       BODY.scrollTop = (EASED_TIME * (DESTINATION - START_POS)) + START_POS;
+    const _scroll = () => {
+      const NOW = window.performance.now
+        ? (performance.now() + performance.timing.navigationStart)
+        : Date.now();
 
-//       if (BODY.scrollTop === DESTINATION) {
-//         if (SCROLLER.CB !== null) {
-//           SCROLLER.CB();
-//         }
-//         return;
-//       }
-//       requestAnimationFrame(_scroll);
-//     };
-//     requestAnimationFrame(_scroll);
-//   };
+      const TIME = Math.min(1, ((NOW - START_TIME) / SCROLLER.DURATION));
+      const EASED_TIME = EASINGS[SCROLLER.EASING](TIME);
+      BROWSER.BODY.scrollTop = (EASED_TIME * (DESTINATION - START_POS)) + START_POS;
 
-//   const construct = (obj) => {
-//     if (obj.duration) {
-//       SCROLLER.DURATION = obj.duration;
-//     }
+      if (BROWSER.BODY.scrollTop === DESTINATION) {
+        if (SCROLLER.CB) {
+          SCROLLER.CB();
+        }
+        return;
+      }
+      requestAnimationFrame(_scroll);
+    };
+    requestAnimationFrame(_scroll);
+  };
 
-//     if (obj.easing) {
-//       SCROLLER.EASING = obj.easing;
-//     }
+  const _resetScroller = () => {
+    BROWSER.WINDOW_HEIGHT = window.innerHeight;
+    BROWSER.DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
 
-//     if (obj.callback) {
-//       SCROLLER.CB = obj.callback;
-//     }
+    SCROLLER.TARGET_TOP = _getTargetTop();
+  }
 
-//     SCROLLER.ID = obj.id;
-//     SCROLLER.TARGET = document.querySelector(`[data-scroller-target="${SCROLLER.ID}"]`);
-//     SCROLLER.TRIGGER = document.querySelector(`[data-scroller-trigger="${SCROLLER.ID}"]`);
-//     SCROLLER.TRIGGER.addEventListener('click', _scrollTo);
-//   };
+  const _remove = () => {
+    window.removeEventListener('resize', _resetScroller);
+  };
 
-//   return {
-//     init: construct
-//   };
-// })();
+  const construct = () => {
+    BROWSER.BODY = _checkBody();
+    SCROLLER.TARGET_TOP = _getTargetTop();
+    SCROLLER.TRIGGER.addEventListener('click', _scrollTo);
 
-// export default Scroller;
+    window.addEventListener('resize', _resetScroller);
+
+    beforeViewChange(_remove);
+  };
+
+  return {
+    init: construct
+  };
+};
+
+export default Scroller;
