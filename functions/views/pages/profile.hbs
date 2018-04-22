@@ -1,46 +1,32 @@
-<article class="profile grid">
-  <header class="profile__header grid__cell grid__cell--borderBottom u-isShowOff u-isShowOff--skew" data-show-off="skew">
+<article class="profile">
+  <header class="profile__header" data-reveal="skew">
     {{!-- {{{headline}}} --}}
-    <h1 class="profile__title grid__heading grid__heading--l">I’m a Dutch digital designer and developer, currently based in Australia.</h1>
-    <p class="profile__intro grid__heading grid__heading--l">Looking for new opportunities while sorting out my rubbish surfing technique. Got a project in mind? Let’s make things happen.</p>
+    <h1 class="headline headline--inline"><strong>I’m a Dutch digital designer and developer, currently based in Australia.</strong></h1>
+    <p class="headline headline--inline">Looking for new opportunities while sorting out my rubbish surfing technique. Got a project in mind? Let’s make things happen.</p>
   </header>
-  <div class="grid">
-    <div class="grid__cell grid__cell--12">
-      <p class="u-isShowOff u-isShowOff--slide" data-show-off="slide">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te. Ei clita tempor nam, ceteros fierent eleifend te has. Saperet definitiones no pri at melius appareat eos. Et commune insolens nam. Ad ius ferri aliquam docendi. Omnium patrioque iracundia ex sea, facer ponderum ut eum, in sit illud menandri maiestatis. His an melius meliore noluisse. Diam perfecto inimicus at eos. Ea per omnes euismod liberavisse.</p>
+
+  <div class="u-flex">
+    <div class="profile__summary">
+      <p data-reveal="slide">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te. Ei clita tempor nam, ceteros fierent eleifend te has. Saperet definitiones no pri at melius appareat eos. Et commune insolens nam. Ad ius ferri aliquam docendi. Omnium patrioque iracundia ex sea, facer ponderum ut eum, in sit illud menandri maiestatis. His an melius meliore noluisse. Diam perfecto inimicus at eos. Ea per omnes euismod liberavisse.</p>
       <a class="button button--link" href="/work">
         <span class="button__text">Show work</span>
       </a>
-      {{!-- {{{aboutSummary}}} --}}
+      {{!-- {{{profileSummary}}} --}}
     </div>
-    <section class="grid__cell grid__cell--12 grid__cell--borderLeft">
-      <h1 class="profile__subtitle u-isShowOff u-isShowOff--skew" data-show-off="skew">Services</h1>
+    <section class="profile__services">
+      <h1 class="profile__subheading subheading" data-reveal="skew">Services</h1>
       <ul class="accordion">
         {{!-- For each skill --}}
-        <li class="accordion__item u-isShowOff u-isShowOff--slide" data-show-off="slide" aria-expanded="false" role="button" data-accordion="toggle" >
+        <li class="accordion__item" aria-expanded="false" role="button" data-reveal="slide" data-toggle="services">
           <h2 class="accordion__title" data-accordion="title">Front-end development</h2>
           <div class="accordion__container" data-accordion="container">
             <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design. Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te.</p>
           </div>
         </li>
-        <li class="accordion__item u-isShowOff u-isShowOff--slide" data-show-off="slide" aria-expanded="false" role="button" data-accordion="toggle">
-          <h2 class="accordion__title" data-accordion="title">Web design</h2>
-          <div class="accordion__container" data-accordion="container">
-            <p class="accordion__content" data-accordion="content">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea.</p>
-          </div>
-        </li>
-        <li class="accordion__item u-isShowOff u-isShowOff--slide" data-show-off="slide" aria-expanded="false" role="button" data-accordion="toggle">
-          <h2 class="accordion__title" data-accordion="title">Web design</h2>
-          <div class="accordion__container" data-accordion="container">
-            <p class="accordion__content" data-accordion="content">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea.</p>
-          </div>
-        </li>
-        <li class="accordion__item u-isShowOff u-isShowOff--slide" data-show-off="slide" aria-expanded="false" role="button" data-accordion="toggle">
-          <h2 class="accordion__title" data-accordion="title">Web design</h2>
-          <div class="accordion__container" data-accordion="container">
-            <p class="accordion__content" data-accordion="content">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea.</p>
-          </div>
-        </li>
       </ul>
     </section>
   </div>
+
+  {{> footer}}
+
 </article>

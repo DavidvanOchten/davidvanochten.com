@@ -1,0 +1,11 @@
+.headline {
+  margin-top: .15rem; /* Retain vertical rhythm */
+  margin-bottom: 1.35rem; /* Both add up to 1.5rem */
+  font-size: var(--ms-l); 
+  line-height: calc(var(--bsl) * 2);
+  color: var(--dark);
+
+  &--inline {
+    display: inline;
+  }
+}

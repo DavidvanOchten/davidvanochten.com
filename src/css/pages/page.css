@@ -5,4 +5,15 @@
   &--isVisible {
     opacity: 1;
   }
+
+  &__footer {
+    display: flex;
+    align-items: baseline;
+    padding: calc(var(--bsl) * 1) var(--col-2);
+    border-top: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      padding: calc(var(--bsl) * 1) var(--col-1);
+    }
+  }
 }

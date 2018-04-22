@@ -1,0 +1,16 @@
+.subheading {
+  margin-bottom: var(--bsl);
+  color: var(--grey-dark);
+
+  @media (--tablet-landscape-up) {
+    &--rotated {
+      position: absolute;
+      top: calc(var(--bsl) * -2);;
+      right: var(--col-1);
+      height: calc(var(--bsl) * 2);
+      width: var(--col-1);
+      transform: rotate(90deg);
+      transform-origin: bottom left;
+    }
+  }
+}

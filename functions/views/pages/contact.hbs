@@ -1,25 +1,25 @@
-<article class="contact grid">
-  <div class="grid__cell grid__cell--6">
-    <h1 class="grid__heading grid__heading--l u-isShowOff u-isShowOff--fade" data-show-off="fade">
+<article class="contact">
+  <div>
+    <h1 class="headline">
       <strong>{{{headline}}}</strong>
     </h1>
     <ul>
-      <li class="u-isShowOff--1 u-isShowOff--fade" data-show-off="fade">
+      <li>
         <a href="" data-bypass>Email</a>
       </li>
-      <li class="u-isShowOff--2 u-isShowOff--fade" data-show-off="fade">
+      <li>
         <a href="" target="_blank" data-bypass>LinkedIn</a>
       </li>
-      <li class="u-isShowOff--3 u-isShowOff--fade" data-show-off="fade">
+      <li>
         <a href="" target="_blank" data-bypass>Instagram</a>
       </li>
     </ul>
   </div>
-  <div class="contact__form grid__cell grid__cell--borderLeft">
-    <p class="grid__heading grid__heading--l u-isShowOff--4 u-isShowOff--fade" data-show-off="fade">Lorem ipsum dolor sit amet, sit eu natum oporteat reprimique, te vel utamur labitur, iudico mnesarchum contentiones mel ei.</p>
+  <div class="contact__form">
+    <p class="headline">Lorem ipsum dolor sit amet, sit eu natum oporteat reprimique, te vel utamur labitur, iudico mnesarchum contentiones mel ei.</p>
     <form class="form form--contact" data-form="contact">
-      <input class="form__input" type="text" placeholder="Name *" data-form-input="name" required>
-      <input class="form__input" type="email" placeholder="Email *" data-form-input="email" required>
+      <input class="form__input" type="text" placeholder="Name*" data-form-input="name" required>
+      <input class="form__input" type="email" placeholder="Email*" data-form-input="email" required>
       <textarea class="form__input" placeholder="Message" data-form-input="message"></textarea>
       <div class="button button--submit">
         <input class="form__submit" type="submit" value="Send" data-form-input="submit">
@@ -33,4 +33,7 @@
       </div>
     </form>
   </div>
+
+  {{> footer}}
+
 </article>

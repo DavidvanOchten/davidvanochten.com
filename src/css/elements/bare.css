@@ -41,10 +41,6 @@ textarea {
   font-weight: 400;
 }
 
-main {
-  padding-top: calc(var(--bsl) * 3);
-}
-
 picture {
   display: block;
 }

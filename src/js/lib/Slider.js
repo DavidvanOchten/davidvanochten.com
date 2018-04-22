@@ -3,7 +3,6 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 const Slider = (id) => {
 
   const SLIDER = {
-    ROOT: document.querySelector(`[data-slider="${id}"]`),
     DRAGGING_CLASS: 'slider__content--isDragging',
     activeIndex: 0,
     position: 0
@@ -160,9 +159,13 @@ const Slider = (id) => {
   }
 
   const construct = () => {
+    SLIDER.ROOT = document.querySelector(`[data-slider="${id}"]`);
     SLIDER.CONTENT = SLIDER.ROOT.querySelector('[data-slider="content"]');
     SLIDER.ITEMS = [].slice.call(SLIDER.ROOT.querySelectorAll('[data-slider="item"]'));
+    // SLIDER.BUTTON_PREV = document.querySelector(`[data-slider-prev="${id}"]`);
+    // SLIDER.BUTTON_NEXT = document.querySelector(`[data-slider-next="${id}"]`);
 
+    // _setUpSliderNavigation();
     _setUpSliderItems();
 
     SLIDER.CONTENT.addEventListener('touchstart', _onTouchStart);

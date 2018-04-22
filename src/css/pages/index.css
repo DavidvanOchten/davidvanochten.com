@@ -1,8 +1,8 @@
 .index {
+  margin-top: calc(var(--bsl) * -3);
 
   @media (--tablet-portrait-up) {
     display: flex;
-    margin-top: calc(var(--bsl) * -3);
   }
 
   &__column {
@@ -20,19 +20,93 @@
 
       &--wide {
         width: var(--col-14);
-        padding: var(--bsl) var(--col-1);
-
-        &::after {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 1px;
-          background-color: var(--grey-light);
-        }
+        border-left: 1px solid var(--grey-light);
       }
     }
+  }
+
+  &__contact {
+    padding: calc(var(--bsl) * 1) var(--col-2);
+    border-bottom: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      padding: calc(var(--bsl) * 2) var(--col-1);
+    }
+  }
+
+  &__intro {
+    width: var(--col-14);
+    padding: calc(var(--bsl) * 2) var(--col-2);
+    border-bottom: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      width: var(--col-6);
+      padding: calc(var(--bsl) * 2) var(--col-1);
+    }
+  }
+
+  &__notes {
+    padding-top: calc(var(--bsl) * 1);
+    padding-bottom: calc(var(--bsl) * 2);
+    border-bottom: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      padding-top: calc(var(--bsl) * 2);
+      padding-bottom: calc(var(--bsl) * 3);
+    }
+
+    & .subheading {
+      padding-left: var(--col-2);
+
+      @media (--tablet-portrait-up) {
+        padding-left: var(--col-1);
+      }
+    }
+  }
+
+  &__profile {
+    order: 1;
+    padding: calc(var(--bsl) * 1) var(--col-2);
+
+    @media (--tablet-portrait-up) {
+      order: 0;
+      padding: calc(var(--bsl) * 6) var(--col-2) calc(var(--bsl) * 2);
+    }
+  }
+
+  &__signage {
+    flex-grow: 1;
+    padding: calc(var(--bsl) * 3) var(--col-2) calc(var(--bsl) * 1);
+    border-bottom: 1px solid var(--grey-light);
+    border-left: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      width: var(--col-4);
+      padding: calc(var(--bsl) * 3) var(--col-1) calc(var(--bsl) * 2);
+    }
+  }
+
+  &__work {
+    display: flex;
+    flex-direction: column;
+    order: 0;
+    position: relative;
+    padding: calc(var(--bsl) * 1) var(--col-2);
+    border-bottom: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      order: 1;
+      padding: 0 var(--col-2) calc(var(--bsl) * 2);
+      border: none;
+    }
+
+    & .button {
+      align-self: flex-end;
+    }
+  }
+
+  & .page__footer {
+    order: 2;
   }
 }
 

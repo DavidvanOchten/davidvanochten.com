@@ -1,4 +1,3 @@
-import Scroller from '../lib/Scroller.js';
 import Slider from '../lib/Slider.js';
 import Tracker from '../lib/Tracker.js';
 import { beforeViewChange } from '../utils/beforeViewChange.js';
@@ -71,6 +70,7 @@ const IndexController = (() => {
   };
 
   const construct = () => {
+    // INDEX.SITE_HEADER = 
 
     let siteHeaderTrigger = document.querySelector('[data-toggle-trigger="site-header"]');
     let siteHeader = document.querySelector('[data-toggle="site-header"]');
@@ -90,12 +90,7 @@ const IndexController = (() => {
     INDEX.COL_2 = document.querySelector('[data-index-column="2"]');
 
     INDEX.NOTES_SLIDER = Slider('notes');
-    INDEX.TOP_SCROLLER = Scroller({
-      id: 'top'
-    });
-
     INDEX.NOTES_SLIDER.init();
-    INDEX.TOP_SCROLLER.init();
 
     window.addEventListener('resize', _constructForMinSize);
     _constructForMinSize();
