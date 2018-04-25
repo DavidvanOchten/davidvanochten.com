@@ -104,12 +104,16 @@ const Slider = (id) => {
     const OFFSET_Y = e.touches[0].clientY - SLIDER.startY;
 
     // Prevents vertical scroll if the user is swiping left/right
+    console.log(OFFSET_X, OFFSET_Y);
     if (Math.abs(OFFSET_X) > Math.abs(OFFSET_Y) && e.cancelable) {
       e.preventDefault();
-    }
 
-    SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
-    _moveSlider();
+      SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
+      _moveSlider();
+    } else {
+      console.log('Y scroll');
+      SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
+    }
   };
 
   const _onTouchStart = (e) => {

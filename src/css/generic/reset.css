@@ -3,28 +3,25 @@
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 
-	&::before,
-	&::after {
-		box-sizing: border-box;
-	}
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
 }
 
 html {
-  font-size: 87.5%;
+  /*font-size: 87.5%;*/
+  font-size: 100%;
 
-	@media (--tablet-portrait-up) {
-		font-size: 100%;
-	}
-
-	@media (--big-desktop-up) {
-		font-size: 125%;
-	}
+  @media (--big-desktop-up) {
+    font-size: 125%;
+  }
 
   @media (--huge-desktop-up) {
-		font-size: 150%;
-	}
+    font-size: 150%;
+  }
 }
 
 body {

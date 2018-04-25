@@ -36,7 +36,7 @@
 
   &__intro {
     width: var(--col-14);
-    padding: calc(var(--bsl) * 2) var(--col-2);
+    padding: calc(var(--bsl) * 1) var(--col-2);
     border-bottom: 1px solid var(--grey-light);
 
     @media (--tablet-portrait-up) {

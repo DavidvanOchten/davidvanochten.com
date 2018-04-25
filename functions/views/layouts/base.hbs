@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}} | David van Ochten</title>
   <meta name="description" content="{{description}}">
+  <meta name="theme-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">
-  <link rel="apple-touch-icon" href="/static/img/icons/app-icon-144x144.png" sizes="144x144">
-  <link rel="apple-touch-icon" href="/static/img/icons/app-icon-512x512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="/static/icons/app-icon-144x144.png" sizes="144x144">
+  <link rel="apple-touch-icon" href="/static/icons/app-icon-512x512.png" sizes="512x512">
   <link rel="manifest" href="/manifest.json">
   <style>.splash{position:fixed;top:0;left:0;z-index:20;height:100vh;width:100vw;background-color:#fff;opacity:0;-webkit-transition:opacity .5s linear .25s;transition:opacity .5s linear .25s;pointer-events:none}.splash__header{position:absolute;top:50%;left:0;padding-right:4.16667vw;padding-left:4.16667vw;line-height:3rem;opacity:0;-webkit-transition:opacity .25s linear;transition:opacity .25s linear;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.splash__title{font-size:2.618rem}.splash__subtitle{font-size:1.618rem;color:#9b9b9b}.splash--isVisible{opacity:1;pointer-events:auto}.splash--isVisible .splash__header{opacity:1}</style>
   <link rel="stylesheet" href="/app.bundle.css">
@@ -17,10 +18,10 @@
     {{> splash}}
     {{> header}}
 
-    <div class="layout">
+    {{!-- <div class="layout">
       <input type="checkbox">
       <label></label>
-    </div>
+    </div> --}}
 
     <main class="siteContent" role="main" data-main>
       <div class="spinner" data-spinner></div>

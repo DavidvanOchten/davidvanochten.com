@@ -34,7 +34,7 @@
 
   &__item {
     flex-shrink: 0;
-    width: var(--col-16);
+    width: var(--col-19);
     padding-right: var(--col-1);
     pointer-events: auto;
 
