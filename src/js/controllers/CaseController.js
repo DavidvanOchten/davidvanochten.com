@@ -1,12 +1,17 @@
-// import Toggle from '../lib/Toggle.js';
+import Toggle from '../lib/Toggle.js';
 
 const CaseController = (() => {
+
+  const CASE = {};
+
   const construct = () => {
-    // Toggle.init({
-    //   id: 'info',
-    //   activeButtonClass: 'case__toggle--isActive',
-    //   activeTargetClass: 'case__summary--isVisible'
-    // });
+    CASE.SUMMARY_TOGGLE = Toggle({
+      id: 'summary',
+      targetClass: 'case__summary--isVisible',
+      triggerClass: 'case__toggle--isActive'
+    });
+
+    CASE.SUMMARY_TOGGLE.init();
   };
 
   return {

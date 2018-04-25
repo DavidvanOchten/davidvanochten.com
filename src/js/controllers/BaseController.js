@@ -7,16 +7,7 @@ const BaseController = (() => {
   const BASE = {};
 
   const _addClass = (content) => {
-    // More generic function that is imported from utils. 
-    // Add class functionality (not so much just a reveal)
-    if (content.dataset.intersected === 'true' && content.classList.contains('classname')) {
-      console.log('Add class', content);
-      content.classList.remove('classname');
-      // Or Toggle?
-    } else if (content.dataset.intersected === 'false') {
-      content.classList.add('classname');
-      // Or Toggle?
-    }
+    // content.classList.add('classname');
   };
 
   const _lazyLoadContent = (content) => {
@@ -33,14 +24,14 @@ const BaseController = (() => {
 
     BASE.LAZY_IMAGES = IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-src]')),
-      flag: true,
-      callback: _lazyLoadContent
+      callback: _lazyLoadContent,
+      flag: true
     });
 
     BASE.REVEAL_CONTENT = IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-reveal]')),
-      threshold: 0.5,
-      callback: _addClass
+      callback: _addClass,
+      flag: true
     });
 
     BASE.TOP_SCROLLER.init();

@@ -52,7 +52,10 @@ const Scroller = (obj) => {
     return topPosition;
   };
 
-  const _scrollTo = (e) => {
+  const scrollTo = () => {
+    BROWSER.BODY = _checkBody();
+    SCROLLER.TARGET_TOP = _getTargetTop();
+
     const START_TIME = window.performance.now
       ? (performance.now() + performance.timing.navigationStart)
       : Date.now();
@@ -94,17 +97,15 @@ const Scroller = (obj) => {
   };
 
   const construct = () => {
-    BROWSER.BODY = _checkBody();
-    SCROLLER.TARGET_TOP = _getTargetTop();
-    SCROLLER.TRIGGER.addEventListener('click', _scrollTo);
-
+    SCROLLER.TRIGGER.addEventListener('click', scrollTo);
     window.addEventListener('resize', _resetScroller);
 
     beforeViewChange(_remove);
   };
 
   return {
-    init: construct
+    init: construct,
+    scroll: scrollTo
   };
 };
 

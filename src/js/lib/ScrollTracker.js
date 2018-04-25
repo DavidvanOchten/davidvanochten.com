@@ -1,11 +1,8 @@
 import { beforeViewChange } from '../utils/beforeViewChange.js';
 
+const ScrollTracker = (obj) => {
 
-
-// ScrollTracker (instead of just Tracker). More like IntersectionTracker
-const Tracker = (obj) => {
-
-  const TRACKER = {
+  const SCROLL_TRACKER = {
     START: obj.start,
     END: obj.end,
     CB: obj.callback
@@ -20,9 +17,9 @@ const Tracker = (obj) => {
     BROWSER.ticking = false;
     BROWSER.scrolledY = window.pageYOffset;
 
-    eval(TRACKER.CONDITION)
-      ? TRACKER.CB(true)
-      : TRACKER.CB(false);
+    eval(SCROLL_TRACKER.CONDITION)
+      ? SCROLL_TRACKER.CB(true)
+      : SCROLL_TRACKER.CB(false);
   };
 
   const _requestTick = () => {
@@ -38,12 +35,12 @@ const Tracker = (obj) => {
   };
 
   const construct = () => {
-    if (TRACKER.START === undefined) {
-      TRACKER.CONDITION = 'TRACKER.END > BROWSER.scrolledY';
-    } else if (TRACKER.END === undefined) {
-      TRACKER.CONDITION = 'TRACKER.START < BROWSER.scrolledY';
+    if (SCROLL_TRACKER.START === undefined) {
+      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.END > BROWSER.scrolledY';
+    } else if (SCROLL_TRACKER.END === undefined) {
+      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.START < BROWSER.scrolledY';
     } else {
-      TRACKER.CONDITION = 'TRACKER.START <= BROWSER.scrolledY && TRACKER.END >= BROWSER.scrolledY';
+      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.START <= BROWSER.scrolledY && SCROLL_TRACKER.END >= BROWSER.scrolledY';
     }
 
     window.addEventListener('scroll', _requestTick);
@@ -59,4 +56,4 @@ const Tracker = (obj) => {
 
 };
 
-export default Tracker;
+export default ScrollTracker;

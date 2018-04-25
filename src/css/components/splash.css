@@ -14,12 +14,15 @@
     position: absolute;
     top: 50%;
     left: 0;
-    padding-right: var(--col-1);
-    padding-left: var(--col-1);
+    padding: var(--col-2);
     line-height: calc(var(--bsl) * 2);
     opacity: 0;
     transition: opacity .25s linear;
     transform: translateY(-50%);
+
+    @media (--tablet-landscape-up) {
+      padding: var(--col-1);
+    }
   }
 
   &__title {

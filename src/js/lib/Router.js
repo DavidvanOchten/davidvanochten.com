@@ -72,8 +72,7 @@ const Router = () => {
     const URL = LINK.href;
 
     if (URL === window.location.href) {
-      // Create Scroller button for LINK
-      // Scroller({ id: 'top' }).init();
+      Scroller({ id: 'top' }).scroll();
       return;
     } // "Scroll to top" functionality kicks in if the user is already on the requested page
 

@@ -1,15 +1,24 @@
 const Toggle = (obj) => {
 
   const TOGGLE = {
-    TARGET: document.querySelector(`[data-toggle="${obj.id}"]`),
-    TARGET_CLASS: obj.class,
+    TARGET: document.querySelector(`[data-toggle-target="${obj.id}"]`),
+    TARGET_CLASS: obj.targetClass,
     CB: obj.callback
   };
 
-  // Add/remove aria-hidden attribute?
-  // If Toggle is not <button>, add aria-pressed functionality
   const toggleItems = () => {
     TOGGLE.TARGET.classList.toggle(TOGGLE.TARGET_CLASS);
+
+    (TOGGLE.TARGET.getAttribute('aria-hidden') !== null) && 
+    (TOGGLE.TARGET.getAttribute('aria-hidden') === 'true')
+      ? TOGGLE.TARGET.setAttribute('aria-hidden', false)
+      : TOGGLE.TARGET.setAttribute('aria-hidden', true);
+
+    if (TOGGLE.TRIGGER !== undefined) {
+      TOGGLE.TRIGGER.getAttribute('aria-pressed') === 'false'
+        ? TOGGLE.TRIGGER.setAttribute('aria-pressed', true)
+        : TOGGLE.TRIGGER.setAttribute('aria-pressed', false);
+    }
 
     if (TOGGLE.TRIGGER_CLASS !== undefined) {
       TOGGLE.TRIGGER.classList.toggle(TOGGLE.TRIGGER_CLASS);

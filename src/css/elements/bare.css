@@ -31,7 +31,7 @@ img {
 input,
 textarea {
   font-family: var(--primary-font);
-  outline: 0;
+  outline: none;
   background-color: transparent;
 }
 

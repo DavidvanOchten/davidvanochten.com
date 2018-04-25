@@ -5,8 +5,8 @@ const IntersectionTracker = (obj) => {
   const INTERSECTION_TRACKER = {
     CONTENT: obj.content,
     THRESHOLD: obj.threshold * window.innerHeight || 0,
-    USE_FLAG: obj.flag,
-    CB: obj.callback
+    CB: obj.callback,
+    USE_FLAG: obj.flag
   };
 
   const BROWSER = {
@@ -45,7 +45,6 @@ const IntersectionTracker = (obj) => {
         return;
       }
 
-      let intersectionCondition = '';
       const ITEM_TOP = item.getBoundingClientRect().top;
       const ITEM_BOTTOM = item.getBoundingClientRect().bottom;
 
@@ -54,12 +53,12 @@ const IntersectionTracker = (obj) => {
         const BOTTOM_IN_VIEW = (ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight);
         const IN_FULL_VIEW = (ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight);
 
-        intersectionCondition = '(TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW)';
+        INTERSECTION_TRACKER.CONDITION = '(TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW)';
       } else {
-        intersectionCondition = '(ITEM_TOP <= INTERSECTION_TRACKER.THRESHOLD && ITEM_BOTTOM >= INTERSECTION_TRACKER.THRESHOLD)';
+        INTERSECTION_TRACKER.CONDITION = '(ITEM_TOP <= INTERSECTION_TRACKER.THRESHOLD && ITEM_BOTTOM >= INTERSECTION_TRACKER.THRESHOLD)';
       }
   
-      eval(intersectionCondition)
+      eval(INTERSECTION_TRACKER.CONDITION)
         ? item.dataset.intersected = 'true'
         : item.dataset.intersected = 'false';
 

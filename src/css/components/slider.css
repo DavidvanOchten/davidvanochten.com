@@ -12,21 +12,6 @@
 
   &__container {
     overflow: hidden;
-
-   /* test */
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      background: red;
-      top: 0;
-      left: 50%;
-      height: 100%;
-      width: 1px;
-      pointer-events: none;
-    }
-     /* test */
   }
 
   &__content {

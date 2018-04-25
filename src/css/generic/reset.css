@@ -39,6 +39,11 @@ button {
   font-family: var(--secondary-font);
   font-size: inherit;
   letter-spacing: inherit;
+}
+
+button,
+*[role="button"],
+input[type="submit"] {
   cursor: pointer;
 }
 

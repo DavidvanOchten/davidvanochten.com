@@ -1,5 +1,5 @@
 import Slider from '../lib/Slider.js';
-import Tracker from '../lib/Tracker.js';
+import ScrollTracker from '../lib/ScrollTracker.js';
 import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IndexController = (() => {
@@ -75,7 +75,7 @@ const IndexController = (() => {
     let siteHeaderTrigger = document.querySelector('[data-toggle-trigger="site-header"]');
     let siteHeader = document.querySelector('[data-toggle="site-header"]');
 
-    const test = Tracker({
+    const test = ScrollTracker({
       end: _getBottomPosition(siteHeaderTrigger),
       callback: _toggleSiteHeader
     });
