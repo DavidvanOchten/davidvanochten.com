@@ -3,7 +3,7 @@ const express = require('express');
 const axios = require('axios');
 const admin = require('firebase-admin');
 
-admin.initializeApp(functions.config().firebase);
+admin.initializeApp();
 
 const router = express.Router();
 
@@ -33,10 +33,10 @@ router.post('/contact', (req, resp) => {
   }, (err) => {
     if (err) {
       console.log('Error', err);
-      resp.status(500).send('Whoops, something went wrong. Check for errors or try again later.');
+      resp.status(500).send('Something went wrong. Check if there are any errors or try again later.');
     } else {
-      console.log('Success!');
-      resp.status(200).send('Hi! I got your message. Will get back to you as soon as possible.');
+      console.log('Successful submit');
+      resp.status(200).send('Ahoy! I got your message. Will get back to you as soon as possible.');
     }
   });
 });

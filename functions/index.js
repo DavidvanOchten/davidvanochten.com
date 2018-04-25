@@ -1,12 +1,10 @@
 const functions = require('firebase-functions');
-// const admin = require('firebase-admin'); // Potentially need it for onWrite below.
 const express = require('express');
 const hbs = require('express-handlebars');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
 
-// admin.initializeApp(functions.config().firebase);
 
 const app =  express();
 app.engine('hbs', hbs({
@@ -22,7 +20,7 @@ app.use(cors({
   origin: true
 }));
 
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(require(path.join(__dirname, '/routes/route-index')));
 app.use(require(path.join(__dirname, '/routes/route-work')));
@@ -32,11 +30,9 @@ app.use(require(path.join(__dirname, '/routes/route-contact')));
 
 exports.app = functions.https.onRequest(app);
 
-/**
- * Send notification email once a form submission has taken place.
- */
-exports.onFormSubmit = functions.database.ref('messages').onWrite((e) => {
+exports.onFormSubmit = functions.database.ref('messages').onWrite((data, context) => {
+  // TODO: Send email after submit
   // https://firebase.google.com/docs/functions/beta-v1-diff
-  console.log(e.data.val());
+  console.log(data, context);
   return;
 });

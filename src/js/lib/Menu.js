@@ -11,11 +11,28 @@ const Menu = () => {
     BG: document.querySelector('[data-site-header="background"]')
   };
 
+
+  const _toggleToggle = () => {
+    MENU.TOGGLE.classList.toggle('menu__toggle--isActive');
+
+    // Aria stuff
+    if (MENU.TOGGLE.classList.contains('menu__toggle--isActive')) {
+      MENU.TOGGLE.setAttribute('aria-pressed', true);
+      MENU.PANEL.setAttribute('aria-hidden', false);
+    } else {
+      MENU.TOGGLE.setAttribute('aria-pressed', false);
+      MENU.PANEL.setAttribute('aria-hidden', true);
+    }
+
+    MENU.PANEL.removeEventListener('transitionend', _toggleToggle);
+  };
+
   const _toggleMenu = (e) => {
     if (e.type === 'click' || e.type === 'keyup' && e.keyCode === 13) {
       SITE_HEADER.BG.classList.toggle('siteHeader__background--isActive');
 
-      MENU.TOGGLE.classList.toggle('menu__toggle--isActive');
+      MENU.PANEL.addEventListener('transitionend', _toggleToggle);
+
       MENU.PANEL.classList.toggle('menu__panel--isVisible');
       MENU.ITEMS.map(item => {
         item.classList.toggle('menu__item--isVisible');
@@ -44,6 +61,12 @@ const Menu = () => {
     SITE_HEADER.BG.addEventListener('click', _toggleMenu);
     MENU.TOGGLE.addEventListener('click', _toggleMenu);
     MENU.TOGGLE.addEventListener('keyup', _toggleMenu);
+
+    // window.addEventListener('keyup', e => {
+    //   if (document.activeElement === SITE_HEADER.LOGO || document.activeElement === MENU.TOGGLE) {
+    //     _toggleMenu();
+    //   }
+    // });
 
     MENU.ITEMS.map(item => {
       item.querySelector('[data-menu="link"]').addEventListener('click', _toggleMenu);

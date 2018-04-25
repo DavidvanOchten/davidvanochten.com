@@ -1,5 +1,8 @@
 import { beforeViewChange } from '../utils/beforeViewChange.js';
 
+
+
+// ScrollTracker (instead of just Tracker). More like IntersectionTracker
 const Tracker = (obj) => {
 
   const TRACKER = {

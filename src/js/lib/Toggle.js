@@ -6,7 +6,9 @@ const Toggle = (obj) => {
     CB: obj.callback
   };
 
-  const toggleItems = (e) => {
+  // Add/remove aria-hidden attribute?
+  // If Toggle is not <button>, add aria-pressed functionality
+  const toggleItems = () => {
     TOGGLE.TARGET.classList.toggle(TOGGLE.TARGET_CLASS);
 
     if (TOGGLE.TRIGGER_CLASS !== undefined) {

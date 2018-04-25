@@ -4,6 +4,8 @@ const IntersectionTracker = (obj) => {
 
   const INTERSECTION_TRACKER = {
     CONTENT: obj.content,
+    THRESHOLD: obj.threshold * window.innerHeight || 0,
+    USE_FLAG: obj.flag,
     CB: obj.callback
   };
 
@@ -14,14 +16,24 @@ const IntersectionTracker = (obj) => {
   const _intersectionObserverCB = (entries) => {
     entries.map(entry => {
       if (entry.isIntersecting) {
-        INTERSECTION_TRACKER.CB(entry.target);
-        INTERSECTION_TRACKER.IO.unobserve(entry.target);
+        entry.target.dataset.intersected = 'true';
+
+        if (INTERSECTION_TRACKER.USE_FLAG) {
+          INTERSECTION_TRACKER.IO.unobserve(entry.target);
+        }
+
+      } else {
+        entry.target.dataset.intersected = 'false';
       }
+
+      INTERSECTION_TRACKER.CB(entry.target);
     });
   };
 
   const _useIntersectionObserver = () => {
-    INTERSECTION_TRACKER.IO = new IntersectionObserver(_intersectionObserverCB, { threshold: 0 });
+    const OPTIONS = { threshold: 0, rootMargin: `-${INTERSECTION_TRACKER.THRESHOLD}px` };
+
+    INTERSECTION_TRACKER.IO = new IntersectionObserver(_intersectionObserverCB, OPTIONS);
     INTERSECTION_TRACKER.CONTENT.map(item => INTERSECTION_TRACKER.IO.observe(item));
   };
 
@@ -29,20 +41,29 @@ const IntersectionTracker = (obj) => {
     BROWSER.ticking = false;
 
     INTERSECTION_TRACKER.CONTENT.map(item => {
-      if (item.dataset.intersected === 'true') {
+      if (INTERSECTION_TRACKER.USE_FLAG && item.dataset.intersected === 'true') {
         return;
       }
 
+      let intersectionCondition = '';
       const ITEM_TOP = item.getBoundingClientRect().top;
       const ITEM_BOTTOM = item.getBoundingClientRect().bottom;
-      const TOP_IN_VIEW = (ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight);
-      const BOTTOM_IN_VIEW = (ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight);
-      const IN_FULL_VIEW = (ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight);
 
-      if (TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW) {
-        item.dataset.intersected = 'true';
-        INTERSECTION_TRACKER.CB(item);
+      if (INTERSECTION_TRACKER.THRESHOLD === 0) {
+        const TOP_IN_VIEW = (ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight);
+        const BOTTOM_IN_VIEW = (ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight);
+        const IN_FULL_VIEW = (ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight);
+
+        intersectionCondition = '(TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW)';
+      } else {
+        intersectionCondition = '(ITEM_TOP <= INTERSECTION_TRACKER.THRESHOLD && ITEM_BOTTOM >= INTERSECTION_TRACKER.THRESHOLD)';
       }
+  
+      eval(intersectionCondition)
+        ? item.dataset.intersected = 'true'
+        : item.dataset.intersected = 'false';
+
+      INTERSECTION_TRACKER.CB(item);
     });
   };
 
