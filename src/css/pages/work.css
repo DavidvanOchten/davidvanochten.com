@@ -12,17 +12,17 @@
 
     &:nth-child(5n + 1) {
       grid-column: col 2 / span 12;
-      grid-row: span 34;
+      grid-row: span 27;
     }
 
     &:nth-child(5n + 2) {
       grid-column: col 15 / span 9;
-      grid-row: span 20;
+      grid-row: span 14;
     }
 
     &:nth-child(5n + 3) {
       grid-column: col 15 / span 9;
-      grid-row: span 14;
+      grid-row: row 16 / span 11;
     }
   }
 }

@@ -1,14 +1,9 @@
-importScripts('/idb/core.js');
-importScripts('/idb/utils.js');
-
 const DYNAMIC_CACHE = 'dynamic_01';
 const STATIC_CACHE = 'static_01';
 const STATIC_FILES = [
-  // '/',
-  // '/work',
-  // '/offline',
-  // '/app.bundle.css',
-  // '/app.bundle.js',
+  '/offline',
+  '/app.bundle.css',
+  '/app.bundle.js',
   '/static/fonts/1491978/b681571f-aab2-4935-a99c-6ee1063ce638.woff',
   '/static/fonts/1491978/e5716290-d41e-4c97-a27c-7a20a46ddf45.woff2',
   '/static/fonts/1491988/27645c8a-608b-4abf-a2f1-c4407b576723.woff',
@@ -42,79 +37,44 @@ self.addEventListener('activate', (e) => {
   return self.clients.claim();
 });
 
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    fetch(e.request)
+      .then((resp) => {
+        console.log('[Service Worker] Fetched content');
+        return resp;
+      })
+      .catch((err) => {
+        return caches.open(STATIC_CACHE)
+          .then((cache) => {
 
-/**
- *  Use older videos from Udemy to use all the static files from the cache if offline
- */
-// self.addEventListener('fetch', (e) => {
-//   e.respondWith(
-//     fetch(e.request)
-//       .then((resp) => {
-//         console.log('Fetched stuff');
-//         return resp;
-//       })
-//       .catch((err) => {
-//         return caches.open(STATIC_CACHE)
-//           .then((cache) => {
-//             // Make below better
-//             if (e.request.headers.get('accept').includes('text/html')) {
-//               return cache.match('/offline');
-//             }
-//             if (e.request.headers.get('accept').includes('text/css')) {
-//               return cache.match('/app.bundle.css');
-//             }
-//             // JS file from cache doesn't work.
-//             if (e.request.headers.get('accept').includes('application/javascript')) {
-//               return cache.match('/app.bundle.js');
-//             }
-//         })
-//       })
-//   );
-// });
+            if (e.request.headers.get('accept').includes('text/html')) {
+              return cache.match('/offline');
+            }
+            // if (e.request.headers.get('accept').includes('text/css')) {
+            //   return cache.match('/app.bundle.css');
+            // }
+            // // TODO: JS file from cache doesn't work with 'application/javascript'.
+            // if (e.request.headers.get('accept').includes('/')) {
+            //   return cache.match('/app.bundle.js');
+            // }
 
-// self.addEventListener('fetch', (e) => {
-//   const url = 'https://vue-admin.firebaseio.com/';
+            if (e.request.url.indexOf('bundle.css') > 0) {
+              return cache.match('/app.bundle.css');
+            }
 
-//   if (e.request.url.indexOf(url) > -1) {
-//     e.respondWith(
-//       fetch(e.request)
-//         .then((resp) => {
-//           const respClone = resp.clone();
-//           clearAllData('work')
-//             .then(() => respClone.json())
-//             .then((data) => {
-//               for (const key in data) {
-//                 writeData('work', data[key]);
-//               }
-//             });
-//           return resp;
-//         })
-//     );
-//   } else {
-//     e.respondWith(
-//       caches.match(e.request)
-//         .then((resp) => {
-//           if (resp) {
-//             return resp;
-//           } else {
-//             return fetch(e.request)
-//               .then((res) => {
-//                 return caches.open(DYNAMIC_CACHE)
-//                   .then((cache) => {
-//                     cache.put(e.request.url, res.clone());
-//                     return res;
-//                   })
-//               })
-//               .catch((err) => {
-//                 return caches.open(STATIC_CACHE)
-//                   .then((cache) => {
-//                     if (e.request.headers.get('accept').includes('text/html')) {
-//                       return cache.match('/offline');
-//                     }
-//                   })
-//               });
-//           }
-//         })
-//     );
-//   }
-// });
+            if (e.request.url.indexOf('bundle.js') > 0) {
+              return cache.match('/app.bundle.js');
+            }
+
+            if (e.request.url.indexOf('6ee1063ce638.woff') > 0) {
+              return cache.match('/static/fonts/1491978/b681571f-aab2-4935-a99c-6ee1063ce638.woff');
+            }
+
+            if (e.request.url.indexOf('c4407b576723.woff') > 0) {
+              return cache.match('/static/fonts/1491988/27645c8a-608b-4abf-a2f1-c4407b576723.woff');
+            }
+        })
+      })
+  );
+});

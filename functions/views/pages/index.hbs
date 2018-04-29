@@ -52,8 +52,9 @@
               </article>
             </li>
             {{/each}}
-            <li class="slider__item" data-slider="item">
-              <h2 class="headline">{{{notesHeadline}}}</h2>
+            {{!-- data-slider="item" --}}
+            <li class="slider__item" style="pointer-events: none;">
+              <h2 class="headline">Rotate</h2> <!-- {{{notesHeadline}}} -->
               <a class="button button--link" href="/notes">
                 <span class="button__text">{{notesLink}}</span>
               </a>

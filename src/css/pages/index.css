@@ -80,6 +80,12 @@
     border-bottom: 1px solid var(--grey-light);
     border-left: 1px solid var(--grey-light);
 
+    & a {
+      &:hover {
+        color: var(--grey);
+      }
+    }
+
     @media (--tablet-portrait-up) {
       width: var(--col-4);
       padding: calc(var(--bsl) * 3) var(--col-1) calc(var(--bsl) * 2);
@@ -102,6 +108,14 @@
 
     & .button {
       align-self: flex-end;
+    }
+
+    & li {
+      margin-bottom: calc(var(--bsl) * 3);
+
+      &:last-child {
+        margin-bottom: calc(var(--bsl) * 2);
+      }
     }
   }
 

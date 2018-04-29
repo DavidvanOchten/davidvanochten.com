@@ -27,6 +27,15 @@ app.use(require(path.join(__dirname, '/routes/route-work')));
 app.use(require(path.join(__dirname, '/routes/route-notes')));
 app.use(require(path.join(__dirname, '/routes/route-profile')));
 app.use(require(path.join(__dirname, '/routes/route-contact')));
+app.use(require(path.join(__dirname, '/routes/route-offline')));
+
+app.use((req, res, next) => {
+  res.status(404).render('pages/error', { 
+    title: 'Page not found',
+    description: '404 - Page not found',
+    view: 'error'
+  });
+});
 
 exports.app = functions.https.onRequest(app);
 

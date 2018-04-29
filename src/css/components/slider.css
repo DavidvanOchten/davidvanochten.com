@@ -39,6 +39,10 @@
     pointer-events: auto;
 
     @media (--tablet-portrait-up) {
+      width: var(--col-8);
+    }
+
+    @media (--tablet-landscape-up) {
       width: var(--col-6);
     }
 

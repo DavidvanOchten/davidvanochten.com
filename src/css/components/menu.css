@@ -168,7 +168,11 @@
         }
 
         &:nth-child(2) {
-          transition: none;
+          transform: translate3d(200%, 0, 0);
+
+          &::after {
+            opacity: 1;
+          }
         }
 
         &:nth-child(3) {

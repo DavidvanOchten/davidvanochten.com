@@ -1,7 +1,7 @@
 .siteHeader {
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 15;
   display: flex;
   width: var(--col-24);
   transition: transform .5s cubic-bezier(.75, 0, .25, 1);

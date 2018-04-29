@@ -1,0 +1,6 @@
+.default {
+
+  &__content {
+    padding: calc(var(--bsl) * 3) var(--col-1);
+  }
+}
