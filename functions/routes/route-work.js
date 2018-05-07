@@ -37,6 +37,7 @@ router.get('/work/:id', (req, resp) => {
         headline: caseObj.headline,
         hero: caseObj.heroUrl,
         summary: caseObj.summary,
+        // Add file extension in object. If statements inside views (e.g. if video, else if svg, else jpg/png etc)
         content: caseObj.content
       });
     })

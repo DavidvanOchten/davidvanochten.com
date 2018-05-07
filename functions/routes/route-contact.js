@@ -25,7 +25,7 @@ router.get('/contact', (req, resp) => {
 
 router.post('/contact', (req, resp) => {
   const data = req.body;
-  // Sanitize data
+  // Sanitize data. https://www.sitepoint.com/forms-file-uploads-security-node-express/
   admin.database().ref('messages').push({
     name: data.name,
     email: data.email,

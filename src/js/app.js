@@ -31,8 +31,8 @@ const App = (() => {
     const ROUTER = Router();
     const SPINNER = Spinner();
 
-    // Create cooler splash
-    // Add spinner
+    // Add LOADING letter sequentially. Change tot LOADED on load.
+    // Show spinner
     const SPLASH = document.querySelector('[data-splash]');
     SPLASH.addEventListener('transitionend', e => e.target.parentNode.removeChild(e.target));
 
