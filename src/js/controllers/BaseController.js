@@ -34,9 +34,12 @@ const BaseController = (() => {
       flag: true
     });
 
-    base.topScroller.init();
     base.lazyImages.init();
     base.revealContent.init();
+
+    if (document.querySelector('[data-site-footer]')) {
+      base.topScroller.init();
+    }
   };
 
   return {

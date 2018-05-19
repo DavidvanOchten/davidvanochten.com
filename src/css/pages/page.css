@@ -8,12 +8,16 @@
 
   &__footer {
     display: flex;
-    align-items: baseline;
-    padding: calc(var(--bsl) * 1) var(--col-2);
+    align-items: center;
+    justify-content: space-between;
+    height: calc(var(--bsl) * 3);
+    padding-right: var(--col-2);
+    padding-left: var(--col-2);
     border-top: 1px solid var(--grey-light);
 
     @media (--tablet-portrait-up) {
-      padding: calc(var(--bsl) * 1) var(--col-1);
+      padding-right: var(--col-1);
+      padding-left: var(--col-1);
     }
   }
 }

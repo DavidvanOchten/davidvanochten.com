@@ -1,8 +1,8 @@
 const Toggle = (obj) => {
 
   const toggle = {
-    target: document.querySelector(`[data-toggle-target="${obj.id}"]`),
-    targetClass: obj.targetClass,
+    target: document.querySelector(`[data-toggle="${obj.id}"]`),
+    targetClass: obj.class,
     cb: obj.callback
   };
 
