@@ -18,18 +18,18 @@ const ContactController = (() => {
   const _handleSubmit = (e) => {
     e.preventDefault();
 
-    const NAME_VAL = form.querySelector('[data-form-input="name"]').value;
-    const EMAIL_VAL = form.querySelector('[data-form-input="email"]').value;
-    const MESSAGE_VAL = form.querySelector('[data-form-input="message"]').value;
-    const SUBMIT_BTN = e.target.querySelector('[data-form-input="submit"]');
+    const nameVal = form.querySelector('[data-form-input="name"]').value;
+    const emailVal = form.querySelector('[data-form-input="email"]').value;
+    const messageVal = form.querySelector('[data-form-input="message"]').value;
+    const submitBtn = e.target.querySelector('[data-form-input="submit"]');
 
-    SUBMIT_BTN.classList.add('form__submit--isProcessing');
+    submitBtn.classList.add('form__submit--isProcessing');
     showSpinner(true);
 
     axios.post('/contact', {
-      name: NAME_VAL,
-      email: EMAIL_VAL,
-      message: MESSAGE_VAL
+      name: nameVal,
+      email: emailVal,
+      message: messageVal
     })
       .then((resp) => {
         showSpinner(false);
@@ -38,25 +38,25 @@ const ContactController = (() => {
         // transition delay to show button animation?
         // form eventlistener transitionend > showstatus
         // Remove eventlistener on page transition
-        SUBMIT_BTN.classList.remove('form__submit--isProcessing');
-        SUBMIT_BTN.classList.add('form__submit--isDone');
+        submitBtn.classList.remove('form__submit--isProcessing');
+        submitBtn.classList.add('form__submit--isDone');
         _showStatus(resp);
       })
       .catch((err) => {
         showSpinner(false);
-        SUBMIT_BTN.classList.remove('form__submit--isProcessing');
+        submitBtn.classList.remove('form__submit--isProcessing');
         _showStatus(err);
       });
   };
 
-  const _construct = () => {
+  const construct = () => {
     // Add 'check' if form input is valid
     form = document.querySelector('[data-form="contact"]');
     form.addEventListener('submit', _handleSubmit);
   };
 
   return {
-    init: _construct
+    init: construct
   };
 })();
 

@@ -1,20 +1,20 @@
 const Spinner = () => {
 
-  const SPINNER = document.querySelector('[data-spinner]');
+  const spinner = document.querySelector('[data-spinner]');
 
-  const USER = {
-    MOUSE_X: 0,
-    MOUSE_Y: 0
+  const user = {
+    mouseX: 0,
+    mouseY: 0
   }
 
   const _trackSpinner = (e) => {
-    USER.MOUSE_X = e.clientX;
-    USER.MOUSE_Y = e.clientY;
+    user.mouseX = e.clientX;
+    user.mouseY = e.clientY;
 
-    // SPINNER.style.top = `${USER.MOUSE_Y - 6}px`;
-    // SPINNER.style.left = `${USER.MOUSE_X + 10}px`;
-    SPINNER.style.top = `${USER.MOUSE_Y}px`;
-    SPINNER.style.left = `${USER.MOUSE_X}px`;
+    // spinner.style.top = `${user.mouseY - 6}px`;
+    // spinner.style.left = `${user.mouseX + 10}px`;
+    spinner.style.top = `${user.mouseY}px`;
+    spinner.style.left = `${user.mouseX}px`;
   };
 
   const construct = () => {

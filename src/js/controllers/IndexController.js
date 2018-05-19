@@ -4,6 +4,7 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IndexController = (() => {
 
+  // Change CAPITALS back to camelCase?
   const INDEX = {
     STICKY_COLUMN: null
   };

@@ -2,21 +2,21 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const Scroller = (obj) => {
 
-  const SCROLLER = {
-    TARGET: document.querySelector(`[data-scroller-target="${obj.id}"]`),
-    TRIGGER: document.querySelector(`[data-scroller-trigger="${obj.id}"]`),
-    DURATION: obj.duration || 1000,
-    EASING: obj.easing || 'easeInOutCubic',
-    OFFSET: obj.offset || 0,
-    CB: obj.callback
+  const scroller = {
+    target: document.querySelector(`[data-scroller-target="${obj.id}"]`),
+    trigger: document.querySelector(`[data-scroller-trigger="${obj.id}"]`),
+    duration: obj.duration || 1000,
+    easing: obj.easing || 'easeInOutCubic',
+    offset: obj.offset || 0,
+    cb: obj.callback
   };
 
-  const BROWSER = {
-    WINDOW_HEIGHT: window.innerHeight,
-    DOCUMENT_HEIGHT: Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
+  const browser = {
+    windowHeight: window.innerHeight,
+    documentHeight: Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
   };
 
-  const EASINGS = {
+  const easings = {
     linear(t) {
       return t;
     },
@@ -29,11 +29,11 @@ const Scroller = (obj) => {
 
   const _checkBody = () => {
     document.documentElement.scrollTop += 1;
-    const BODY = (document.documentElement.scrollTop !== 0)
+    const body = (document.documentElement.scrollTop !== 0)
       ? document.documentElement
       : document.body;
     document.documentElement.scrollTop -= 1;
-    return BODY;
+    return body;
   };
 
   const _getTargetTop = () => {
@@ -41,42 +41,42 @@ const Scroller = (obj) => {
       return 0;
     }
 
-    let target = SCROLLER.TARGET;
+    let target = scroller.target;
     let topPosition = 0;
 
     while (target) {
-        topPosition += (target.offsetTop + target.clientTop);
-        target = target.offsetParent;
+      topPosition += (target.offsetTop + target.clientTop);
+      target = target.offsetParent;
     }
 
     return topPosition;
   };
 
   const scrollTo = () => {
-    BROWSER.BODY = _checkBody();
-    SCROLLER.TARGET_TOP = _getTargetTop();
+    browser.body = _checkBody();
+    scroller.targetTop = _getTargetTop();
 
-    const START_TIME = window.performance.now
+    const startTime = window.performance.now
       ? (performance.now() + performance.timing.navigationStart)
       : Date.now();
 
-    const START_POS = BROWSER.BODY.scrollTop;
-    const DESTINATION = BROWSER.DOCUMENT_HEIGHT - SCROLLER.TARGET_TOP < BROWSER.WINDOW_HEIGHT
-      ? BROWSER.DOCUMENT_HEIGHT - BROWSER.WINDOW_HEIGHT
-      : Math.abs(SCROLLER.TARGET_TOP - SCROLLER.OFFSET);
+    const startPosition = browser.body.scrollTop;
+    const destination = browser.documentHeight - scroller.targetTop < browser.windowHeight
+      ? browser.documentHeight - browser.windowHeight
+      : Math.abs(scroller.targetTop - scroller.offset);
 
     const _scroll = () => {
-      const NOW = window.performance.now
+      const now = window.performance.now
         ? (performance.now() + performance.timing.navigationStart)
         : Date.now();
 
-      const TIME = Math.min(1, ((NOW - START_TIME) / SCROLLER.DURATION));
-      const EASED_TIME = EASINGS[SCROLLER.EASING](TIME);
-      BROWSER.BODY.scrollTop = (EASED_TIME * (DESTINATION - START_POS)) + START_POS;
+      const time = Math.min(1, ((now - startTime) / scroller.duration));
+      const easedTime = easings[scroller.easing](time);
+      browser.body.scrollTop = (easedTime * (destination - startPosition)) + startPosition;
 
-      if (BROWSER.BODY.scrollTop === DESTINATION) {
-        if (SCROLLER.CB) {
-          SCROLLER.CB();
+      if (browser.body.scrollTop === destination) {
+        if (scroller.cb) {
+          scroller.cb();
         }
         return;
       }
@@ -86,10 +86,10 @@ const Scroller = (obj) => {
   };
 
   const _resetScroller = () => {
-    BROWSER.WINDOW_HEIGHT = window.innerHeight;
-    BROWSER.DOCUMENT_HEIGHT = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
+    browser.windowHeight = window.innerHeight;
+    browser.documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
 
-    SCROLLER.TARGET_TOP = _getTargetTop();
+    scroller.targetTop = _getTargetTop();
   }
 
   const _remove = () => {
@@ -97,7 +97,7 @@ const Scroller = (obj) => {
   };
 
   const construct = () => {
-    SCROLLER.TRIGGER.addEventListener('click', scrollTo);
+    scroller.trigger.addEventListener('click', scrollTo);
     window.addEventListener('resize', _resetScroller);
 
     beforeViewChange(_remove);

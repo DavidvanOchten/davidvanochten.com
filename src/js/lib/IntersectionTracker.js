@@ -2,14 +2,14 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IntersectionTracker = (obj) => {
 
-  const INTERSECTION_TRACKER = {
-    CONTENT: obj.content,
-    THRESHOLD: obj.threshold * window.innerHeight || 0,
-    CB: obj.callback,
-    USE_FLAG: obj.flag
+  const intersectionTracker = {
+    content: obj.content,
+    threshold: obj.threshold * window.innerHeight || 0,
+    cb: obj.callback,
+    useFlag: obj.flag
   };
 
-  const BROWSER = {
+  const browser = {
     ticking: false
   };
 
@@ -18,59 +18,59 @@ const IntersectionTracker = (obj) => {
       if (entry.isIntersecting) {
         entry.target.dataset.intersected = 'true';
 
-        if (INTERSECTION_TRACKER.USE_FLAG) {
-          INTERSECTION_TRACKER.IO.unobserve(entry.target);
+        if (intersectionTracker.useFlag) {
+          intersectionTracker.io.unobserve(entry.target);
         }
 
       } else {
         entry.target.dataset.intersected = 'false';
       }
 
-      INTERSECTION_TRACKER.CB(entry.target);
+      intersectionTracker.cb(entry.target);
     });
   };
 
   const _useIntersectionObserver = () => {
-    const OPTIONS = { threshold: 0, rootMargin: `-${INTERSECTION_TRACKER.THRESHOLD}px` };
+    const options = { threshold: 0, rootMargin: `-${intersectionTracker.threshold}px` };
 
-    INTERSECTION_TRACKER.IO = new IntersectionObserver(_intersectionObserverCB, OPTIONS);
-    INTERSECTION_TRACKER.CONTENT.map(item => INTERSECTION_TRACKER.IO.observe(item));
+    intersectionTracker.io = new IntersectionObserver(_intersectionObserverCB, options);
+    intersectionTracker.content.map(item => intersectionTracker.io.observe(item));
   };
 
   const _eventsCB = () => {
-    BROWSER.ticking = false;
+    browser.ticking = false;
 
-    INTERSECTION_TRACKER.CONTENT.map(item => {
-      if (INTERSECTION_TRACKER.USE_FLAG && item.dataset.intersected === 'true') {
+    intersectionTracker.content.map(item => {
+      if (intersectionTracker.useFlag && item.dataset.intersected === 'true') {
         return;
       }
 
-      const ITEM_TOP = item.getBoundingClientRect().top;
-      const ITEM_BOTTOM = item.getBoundingClientRect().bottom;
+      const itemTop = item.getBoundingClientRect().top;
+      const itemBottom = item.getBoundingClientRect().bottom;
 
-      if (INTERSECTION_TRACKER.THRESHOLD === 0) {
-        const TOP_IN_VIEW = (ITEM_TOP >= 0 && ITEM_TOP <= window.innerHeight);
-        const BOTTOM_IN_VIEW = (ITEM_BOTTOM >= 0 && ITEM_BOTTOM <= window.innerHeight);
-        const IN_FULL_VIEW = (ITEM_TOP <= 0 && ITEM_BOTTOM >= window.innerHeight);
+      if (intersectionTracker.threshold === 0) {
+        const topInView = (itemTop >= 0 && itemTop <= window.innerHeight);
+        const bottomInView = (itemBottom >= 0 && itemBottom <= window.innerHeight);
+        const inFullView = (itemTop <= 0 && itemBottom >= window.innerHeight);
 
-        INTERSECTION_TRACKER.CONDITION = '(TOP_IN_VIEW || BOTTOM_IN_VIEW || IN_FULL_VIEW)';
+        intersectionTracker.condition = '(topInView || bottomInView || inFullView)';
       } else {
-        INTERSECTION_TRACKER.CONDITION = '(ITEM_TOP <= INTERSECTION_TRACKER.THRESHOLD && ITEM_BOTTOM >= INTERSECTION_TRACKER.THRESHOLD)';
+        intersectionTracker.condition = '(itemTop <= intersectionTracker.threshold && itemBottom >= intersectionTracker.threshold)';
       }
   
-      eval(INTERSECTION_TRACKER.CONDITION)
+      eval(intersectionTracker.condition)
         ? item.dataset.intersected = 'true'
         : item.dataset.intersected = 'false';
 
-      INTERSECTION_TRACKER.CB(item);
+      intersectionTracker.cb(item);
     });
   };
 
   const _requestTick = () => {
-    if (!BROWSER.ticking) {
+    if (!browser.ticking) {
       requestAnimationFrame(_eventsCB);
     }
-    BROWSER.ticking = true;
+    browser.ticking = true;
   };
 
   const _useEvents = () => {
@@ -89,8 +89,8 @@ const IntersectionTracker = (obj) => {
     window.removeEventListener('scroll', _requestTick);
     window.removeEventListener('resize', _requestTick);
 
-    if (INTERSECTION_TRACKER.IO) {
-      INTERSECTION_TRACKER.IO.disconnect();
+    if (intersectionTracker.io) {
+      intersectionTracker.io.disconnect();
     }
   };
 

@@ -26,6 +26,7 @@
 
   <div class="gallery">
     {{#each content}}
+    {{!-- Add If statements for different content types --}}
     <picture class="gallery__item" data-reveal="scale">
       <source media="(min-width: 600px)" srcset="{{src}}"> {{!-- 2x, {{srcMd}} 1x --}}
       <img src="{{srcMd}}" alt="{{name}}">

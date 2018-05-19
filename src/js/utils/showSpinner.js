@@ -1,7 +1,7 @@
 export const showSpinner = (state) => {
-  const SPINNER = document.querySelector('[data-spinner]');
+  const spinner = document.querySelector('[data-spinner]');
 
   state === true
-    ? SPINNER.classList.add('spinner--isVisible')
-    : SPINNER.classList.remove('spinner--isVisible');
+    ? spinner.classList.add('spinner--isVisible')
+    : spinner.classList.remove('spinner--isVisible');
 };

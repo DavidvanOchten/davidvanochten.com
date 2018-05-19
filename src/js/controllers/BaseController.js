@@ -4,7 +4,7 @@ import { lazyLoad } from '../utils/lazyLoad.js';
 
 const BaseController = (() => {
 
-  const BASE = {};
+  const base = {};
 
   const _addClass = (content) => {
     // content.classList.add('classname');
@@ -17,26 +17,26 @@ const BaseController = (() => {
   }
 
   const construct = () => {
-    BASE.TOP_SCROLLER = Scroller({
+    base.topScroller = Scroller({
       id: 'top',
       duration: 500
     });
 
-    BASE.LAZY_IMAGES = IntersectionTracker({
+    base.lazyImages = IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-src]')),
       callback: _lazyLoadContent,
       flag: true
     });
 
-    BASE.REVEAL_CONTENT = IntersectionTracker({
+    base.revealContent = IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-reveal]')),
       callback: _addClass,
       flag: true
     });
 
-    BASE.TOP_SCROLLER.init();
-    BASE.LAZY_IMAGES.init();
-    BASE.REVEAL_CONTENT.init();
+    base.topScroller.init();
+    base.lazyImages.init();
+    base.revealContent.init();
   };
 
   return {

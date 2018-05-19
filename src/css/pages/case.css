@@ -11,11 +11,17 @@
     }
   }
 
+  &__headings {
+    @media (--tablet-landscape-up) {
+      width: var(--col-12);
+    }
+  }
+
   &__hero {
     padding-top: 100%;
 
     @media (--tablet-landscape-up) {
-      padding-top: calc(9 / 21 * 100%);
+      padding-top: calc(9 / 16 * 100%);
     }
   }
 

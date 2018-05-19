@@ -1,40 +1,40 @@
 const Toggle = (obj) => {
 
-  const TOGGLE = {
-    TARGET: document.querySelector(`[data-toggle-target="${obj.id}"]`),
-    TARGET_CLASS: obj.targetClass,
-    CB: obj.callback
+  const toggle = {
+    target: document.querySelector(`[data-toggle-target="${obj.id}"]`),
+    targetClass: obj.targetClass,
+    cb: obj.callback
   };
 
   const toggleItems = () => {
-    TOGGLE.TARGET.classList.toggle(TOGGLE.TARGET_CLASS);
+    toggle.target.classList.toggle(toggle.targetClass);
 
-    (TOGGLE.TARGET.getAttribute('aria-hidden') !== null) && 
-    (TOGGLE.TARGET.getAttribute('aria-hidden') === 'true')
-      ? TOGGLE.TARGET.setAttribute('aria-hidden', false)
-      : TOGGLE.TARGET.setAttribute('aria-hidden', true);
+    (toggle.target.getAttribute('aria-hidden') !== null) && 
+    (toggle.target.getAttribute('aria-hidden') === 'true')
+      ? toggle.target.setAttribute('aria-hidden', false)
+      : toggle.target.setAttribute('aria-hidden', true);
 
-    if (TOGGLE.TRIGGER !== undefined) {
-      TOGGLE.TRIGGER.getAttribute('aria-pressed') === 'false'
-        ? TOGGLE.TRIGGER.setAttribute('aria-pressed', true)
-        : TOGGLE.TRIGGER.setAttribute('aria-pressed', false);
+    if (toggle.trigger !== undefined) {
+      toggle.trigger.getAttribute('aria-pressed') === 'false'
+        ? toggle.trigger.setAttribute('aria-pressed', true)
+        : toggle.trigger.setAttribute('aria-pressed', false);
     }
 
-    if (TOGGLE.TRIGGER_CLASS !== undefined) {
-      TOGGLE.TRIGGER.classList.toggle(TOGGLE.TRIGGER_CLASS);
+    if (toggle.triggerClass !== undefined) {
+      toggle.trigger.classList.toggle(toggle.triggerClass);
     }
 
-    if (TOGGLE.CB) {
-      TOGGLE.CB(TOGGLE);
+    if (toggle.cb) {
+      toggle.cb(toggle);
     }
   };
 
   const construct = () => {
-    TOGGLE.TRIGGER = document.querySelector(`[data-toggle-trigger="${obj.id}"]`);
-    TOGGLE.TRIGGER_CLASS = obj.triggerClass,
+    toggle.trigger = document.querySelector(`[data-toggle-trigger="${obj.id}"]`);
+    toggle.triggerClass = obj.triggerClass,
 
-    TOGGLE.TRIGGER.addEventListener('click', toggleItems);
-    TOGGLE.TRIGGER.addEventListener('keyup', e => {
+    toggle.trigger.addEventListener('click', toggleItems);
+    toggle.trigger.addEventListener('keyup', e => {
       if (e.keyCode === 13) {
         toggleItems();
       }

@@ -7,31 +7,31 @@ import { showNotification } from '../utils/showNotification.js';
 
 const Router = () => {
 
-  const ROUTER = {
-    VIEW_SELECTOR: '[data-view]',
-    VIEW_PARENT: document.querySelector('[data-main]'),
-    ACTIVE_VIEW_CLASS: 'page--isVisible'
+  const router = {
+    viewSelector: '[data-view]',
+    viewParent: document.querySelector('[data-main]'),
+    activeViewClass: 'page--isVisible'
   };
 
-  const MENU = {
-    ACTIVE_LINK_CLASS: 'menu__link--isActive'
-  }
+  const menu = {
+    activeLinkClass: 'menu__link--isActive'
+  };
 
   const _appendView = (data) => {
-    const PARSER = new DOMParser();
-    const DOC = PARSER.parseFromString(data, 'text/html');
-    const CONTENT = DOC.querySelector(ROUTER.VIEW_SELECTOR);
-    return ROUTER.VIEW_PARENT.appendChild(CONTENT);
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, 'text/html');
+    const content = doc.querySelector(router.viewSelector);
+    return router.viewParent.appendChild(content);
   };
 
   const _removeView = () => {
     return new Promise((resolve, reject) => {
-      let removableElm = document.querySelector(ROUTER.VIEW_SELECTOR);
-      removableElm.classList.remove(ROUTER.ACTIVE_VIEW_CLASS);
+      let removableElm = document.querySelector(router.viewSelector);
+      removableElm.classList.remove(router.activeViewClass);
 
       // Fallback used, transitionend solution behaves inconsistently
       setTimeout(() => {
-        ROUTER.VIEW_PARENT.removeChild(removableElm);
+        router.viewParent.removeChild(removableElm);
         removableElm = null;
         resolve();
       }, 500);
@@ -39,7 +39,7 @@ const Router = () => {
   };
 
   const _disableRouterLinks = (status) => {
-    ROUTER.LINKS.map(item => {
+    router.links.map(item => {
       status === true
         ? item.classList.add('u-isUnclickable')
         : item.classList.remove('u-isUnclickable');
@@ -50,12 +50,12 @@ const Router = () => {
     e.preventDefault();
 
     // (e.currentTarget === window)
-    //   ? ROUTER.TARGET_URL = e.currentTarget.location.href
-    //   : ROUTER.TARGET_URL = e.currentTarget.href;
+    //   ? router.targetUrl = e.currentTarget.location.href
+    //   : router.targetUrl = e.currentTarget.href;
 
-    ROUTER.TARGET_URL = e.currentTarget.href;
+    router.targetUrl = e.currentTarget.href;
 
-    if (ROUTER.TARGET_URL === window.location.href) {
+    if (router.targetUrl === window.location.href) {
       Scroller({ id: 'top' }).scroll();
       return;
     } // "Scroll to top" functionality kicks in if the user is already on the requested page
@@ -63,16 +63,16 @@ const Router = () => {
     showSpinner(true);
     _disableRouterLinks(true);
 
-    window.history.pushState(null, null, ROUTER.TARGET_URL); // Set this before _removeView
+    window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
 
     _removeView()
-      .then(() => axios.get(ROUTER.TARGET_URL))
+      .then(() => axios.get(router.targetUrl))
       .then(resp => _appendView(resp.data))
       .then(view => {
-        ROUTER.VIEW = view;
+        router.view = view;
 
-        const VIEW_NAME = ROUTER.VIEW.dataset.view;
-        document.title = `${VIEW_NAME.substr(0, 1).toUpperCase() + VIEW_NAME.substr(1)} | David van Ochten`;
+        const viewName = router.view.dataset.view;
+        document.title = `${viewName.substr(0, 1).toUpperCase() + viewName.substr(1)} | David van Ochten`;
 
         document.documentElement.scrollTop = 0; // Desktop
         document.body.scrollTop = 0; // Safari mobile
@@ -91,41 +91,41 @@ const Router = () => {
   };
 
   const _createRouterLinks = () => {
-    ROUTER.LINKS = [].slice.call(document.querySelectorAll('a:not([data-bypass])'));
-    ROUTER.LINKS.map(link => link.addEventListener('click', _switchViews));
+    router.links = [].slice.call(document.querySelectorAll('a:not([data-bypass])'));
+    router.links.map(link => link.addEventListener('click', _switchViews));
   };
 
   const _setActiveNavLink = () => {
-    if (ROUTER.VIEW.dataset.view === 'offline' || ROUTER.VIEW.dataset.view === 'error') {
+    if (router.view.dataset.view === 'offline' || router.view.dataset.view === 'error') {
       return;
     }
 
-    MENU.LINKS.map(link => {
-      if (link.classList.contains(MENU.ACTIVE_LINK_CLASS)) {
-        link.classList.remove(MENU.ACTIVE_LINK_CLASS);
+    menu.links.map(link => {
+      if (link.classList.contains(menu.activeLinkClass)) {
+        link.classList.remove(menu.activeLinkClass);
       }
     });
 
-    const TARGET_LINK = MENU.LINKS.filter(link => {
+    const targetLink = menu.links.filter(link => {
       return link.pathname.split('/')[1] === window.location.pathname.split('/')[1];
     })[0];
 
-    TARGET_LINK.classList.add(MENU.ACTIVE_LINK_CLASS);
+    targetLink.classList.add(menu.activeLinkClass);
   };
 
   const _setUpView = () => {
     Controllers['base'].init(); // Intializes base functions required for all views
-    Controllers[ROUTER.VIEW.dataset.view].init(); // Intializes view-specific functions
+    Controllers[router.view.dataset.view].init(); // Intializes view-specific functions
 
     _createRouterLinks();
     _setActiveNavLink();
 
-    ROUTER.VIEW.classList.add(ROUTER.ACTIVE_VIEW_CLASS); // Show view to user
+    router.view.classList.add(router.activeViewClass); // Show view to user
   };
 
   const construct = () => {
-    ROUTER.VIEW = document.querySelector(ROUTER.VIEW_SELECTOR);
-    MENU.LINKS = [].slice.call(document.querySelectorAll('[data-menu="link"]'));
+    router.view = document.querySelector(router.viewSelector);
+    menu.links = [].slice.call(document.querySelectorAll('[data-menu="link"]'));
 
     _setUpView();
 

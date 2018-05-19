@@ -2,40 +2,40 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const Slider = (id) => {
 
-  const SLIDER = {
-    DRAGGING_CLASS: 'slider__content--isDragging',
+  const slider = {
+    draggingClass: 'slider__content--isDragging',
     activeIndex: 0,
     position: 0
   };
 
-  const USER = {
+  const user = {
     hasMouseDown: false,
     isDragging: false
   };
 
   const _moveSlider = () => {
-    if (!USER.isDragging) {
-      SLIDER.position = parseInt(SLIDER.CONTENT.querySelector(`[data-index="${SLIDER.activeIndex}"]`).dataset.offset);
+    if (!user.isDragging) {
+      slider.position = parseInt(slider.content.querySelector(`[data-index="${slider.activeIndex}"]`).dataset.offset);
 
-      SLIDER.CONTENT.style.webkitTransform = `translate3d(-${SLIDER.position}px, 0, 0)`;
-      SLIDER.CONTENT.style.transform = `translate3d(-${SLIDER.position}px, 0, 0)`;
+      slider.content.style.webkitTransform = `translate3d(-${slider.position}px, 0, 0)`;
+      slider.content.style.transform = `translate3d(-${slider.position}px, 0, 0)`;
     } else {
-      SLIDER.CONTENT.style.webkitTransform = `translate3d(${SLIDER.position}px, 0, 0)`;
-      SLIDER.CONTENT.style.transform = `translate3d(${SLIDER.position}px, 0, 0)`;
+      slider.content.style.webkitTransform = `translate3d(${slider.position}px, 0, 0)`;
+      slider.content.style.transform = `translate3d(${slider.position}px, 0, 0)`;
     }
   };
 
   const _setSlider = () => {
-    SLIDER.CONTENT.classList.remove(SLIDER.DRAGGING_CLASS);
+    slider.content.classList.remove(slider.draggingClass);
 
-    let draggedX = Math.abs(SLIDER.position);
+    let draggedX = Math.abs(slider.position);
 
-    if (SLIDER.position > 0) {
-      SLIDER.activeIndex = parseInt(SLIDER.ITEMS[0].dataset.index);
-    } else if (draggedX > parseInt(SLIDER.ITEMS[SLIDER.ITEMS.length - 1].dataset.activeArea.split('|')[1])) {
-      SLIDER.activeIndex = parseInt(SLIDER.ITEMS[SLIDER.ITEMS.length - 1].dataset.index);
+    if (slider.position > 0) {
+      slider.activeIndex = parseInt(slider.items[0].dataset.index);
+    } else if (draggedX > parseInt(slider.items[slider.items.length - 1].dataset.activeArea.split('|')[1])) {
+      slider.activeIndex = parseInt(slider.items[slider.items.length - 1].dataset.index);
     } else {
-      const ACTIVE_ITEM = SLIDER.ITEMS.filter(item => {
+      const activeItem = slider.items.filter(item => {
         let activeAreaStart = parseInt(item.dataset.activeArea.split('|')[0]);
         let activeAreaEnd = parseInt(item.dataset.activeArea.split('|')[1]);
   
@@ -44,31 +44,31 @@ const Slider = (id) => {
         }
       });
 
-      SLIDER.activeIndex = parseInt(ACTIVE_ITEM[0].dataset.index);
+      slider.activeIndex = parseInt(activeItem[0].dataset.index);
     }
 
     _moveSlider();
   };
 
   const _onMouseUp = (e) => {
-    USER.hasMouseDown = false;
+    user.hasMouseDown = false;
 
-    if (USER.isDragging) {
-      USER.isDragging = false;
+    if (user.isDragging) {
+      user.isDragging = false;
       _setSlider();
     } else if (e.target.dataset.index !== undefined) {
       // Checks if the clicked element is a slider item (with an index)
-      SLIDER.activeIndex = parseInt(e.target.dataset.index);
+      slider.activeIndex = parseInt(e.target.dataset.index);
       _moveSlider();
     }
   };
 
   const _onMouseMove = (e) => {
-    if (USER.hasMouseDown) {
-      USER.isDragging = true;
+    if (user.hasMouseDown) {
+      user.isDragging = true;
 
-      if (!SLIDER.CONTENT.classList.contains(SLIDER.DRAGGING_CLASS)) {
-        SLIDER.CONTENT.classList.add(SLIDER.DRAGGING_CLASS);
+      if (!slider.content.classList.contains(slider.draggingClass)) {
+        slider.content.classList.add(slider.draggingClass);
       }
 
       if (e.target.dataset.slider !== 'item') {
@@ -76,77 +76,77 @@ const Slider = (id) => {
         return;
       }
 
-      SLIDER.position = e.clientX - SLIDER.startX;
+      slider.position = e.clientX - slider.startX;
       _moveSlider();
     }
   };
 
   const _onMouseDown = (e) => {
-    USER.hasMouseDown = true;
-    SLIDER.startX = e.clientX + SLIDER.position;
+    user.hasMouseDown = true;
+    slider.startX = e.clientX + slider.position;
   };
 
   const _onTouchEnd = (e) => {
-    if (USER.isDragging) {
-      USER.isDragging = false;
+    if (user.isDragging) {
+      user.isDragging = false;
       _setSlider();
     }
   };
 
   const _onTouchMove = (e) => {
-    USER.isDragging = true;
+    user.isDragging = true;
 
-    if (!SLIDER.CONTENT.classList.contains(SLIDER.DRAGGING_CLASS)) {
-      SLIDER.CONTENT.classList.add(SLIDER.DRAGGING_CLASS);
+    if (!slider.content.classList.contains(slider.draggingClass)) {
+      slider.content.classList.add(slider.draggingClass);
     }
 
-    const OFFSET_X = e.touches[0].clientX - SLIDER.startX;
-    const OFFSET_Y = e.touches[0].clientY - SLIDER.startY;
+    const offsetX = e.touches[0].clientX - slider.startX;
+    const offsetY = e.touches[0].clientY - slider.startY;
 
     // Prevents vertical scroll if the user is swiping left/right
-    if (Math.abs(OFFSET_X) > Math.abs(OFFSET_Y) && e.cancelable) {
+    if (Math.abs(offsetX) > Math.abs(offsetY) && e.cancelable) {
       e.preventDefault();
 
-      SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
+      slider.position = e.touches[0].clientX - slider.adjustedStartX;
       _moveSlider();
     } else {
-      SLIDER.position = e.touches[0].clientX - SLIDER.adjustedStartX;
+      slider.position = e.touches[0].clientX - slider.adjustedStartX;
     }
   };
 
   const _onTouchStart = (e) => {
-    SLIDER.startX = e.touches[0].clientX;
-    SLIDER.startY = e.touches[0].clientY;
-    SLIDER.adjustedStartX = e.touches[0].clientX + SLIDER.position;
+    slider.startX = e.touches[0].clientX;
+    slider.startY = e.touches[0].clientY;
+    slider.adjustedStartX = e.touches[0].clientX + slider.position;
   };
 
   const _onKeyUp = (e) => {
-    if (e.keyCode === 37 && SLIDER.activeIndex > 0) {
-      SLIDER.activeIndex = SLIDER.activeIndex - 1;
-    } else if (e.keyCode === 39 && SLIDER.activeIndex < SLIDER.ITEMS.length - 1) {
-      SLIDER.activeIndex = SLIDER.activeIndex + 1;
+    if (e.keyCode === 37 && slider.activeIndex > 0) {
+      slider.activeIndex = slider.activeIndex - 1;
+    } else if (e.keyCode === 39 && slider.activeIndex < slider.items.length - 1) {
+      slider.activeIndex = slider.activeIndex + 1;
     }
 
     _moveSlider();
   };
 
   const _setUpSliderItems = () => {
-    const FIRST_ITEM_WIDTH = SLIDER.ITEMS[0].offsetWidth;
-    const SLIDER_OFFSET = parseInt(window.getComputedStyle(SLIDER.CONTENT).marginLeft);
-    const FIRST_ITEM_THRESHOLD = FIRST_ITEM_WIDTH + SLIDER_OFFSET - (SLIDER.ROOT.offsetWidth / 2);
+    const firstItemWidth = slider.items[0].offsetWidth;
+    const sliderOffset = parseInt(window.getComputedStyle(slider.content).marginLeft);
+    const firstItemOffset = firstItemWidth + sliderOffset - (slider.root.offsetWidth / 2);
 
     let offset = 0;
     let previousThreshold = 0;
     let currentThreshold = 0;
 
-    SLIDER.ITEMS.map((item, i) => {
+    slider.items.map((item, i) => {
       item.dataset.index = i;
       item.dataset.offset = offset;
 
       offset = item.offsetWidth + offset;
       // Make dynamic for variable widths?
       // Don't use first item here anymore?
-      currentThreshold = FIRST_ITEM_THRESHOLD + offset - FIRST_ITEM_WIDTH;
+      currentThreshold = firstItemOffset + offset - firstItemWidth;
       item.dataset.activeArea = `${previousThreshold}|${currentThreshold}`;
 
       previousThreshold = currentThreshold;
@@ -161,21 +161,21 @@ const Slider = (id) => {
   }
 
   const construct = () => {
-    SLIDER.ROOT = document.querySelector(`[data-slider="${id}"]`);
-    SLIDER.CONTENT = SLIDER.ROOT.querySelector('[data-slider="content"]');
-    SLIDER.ITEMS = [].slice.call(SLIDER.ROOT.querySelectorAll('[data-slider="item"]'));
-    // SLIDER.BUTTON_PREV = document.querySelector(`[data-slider-prev="${id}"]`);
-    // SLIDER.BUTTON_NEXT = document.querySelector(`[data-slider-next="${id}"]`);
+    slider.root = document.querySelector(`[data-slider="${id}"]`);
+    slider.content = slider.root.querySelector('[data-slider="content"]');
+    slider.items = [].slice.call(slider.root.querySelectorAll('[data-slider="item"]'));
+    // slider.buttonPrev = document.querySelector(`[data-slider-prev="${id}"]`);
+    // slider.buttonNext = document.querySelector(`[data-slider-next="${id}"]`);
 
     // _setUpSliderNavigation();
     _setUpSliderItems();
 
-    SLIDER.CONTENT.addEventListener('touchstart', _onTouchStart);
-    SLIDER.CONTENT.addEventListener('touchmove', _onTouchMove);
-    SLIDER.CONTENT.addEventListener('touchend', _onTouchEnd);
+    slider.content.addEventListener('touchstart', _onTouchStart);
+    slider.content.addEventListener('touchmove', _onTouchMove);
+    slider.content.addEventListener('touchend', _onTouchEnd);
 
-    SLIDER.CONTENT.addEventListener('mousedown', _onMouseDown);
-    SLIDER.CONTENT.addEventListener('mouseup', _onMouseUp);
+    slider.content.addEventListener('mousedown', _onMouseDown);
+    slider.content.addEventListener('mouseup', _onMouseUp);
     window.addEventListener('mousemove', _onMouseMove);
 
     window.addEventListener('keyup', _onKeyUp);

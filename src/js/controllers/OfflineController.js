@@ -1,10 +1,10 @@
 const OfflineController = (() => {
-  const _construct = () => {
+  const construct = () => {
 
   };
 
   return {
-    init: _construct
+    init: construct
   };
 })();
 

@@ -1,29 +1,29 @@
 export const lazyLoad = (img) => {
 
-  const LAZYLOAD = {
-    IMG: img,
-    SRC: img.dataset.src
+  const lazyLoad = {
+    src: img.dataset.src,
+    img: img
   };
 
   const _addReadyClass = () => {
-    if (window.getComputedStyle(LAZYLOAD.IMG).width) {
-      LAZYLOAD.IMG.parentNode.classList.add('lazyLoader--isDone');
+    if (window.getComputedStyle(lazyLoad.img).width) {
+      lazyLoad.img.parentNode.classList.add('lazyLoader--isDone');
     }
   };
 
   const _showImage = () => {
-    LAZYLOAD.IMG.src = LAZYLOAD.SRC;
-    LAZYLOAD.IMG.complete
+    lazyLoad.img.src = lazyLoad.src;
+    lazyLoad.img.complete
       ? _addReadyClass()
-      : LAZYLOAD.IMG.addEventListener('load', _addReadyClass);
+      : lazyLoad.img.addEventListener('load', _addReadyClass);
   };
 
   const _loadImage = () => {
     return new Promise((resolve, reject) => {
-      const IMAGE = new Image();
-      IMAGE.src = LAZYLOAD.SRC;
-      IMAGE.onload = resolve;
-      IMAGE.onerror = reject;
+      const image = new Image();
+      image.src = lazyLoad.src;
+      image.onload = resolve;
+      image.onerror = reject;
     });
   };
 

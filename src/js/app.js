@@ -9,39 +9,23 @@ const App = (() => {
   console.log('[App] Service Worker enabled > JS/CSS still disabled');
   createServiceWorker();
 
-  const _detectIE = () => {
-    const UA = window.navigator.userAgent;
-
-    if (UA.indexOf('MSIE ') > 0 || UA.indexOf('Trident/') > 0) {
-      return true;
-    }
-  };
-
   window.addEventListener('load', e => {
-
-    // Show 'change browser' text if using IE
-    // Move this to inline script? First thing the user sees.
-    // If not IE, set spinner and cool splash stuff in same script.
-    // Write ES5 code for this.
-    _detectIE()
-      ? console.log('[App] Is IE')
-      : console.log('[App] Is not IE');
-
-    const MENU = Menu();
-    const ROUTER = Router();
-    const SPINNER = Spinner();
+    const menu = Menu();
+    const router = Router();
+    const spinner = Spinner();
 
     // Add LOADING letter sequentially. Change tot LOADED on load.
     // Show spinner
-    const SPLASH = document.querySelector('[data-splash]');
-    SPLASH.addEventListener('transitionend', e => e.target.parentNode.removeChild(e.target));
+    const splash = document.querySelector('[data-splash]');
+    // splash.addEventListener('transitionend', e => e.target.parentNode.removeChild(e.target));
 
     setTimeout(() => {
-      MENU.init();
-      ROUTER.init();
-      SPINNER.init();
-      SPLASH.classList.remove('splash--isVisible');
+      menu.init();
+      router.init();
+      spinner.init();
+      splash.classList.remove('splash--isVisible');
       document.body.removeAttribute('style');
+      document.body.removeAttribute('class');
     }, 1500);
   });
 

@@ -1,9 +1,9 @@
 const NotesController = (() => {
-  const _construct = () => {
+  const construct = () => {
   };
 
   return {
-    init: _construct
+    init: construct
   };
 })();
 

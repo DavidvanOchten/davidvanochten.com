@@ -2,31 +2,31 @@ import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const ScrollTracker = (obj) => {
 
-  const SCROLL_TRACKER = {
-    START: obj.start,
-    END: obj.end,
-    CB: obj.callback
+  const scrollTracker = {
+    start: obj.start,
+    end: obj.end,
+    cb: obj.callback
   };
 
-  const BROWSER = {
+  const browser = {
     scrolledY: 0,
     ticking: false
   };
 
   const _eventsCB = () => {
-    BROWSER.ticking = false;
-    BROWSER.scrolledY = window.pageYOffset;
+    browser.ticking = false;
+    browser.scrolledY = window.pageYOffset;
 
-    eval(SCROLL_TRACKER.CONDITION)
-      ? SCROLL_TRACKER.CB(true)
-      : SCROLL_TRACKER.CB(false);
+    eval(scrollTracker.condition)
+      ? scrollTracker.cb(true)
+      : scrollTracker.cb(false);
   };
 
   const _requestTick = () => {
-    if (!BROWSER.ticking) {
+    if (!browser.ticking) {
       requestAnimationFrame(_eventsCB);
     }
-    BROWSER.ticking = true;
+    browser.ticking = true;
   };
 
   const _remove = () => {
@@ -35,12 +35,12 @@ const ScrollTracker = (obj) => {
   };
 
   const construct = () => {
-    if (SCROLL_TRACKER.START === undefined) {
-      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.END > BROWSER.scrolledY';
-    } else if (SCROLL_TRACKER.END === undefined) {
-      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.START < BROWSER.scrolledY';
+    if (scrollTracker.start === undefined) {
+      scrollTracker.condition = 'scrollTracker.end > browser.scrolledY';
+    } else if (scrollTracker.end === undefined) {
+      scrollTracker.condition = 'scrollTracker.start < browser.scrolledY';
     } else {
-      SCROLL_TRACKER.CONDITION = 'SCROLL_TRACKER.START <= BROWSER.scrolledY && SCROLL_TRACKER.END >= BROWSER.scrolledY';
+      scrollTracker.condition = 'scrollTracker.start <= browser.scrolledY && scrollTracker.end >= browser.scrolledY';
     }
 
     window.addEventListener('scroll', _requestTick);
