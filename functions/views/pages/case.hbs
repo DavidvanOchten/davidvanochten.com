@@ -1,17 +1,16 @@
-<article class="case">
-  <div class="case__column case__column--narrow" data-toggle="column">
+<article class="case u-flex">
+  <div class="case__column" data-toggle="column">
     <div class="case__info">
       <header class="case__header">
         <div class="case__heading">
           <h1 class="case__title headline headline--inline">{{name}}</h1>
           <h2 class="case__subtitle headline headline--inline">{{{headline}}}</h2>
         </div>
-        <ul class="case__details">
+        <ul class="case__details u-flex">
           <li>2014</li>
           <li>Design / Development</li>
         </ul>
       </header>
-
       <div>{{{summary}}}</div>
     </div>
 
@@ -20,65 +19,22 @@
     </a>
   </div>
 
-  <div class="case__column case__column--wide">
-    <div class="gallery" role="button" aria-label="Open gallery" aria-pressed="false" data-toggle-trigger="gallery-content">
-      <div class="gallery__header">
-        <picture class="gallery__hero lazyLoader" data-toggle="gallery-hero">
-          <img class="lazyLoader__image" data-src="{{hero}}" alt="{{headline}}">
-        </picture>
-        <div class="gallery__indicator" data-toggle="gallery-indicator">Open gallery +</div>
-      </div>
+  <div class="gallery" role="button" aria-label="Open gallery" aria-pressed="false" tabindex="0" data-toggle-trigger="gallery-content" data-gallery="case">
+    <div class="gallery__header">
+      <picture class="gallery__hero lazyLoader">
+        <img class="lazyLoader__image" data-src="{{hero}}" alt="{{headline}}">
+      </picture>
+      <div class="gallery__indicator">Open gallery +</div>
+    </div>
 
-      <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
-      {{!-- Gallery content --}}
-      </div>
+    <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
+      {{#each content}}
+      {{!-- If video etc. --}}
+      <picture class="gallery__item" data-reveal="scale">
+        <source media="(min-width: 600px)" srcset="{{src}}">
+        <img src="{{srcMd}}" alt="{{name}}">
+      </picture>
+      {{/each}}
     </div>
   </div>
 </article>
-
-{{!-- {{> footer}} --}}
-
-{{!-- <article class="case">
-  <header class="case__header">
-    <div class="case__info">
-      <div class="case__headings">
-        <h1 class="case__title headline headline--inline">{{name}}</h1>
-        <h2 class="case__subtitle headline headline--inline">{{{headline}}}</h2>
-      </div>
-      <div class="case__details">
-        <ul>
-          <li><div>2014</div></li>
-          <li><div>Company website</div></li>
-          <li><div>Web design / Development</div></li>
-        </ul>
-        <div class="case__toggle" id="summary" role="button" aria-pressed="false" tabindex="0" data-toggle-trigger="summary">Info</div>
-      </div>
-    </div>
-    <div class="case__misc">
-      <div class="case__summary" aria-labelledby="summary" aria-hidden="true" data-toggle-target="summary">
-        <div>{{{summary}}}</div>
-      </div>
-      <picture class="case__hero lazyLoader">
-        <img class="lazyLoader__image" data-src="{{hero}}" alt="{{headline}}">
-      </picture>
-    </div>
-  </header>
-
-  <div class="gallery">
-    {{#each content}}
-    <picture class="gallery__item" data-reveal="scale">
-      <source media="(min-width: 600px)" srcset="{{src}}">
-      <img src="{{srcMd}}" alt="{{name}}">
-    </picture>
-    {{/each}}
-  </div>
-  <div class="">
-    <section class="">
-      <h2 class="">Next case</h2>
-      <h1>Things I Took</h1>
-    </section>
-  </div>
-
-  {{> footer}}
-
-</article> --}}

@@ -1,8 +1,32 @@
 .contact {
 
+  &__content {
+    flex-direction: column;
+
+    @media (--tablet-landscape-up) {
+      flex-direction: row;
+    }
+  }
+
+  &__details {
+    width: var(--col-6);
+    padding: calc(var(--bsl) * 2) var(--col-1);
+  }
+
   &__form {
     min-height: 100vh;
-    width: var(--col-18);
-    padding-top: calc(var(--bsl) * 6);
+    padding: calc(var(--bsl) * 3) var(--col-1);
+    border-top: 1px solid var(--grey-light);
+
+    @media (--tablet-landscape-up) {
+      width: var(--col-18);
+      border-top: none;
+      border-left: 1px solid var(--grey-light);
+    }
+  }
+
+  &__header {
+    padding: calc(var(--bsl) * 2) var(--col-1) calc(var(--bsl) * 1);
+    border-bottom: 1px solid var(--grey-light);
   }
 }

@@ -1,11 +1,63 @@
 .gallery {
   position: relative;
+  order: 0;
+  outline: none;
+
+  @media (--tablet-landscape-up) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    order: 1;
+    height: 100vh;
+    width: var(--col-24);
+  }
+
+  &--isActive {
+    & .gallery__hero {
+      opacity: 0;
+      transition: opacity .5s linear;
+    }
+
+    & .gallery__indicator {
+      transform: translate3d(0, 100%, 0);
+      transition: transform .5s cubic-bezier(.75, 0, .25, 1);
+    }
+  }
+
+  &--isVisible {
+    position: absolute;
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity .25s linear;
+
+    &--isVisible {
+      z-index: 10;
+      opacity: 1;
+      transition: opacity .5s linear 1s;
+    }
+  }
+
+  &__header {
+    position: fixed;
+    z-index: 10;
+    left: var(--col-10);
+    width: var(--col-14);
+  }
+
+  &__hero {
+    padding-bottom: 100vh;
+    transition: opacity .75s linear .5s;
+  }
 
   &__indicator {
     position: absolute;
     bottom: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1;
     display: flex;
     align-items: center;
     height: calc(var(--bsl) * 3);
@@ -13,39 +65,14 @@
     padding-right: var(--col-1);
     padding-left: var(--col-1);
     border-top: 1px solid var(--grey-light);
+    border-bottom: 1px solid var(--grey-light);
     font-family: var(--secondary-font);
     background-color: var(--light);
     will-change: transform;
-    transition: transform .5s cubic-bezier(.75, 0, .25, 1);
-
-    &--isHidden {
-      transform: translate3d(0, 100%, 0);
-    }
+    transition: transform .5s cubic-bezier(.75, 0, .25, 1) .75s;
   }
 
-  &__header {
-    position: relative;
-    left: var(--col-10);
-    width: var(--col-14);
-  }
-
-  &__content {
-    &--isVisible {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100%;
-      background: purple;
-    }
-  }
-
-  &__hero {
-    padding-bottom: 100vh;
-    transition: opacity .5s linear;
-
-    &--isHidden {
-      opacity: 0;
-    }
+  &__item {
+    margin-bottom: calc(var(--bsl) * 4);
   }
 }

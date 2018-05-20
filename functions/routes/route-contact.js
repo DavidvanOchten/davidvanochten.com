@@ -15,7 +15,7 @@ router.get('/contact', (req, resp) => {
         view: 'contact',
         title: 'contact',
         description: 'test',
-        headline: 'Contact',
+        headline: 'Get in touch',
       });
     })
     .catch((error) => {
