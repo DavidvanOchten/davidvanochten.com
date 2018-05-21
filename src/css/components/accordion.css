@@ -5,6 +5,14 @@
     overflow: hidden;
     transition: height .75s cubic-bezier(.75, 0, 0, 1);
     will-change: height;
+
+    &--isVisible {
+      & .accordion__content {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition: transform .75s cubic-bezier(.75, 0, 0, 1) .25s, opacity .25s linear .5s;
+      }
+    }
   }
 
   &__content {
@@ -12,17 +20,11 @@
     opacity: 0;
     transform: translate3d(0, -100%, 0);
     transition: transform .75s cubic-bezier(.75, 0, 0, 1), opacity .25s linear;
-
-    &--isVisible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      transition: transform .75s cubic-bezier(.75, 0, 0, 1) .25s, opacity .25s linear .5s;
-    }
   }
 
   &__item {
     position: relative;
-    cursor: pointer;
+    outline: 0;
 
     &::before {
       content: "";
@@ -44,6 +46,10 @@
         width: 100%;
         background-color: var(--grey-light);
       }
+    }
+
+    &--isActive {
+      /* change .accordion__title */
     }
   }
 

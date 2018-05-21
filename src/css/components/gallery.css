@@ -3,6 +3,16 @@
   order: 0;
   outline: none;
 
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: var(--col-24);
+    background-color: var(--grey-lightest);
+  }
+
   @media (--tablet-landscape-up) {
     position: fixed;
     top: 0;
@@ -19,8 +29,9 @@
     }
 
     & .gallery__indicator {
+      opacity: 0;
       transform: translate3d(0, 100%, 0);
-      transition: transform .5s cubic-bezier(.75, 0, .25, 1);
+      transition: transform .5s cubic-bezier(.75, 0, .25, 1), opacity 0s linear .5s;
     }
   }
 
@@ -31,19 +42,22 @@
   &__content {
     position: absolute;
     top: 0;
+    z-index: 10;
     opacity: 0;
+    background-color: var(--light);
     transition: opacity .25s linear;
+    pointer-events: none;
 
     &--isVisible {
-      z-index: 10;
       opacity: 1;
       transition: opacity .5s linear 1s;
+      pointer-events: auto;
     }
   }
 
   &__header {
     position: fixed;
-    z-index: 10;
+    z-index: 5;
     left: var(--col-10);
     width: var(--col-14);
   }

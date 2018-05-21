@@ -15,7 +15,6 @@ const CaseController = (() => {
     setTimeout(() => {
       window.scrollTo({ top: 0 });
       document.body.removeAttribute('class');
-      // add/remove position absolute;
       gallery.root.classList.toggle('gallery--isVisible');
     }, 1000);
   };
@@ -34,25 +33,6 @@ const CaseController = (() => {
     });
 
     gallery.trigger.init();
-
-
-    // gallery.container = document.querySelector('[data-gallery="container"]');
-
-    // gallery.container.addEventListener('transitionend', e => {
-    //   window.scrollTo({ top: 0 });
-    //   document.body.removeAttribute('class');
-
-    // });
-
-    // gallery.headerToggle = Toggle({ id: 'header', class: 'gallery__header--isHidden' });
-    // gallery.trigger = Toggle({
-    //   id: 'content',
-    //   class: 'gallery__content--isVisible',
-    //   triggerClass: 'gallery--isActive',
-    //   callback: _toggleGallery
-    // });
-
-    // gallery.trigger.init();
   };
 
   return {

@@ -1,7 +1,3 @@
-/* Create a cooler spinner 
-  e.g. like https://riviera1920.com/en/
-*/
-
 .spinner {
   position: fixed;
   top: calc(var(--bsl) * 1.5);
@@ -20,7 +16,7 @@
   pointer-events: none;
 
   &--isVisible {
-    opacity: .25;
+    opacity: 1;
     animation: pulse .5s infinite alternate;
     transition: opacity .25s linear .75s;
   }

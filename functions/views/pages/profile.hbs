@@ -13,11 +13,18 @@
     </div>
     <section class="profile__services">
       <h1 class="profile__subheading subheading" data-reveal="skew">Services</h1>
-      <ul class="accordion">
-        <li class="accordion__item" aria-expanded="false" role="button" data-reveal="slide" data-toggle="services">
-          <h2 class="accordion__title" data-accordion="title">Front-end development</h2>
-          <div class="accordion__container" data-accordion="container">
-            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design. Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te.</p>
+      <ul class="accordion" data-accordion="services">
+        {{!-- Pass along an id per service (e.g. front-end) --}}
+        <li class="accordion__item" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="front-end" data-accordion="item">
+          <h2 class="accordion__title">Front-end development</h2>
+          <div class="accordion__container" data-toggle="front-end">
+            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
+          </div>
+        </li>
+        <li class="accordion__item" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="webdesign" data-accordion="item">
+          <h2 class="accordion__title">Web design</h2>
+          <div class="accordion__container" data-toggle="webdesign">
+            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
           </div>
         </li>
       </ul>

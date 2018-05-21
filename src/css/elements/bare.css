@@ -5,7 +5,7 @@ a {
   outline: none;
 
   &:focus {
-    color: var(--grey-dark);
+    color: var(--grey);
   }
 }
 

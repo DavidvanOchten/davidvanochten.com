@@ -10,9 +10,9 @@ const Toggle = (obj) => {
     toggle.target.classList.toggle(toggle.targetClass);
 
     (toggle.target.getAttribute('aria-hidden') !== null) && 
-    (toggle.target.getAttribute('aria-hidden') === 'true')
-      ? toggle.target.setAttribute('aria-hidden', false)
-      : toggle.target.setAttribute('aria-hidden', true);
+    (toggle.target.getAttribute('aria-hidden') === 'false')
+      ? toggle.target.setAttribute('aria-hidden', true)
+      : toggle.target.setAttribute('aria-hidden', false);
 
     if (toggle.trigger !== undefined) {
       toggle.trigger.getAttribute('aria-pressed') === 'false'
@@ -31,7 +31,7 @@ const Toggle = (obj) => {
 
   const construct = () => {
     toggle.trigger = document.querySelector(`[data-toggle-trigger="${obj.id}"]`);
-    toggle.triggerClass = obj.triggerClass,
+    toggle.triggerClass = obj.triggerClass;
 
     toggle.trigger.addEventListener('click', toggleItems);
     toggle.trigger.addEventListener('keyup', e => {

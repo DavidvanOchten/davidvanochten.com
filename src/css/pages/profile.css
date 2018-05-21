@@ -5,6 +5,10 @@
     width: var(--col-12);
     padding: calc(var(--bsl) * 2) var(--col-1);
     border-right: 1px solid var(--grey-light);
+
+    & p {
+      margin-bottom: var(--bsl);
+    }
   }
 
   &__header {

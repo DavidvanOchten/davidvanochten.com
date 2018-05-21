@@ -1,10 +1,10 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const hbs = require('express-handlebars');
+const favicon = require('serve-favicon');
 const cors = require('cors');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 
 const app =  express();
 app.engine('hbs', hbs({
@@ -16,6 +16,7 @@ app.engine('hbs', hbs({
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'hbs');
 
+app.use(favicon(path.join(__dirname, '/favicon.ico')));
 app.use(cors({
   origin: true
 }));

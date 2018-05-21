@@ -14,7 +14,6 @@
   }
 
   &__form {
-    min-height: 100vh;
     padding: calc(var(--bsl) * 3) var(--col-1);
     border-top: 1px solid var(--grey-light);
 
