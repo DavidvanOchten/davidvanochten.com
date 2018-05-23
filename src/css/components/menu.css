@@ -87,7 +87,6 @@
   }
 
   &__link {
-    display: inline-block;
     font-family: var(--primary-font);
     transform: translate3d(0, 100%, 0);
     transition: transform .5s cubic-bezier(.75, 0, .25, 1);

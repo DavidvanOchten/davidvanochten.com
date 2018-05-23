@@ -1,10 +1,21 @@
 .profile {
   flex-direction: column;
 
+  &__details {
+    flex-direction: column;
+
+    @media (--tablet-portrait-up) {
+      flex-direction: row;
+    }
+  }
+
   &__summary {
-    width: var(--col-12);
     padding: calc(var(--bsl) * 2) var(--col-1);
-    border-right: 1px solid var(--grey-light);
+
+    @media (--tablet-portrait-up) {
+      width: var(--col-12);
+      border-right: 1px solid var(--grey-light);
+    }
 
     & p {
       margin-bottom: var(--bsl);
@@ -25,7 +36,10 @@
   }
 
   &__services {
-    width: var(--col-12);
     padding: calc(var(--bsl) * 2) var(--col-1);
+
+    @media (--tablet-portrait-up) {
+      width: var(--col-12);
+    }
   }
 }

@@ -6,8 +6,11 @@ const BaseController = (() => {
 
   const base = {};
 
-  const _addClass = (content) => {
-    // content.classList.add('classname');
+  const _removeClass = (content) => {
+    if (content.dataset.intersected === 'true') {
+      console.log(content);
+      content.classList.remove(`reveal--${content.dataset.reveal}`);
+    }
   };
 
   const _lazyLoadContent = (content) => {
@@ -30,7 +33,7 @@ const BaseController = (() => {
 
     base.revealContent = IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-reveal]')),
-      callback: _addClass,
+      callback: _removeClass,
       flag: true
     });
 

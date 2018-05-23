@@ -1,6 +1,7 @@
 .default {
 
   &__content {
+    min-height: calc(100vh - var(--bsl) * 6);
     padding: calc(var(--bsl) * 3) var(--col-1);
   }
 }

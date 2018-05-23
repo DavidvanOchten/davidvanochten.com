@@ -2,45 +2,49 @@
   <div class="index__column index__column--narrow" data-index-column="1">
     <div class="u-flex">
       <header class="index__intro">
-        {{!-- Fade in words with different delays. Ref: https://thecanopy.studio/ --}}
-        <h1>David van Ochten</h1>
-        <h2 class="subheading">Developer + designer</h2>
+        <h1 class="u-mask">
+          <div class="reveal reveal--slide" data-reveal="slide">David van Ochten</div>
+        </h1>
+        <h2 class="subheading u-mask">
+          <div class="reveal reveal--02 reveal--slide" data-reveal="slide">Developer + designer</div>
+        </h2>
       </header>
       <div class="index__signage">
         <ul data-toggle-trigger="site-header">
-          <li>
-            {{!-- li mask, span slide fade up sequentially --}}
-            <span>Index</span>
+          <li class="u-mask">
+            <div class="reveal reveal--02 reveal--slide" data-reveal="slide">Index</div>
           </li>
-          <li>
-            <a href="/work">Work</a>
+          <li class="u-mask">
+            <a class="reveal reveal--03 reveal--slide" href="/work" data-reveal="slide">Work</a>
           </li>
-          <li>
-            <a href="/notes">Notes</a>
+          <li class="u-mask">
+            <a class="reveal reveal--04 reveal--slide" href="/notes" data-reveal="slide">Notes</a>
           </li>
-          <li>
-            <a href="/profile">Profile</a>
+          <li class="u-mask">
+            <a class="reveal reveal--05 reveal--slide" href="/profile" data-reveal="slide">Profile</a>
           </li>
-          <li>
-            <a href="/contact">Contact</a>
+          <li class="u-mask">
+            <a class="reveal reveal--06 reveal--slide" href="/contact" data-reveal="slide">Contact</a>
           </li>
         </ul>
       </div>
     </div>
 
     <section class="index__notes">
-      <header class="u-flex">
-        <h1 class="subheading">Latest</h1>
-        <div>
-          <button data-slider-prev="notes">prev</button>
-          <button data-slider-next="notes">next</button>
+      <header class="u-mask">
+        <div class="reveal reveal--02 reveal--slide u-flex" data-reveal="slide">
+          <h1 class="subheading">Latest</h1>
+          <div>
+            <button data-slider-prev="notes">prev</button>
+            <button data-slider-next="notes">next</button>
+          </div>
         </div>
       </header>
       <div class="slider slider--index" data-slider="notes">
         <div class="slider__container" data-slider="container">
           <ul class="slider__content" data-slider="content">
             {{#each latestNotes}}
-            <li class="slider__item" data-slider="item">
+            <li class="slider__item reveal reveal--fade" data-reveal="fade" data-slider="item">
               <article class="note">
                 <div class="note__thumbnail lazyLoader">
                   <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
@@ -65,28 +69,30 @@
     </section>
 
     <section class="index__contact">
-      {{!-- Fade in words with different delays. Ref: https://thecanopy.studio/ --}}
-      <h1 class="headline" data-reveal="skew">Let’s <strong>do something awesome</strong> together.</h1>
-      <a class="button button--link" href="/contact">
-        <span class="button__text">Hit me up</span>
-      </a>
+      <h1 class="headline reveal reveal--skew" data-reveal="skew">Let’s <strong>do something awesome</strong> together.</h1>
+      <div class="u-mask">
+        <a class="button button--link reveal reveal--02 reveal--slide" href="/contact" data-reveal="slide">
+          <span class="button__text">Hit me up</span>
+        </a>
+      </div>
     </section>
   </div>
 
   <div class="index__column index__column--wide" data-index-column="2">
     <section class="index__profile">
-      {{!-- Fade in words with different delays. Ref: https://thecanopy.studio/ --}}
-      <h1 class="headline">{{{aboutHeadline}}}</h1>
-      <a class="button button--link" href="/profile">
-        <span class="button__text">{{aboutLink}}</span>
-      </a>
+      <h1 class="headline reveal reveal--02 reveal--skew" data-reveal="skew">{{{aboutHeadline}}}</h1>
+      <div class="u-mask">
+        <a class="button button--link reveal reveal--04 reveal--slide" href="/profile" data-reveal="slide">
+          <div class="button__text">{{aboutLink}}</div>
+        </a>
+      </div>
     </section>
 
     <section class="index__work">
       <h1 class="subheading subheading--rotated">Work</h1>
       <ul>
         {{#each latestCases}}
-        <li>
+        <li class="reveal reveal--fade" data-reveal="fade">
           <article class="card">
             <a class="card__thumbnail card__thumbnail--index lazyLoader" href="/work/{{path}}">
               <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">

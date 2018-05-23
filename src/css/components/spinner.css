@@ -1,23 +1,37 @@
 .spinner {
   position: fixed;
-  top: calc(var(--bsl) * 1.5);
-  right: var(--col-2);
-  z-index: 25;
-  /* height: calc(var(--bsl) / 2);
-  width: calc(var(--bsl) / 2); */
-  height: calc(var(--bsl) * 1);
-  width: calc(var(--bsl) * 1);
-  border-radius: 50%;
-  background-color: var(--primary-color);
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  height: calc(var(--bsl) * 4);
+  width: calc(var(--bsl) * 4);
   opacity: 0;
   transition: opacity .25s linear;
   transform: translate3d(-50%, -50%, 0);
-  transform-origin: top left;
   pointer-events: none;
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: calc(var(--bsl) * 1);
+    width: calc(var(--bsl) * 1);
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: translate3d(-50%, -50%, 0);
+    transform-origin: top left;
+  }
+
   &--isVisible {
+    z-index: 25;
     opacity: 1;
-    animation: pulse .5s infinite alternate;
     transition: opacity .25s linear .75s;
+    pointer-events: auto;
+    cursor: none;
+
+    &::after {
+      animation: pulse .5s infinite alternate;
+    }
   }
 }
