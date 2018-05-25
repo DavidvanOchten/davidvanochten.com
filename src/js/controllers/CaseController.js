@@ -9,7 +9,7 @@ const CaseController = (() => {
     view.header.toggle();
     view.column.toggle();
 
-    document.body.classList.add('u-isUnscrollable');
+    document.body.classList.add('u-mask');
 
     // Which element transitionend? Gallery content?
     setTimeout(() => {

@@ -2,76 +2,87 @@
   <div class="index__column index__column--narrow" data-index-column="1">
     <div class="u-flex">
       <header class="index__intro">
-        <h1 class="u-mask">
-          <div class="reveal reveal--slide" data-reveal="slide">David van Ochten</div>
+        {{!-- <h1 class="u-mask">
+          <div class="reveal reveal--mask" data-reveal="mask">David van Ochten</div>
         </h1>
         <h2 class="subheading u-mask">
-          <div class="reveal reveal--02 reveal--slide" data-reveal="slide">Developer + designer</div>
-        </h2>
+          <div class="reveal reveal--mask" data-reveal="mask">Developer + designer</div>
+        </h2> --}}
+        <h1 class="reveal reveal--01 reveal--fade" data-reveal="fade">David van Ochten</h1>
+        <h2 class="subheading reveal reveal--02 reveal--fade" data-reveal="fade">Developer + designer</h2>
       </header>
       <div class="index__signage">
+        {{!-- <ul data-toggle-trigger="site-header">
+          <li class="u-mask">
+            <div class="reveal reveal--mask" data-reveal="mask">Index</div>
+          </li>
+          <li class="u-mask">
+            <a class="reveal reveal--mask" href="/work" data-reveal="mask">Work</a>
+          </li>
+          <li class="u-mask">
+            <a class="reveal reveal--mask" href="/notes" data-reveal="mask">Notes</a>
+          </li>
+          <li class="u-mask">
+            <a class="reveal reveal--mask" href="/profile" data-reveal="mask">Profile</a>
+          </li>
+          <li class="u-mask">
+            <a class="reveal reveal--mask" href="/contact" data-reveal="mask">Contact</a>
+          </li>
+        </ul> --}}
         <ul data-toggle-trigger="site-header">
-          <li class="u-mask">
-            <div class="reveal reveal--02 reveal--slide" data-reveal="slide">Index</div>
-          </li>
-          <li class="u-mask">
-            <a class="reveal reveal--03 reveal--slide" href="/work" data-reveal="slide">Work</a>
-          </li>
-          <li class="u-mask">
-            <a class="reveal reveal--04 reveal--slide" href="/notes" data-reveal="slide">Notes</a>
-          </li>
-          <li class="u-mask">
-            <a class="reveal reveal--05 reveal--slide" href="/profile" data-reveal="slide">Profile</a>
-          </li>
-          <li class="u-mask">
-            <a class="reveal reveal--06 reveal--slide" href="/contact" data-reveal="slide">Contact</a>
-          </li>
+          <li class="reveal reveal--03 reveal--fade" data-reveal="fade"><div>Index</div></li>
+          <li class="reveal reveal--04 reveal--fade" data-reveal="fade"><a href="/work">Work</a></li>
+          <li class="reveal reveal--05 reveal--fade" data-reveal="fade"><a href="/notes">Notes</a></li>
+          <li class="reveal reveal--06 reveal--fade" data-reveal="fade"><a href="/profile">Profile</a></li>
+          <li class="reveal reveal--07 reveal--fade" data-reveal="fade"><a href="/contact">Contact</a></li>
         </ul>
       </div>
     </div>
 
     <section class="index__notes">
-      <header class="u-mask">
-        <div class="reveal reveal--02 reveal--slide u-flex" data-reveal="slide">
-          <h1 class="subheading">Latest</h1>
-          <div>
-            <button data-slider-prev="notes">prev</button>
-            <button data-slider-next="notes">next</button>
+      <div class="reveal reveal--08 reveal--slide" data-reveal="slide">
+        <header>
+          <div class="u-flex">
+            <h1 class="subheading">Latest</h1>
+            <div>
+              <button data-slider-prev="notes">prev</button>
+              <button data-slider-next="notes">next</button>
+            </div>
           </div>
-        </div>
-      </header>
-      <div class="slider slider--index" data-slider="notes">
-        <div class="slider__container" data-slider="container">
-          <ul class="slider__content" data-slider="content">
-            {{#each latestNotes}}
-            <li class="slider__item reveal reveal--fade" data-reveal="fade" data-slider="item">
-              <article class="note">
-                <div class="note__thumbnail lazyLoader">
-                  <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
-                </div>
-                <header class="note__header">
-                  <h1 class="note__headline">{{{headline}}}</h1>
-                  <p class="note__summary">{{{summary}}}</p>
-                </header>
-              </article>
-            </li>
-            {{/each}}
-            {{!-- data-slider="item" --}}
-            <li class="slider__item" style="pointer-events: none;">
-              <h2 class="headline">Rotate</h2> <!-- {{{notesHeadline}}} -->
-              <a class="button button--link" href="/notes">
-                <span class="button__text">{{notesLink}}</span>
-              </a>
-            </li>
-          </ul>
+        </header>
+        <div class="slider slider--index" data-slider="notes">
+          <div class="slider__container" data-slider="container">
+            <ul class="slider__content" data-slider="content">
+              {{#each latestNotes}}
+              <li class="slider__item" data-slider="item">
+                <article class="note">
+                  <div class="note__thumbnail lazyLoader">
+                    <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+                  </div>
+                  <header class="note__header">
+                    <h1 class="note__headline">{{{headline}}}</h1>
+                    <p class="note__summary">{{{summary}}}</p>
+                  </header>
+                </article>
+              </li>
+              {{/each}}
+              {{!-- data-slider="item" --}}
+              <li class="slider__item" style="pointer-events: none;">
+                <h2 class="headline">Rotate</h2> <!-- {{{notesHeadline}}} -->
+                <a class="button button--link" href="/notes">
+                  <span class="button__text">{{notesLink}}</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="index__contact">
-      <h1 class="headline reveal reveal--skew" data-reveal="skew">Let’s <strong>do something awesome</strong> together.</h1>
-      <div class="u-mask">
-        <a class="button button--link reveal reveal--02 reveal--slide" href="/contact" data-reveal="slide">
+      <div class="reveal reveal--skew" data-reveal="skew">
+        <h1 class="headline">Let’s <strong>do something awesome</strong> together.</h1>
+        <a class="button button--link reveal reveal--fade" href="/contact" data-reveal="fade">
           <span class="button__text">Hit me up</span>
         </a>
       </div>
@@ -80,19 +91,21 @@
 
   <div class="index__column index__column--wide" data-index-column="2">
     <section class="index__profile">
-      <h1 class="headline reveal reveal--02 reveal--skew" data-reveal="skew">{{{aboutHeadline}}}</h1>
-      <div class="u-mask">
-        <a class="button button--link reveal reveal--04 reveal--slide" href="/profile" data-reveal="slide">
-          <div class="button__text">{{aboutLink}}</div>
+      <div class="reveal reveal--10 reveal--skew" data-reveal="skew">
+        <h1 class="headline">{{{aboutHeadline}}}</h1>
+        <a class="button button--link" href="/profile">
+          <span class="button__text">{{aboutLink}}</span>
         </a>
       </div>
     </section>
 
     <section class="index__work">
-      <h1 class="subheading subheading--rotated">Work</h1>
-      <ul>
+      <div class="reveal reveal--10 reveal--fade" data-reveal="fade">
+        <h1 class="subheading subheading--rotated">Work</h1>
+      </div>
+      <ul class="reveal reveal--09 reveal--slide" data-reveal="slide">
         {{#each latestCases}}
-        <li class="reveal reveal--fade" data-reveal="fade">
+        <li>
           <article class="card">
             <a class="card__thumbnail card__thumbnail--index lazyLoader" href="/work/{{path}}">
               <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">

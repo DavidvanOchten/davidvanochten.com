@@ -14,18 +14,17 @@ const App = (() => {
     const router = Router();
     const spinner = Spinner();
 
-    // Add LOADING letter sequentially. Change tot LOADED on load.
-    // Show spinner
-    const splash = document.querySelector('[data-splash]');
-    // splash.addEventListener('transitionend', e => e.target.parentNode.removeChild(e.target));
+    menu.init();
+    router.init();
+    spinner.init(); // Show spinner (add script header)
 
+    // Add LOADING letter sequentially. Change tot LOADED on load.
+    const splash = document.querySelector('[data-splash]');
+    splash.addEventListener('transitionend', e => e.target.parentNode.removeChild(e.target));
+    
     setTimeout(() => {
-      menu.init();
-      router.init();
-      spinner.init();
-      splash.classList.remove('splash--isVisible');
       document.body.removeAttribute('style');
-      document.body.removeAttribute('class');
+      splash.classList.remove('splash--isVisible');
     }, 1500);
   });
 

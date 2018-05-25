@@ -30,7 +30,7 @@
     <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
       {{#each content}}
       {{!-- If video etc. --}}
-      <picture class="gallery__item" data-reveal="scale">
+      <picture class="gallery__item reveal reveal--slide" data-reveal="slide">
         <source media="(min-width: 600px)" srcset="{{src}}">
         <img src="{{srcMd}}" alt="{{name}}">
       </picture>

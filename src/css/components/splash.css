@@ -2,12 +2,12 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 20;
   height: 100vh;
   width: 100vw;
   background-color: var(--grey-light);
   opacity: 0;
-  transition: opacity .5s linear .25s;
+  transition: opacity .75s linear .25s;
   pointer-events: none;
 
   &__header {
@@ -35,7 +35,6 @@
   }
 
   &--isVisible {
-    z-index: 20;
     opacity: 1;
     pointer-events: auto;
 

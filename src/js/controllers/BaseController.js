@@ -8,7 +8,6 @@ const BaseController = (() => {
 
   const _removeClass = (content) => {
     if (content.dataset.intersected === 'true') {
-      console.log(content);
       content.classList.remove(`reveal--${content.dataset.reveal}`);
     }
   };

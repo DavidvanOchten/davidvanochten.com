@@ -111,7 +111,11 @@
     }
 
     & li {
-      margin-bottom: calc(var(--bsl) * 3);
+      margin-bottom: calc(var(--bsl) * 1);
+
+      @media (--tablet-portrait-up) {
+        margin-bottom: calc(var(--bsl) * 3);
+      }
 
       &:last-child {
         margin-bottom: calc(var(--bsl) * 2);

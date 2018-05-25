@@ -30,7 +30,7 @@ const Menu = () => {
       item.querySelector('[data-menu="link"]').classList.toggle('menu__link--isVisible');
     });
 
-    document.body.classList.toggle('u-isUnscrollable');
+    document.body.classList.toggle('u-mask');
   };
 
   const construct = () => {
