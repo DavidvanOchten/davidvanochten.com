@@ -27,12 +27,12 @@
 
     &:nth-child(5n + 4) {
       grid-column: col 2 / span 10;
-      grid-row: span 22;
+      grid-row: span 26;
     }
 
     &:nth-child(5n + 5) {
-      grid-column: col 11 / span 11;
-      grid-row: span 28;
+      grid-column: col 13 / span 11;
+      grid-row: span 26;
     }
   }
 }
