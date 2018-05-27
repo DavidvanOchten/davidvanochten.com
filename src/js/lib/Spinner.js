@@ -1,33 +1,40 @@
-const Spinner = () => {
+// Note: Moved to inline script. See spinner.hbs
 
-  const spinner = document.querySelector('[data-spinner]');
+// const Spinner = () => {
 
-  const user = {
-    mouseX: 0,
-    mouseY: 0
-  }
+//   const spinner = document.querySelector('[data-spinner]');
 
-  const _trackSpinner = (e) => {
-    user.mouseX = e.clientX;
-    user.mouseY = e.clientY;
+//   const user = {
+//     mouseX: 0,
+//     mouseY: 0
+//   }
 
-    // spinner.style.top = `${user.mouseY - 6}px`;
-    // spinner.style.left = `${user.mouseX + 10}px`;
-    spinner.style.top = `${user.mouseY}px`;
-    spinner.style.left = `${user.mouseX}px`;
-  };
+//   const showSpinner = (state) => {
+//     state === true
+//       ? spinner.classList.add('spinner--isVisible')
+//       : spinner.classList.remove('spinner--isVisible');
+//   };
 
-  const construct = () => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints) {
-      return;
-    }
+//   const _trackSpinner = (e) => {
+//     user.mouseX = e.clientX;
+//     user.mouseY = e.clientY;
 
-    window.addEventListener('mousemove', _trackSpinner);
-  };
+//     spinner.style.top = `${user.mouseY}px`;
+//     spinner.style.left = `${user.mouseX}px`;
+//   };
 
-  return {
-    init: construct
-  };
-};
+//   const construct = () => {
+//     if ('ontouchstart' in window || navigator.maxTouchPoints) {
+//       return;
+//     }
 
-export default Spinner;
+//     window.addEventListener('mousemove', _trackSpinner);
+//   };
+
+//   return {
+//     init: construct,
+//     show: showSpinner
+//   };
+// };
+
+// export default Spinner;

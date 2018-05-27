@@ -1,0 +1,15 @@
+.notes {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: var(--col-22);
+  padding: calc(var(--bsl) * 2) var(--col-1);
+
+  &::after {
+    content: "";
+    width: var(--col-6);
+  }
+
+  & .note {
+    width: var(--col-6);
+  }
+}

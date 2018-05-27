@@ -1,39 +1,38 @@
-<div data-splash-remove>
-  <div class="splash splash--isVisible" data-splash>
-    <div class="splash__header">
-      <div class="splash__title u-mask" data-splash-title>
-        <span>L</span>
-        <span>o</span>
-        <span>a</span>
-        <span>d</span>
-        <span>i</span>
-        <span>n</span>
-        <span>g</span>
-      </div>
-      <p class="splash__subtitle">Hang in there.</p>
+<div class="splash splash--isVisible" data-splash>
+  <div class="splash__header">
+    <div class="splash__title u-mask" data-splash-title>
+      <span>L</span>
+      <span>o</span>
+      <span>a</span>
+      <span>d</span>
+      <span>i</span>
+      <span>n</span>
+      <span>g</span>
     </div>
+    <p class="splash__subtitle">Hang in there.</p>
   </div>
 
-  <script>
-    var splash = {};
-
-    splash.root = document.querySelector('[data-splash-remove]');
-    splash.container = splash.root.querySelector('[data-splash]');
-    splash.title = splash.container.querySelector('[data-splash-title]');
-
-    window.addEventListener('load', function() {
-      splash.title.classList.add('splash__title--loaded');
-
-      splash.container.addEventListener('transitionend', function(e) {
-        if (e.target === splash.container) {
-          splash.root.parentNode.removeChild(splash.root);
-        }
-      });
-
-      setTimeout(function() {
-        document.body.removeAttribute('style');
-        splash.container.classList.remove('splash--isVisible');
-      }, 1500);
-    });
-  </script>
+  <script>var splash={};splash.root=document.querySelector("[data-splash]"),splash.title=splash.root.querySelector("[data-splash-title]"),window.addEventListener("load",function(){splash.title.classList.add("splash__title--loaded"),splash.root.addEventListener("transitionend",function(t){t.target===splash.root&&t.target.parentNode.removeChild(splash.root)}),setTimeout(function(){document.body.removeAttribute("style"),splash.root.classList.remove("splash--isVisible")},1500)});</script>
 </div>
+
+{{!-- Script (before minification, no ES6) --}}
+
+{{!-- var splash = {};
+
+splash.root = document.querySelector('[data-splash]');
+splash.title = splash.root.querySelector('[data-splash-title]');
+
+window.addEventListener('load', function() {
+  splash.title.classList.add('splash__title--loaded');
+
+  splash.root.addEventListener('transitionend', function(e) {
+    if (e.target === splash.root) {
+      e.target.parentNode.removeChild(splash.root);
+    }
+  });
+
+  setTimeout(function() {
+    document.body.removeAttribute('style');
+    splash.root.classList.remove('splash--isVisible');
+  }, 1500);
+}); --}}

@@ -24,6 +24,7 @@
 </head>
   <body style="overflow: hidden;">
     {{> splash}}
+    {{> spinner}}
     {{> header}}
 
     <div class="layout">
@@ -32,7 +33,6 @@
     </div>
 
     <main class="siteContent" role="main" data-main>
-      <div class="spinner" data-spinner></div>
       <div class="page" data-view="{{view}}">
         {{{body}}}
       </div>

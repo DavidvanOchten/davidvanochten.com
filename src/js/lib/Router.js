@@ -2,7 +2,6 @@ import axios from 'axios';
 import Controllers from '../controllers/Controllers.js';
 import Scroller from '../lib/Scroller.js';
 
-import { showSpinner } from '../utils/showSpinner.js';
 import { showNotification } from '../utils/showNotification.js';
 
 const Router = () => {
@@ -29,12 +28,13 @@ const Router = () => {
       let removableElm = document.querySelector(router.viewSelector);
       removableElm.classList.remove(router.activeViewClass);
 
-      // Fallback used, transitionend solution behaves inconsistently
-      setTimeout(() => {
-        router.viewParent.removeChild(removableElm);
-        removableElm = null;
-        resolve();
-      }, 500);
+      removableElm.addEventListener('transitionend', e => {
+        if (e.target === removableElm) {
+          router.viewParent.removeChild(removableElm);
+          removableElm = null;
+          resolve();
+        }
+      });
     });
   };
 
@@ -60,7 +60,7 @@ const Router = () => {
       return;
     } // "Scroll to top" functionality kicks in if the user is already on the requested page
 
-    showSpinner(true);
+    spinner.show(true);
     _disableRouterLinks(true);
 
     window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
@@ -77,14 +77,14 @@ const Router = () => {
         document.documentElement.scrollTop = 0; // Desktop
         document.body.scrollTop = 0; // Safari mobile
 
-        showSpinner(false);
+        spinner.show(false);
         _setUpView();
         _disableRouterLinks(false);
       })
       .catch(err => {
         console.log(err);
 
-        showSpinner(false);
+        spinner.show(false);
         showNotification('error');
         _disableRouterLinks(false);
       });
@@ -114,13 +114,13 @@ const Router = () => {
   };
 
   const _setUpView = () => {
-    Controllers['base'].init(); // Intializes base functions required for all views
-    Controllers[router.view.dataset.view].init(); // Intializes view-specific functions
+    Controllers['base'].init();
+    Controllers[router.view.dataset.view].init();
 
     _createRouterLinks();
     _setActiveNavLink();
 
-    router.view.classList.add(router.activeViewClass); // Show view to user
+    router.view.classList.add(router.activeViewClass);
   };
 
   const construct = () => {

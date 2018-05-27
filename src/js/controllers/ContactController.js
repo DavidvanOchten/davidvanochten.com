@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { showSpinner } from '../utils/showSpinner.js';
 
 const ContactController = (() => {
-  let form = null;
+
+  const form = {};
 
   const _showStatus = (res) => {
     console.log('Handle status', res);
@@ -18,13 +18,13 @@ const ContactController = (() => {
   const _handleSubmit = (e) => {
     e.preventDefault();
 
-    const nameVal = form.querySelector('[data-form-input="name"]').value;
-    const emailVal = form.querySelector('[data-form-input="email"]').value;
-    const messageVal = form.querySelector('[data-form-input="message"]').value;
-    const submitBtn = e.target.querySelector('[data-form-input="submit"]');
+    const nameVal = form.root.querySelector('[data-form-input="name"]').value;
+    const emailVal = form.root.querySelector('[data-form-input="email"]').value;
+    const messageVal = form.root.querySelector('[data-form-input="message"]').value;
+    const submitBtn = form.root.querySelector('[data-form-input="submit"]');
 
-    submitBtn.classList.add('form__submit--isProcessing');
-    showSpinner(true);
+    submitBtn.classList.add(form.processingClass);
+    spinner.show(true);
 
     axios.post('/contact', {
       name: nameVal,
@@ -32,27 +32,28 @@ const ContactController = (() => {
       message: messageVal
     })
       .then((resp) => {
-        showSpinner(false);
+        spinner.show(false);
 
-        form.classList.add('form--isHidden');
+        form.root.classList.add('form--isHidden');
         // transition delay to show button animation?
         // form eventlistener transitionend > showstatus
         // Remove eventlistener on page transition
-        submitBtn.classList.remove('form__submit--isProcessing');
+        submitBtn.classList.remove(form.processingClass);
         submitBtn.classList.add('form__submit--isDone');
         _showStatus(resp);
       })
       .catch((err) => {
-        showSpinner(false);
-        submitBtn.classList.remove('form__submit--isProcessing');
+        spinner.show(false);
+        submitBtn.classList.remove(form.processingClass);
         _showStatus(err);
       });
   };
 
   const construct = () => {
+    form.processingClass = 'form__submit--isProcessing';
     // Add 'check' if form input is valid
-    form = document.querySelector('[data-form="contact"]');
-    form.addEventListener('submit', _handleSubmit);
+    form.root = document.querySelector('[data-form="contact"]');
+    form.root.addEventListener('submit', _handleSubmit);
   };
 
   return {

@@ -1,29 +1,47 @@
 <article class="profile">
-  <header class="profile__header" data-reveal="skew">
+  <header class="profile__header reveal reveal--skew" data-reveal="skew">
     <h1 class="headline headline--inline"><strong>I’m a Dutch digital designer and developer, currently based in Australia.</strong></h1>
     <p class="headline headline--inline">Looking for new opportunities while sorting out my rubbish surfing technique. Got a project in mind? Let’s make things happen.</p>
   </header>
 
   <div class="profile__details u-flex">
-    <div class="profile__summary">
-      <p data-reveal="slide">Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te. Ei clita tempor nam, ceteros fierent eleifend te has. Saperet definitiones no pri at melius appareat eos. Et commune insolens nam. Ad ius ferri aliquam docendi. Omnium patrioque iracundia ex sea, facer ponderum ut eum, in sit illud menandri maiestatis. His an melius meliore noluisse. Diam perfecto inimicus at eos. Ea per omnes euismod liberavisse.</p>
+    <div class="profile__summary reveal reveal--slide" data-reveal="slide">
+      <p>Lorem ipsum dolor sit amet, duis urbanitas pri ut. In nemore probatus nec, ipsum dicta laoreet vis ea. Placerat imperdiet nam te. Ei clita tempor nam, ceteros fierent eleifend te has. Saperet definitiones no pri at melius appareat eos. Et commune insolens nam. Ad ius ferri aliquam docendi. Omnium patrioque iracundia ex sea, facer ponderum ut eum, in sit illud menandri maiestatis. His an melius meliore noluisse. Diam perfecto inimicus at eos. Ea per omnes euismod liberavisse.</p>
       <a class="button button--link" href="/work">
         <span class="button__text">Show work</span>
       </a>
     </div>
     <section class="profile__services">
-      <h1 class="profile__subheading subheading" data-reveal="skew">Services</h1>
+      <h1 class="profile__subheading subheading reveal reveal--slide" data-reveal="slide">Services</h1>
       <ul class="accordion" data-accordion="services">
         {{!-- Pass along an id per service (e.g. front-end) --}}
-        <li class="accordion__item" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="front-end" data-accordion="item">
+        <li class="accordion__item reveal reveal--slide" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="front-end" data-accordion="item">
           <h2 class="accordion__title">Front-end development</h2>
           <div class="accordion__container" data-toggle="front-end">
             <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
           </div>
         </li>
-        <li class="accordion__item" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="webdesign" data-accordion="item">
+        <li class="accordion__item reveal reveal--slide" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="web-design" data-accordion="item">
           <h2 class="accordion__title">Web design</h2>
-          <div class="accordion__container" data-toggle="webdesign">
+          <div class="accordion__container" data-toggle="web-design">
+            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
+          </div>
+        </li>
+        <li class="accordion__item reveal reveal--slide" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="illustration" data-accordion="item">
+          <h2 class="accordion__title">Illustration</h2>
+          <div class="accordion__container" data-toggle="illustration">
+            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
+          </div>
+        </li>
+        <li class="accordion__item reveal reveal--slide" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="motion-graphics" data-accordion="item">
+          <h2 class="accordion__title">Motion graphics</h2>
+          <div class="accordion__container" data-toggle="motion-graphics">
+            <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
+          </div>
+        </li>
+        <li class="accordion__item reveal reveal--slide" role="button" aria-expanded="false" aria-pressed="false" tabindex="0" data-reveal="slide" data-toggle-trigger="video-editing" data-accordion="item">
+          <h2 class="accordion__title">Video editing</h2>
+          <div class="accordion__container" data-toggle="video-editing">
             <p class="accordion__content" data-accordion="content">Building awesome websites from the ground up. Basically being a bridge between development and design.</p>
           </div>
         </li>

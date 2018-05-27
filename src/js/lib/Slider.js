@@ -164,10 +164,7 @@ const Slider = (id) => {
     slider.root = document.querySelector(`[data-slider="${id}"]`);
     slider.content = slider.root.querySelector('[data-slider="content"]');
     slider.items = [].slice.call(slider.root.querySelectorAll('[data-slider="item"]'));
-    // slider.buttonPrev = document.querySelector(`[data-slider-prev="${id}"]`);
-    // slider.buttonNext = document.querySelector(`[data-slider-next="${id}"]`);
 
-    // _setUpSliderNavigation();
     _setUpSliderItems();
 
     slider.content.addEventListener('touchstart', _onTouchStart);

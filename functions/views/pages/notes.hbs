@@ -1,17 +1,15 @@
-<article class="notes">
-  <div class="u-flex">
-  {{#each notes}}
-    <article class="note">
-      <div class="note__thumbnail lazyLoader">
-        <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
-      </div>
-      <header class="note__header">
-        <h1 class="note__headline">{{{headline}}}</h1>
-        <p class="note__summary">{{{summary}}}</p>
-      </header>
-    </article>
-  {{/each}}
-  </div>
+<article class="notes u-flex">
+{{#each notes}}
+  <article class="note">
+    <div class="note__thumbnail lazyLoader">
+      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+    </div>
+    <header class="note__header">
+      <h1 class="note__headline">{{{headline}}}</h1>
+      <p class="note__summary">{{{summary}}}</p>
+    </header>
+  </article>
+{{/each}}
 </article>
 
 {{> footer}}

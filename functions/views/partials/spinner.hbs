@@ -1,0 +1,45 @@
+<div>
+  <div class="spinner" data-spinner></div>
+  <script>var Spinner=function(){var n=document.querySelector("[data-spinner]"),e={mouseX:0,mouseY:0},i=function(i){e.mouseX=i.clientX,e.mouseY=i.clientY,n.style.top=e.mouseY+"px",n.style.left=e.mouseX+"px"};return{init:function(){"ontouchstart"in window||navigator.maxTouchPoints||window.addEventListener("mousemove",i)},show:function(e){!0===e?n.classList.add("spinner--isVisible"):n.classList.remove("spinner--isVisible")}}},spinner=Spinner();spinner.init();</script>
+</div>
+
+{{!-- Script (before minification, no ES6) --}}
+
+{{!-- var Spinner = function() {
+  var spinner = document.querySelector('[data-spinner]');
+
+  var user = {
+    mouseX: 0,
+    mouseY: 0
+  }
+
+  var showSpinner = function(state) {
+    state === true
+      ? spinner.classList.add('spinner--isVisible')
+      : spinner.classList.remove('spinner--isVisible');
+  };
+
+  var _trackSpinner = function(e) {
+    user.mouseX = e.clientX;
+    user.mouseY = e.clientY;
+
+    spinner.style.top = user.mouseY + 'px';
+    spinner.style.left = user.mouseX + 'px';
+  };
+
+  var construct = function() {
+    if ('ontouchstart' in window || navigator.maxTouchPoints) {
+      return;
+    }
+
+    window.addEventListener('mousemove', _trackSpinner);
+  };
+
+  return {
+    init: construct,
+    show: showSpinner
+  };
+};
+
+var spinner = Spinner();
+spinner.init(); --}}
