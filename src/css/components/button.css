@@ -43,18 +43,11 @@
     }
   }
 
-  &--submit {
-    align-items: center;
-    align-self: flex-end;
-  }
-
   &__icon {
     fill: var(--dark);
 
     &--submit {
       height: calc(var(--bsl) * 1.15);
-      margin-top: calc(var(--bsl) / 3);
-      margin-left: calc(var(--bsl) / 3);
       transition: transform .5s cubic-bezier(.75, 0, 0, 1);
     }
   }

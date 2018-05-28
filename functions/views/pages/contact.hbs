@@ -6,25 +6,29 @@
   </header>
   <div class="contact__content u-flex">
     <ul class="contact__details">
-      <li class="reveal reveal--02 reveal--fade" data-reveal="fade">
-        <a href="mailto:contact@davidvanochten.com" data-bypass>Email</a>
+      <li class="u-mask">
+        <a class="reveal reveal--02 reveal--mask" href="mailto:contact@davidvanochten.com" data-reveal="mask" data-bypass>Email</a>
       </li>
-      <li class="reveal reveal--03 reveal--fade" data-reveal="fade">
-        <a href="/" target="_blank" data-bypass>LinkedIn</a>
+      <li class="u-mask">
+        <a class="reveal reveal--03 reveal--mask" href="/" target="_blank" data-reveal="mask" data-bypass>LinkedIn</a>
       </li>
-      <li class="reveal reveal--04 reveal--fade" data-reveal="fade">
-        <a href="/" target="_blank" data-bypass>Instagram</a>
+      <li class="u-mask">
+        <a class="reveal reveal--04 reveal--mask" href="/" target="_blank" data-reveal="mask" data-bypass>Instagram</a>
       </li>
     </ul>
 
     <div class="contact__form">
-      <p class="headline reveal reveal--04 reveal--slide" data-reveal="slide">Lorem ipsum dolor sit amet, sit eu natum oporteat reprimique, te vel utamur labitur, iudico mnesarchum contentiones mel ei.</p>
-      <form class="form form--contact" data-form="contact">
-        <input class="form__input" type="text" placeholder="Name" data-form-input="name" required>
-        <input class="form__input" type="email" placeholder="Email address" data-form-input="email" required>
-        <textarea class="form__input" placeholder="Message" data-form-input="message"></textarea>
-        <div class="button button--submit">
-          <input class="form__submit" type="submit" value="Send" aria-label="Send" data-form-input="submit">
+      <p class="headline reveal reveal--05 reveal--slide" data-reveal="slide">Lorem ipsum dolor sit amet, sit eu natum oporteat reprimique, te vel utamur labitur, iudico mnesarchum contentiones mel ei.</p>
+      <form class="form reveal reveal--06 reveal--slide" data-reveal="slide" data-form="contact">
+        <div class="form__field">
+          <input class="form__input" type="text" placeholder="Name" data-form-input="name">
+        </div>
+        <div class="form__field">
+          <input class="form__input" type="email" placeholder="Email address" data-form-input="email">
+        </div>
+        <textarea class="form__input" rows="4" placeholder="Message" data-form-input="message"></textarea>
+        <button class="form__submit" type="submit" aria-label="Send" data-form-button="submit">
+          <span>Send</span>
           <svg class="button__icon button__icon--submit" viewBox="0 0 12 12">
             <g>
               <polygon transform="translate(5.688126, 6.288126) rotate(-45.000000) translate(-5.688126, -6.288126) " points="-1.8489649 6.79526004 -1.8489649 5.78099198 13.2252169 5.78099198 13.2252169 6.79526004"></polygon>
@@ -32,7 +36,7 @@
               <polygon transform="translate(11.232734, 2.922793) rotate(-45.000000) translate(-11.232734, -2.922793) " points="9.70432497 5.16044423 8.98337744 4.44324841 12.7611425 0.685142305 13.4820901 1.40233813"></polygon>
             </g>
           </svg>
-        </div>
+        </button>
       </form>
     </div>
   </div>

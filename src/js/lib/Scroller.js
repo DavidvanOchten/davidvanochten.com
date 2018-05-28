@@ -90,7 +90,7 @@ const Scroller = (obj) => {
     browser.documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);
 
     scroller.targetTop = _getTargetTop();
-  }
+  };
 
   const _remove = () => {
     window.removeEventListener('resize', _resetScroller);
