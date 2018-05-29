@@ -27,12 +27,26 @@
     position: absolute;
     right: calc(var(--bsl) / 1.5);
     color: var(--alert);
+    text-decoration: underline;
+    opacity: 0;
+    transition: opacity .5s linear;
   }
 
   &__field {
     position: relative;
     display: flex;
     align-items: center;
+
+    &--error {
+      & .form__error {
+        opacity: 1;
+      }
+
+      & .form__input {
+        border-color: var(--alert);
+        transition: border-color .5s linear;
+      }
+    }
   }
 
   &__input {

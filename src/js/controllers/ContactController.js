@@ -1,33 +1,46 @@
 import axios from 'axios';
+import Scroller from '../lib/Scroller.js';
 
 const ContactController = (() => {
 
   const form = {};
 
   const _createMessage = (type) => {
-
     if (type === 'error') {
       if (form.response.data.errors) {
         form.errors = form.response.data.errors.map(error => {
           const inputs = [].slice.call(form.root.querySelectorAll('[data-form-input]'));
           const invalidInput = inputs.filter(item => item.dataset.formInput === error.param);
-          const errorMessage = document.createElement('div');
-          errorMessage.textContent = error.msg;
+          const errorMessage = document.createElement('a');
+          errorMessage.textContent = 'Hint';
+          errorMessage.href = error.msg;
+          errorMessage.target = '_blank';
           errorMessage.classList.add('form__error');
           invalidInput[0].parentNode.appendChild(errorMessage);
           return errorMessage;
         });
+
+        Scroller({ 
+          id: 'form',
+          callback: () => {
+            form.errors.map(item => item.parentNode.classList.add('form__field--error'));
+          }
+        }).scroll();
+
       } else {
         const errorMessage = document.createElement('p');
         errorMessage.textContent = 'Something went wrong with your submission. Please try again later or send me an email.';
-        errorMessage.classList.add('form__message', 'form__message--isVisible', 'form__message--error');
+        errorMessage.classList.add('headline', 'form__message', 'form__message--isVisible', 'form__message--error');
         form.root.parentNode.appendChild(errorMessage);
+        form.errors[0] = errorMessage;
       }
+
+      form.root.removeAttribute('style');
     }
 
     if (type === 'success') {
       const successMessage = document.createElement('p');
-      successMessage.textContent = 'Ahoy there. I got your message. I will get back to you as soon as possible.';
+      successMessage.textContent = 'Ahoy there. I got your message. I’ll get back to you as soon as possible.';
       successMessage.classList.add('headline', 'form__message');
       form.root.parentNode.appendChild(successMessage);
       form.root.style.height = '0px';
@@ -39,8 +52,8 @@ const ContactController = (() => {
       });
 
       successMessage.addEventListener('transitionend', (e) => {
-        if (e.target === form.root) {
-          e.target.parentNode.removeChild(e.currentTarget);
+        if (e.target === successMessage) {
+          form.root.innerHTML = '';
           form.errors = [];
         }
       });
@@ -51,7 +64,10 @@ const ContactController = (() => {
 
   const _showStatus = (res) => {
     if (form.errors.length > 0) {
-      form.errors.map(item => item.parentNode.removeChild(item));
+      form.errors.map(item => {
+        item.parentNode.classList.remove('form__field--error');
+        item.parentNode.removeChild(item);
+      });
     }
 
     form.response = res;
@@ -69,6 +85,7 @@ const ContactController = (() => {
     const messageVal =  form.messageInput.value;
 
     form.submitButton.classList.add(form.processingClass);
+    form.root.style.height = `${form.root.offsetHeight}px`;
     spinner.show(true);
 
     axios.post('/contact', {
@@ -78,9 +95,7 @@ const ContactController = (() => {
     })
       .then((resp) => {
         spinner.show(false);
-
         form.submitButton.classList.remove(form.processingClass);
-
         _showStatus(resp);
       })
       .catch((err) => {
@@ -91,7 +106,6 @@ const ContactController = (() => {
   };
 
   const construct = () => {
-    // Add 'check' if form field value is valid
     form.root = document.querySelector('[data-form="contact"]');
     form.nameInput = form.root.querySelector('[data-form-input="name"]');
     form.emailInput = form.root.querySelector('[data-form-input="email"]');
@@ -100,7 +114,6 @@ const ContactController = (() => {
 
     form.errors = [];
     form.processingClass = 'form__submit--isProcessing';
-    form.root.style.height = `${form.root.offsetHeight}px`;
 
     form.root.addEventListener('submit', _handleSubmit);
   };

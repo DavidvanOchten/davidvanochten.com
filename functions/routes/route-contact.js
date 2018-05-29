@@ -27,10 +27,10 @@ router.get('/contact', (req, resp) => {
 router.post('/contact', [
     check('name')
       .isLength({ min: 1 })
-      .withMessage('Who are you?'),
+      .withMessage('https://media.giphy.com/media/JkvIxlfyRZPMI/giphy.gif'),
     check('email')
       .isEmail()
-      .withMessage('What’s your email?')
+      .withMessage('https://media.giphy.com/media/12Up26fqbaU45W/giphy.gif')
   ], (req, resp) => {
 
   const errors = validationResult(req);

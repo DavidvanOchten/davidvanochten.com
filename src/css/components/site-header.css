@@ -72,12 +72,17 @@
       background-color: var(--grey-light);
     }
 
-    /*&:hover {
+    &:hover {
       & span {
-        transform: translate3d(0, -100%, 0);
-        transition: transform .75s cubic-bezier(.75, 0, 0, 1);
+        &:nth-child(2) {
+          transform: translate3d(-.25rem, 0, 0);
+        }
+
+        &:nth-child(3) {
+          transform: translate3d(-.5rem, 0, 0);
+        }
       }
-    }*/
+    }
   }
 
   &__logotype {
@@ -91,38 +96,8 @@
 
     @media (--tablet-landscape-up) {
       & span {
-        position: relative;
         display: inline-block;
-        /*transition: transform .75s cubic-bezier(.75, 0, 0, 1);*/
-
-        &::after {
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          transform: translate3d(0, 100%, 0);
-        }
-
-        &:nth-child(1) {
-          &::after {
-            content: "David";
-          }
-        }
-
-        &:nth-child(2) {
-          transition-delay: .1s;
-
-          &::after {
-            content: "van";
-          }
-        }
-
-        &:nth-child(3) {
-          transition-delay: .15s;
-
-          &::after {
-            content: "Ochten";
-          }
-        }
+        transition: transform .75s cubic-bezier(.75, 0, 0, 1);
       }
     }
   }

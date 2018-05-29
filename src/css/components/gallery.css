@@ -46,12 +46,14 @@
     width: var(--col-24);
     opacity: 0;
     background-color: var(--light);
-    transition: opacity .25s linear;
+    transform: translate3d(0, calc(var(--bsl) * 2), 0);
+    transition: opacity .25s linear, transform .75s cubic-bezier(.75, 0, .25, 1);
     pointer-events: none;
 
     &--isVisible {
       opacity: 1;
-      transition: opacity .5s linear 1s;
+      transform: translate3d(0, 0, 0);
+      transition: opacity .5s linear 1s, transform 1s cubic-bezier(.75, 0, .25, 1) .5s;
       pointer-events: auto;
     }
   }

@@ -5,12 +5,11 @@
   overflow: hidden;
 
   &:hover {
-    & .card__thumbnail {
-      transform: scale(1.025);
-    }
+
     & .card__header {
       transform: translate3d(0, 0, 0);
     }
+
     & .card__heading {
       transform: translate3d(0, 0, 0);
     }
@@ -39,7 +38,6 @@
 
   &__thumbnail {
     height: 100%;
-    transition: transform 1s cubic-bezier(.75, 0, .25, 1);
 
     &--index {
       padding-bottom: 100%;

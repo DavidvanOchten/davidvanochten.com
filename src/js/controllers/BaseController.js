@@ -40,6 +40,9 @@ const BaseController = (() => {
     base.revealContent.init();
 
     if (document.querySelector('[data-site-footer]')) {
+      const date = new Date();
+      document.querySelector('[data-year]').textContent = date.getFullYear();
+
       base.topScroller.init();
     }
   };

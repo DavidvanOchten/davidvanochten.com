@@ -9,10 +9,10 @@
   }
 
   &__details {
-    width: var(--col-6);
     padding: calc(var(--bsl) * 1) var(--col-2);
 
     @media (--tablet-landscape-up) {
+      width: var(--col-6);
       padding: calc(var(--bsl) * 2) var(--col-1);
     }
   }

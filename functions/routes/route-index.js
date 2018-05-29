@@ -8,8 +8,8 @@ router.get('/', (req, resp) => {
   axios.get('https://davidvanochten-admin.firebaseio.com/.json')
     .then(response => response.data)
     .then((siteData) => {
-      const cases = Object.keys(siteData.cases).map(i => siteData.cases[i]);
-      cases.sort((a, b) => a.order - b.order);
+      const projects = Object.keys(siteData.cases).map(i => siteData.cases[i]);
+      projects.sort((a, b) => a.order - b.order);
 
       return resp.render('pages/index', {
         view: 'index',
@@ -21,7 +21,7 @@ router.get('/', (req, resp) => {
         workLink: siteData.home.workLink,
         notesHeadline: siteData.home.notesHeadline,
         notesLink: siteData.home.notesLink,
-        latestCases: cases.slice(0, siteData.home.workItems),
+        latestProjects: projects.slice(0, siteData.home.workItems),
         latestNotes: Object.keys(siteData.notes).map(i => siteData.notes[i]).reverse().slice(0, 3)
       });
     })

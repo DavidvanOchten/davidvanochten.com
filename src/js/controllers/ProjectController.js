@@ -1,13 +1,13 @@
 import Toggle from '../lib/Toggle.js';
 
-const CaseController = (() => {
+const ProjectController = (() => {
 
-  const view = {};
+  const project = {};
   const gallery = {};
 
   const _toggleGallery = () => {
-    view.header.toggle();
-    view.column.toggle();
+    project.header.toggle();
+    project.column.toggle();
 
     document.body.classList.add('u-mask');
 
@@ -20,10 +20,10 @@ const CaseController = (() => {
   };
 
   const construct = () => {
-    view.header = Toggle({ id: 'site-header', class: 'siteHeader--isHidden' });
-    view.column = Toggle({ id: 'column', class: 'case__column--isHidden' });
+    project.header = Toggle({ id: 'site-header', class: 'siteHeader--isHidden' });
+    project.column = Toggle({ id: 'column', class: 'project__column--isHidden' });
 
-    gallery.root = document.querySelector('[data-gallery="case"]');
+    gallery.root = document.querySelector('[data-gallery="project"]');
 
     gallery.trigger = Toggle({
       id: 'gallery-content',
@@ -40,4 +40,4 @@ const CaseController = (() => {
   };
 })();
 
-export default CaseController;
+export default ProjectController;

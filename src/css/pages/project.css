@@ -1,4 +1,4 @@
-.case {
+.project {
   flex-direction: column;
 
   @media (--tablet-landscape-up) {
