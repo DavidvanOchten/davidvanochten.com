@@ -25,17 +25,17 @@
 
   &__error {
     position: absolute;
+    top: 50%;
     right: calc(var(--bsl) / 1.5);
     color: var(--alert);
     text-decoration: underline;
     opacity: 0;
+    transform: translateY(-50%);
     transition: opacity .5s linear;
   }
 
   &__field {
     position: relative;
-    display: flex;
-    align-items: center;
 
     &--error {
       & .form__error {

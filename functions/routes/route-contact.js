@@ -27,7 +27,7 @@ router.get('/contact', (req, resp) => {
 router.post('/contact', [
     check('name')
       .isLength({ min: 1 })
-      .withMessage('https://media.giphy.com/media/JkvIxlfyRZPMI/giphy.gif'),
+      .withMessage('https://media.giphy.com/media/tLQSYnrLCGcKY/giphy.gif'),
     check('email')
       .isEmail()
       .withMessage('https://media.giphy.com/media/12Up26fqbaU45W/giphy.gif')

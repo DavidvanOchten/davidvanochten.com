@@ -38,14 +38,6 @@ const Router = () => {
     });
   };
 
-  const _disableRouterLinks = (status) => {
-    router.links.map(item => {
-      status === true
-        ? item.classList.add('u-isUnclickable')
-        : item.classList.remove('u-isUnclickable');
-    });
-  };
-
   const _switchViews = (e) => {
     e.preventDefault();
 
@@ -58,10 +50,9 @@ const Router = () => {
     if (router.targetUrl === window.location.href) {
       Scroller({ id: 'top' }).scroll();
       return;
-    } // "Scroll to top" functionality kicks in if the user is already on the requested page
+    }
 
     spinner.show(true);
-    _disableRouterLinks(true);
 
     window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
 
@@ -79,14 +70,11 @@ const Router = () => {
 
         spinner.show(false);
         _setUpView();
-        _disableRouterLinks(false);
       })
       .catch(err => {
         console.log(err);
-
         spinner.show(false);
         showNotification('error');
-        _disableRouterLinks(false);
       });
   };
 

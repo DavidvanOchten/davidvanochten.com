@@ -11,5 +11,6 @@
 
   & .note {
     width: var(--col-6);
+    margin-bottom: calc(var(--bsl) * 2);
   }
 }

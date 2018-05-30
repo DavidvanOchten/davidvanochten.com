@@ -5,7 +5,6 @@
   overflow: hidden;
 
   &:hover {
-
     & .card__header {
       transform: translate3d(0, 0, 0);
     }
@@ -39,16 +38,12 @@
   &__thumbnail {
     height: 100%;
 
+    @supports not (grid-area: auto) {
+      padding-bottom: 100%;
+    }
+
     &--index {
       padding-bottom: 100%;
-
-      & img {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-      }
     }
   }
 }

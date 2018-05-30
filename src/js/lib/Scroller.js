@@ -74,7 +74,7 @@ const Scroller = (obj) => {
       const easedTime = easings[scroller.easing](time);
       browser.body.scrollTop = (easedTime * (destination - startPosition)) + startPosition;
 
-      if (browser.body.scrollTop === destination) {
+      if (browser.body.scrollTop === Math.floor(destination)) {
         if (scroller.cb) {
           scroller.cb();
         }

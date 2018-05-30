@@ -71,18 +71,6 @@
       width: 100%;
       background-color: var(--grey-light);
     }
-
-    &:hover {
-      & span {
-        &:nth-child(2) {
-          transform: translate3d(-.25rem, 0, 0);
-        }
-
-        &:nth-child(3) {
-          transform: translate3d(-.5rem, 0, 0);
-        }
-      }
-    }
   }
 
   &__logotype {
@@ -97,7 +85,6 @@
     @media (--tablet-landscape-up) {
       & span {
         display: inline-block;
-        transition: transform .75s cubic-bezier(.75, 0, 0, 1);
       }
     }
   }
