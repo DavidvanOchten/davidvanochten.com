@@ -22,6 +22,7 @@ const ContactController = (() => {
 
         Scroller({ 
           id: 'form',
+          offset: document.querySelector('[data-site-header]').offsetHeight * 1.25,
           callback: () => {
             form.errors.map(item => item.parentNode.classList.add('form__field--error'));
           }

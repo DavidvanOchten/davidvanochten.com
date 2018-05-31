@@ -1,7 +1,7 @@
 <article class="work">
   <header class="work__header">
-    <h1 class="headline headline--large"><strong>Projects</strong> &mdash; A selection of work from the past couple of years.</h1>
-    {{!-- Or: Projects --}}
+    <h1 class="headline headline--inline"><strong>Projects</strong></h1>
+    <h2 class="headline headline--inline">&nbsp;&mdash;&nbsp;A selection of work from the past couple of years.</h2>
   </header>
   <ul class="work__items">
     {{#each projects}}
@@ -13,7 +13,7 @@
         <header class="card__header">
           <a class="card__link" href="/work/{{path}}">
             <h1 class="card__heading">{{{name}}}</h1>
-            <h2 class="card__subtitle">&nbsp;&#8212;&nbsp;&nbsp;{{{headline}}}</h2>
+            <h2 class="card__subtitle">&nbsp;&mdash;&nbsp;{{{headline}}}</h2>
           </a>
         </header>
       </article>

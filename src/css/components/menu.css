@@ -107,7 +107,8 @@
   &__links {
     font-size: var(--ms-m);
     line-height: calc(var(--bsl) * 2);
-    margin-bottom: calc(var(--bsl) * 2);
+    padding: calc(var(--bsl) * 3) var(--col-2);
+    border-bottom: 1px solid var(--grey-light);
   }
 
   &__panel {
@@ -117,7 +118,7 @@
     z-index: -1;
     height: 100vh;
     width: 100%;
-    padding: calc(var(--bsl) * 6) var(--col-2) calc(var(--bsl) * 3);
+    padding-top: calc(var(--bsl) * 3);
     border-left: 1px solid var(--grey-light);
     border-bottom: 1px solid var(--grey-light);
     background-color: var(--light);
