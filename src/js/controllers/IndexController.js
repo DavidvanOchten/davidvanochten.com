@@ -1,31 +1,35 @@
 import IntersectionTracker from '../lib/IntersectionTracker.js';
-import LazyLoader from '../lib/LazyLoader.js';
 import Slider from '../lib/Slider.js';
 import ScrollTracker from '../lib/ScrollTracker.js';
 
 import { beforeViewChange } from '../utils/beforeViewChange.js';
+import { loadIntersectedContent } from '../utils/loadIntersectedContent.js';
 
 const IndexController = (() => {
 
-  const index = {
-    stickyColumn: null
-  };
-
+  const index = {};
+  const siteHeader = {};
   const browser = {
     minWidth: 600
   };
 
-  const _disableStickyColumns = () => {
-    if (index.stickyColumn !== null) {
-      index.stickyColumn.style.top = '';
+  const _toggleSiteHeader = (beforeThreshold) => {
+    if ((beforeThreshold && !siteHeader.root.classList.contains('siteHeader--isHidden')) || (!beforeThreshold && siteHeader.root.classList.contains('siteHeader--isHidden'))) {
+      siteHeader.root.classList.toggle('siteHeader--isHidden');
     }
   };
 
-  const _createStickyColumn = () => {
-    index.stickyColumn = index.col1.offsetHeight < index.col2.offsetHeight ? index.col1 : index.col2;
+  const _disableFixedColumn = () => {
+    if (index.fixedColumn !== null) {
+      index.fixedColumn.style.top = '';
+    }
+  };
 
-    index.stickyColumnOffset = index.stickyColumn.offsetHeight - window.innerHeight;
-    index.stickyColumn.style.top = `-${index.stickyColumnOffset}px`;
+  const _createFixedColumn = () => {
+    index.fixedColumn = index.col1.offsetHeight < index.col2.offsetHeight ? index.col1 : index.col2;
+
+    index.fixedColumnOffset = index.fixedColumn.offsetHeight - window.innerHeight;
+    index.fixedColumn.style.top = `-${index.fixedColumnOffset}px`;
   };
 
   const _getBottomPosition = (target) => {
@@ -37,100 +41,52 @@ const IndexController = (() => {
       target = target.offsetParent;
     }
 
-    // Checks if the page was reloaded at a scroll position after the 'stickyColumn' got stuck.
+    // Checks if the page was reloaded at a scroll position after the 'fixedColumn' got stuck.
     // This will change the value of the 'top' variable, which needs to be adjusted accordingly.
-    const bottom = (window.pageYOffset - index.stickyColumnOffset) > 0
-      ? targetHeight + top - (window.pageYOffset - (index.stickyColumnOffset))
+    const bottom = (window.pageYOffset - index.fixedColumnOffset) > 0
+      ? targetHeight + top - (window.pageYOffset - (index.fixedColumnOffset))
       : targetHeight + top;
 
     return bottom;
   };
 
-  const _constructForMinSize = () => {
-    window.innerWidth >= browser.minWidth
-      ? _createStickyColumn()
-      : _disableStickyColumns();
+  const _setFixedColumn = () => {
+    (window.innerWidth >= browser.minWidth)
+      ? _createFixedColumn()
+      : _disableFixedColumn();
   };
 
   const _remove = () => {
-    window.removeEventListener('resize', _constructForMinSize);
+    window.removeEventListener('resize', _setFixedColumn);
 
-    // Remove hidden class on page change
-    if (document.querySelector('[data-toggle="site-header"]').classList.contains('siteHeader--isHidden')) {
-      // index.SITE_HEADER_TOGGLE.toggle();
-      let siteHeader = document.querySelector('[data-toggle="site-header"]');
-      siteHeader.classList.toggle('siteHeader--isHidden');
-    }
-  };
-
-  const _toggleSiteHeader = (beforeThreshold) => {
-    let siteHeader = document.querySelector('[data-toggle="site-header"]');
-
-    if ((beforeThreshold && !siteHeader.classList.contains('siteHeader--isHidden')) || 
-        (!beforeThreshold && siteHeader.classList.contains('siteHeader--isHidden'))) {
-      siteHeader.classList.toggle('siteHeader--isHidden');
+    if (siteHeader.root.classList.contains('siteHeader--isHidden')) {
+      siteHeader.root.classList.remove('siteHeader--isHidden');
     }
   };
 
   const construct = () => {
-    // index.SITE_HEADER = 
-
-    let siteHeaderTrigger = document.querySelector('[data-toggle-trigger="site-header"]');
-    let siteHeader = document.querySelector('[data-toggle="site-header"]');
-
-    const test = ScrollTracker({
-      end: _getBottomPosition(siteHeaderTrigger),
-      callback: _toggleSiteHeader
-    });
-
-    test.init();
-
-    // Make sure to check data-toggle and data-toggle-trigger if not using them.
-    // See index.hbs and header.hbs
-
-
+    index.fixedColumn = null;
     index.col1 = document.querySelector('[data-index-column="1"]');
     index.col2 = document.querySelector('[data-index-column="2"]');
 
-    index.notesSlider = Slider('notes');
-    index.notesSlider.init();
+    window.addEventListener('resize', _setFixedColumn);
+    _setFixedColumn();
 
-    window.addEventListener('resize', _constructForMinSize);
-    _constructForMinSize();
+    siteHeader.root = document.querySelector('[data-toggle="site-header"]');
+    siteHeader.trigger = document.querySelector('[data-toggle-trigger="site-header"]');
 
+    ScrollTracker({
+      end: _getBottomPosition(siteHeader.trigger),
+      callback: _toggleSiteHeader
+    }).init();
 
-
-
-    // New lazyloading test
-    const _lazyLoadContent = (content) => {
-      if (content.dataset.intersected === 'true') {
-        const lazyItem = LazyLoader({
-          element: content,
-          type: content.tagName,
-          callback: () => {
-            if (window.getComputedStyle(content).width) {
-              console.log('Done', content);
-              content.parentNode.classList.add('lazyLoader--isDone');
-            }
-          }
-        });
-
-        lazyItem.init();
-      }
-    }
-
-    const lazy = {};
-    lazy.lazyImages = IntersectionTracker({
+    IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-src]')),
-      callback: _lazyLoadContent,
+      callback: loadIntersectedContent,
       flag: true
-    });
+    }).init();
 
-    lazy.lazyImages.init();
-
-
-
-
+    Slider('notes').init();
 
     beforeViewChange(_remove);
   };

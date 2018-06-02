@@ -30,6 +30,7 @@ const Router = () => {
 
       removableElm.addEventListener('transitionend', e => {
         if (e.target === removableElm) {
+          window.history.pushState(null, null, router.targetUrl);
           router.viewParent.removeChild(removableElm);
           removableElm = null;
           resolve();
@@ -40,11 +41,6 @@ const Router = () => {
 
   const _switchViews = (e) => {
     e.preventDefault();
-
-    // (e.currentTarget === window)
-    //   ? router.targetUrl = e.currentTarget.location.href
-    //   : router.targetUrl = e.currentTarget.href;
-
     router.targetUrl = e.currentTarget.href;
 
     if (router.targetUrl === window.location.href) {
@@ -52,8 +48,7 @@ const Router = () => {
       return;
     }
 
-    console.log('[Router.js] Check if pushState should move to inside _removeView');
-    window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
+    // window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
     spinner.show(true);
 
     _removeView()

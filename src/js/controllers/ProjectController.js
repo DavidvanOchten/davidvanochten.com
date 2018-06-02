@@ -7,17 +7,14 @@ const ProjectController = (() => {
   const gallery = {};
 
   const _toggleGallery = () => {
-    project.header.toggle();
-    project.column.toggle();
+    project.columnToggle.toggle();
+    gallery.headerToggle.toggle();
 
     document.body.classList.add('u-mask');
 
-    // Which element transitionend? Gallery content?
-    setTimeout(() => {
-      window.scrollTo({ top: 0 });
-      document.body.removeAttribute('class');
-      gallery.root.classList.toggle('gallery--isVisible');
-    }, 1000);
+    (project.column.classList.contains('project__column--isFixed'))
+      ? project.column.classList.remove('project__column--isFixed')
+      : setTimeout(() => project.column.classList.add('project__column--isFixed'), 1000);
   };
 
   const _loadGallery = () => {
@@ -25,23 +22,29 @@ const ProjectController = (() => {
       gallery.hero.parentNode.classList.add('lazyLoader--isDone');
     }
 
-    gallery.items.map(item => LazyLoader({ element: item.querySelector('img') }).init());
+    gallery.items.map(item => LazyLoader({
+      element: item.querySelector('img'),
+      callback: () => item.classList.add('gallery__item--isLoaded')
+    }).init());
   }
 
   const construct = () => {
-    project.header = Toggle({ id: 'site-header', class: 'siteHeader--isHidden' });
-    project.column = Toggle({ id: 'column', class: 'project__column--isHidden' });
-    
+    project.columnToggle = Toggle({ id: 'column', class: 'project__column--isHidden' });
+    project.column = document.querySelector('[data-toggle="column"]');
+    project.column.addEventListener('transitionend', () => {
+      document.body.removeAttribute('class');
+      window.scrollTo({ top: 0 });
+    });
+
     gallery.root = document.querySelector('[data-gallery="project"]');
     gallery.hero = gallery.root.querySelector('[data-gallery-hero]');
-
     gallery.items = [].slice.call(gallery.root.querySelectorAll('[data-gallery-item]'));
-    const galleryHero = LazyLoader({
+    gallery.headerToggle = Toggle({ id: 'site-header', class: 'siteHeader--isHidden' });
+
+    gallery.heroLoader = LazyLoader({
       element: gallery.hero,
       callback: _loadGallery
     });
-
-    galleryHero.init();
 
     gallery.trigger = Toggle({
       id: 'gallery-content',
@@ -50,6 +53,7 @@ const ProjectController = (() => {
       callback: _toggleGallery
     });
 
+    gallery.heroLoader.init();
     gallery.trigger.init();
   };
 

@@ -1,5 +1,5 @@
 <article class="project u-flex">
-  <div class="project__column" data-toggle="column">
+  <div class="project__column" aria-hidden="false" data-toggle="column">
     <div class="project__info">
       <header class="project__header">
         <div class="project__heading">
@@ -14,39 +14,35 @@
       <div>{{{summary}}}</div>
     </div>
 
-{{!-- Footer tag? --}}
-    <div class="project__footer">
+    <footer class="project__footer">
       <a class="button button--link" href="/">
         <span class="button__text">Next project</span>
       </a>
       <a class="button" href="/work">Back to overview</a>
-    </div>
+    </footer>
   </div>
 
   <div class="gallery" role="button" aria-label="Open gallery" aria-pressed="false" tabindex="0" data-toggle-trigger="gallery-content" data-gallery="project">
     <div class="gallery__header">
       <picture class="gallery__hero lazyLoader">
-        {{!-- Add resized hero in backend --}}
+        {{!-- Add md hero in backend --}}
         <img class="lazyLoader__content" alt="{{headline}}" data-src="{{hero}}" data-gallery-hero>
       </picture>
       <div class="gallery__banner">
         <span>Open gallery +</span>
       </div>
-      <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
-        {{#each content}}
-        <div class="gallery__item lazyLoader" data-gallery-item>
-          {{!-- If video etc. --}}
-          <img class="lazyLoader__content" alt="{{name}}" data-src="{{src}}" data-src-md="{{srcMd}}">
-          {{!-- <picture class="gallery__item">
-            <source media="(min-width: 600px)" srcset="{{src}}">
-            <img src="{{srcMd}}" alt="{{name}}">
-          </picture> --}}
-        </div>
-        {{/each}}
-        <div>
-          <strong class="headline">Next project</strong>
-          <div>IMA</div>
-        </div>
+    </div>
+
+    <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
+      {{#each content}}
+      <div class="gallery__item" data-gallery-item>
+        {{!-- If video etc. --}}
+        <img alt="{{name}}" data-src="{{src}}" data-src-md="{{srcMd}}">
+      </div>
+      {{/each}}
+      <div>
+        <strong class="headline">Next project</strong>
+        <div>IMA</div>
       </div>
     </div>
   </div>

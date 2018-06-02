@@ -1,6 +1,15 @@
+import IntersectionTracker from '../lib/IntersectionTracker.js';
+import { loadIntersectedContent } from '../utils/loadIntersectedContent.js';
+
 const WorkController = (() => {
   const construct = () => {
-    // Add view-specific JS
+
+    IntersectionTracker({
+      content: [].slice.call(document.querySelectorAll('[data-src]')),
+      callback: loadIntersectedContent,
+      flag: true
+    }).init();
+
   };
 
   return {
