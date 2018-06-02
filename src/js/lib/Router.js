@@ -52,9 +52,9 @@ const Router = () => {
       return;
     }
 
-    spinner.show(true);
-
+    console.log('[Router.js] Check if pushState should move to inside _removeView');
     window.history.pushState(null, null, router.targetUrl); // Set this before _removeView
+    spinner.show(true);
 
     _removeView()
       .then(() => axios.get(router.targetUrl))

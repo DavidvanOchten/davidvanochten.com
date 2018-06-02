@@ -3,16 +3,6 @@
   order: 0;
   outline: none;
 
-  &::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: var(--col-24);
-    background-color: var(--grey-lightest);
-  }
-
   @media (--tablet-landscape-up) {
     position: fixed;
     top: 0;
@@ -24,11 +14,12 @@
 
   &--isActive {
     & .gallery__hero {
-      opacity: 0;
-      transition: opacity .5s linear;
+      transform: scale(1);
+      /*opacity: 0;
+      transition: opacity .5s linear;*/
     }
 
-    & .gallery__indicator {
+    & .gallery__banner {
       opacity: 0;
       transform: translate3d(0, 100%, 0);
       transition: transform .5s cubic-bezier(.75, 0, .25, 1), opacity 0s linear .5s;
@@ -39,21 +30,46 @@
     position: absolute;
   }
 
+  &__banner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: calc(var(--bsl) * 3);
+    width: var(--col-24);
+    padding-right: var(--col-1);
+    padding-left: var(--col-1);
+    border-top: 1px solid var(--grey-light);
+    border-bottom: 1px solid var(--grey-light);
+    font-family: var(--secondary-font);
+    background-color: var(--light);
+    will-change: transform;
+    transition: transform .5s cubic-bezier(.75, 0, .25, 1) .75s;
+
+    & span {
+      position: absolute;
+      left: var(--col-11);
+    }
+  }
+
   &__content {
     position: absolute;
     top: 0;
     z-index: 10;
     width: var(--col-24);
+    padding-top: calc(var(--bsl) * 4);
     opacity: 0;
     background-color: var(--light);
-    transform: translate3d(0, calc(var(--bsl) * 2), 0);
-    transition: opacity .25s linear, transform .75s cubic-bezier(.75, 0, .25, 1);
+    transform: translate3d(0, 100vh, 0);
+    transition: opacity .25s linear, transform 0s linear .25s;
     pointer-events: none;
 
     &--isVisible {
       opacity: 1;
-      transform: translate3d(0, 0, 0);
-      transition: opacity .5s linear 1s, transform 1s cubic-bezier(.75, 0, .25, 1) .5s;
+      transform: translate3d(0, 61.8vh, 0);
+      transition: opacity 0s linear, transform 1s cubic-bezier(.75, 0, .25, 1) .5s;
       pointer-events: auto;
     }
   }
@@ -64,34 +80,18 @@
 
     @media (--tablet-landscape-up) {
       position: fixed;
+      top: 0;
+      left: 0;
       z-index: 5;
-      left: var(--col-10);
-      width: var(--col-14);
+      width: var(--col-24);
     }
   }
 
   &__hero {
     padding-bottom: 100vh;
-    transition: opacity .75s linear .5s;
-  }
-
-  &__indicator {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    height: calc(var(--bsl) * 3);
-    width: 100%;
-    padding-right: var(--col-1);
-    padding-left: var(--col-1);
-    border-top: 1px solid var(--grey-light);
-    border-bottom: 1px solid var(--grey-light);
-    font-family: var(--secondary-font);
-    background-color: var(--light);
-    will-change: transform;
-    transition: transform .5s cubic-bezier(.75, 0, .25, 1) .75s;
+    transform-origin: left;
+    transform: scale(1.05);
+    transition: transform 1.25s cubic-bezier(.75, 0, .25, 1);
   }
 
   &__item {

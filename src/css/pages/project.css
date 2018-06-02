@@ -5,18 +5,6 @@
     flex-direction: row;
   }
 
-  &__button {
-    height: calc(var(--bsl) * 6);
-    padding-right: var(--col-1);
-    padding-left: var(--col-1);
-    border-top: 1px solid var(--grey-light);
-    border-bottom: 1px solid var(--grey-light);
-
-    &--next {
-      background-color: var(--grey-lightest);
-    }
-  }
-
   &__column {
     z-index: 1;
     order: 1;
@@ -43,6 +31,15 @@
     & li {
       margin-right: var(--bsl);
     }
+  }
+
+  &__footer {
+    height: calc(var(--bsl) * 6);
+    padding-right: var(--col-1);
+    padding-left: var(--col-1);
+    border-top: 1px solid var(--grey-light);
+    border-bottom: 1px solid var(--grey-light);
+    background-color: var(--grey-lightest);
   }
 
   &__heading {

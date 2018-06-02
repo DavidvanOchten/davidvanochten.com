@@ -28,7 +28,7 @@
               <li class="slider__item" data-slider="item">
                 <article class="note">
                   <div class="note__thumbnail lazyLoader">
-                    <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+                    <img class="lazyLoader__content" alt="{{{headline}}}" data-src="{{thumbnailUrl}}">
                   </div>
                   <header class="note__header">
                     <h1 class="note__headline">{{{headline}}}</h1>
@@ -79,7 +79,8 @@
         <li>
           <article class="card">
             <a class="card__thumbnail card__thumbnail--index lazyLoader" href="/work/{{path}}">
-              <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{title}}}">
+              {{!-- Add data-src-md --}}
+              <img class="lazyLoader__content" alt="{{{title}}}" data-src="{{thumbnailUrl}}">
             </a>
             <header class="card__header">
               <a class="card__link" href="/work/{{path}}">

@@ -121,10 +121,15 @@
     padding-top: calc(var(--bsl) * 3);
     border-left: 1px solid var(--grey-light);
     border-bottom: 1px solid var(--grey-light);
+    overflow: auto;
     background-color: var(--light);
     transform: translate3d(0, calc((100% * -1) + (var(--bsl) * 3)), 0);
     transition: transform .25s cubic-bezier(.75, 0, .25, 1);
     pointer-events: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
     &--isVisible {
       overflow: auto;

@@ -2,7 +2,7 @@
 
   &__header {
     width: var(--col-13);
-    padding: calc(var(--bsl) * 5) var(--col-1) calc(var(--bsl) * 2);
+    padding: calc(var(--bsl) * 5) var(--col-1) calc(var(--bsl) * 3);
   }
 
   @supports (grid-area: auto) {

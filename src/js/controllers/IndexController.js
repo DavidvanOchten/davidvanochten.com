@@ -1,5 +1,8 @@
+import IntersectionTracker from '../lib/IntersectionTracker.js';
+import LazyLoader from '../lib/LazyLoader.js';
 import Slider from '../lib/Slider.js';
 import ScrollTracker from '../lib/ScrollTracker.js';
+
 import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IndexController = (() => {
@@ -9,7 +12,7 @@ const IndexController = (() => {
   };
 
   const browser = {
-    minScreenSize: 600
+    minWidth: 600
   };
 
   const _disableStickyColumns = () => {
@@ -44,7 +47,7 @@ const IndexController = (() => {
   };
 
   const _constructForMinSize = () => {
-    window.innerWidth >= browser.minScreenSize
+    window.innerWidth >= browser.minWidth
       ? _createStickyColumn()
       : _disableStickyColumns();
   };
@@ -94,6 +97,40 @@ const IndexController = (() => {
 
     window.addEventListener('resize', _constructForMinSize);
     _constructForMinSize();
+
+
+
+
+    // New lazyloading test
+    const _lazyLoadContent = (content) => {
+      if (content.dataset.intersected === 'true') {
+        const lazyItem = LazyLoader({
+          element: content,
+          type: content.tagName,
+          callback: () => {
+            if (window.getComputedStyle(content).width) {
+              console.log('Done', content);
+              content.parentNode.classList.add('lazyLoader--isDone');
+            }
+          }
+        });
+
+        lazyItem.init();
+      }
+    }
+
+    const lazy = {};
+    lazy.lazyImages = IntersectionTracker({
+      content: [].slice.call(document.querySelectorAll('[data-src]')),
+      callback: _lazyLoadContent,
+      flag: true
+    });
+
+    lazy.lazyImages.init();
+
+
+
+
 
     beforeViewChange(_remove);
   };
