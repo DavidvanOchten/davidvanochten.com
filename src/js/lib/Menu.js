@@ -1,19 +1,12 @@
 const Menu = () => {
 
-  const menu = {
-    panel: document.querySelector('[data-menu="panel"]'),
-    toggle: document.querySelector('[data-menu="toggle"]'),
-    items: [].slice.call(document.querySelectorAll('[data-menu="item"]'))
-  };
-
-  const siteHeader = {
-    logo: document.querySelector('[data-site-header="logo"]'),
-    background: document.querySelector('[data-site-header="background"]')
-  };
+  const menu = {};
+  const siteHeader = {};
 
   const _toggleMenu = () => {
     siteHeader.background.classList.toggle('siteHeader__background--isActive');
-
+    
+    menu.items.forEach(item => item.classList.toggle('menu__item--isVisible'));
     menu.panel.classList.toggle('menu__panel--isVisible');
     menu.toggle.classList.toggle('menu__toggle--isActive');
 
@@ -25,16 +18,14 @@ const Menu = () => {
       menu.panel.setAttribute('aria-hidden', true);
     }
 
-    menu.items.map(item => {
-      item.classList.toggle('menu__item--isVisible');
-      item.querySelector('[data-menu="link"]').classList.toggle('menu__link--isVisible');
-    });
-
     document.body.classList.toggle('u-mask');
   };
 
   const construct = () => {
+    siteHeader.background = document.querySelector('[data-site-header="background"]');
     siteHeader.background.addEventListener('click', _toggleMenu);
+
+    siteHeader.logo = document.querySelector('[data-site-header="logo"]');
     siteHeader.logo.addEventListener('click', e => {
       e.currentTarget.blur();
 
@@ -43,15 +34,18 @@ const Menu = () => {
       }
     });
 
+    menu.panel = document.querySelector('[data-menu="panel"]');
+    menu.toggle = document.querySelector('[data-menu="toggle"]');
+    menu.items = [].slice.call(document.querySelectorAll('[data-menu="item"]'));
+    menu.links = [].slice.call(document.querySelectorAll('[data-menu="link"]'));
+
+    menu.links.forEach(item => item.addEventListener('click', _toggleMenu));
+
     menu.toggle.addEventListener('click', _toggleMenu);
     menu.toggle.addEventListener('keyup', e => {
       if (e.keyCode === 13) {
         _toggleMenu();
       }
-    });
-
-    menu.items.map(item => {
-      item.querySelector('[data-menu="link"]').addEventListener('click', _toggleMenu);
     });
   };
 

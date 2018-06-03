@@ -24,7 +24,7 @@ const ContactController = (() => {
           id: 'form',
           offset: document.querySelector('[data-site-header]').offsetHeight * 1.25,
           callback: () => {
-            form.errors.map(item => item.parentNode.classList.add('form__field--error'));
+            form.errors.forEach(item => item.parentNode.classList.add('form__field--error'));
           }
         }).scroll();
 
@@ -65,7 +65,7 @@ const ContactController = (() => {
 
   const _showStatus = (res) => {
     if (form.errors.length > 0) {
-      form.errors.map(item => {
+      form.errors.forEach(item => {
         item.parentNode.classList.remove('form__field--error');
         item.parentNode.removeChild(item);
       });

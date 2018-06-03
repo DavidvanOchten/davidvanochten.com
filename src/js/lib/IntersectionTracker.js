@@ -14,7 +14,7 @@ const IntersectionTracker = (obj) => {
   };
 
   const _intersectionObserverCB = (entries) => {
-    entries.map(entry => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.dataset.intersected = 'true';
 
@@ -34,13 +34,13 @@ const IntersectionTracker = (obj) => {
     const options = { threshold: 0, rootMargin: `-${intersectionTracker.threshold}px` };
 
     intersectionTracker.io = new IntersectionObserver(_intersectionObserverCB, options);
-    intersectionTracker.content.map(item => intersectionTracker.io.observe(item));
+    intersectionTracker.content.forEach(item => intersectionTracker.io.observe(item));
   };
 
   const _eventsCB = () => {
     browser.ticking = false;
 
-    intersectionTracker.content.map(item => {
+    intersectionTracker.content.forEach(item => {
       if (intersectionTracker.useFlag && item.dataset.intersected === 'true') {
         return;
       }

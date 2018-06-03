@@ -139,7 +139,7 @@ const Slider = (id) => {
     let previousThreshold = 0;
     let currentThreshold = 0;
 
-    slider.items.map((item, i) => {
+    slider.items.forEach((item, i) => {
       item.dataset.index = i;
       item.dataset.offset = offset;
 

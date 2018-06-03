@@ -26,6 +26,7 @@
   }
 
   &__heading {
+    font-family: var(--secondary-font);
     opacity: 0;
     transform: translate3d(0, 100%, 0);
     transition: transform 1s cubic-bezier(.75, 0, 0, 1) .25s, opacity .5s linear .25s;

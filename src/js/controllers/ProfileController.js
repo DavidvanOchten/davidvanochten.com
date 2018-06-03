@@ -22,15 +22,13 @@ const ProfileController = (() => {
     accordion.root = document.querySelector(`[data-accordion="services"]`);
     accordion.items = [].slice.call(accordion.root.querySelectorAll('[data-accordion="item"]'));
 
-    accordion.items.map(item => {
-      const toggleItem = Toggle({
+    accordion.items.forEach(item => {
+      Toggle({
         id: item.dataset.toggleTrigger,
         class: 'accordion__container--isVisible',
         triggerClass: 'accordion__item--isActive',
         callback: _toggleAccordionItem
-      });
-
-      toggleItem.init();
+      }).init();
     });
   };
 

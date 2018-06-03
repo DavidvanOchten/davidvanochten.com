@@ -75,7 +75,7 @@ const Router = () => {
 
   const _createRouterLinks = () => {
     router.links = [].slice.call(document.querySelectorAll('a:not([data-bypass])'));
-    router.links.map(link => link.addEventListener('click', _switchViews));
+    router.links.forEach(link => link.addEventListener('click', _switchViews));
   };
 
   const _setActiveNavLink = () => {
@@ -83,7 +83,7 @@ const Router = () => {
       return;
     }
 
-    menu.links.map(link => {
+    menu.links.forEach(link => {
       if (link.classList.contains(menu.activeLinkClass)) {
         link.classList.remove(menu.activeLinkClass);
       }
@@ -117,7 +117,7 @@ const Router = () => {
     window.addEventListener('popstate', e => {
       document.body.style.visibility = 'hidden';
       window.location = window.location.href;
-    }); // Use normal page loading whenever the user uses the back/forward buttons
+    });
   };
 
   return {
