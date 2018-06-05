@@ -12,6 +12,7 @@ router.get('/', (req, resp) => {
       projects.sort((a, b) => a.order - b.order);
 
       return resp.render('pages/index', {
+        canonical: req.originalUrl,
         view: 'index',
         title: siteData.home.title,
         description: siteData.home.description,

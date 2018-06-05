@@ -1,0 +1,16 @@
+<noscript id="non-critical-css">
+  <link rel="stylesheet" type="text/css" href="/app.bundle.css"/>
+</noscript>
+<script>
+  var loadNonCriticalCSS = function() {
+    var stylesNode = document.getElementById("non-critical-css");
+    var replace = document.createElement("div");
+    replace.innerHTML = stylesNode.textContent;
+    document.body.appendChild(replace)
+    stylesNode.parentElement.removeChild(stylesNode);
+  };
+  var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+      window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  if (raf) raf(function() { window.setTimeout(loadNonCriticalCSS, 0); });
+  else window.addEventListener('load', loadNonCriticalCSS);
+</script>

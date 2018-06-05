@@ -13,6 +13,7 @@ router.get('/contact', (req, resp) => {
   axios.get('https://vue-admin.firebaseio.com/pages/contact.json')
     .then((response) => {
       return resp.render('pages/contact', {
+        canonical: req.originalUrl,
         view: 'contact',
         title: 'contact',
         description: 'test',

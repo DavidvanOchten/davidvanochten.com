@@ -2,6 +2,8 @@
 {{#each notes}}
   <article class="note">
     <div class="note__thumbnail lazyLoader">
+      {{!-- If video --}}
+      {{!-- Add "playsinline" to video element --}}
       <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
     </div>
     <header class="note__header">

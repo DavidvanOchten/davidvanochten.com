@@ -37,7 +37,9 @@
       {{#each content}}
       <div class="gallery__item" data-gallery-item>
         {{!-- If video etc. --}}
+        {{!-- Add "playsinline" to video element --}}
         <img alt="{{name}}" data-src="{{src}}" data-src-md="{{srcMd}}">
+        {{!-- Change alt tag. Save file name on save (without extention) --}}
       </div>
       {{/each}}
       <div>

@@ -5,6 +5,7 @@ import { createServiceWorker } from './utils/createServiceWorker.js';
 
 const App = (() => {
   console.log('[App] Service Worker enabled > JS/CSS still disabled');
+  console.log('[App] Check JSON-LD and canonical links');
   createServiceWorker();
 
   // spinner.show(true);

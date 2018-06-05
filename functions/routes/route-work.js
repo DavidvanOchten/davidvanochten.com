@@ -11,6 +11,7 @@ router.get('/work', (req, resp) => {
       projects.sort((a, b) => a.order - b.order);
 
       return resp.render('pages/work', { 
+        canonical: req.originalUrl,
         view: 'work',
         title: 'Get from admin',
         description: 'test',
@@ -24,12 +25,12 @@ router.get('/work', (req, resp) => {
 
 router.get('/work/:id', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-
   axios.get('https://davidvanochten-admin.firebaseio.com/cases.json')
     .then((response) => {
       const project = Object.keys(response.data).map(i => response.data[i]).filter(obj => obj.path === req.params.id)[0];
 
       return resp.render('pages/project', {
+        canonical: req.originalUrl,
         view: 'project',
         title: project.title,
         description: 'test',

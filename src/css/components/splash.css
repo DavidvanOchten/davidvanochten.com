@@ -86,7 +86,7 @@
   }
 
   &__subtitle {
-    font-size: var(--ms-m);
+    display: flex;
     line-height: var(--ms-r);
     color: var(--grey-dark);
   }

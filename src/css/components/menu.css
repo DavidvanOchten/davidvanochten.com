@@ -46,16 +46,6 @@
     }
   }
 
-  &__colophon {
-    width: var(--col-12);
-    padding: calc(var(--bsl) * 2) var(--col-2);
-
-    & a {
-      font-family: var(--primary-font);
-      border-bottom: 1px solid var(--grey-dark);
-    }
-  }
-
   &__item {
     overflow: hidden;
     opacity: 0;

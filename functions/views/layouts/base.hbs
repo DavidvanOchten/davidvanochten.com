@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {{> ga}}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}} | David van Ochten</title>
@@ -8,6 +9,9 @@
   <meta name="theme-color" content="#FFFFFF">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+  <link rel="preload" href="/static/fonts/1491978/e5716290-d41e-4c97-a27c-7a20a46ddf45.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/1491988/e0d80810-f7e3-4fea-8c57-ef8116f0465d.woff2" as="font" type="font/woff2" crossorigin>
 
   <link rel="shortcut icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" href="/static/icons/favicon-32x32.png" sizes="32x32" />
@@ -17,12 +21,11 @@
   <meta name="msapplication-TileColor" content="#FFFFFF" />
   <meta name="msapplication-TileImage" content="/static/icons/mstile-144x144.png" />
 
+  <link rel="canonical" href="https://davidvanochten.com{{canonical}}" />
   <link rel="manifest" href="/manifest.json">
-  <link rel="preload" href="/static/fonts/1491978/e5716290-d41e-4c97-a27c-7a20a46ddf45.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/static/fonts/1491988/e0d80810-f7e3-4fea-8c57-ef8116f0465d.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/app.bundle.css">
 </head>
-  <body style="overflow: hidden;">
+  <body>
     {{> splash}}
     {{> spinner}}
     {{> header}}

@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/offline', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
   resp.render('pages/offline', { 
+    canonical: req.originalUrl,
     title: 'Offline',
     description: 'test',
     view: 'offline'
