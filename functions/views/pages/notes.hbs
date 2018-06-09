@@ -1,17 +1,20 @@
 <article class="notes u-flex">
-{{#each notes}}
+  {{#each notes}}
   <article class="note">
     <div class="note__thumbnail lazyLoader">
       {{!-- If video --}}
       {{!-- Add "playsinline" to video element --}}
-      <img class="lazyLoader__image" data-src="{{thumbnailUrl}}" alt="{{{headline}}}">
+      <img class="lazyLoader__content" alt="{{{headline}}}" data-src="{{thumbnailUrl}}">
     </div>
     <header class="note__header">
       <h1 class="note__headline">{{{headline}}}</h1>
       <p class="note__summary">{{{summary}}}</p>
     </header>
   </article>
-{{/each}}
+  {{/each}}
+  <div class="notes__banner">
+    <a href="/contact">Get in touch</a>
+  </div>
 </article>
 
 {{> footer}}

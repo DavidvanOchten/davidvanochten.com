@@ -13,15 +13,16 @@ const Toggle = (obj) => {
     (toggle.target.getAttribute('aria-hidden') === 'false')
       ? toggle.target.setAttribute('aria-hidden', true)
       : toggle.target.setAttribute('aria-hidden', false);
-
+    
     if (toggle.trigger !== undefined) {
-      toggle.trigger.getAttribute('aria-pressed') === 'false'
-        ? toggle.trigger.setAttribute('aria-pressed', true)
-        : toggle.trigger.setAttribute('aria-pressed', false);
-    }
+      (toggle.trigger.getAttribute('aria-pressed') !== null) && 
+      (toggle.trigger.getAttribute('aria-pressed') === 'true')
+        ? toggle.trigger.setAttribute('aria-pressed', false)
+        : toggle.trigger.setAttribute('aria-pressed', true);
 
-    if (toggle.triggerClass !== undefined) {
-      toggle.trigger.classList.toggle(toggle.triggerClass);
+      if (toggle.triggerClass !== undefined) {
+        toggle.trigger.classList.toggle(toggle.triggerClass);
+      }
     }
 
     if (toggle.cb) {

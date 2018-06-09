@@ -81,7 +81,8 @@
     border-left: 1px solid var(--grey-light);
 
     & a {
-      &:hover {
+      &:hover,
+      &:focus {
         color: var(--grey);
       }
     }

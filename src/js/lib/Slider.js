@@ -185,7 +185,7 @@ const Slider = (id) => {
 
   return {
     init: construct
-  }
+  };
 };
 
 export default Slider;

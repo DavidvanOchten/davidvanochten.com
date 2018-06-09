@@ -4,10 +4,6 @@ a {
   color: var(--dark);
   text-decoration: none;
   outline: none;
-
-  &:focus {
-    color: var(--grey);
-  }
 }
 
 body {

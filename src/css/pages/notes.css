@@ -13,4 +13,27 @@
     width: var(--col-6);
     margin-bottom: calc(var(--bsl) * 2);
   }
+
+  &__banner {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 0;
+    height: 100vh;
+    width: var(--col-2);
+    border-left: 1px solid var(--grey-light);
+
+    & a {
+      position: absolute;
+      bottom: 100vh;
+      left: 0;
+      display: flex;
+      align-items: center;
+      height: var(--col-2);
+      width: 100vh;
+      padding-left: calc(var(--bsl) * 5);
+      transform-origin: bottom left;
+      transform: rotate(90deg);
+    }
+  }
 }

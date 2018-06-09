@@ -72,13 +72,14 @@
     font-family: var(--secondary-font);
     font-size: var(--ms-l);
     line-height: calc(var(--bsl) * 3);
+    transition: opacity .25s linear;
 
     &:focus {
-      color: var(--grey-dark);
+      opacity: .25;
     }
 
     &--isProcessing {
-      color: var(--grey-dark);
+      opacity: .25;
       pointer-events: none;
     }
   }

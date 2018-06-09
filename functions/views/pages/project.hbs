@@ -2,16 +2,20 @@
   <div class="project__column" aria-hidden="false" data-toggle="column">
     <div class="project__info">
       <header class="project__header">
-        <div class="project__heading">
+        <div class="project__heading reveal reveal--skew" data-reveal="skew">
           <h1 class="project__title headline headline--inline">{{name}}</h1>
           <h2 class="project__subtitle headline headline--inline">{{{headline}}}</h2>
         </div>
         <ul class="project__details u-flex">
-          <li>2014</li>
-          <li>Design / Development</li>
+          <li class="u-mask">
+            <span class="reveal reveal--04 reveal--mask" data-reveal="mask">2014</span>
+          </li>
+          <li class="u-mask">
+            <span class="reveal reveal--05 reveal--mask" data-reveal="mask">Design / Development</span>
+          </li>
         </ul>
       </header>
-      <div>{{{summary}}}</div>
+      <div class="reveal reveal--06 reveal--fade" data-reveal="fade">{{{summary}}}</div>
     </div>
 
     <footer class="project__footer">

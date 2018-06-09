@@ -21,6 +21,11 @@ app.use(cors({
   origin: true
 }));
 
+app.use(express.static(path.join(__dirname, '/static'), {
+  etag: true,
+  maxAge: '3153600000',
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(require(path.join(__dirname, '/routes/route-index')));
