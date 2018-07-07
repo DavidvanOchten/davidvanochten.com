@@ -167,8 +167,8 @@ const Slider = (id) => {
 
     _setUpSliderItems();
 
-    slider.content.addEventListener('touchstart', _onTouchStart);
-    slider.content.addEventListener('touchmove', _onTouchMove);
+    slider.content.addEventListener('touchstart', _onTouchStart, { passive: true });
+    slider.content.addEventListener('touchmove', _onTouchMove, { passive: true });
     slider.content.addEventListener('touchend', _onTouchEnd);
 
     slider.content.addEventListener('mousedown', _onMouseDown);

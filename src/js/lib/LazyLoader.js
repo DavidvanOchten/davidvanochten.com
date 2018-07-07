@@ -33,7 +33,13 @@ const LazyLoader = (obj) => {
 
       _loadImage()
         .then(() => _setImage())
-        .catch(err => console.log('[LazyLoader.js] Error: ', err));
+        .catch(err => {
+          console.log('[LazyLoader.js] Error: ', err);
+
+          if (lazyLoader.cb) {
+            lazyLoader.cb();
+          }
+        });
     }
 
     if (lazyLoader.type === 'VIDEO') {

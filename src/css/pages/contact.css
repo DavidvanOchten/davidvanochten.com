@@ -23,6 +23,7 @@
 
     @media (--tablet-landscape-up) {
       width: var(--col-18);
+      min-height: calc(100vh - (var(--bsl) * 14));
       border-top: none;
       padding: calc(var(--bsl) * 3) var(--col-1);
       border-left: 1px solid var(--grey-light);
@@ -34,7 +35,7 @@
     border-bottom: 1px solid var(--grey-light);
 
     @media (--tablet-landscape-up) {
-      padding: calc(var(--bsl) * 2) var(--col-1) calc(var(--bsl) * 1);
+      padding: calc(var(--bsl) * 3) var(--col-1) calc(var(--bsl) * 2);
     }
   }
 }

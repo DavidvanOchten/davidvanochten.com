@@ -14,7 +14,7 @@
 
   &--skew {
     opacity: 0;
-    transform: skewY(3deg) translate3d(0, calc(var(--bsl) * 2), 0);
+    transform: skewY(3deg) translate3d(0, calc(var(--bsl) * 3), 0);
   }
 
   &--slide {

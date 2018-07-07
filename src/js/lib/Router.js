@@ -58,7 +58,7 @@ const Router = () => {
         router.view = view;
 
         const viewName = router.view.dataset.view;
-        document.title = `${viewName.substr(0, 1).toUpperCase() + viewName.substr(1)} | David van Ochten`;
+        document.title = `David van Ochten — ${viewName.substr(0, 1).toUpperCase() + viewName.substr(1)}`;
 
         document.documentElement.scrollTop = 0; // Desktop
         document.body.scrollTop = 0; // Safari mobile
