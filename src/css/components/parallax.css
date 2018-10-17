@@ -1,0 +1,38 @@
+.parallax {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 300px;
+  -webkit-perspective-origin-x: 100%;
+  perspective-origin-x: 100%;
+  transform: translate3d(0, 0, 0);
+
+  &__layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transform-origin-x: 100%;
+    transform-origin-x: 100%;
+    pointer-events: none;
+
+    &--1 {
+      z-index: 1;
+      transform: translate3d(0, 0, 75px) scale(.75);
+    }
+
+    &--2 {
+      z-index: 1;
+      transform: translate3d(0, 0, 30px) scale(.9);
+    }
+
+    & * {
+      pointer-events: auto;
+    }
+  }
+
+  &__section {
+    transform-style: preserve-3d;
+  }
+}

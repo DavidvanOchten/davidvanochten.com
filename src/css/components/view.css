@@ -1,0 +1,29 @@
+/* .view {
+  opacity: 0;
+  transition: opacity .15s linear .5s;
+
+  & .project__headline {
+    opacity: 0;
+    transition: opacity .15s linear, transform .5s cubic-bezier(.25, .5, .25, 1);
+  }
+
+  &--index {
+    opacity: 1;
+    transition: opacity .15s linear;
+
+    & .project__headline {
+      opacity: 1;
+      transition: opacity .15s linear .5s, transform .5s cubic-bezier(.25, .5, .25, 1);
+    }
+  }
+
+  &--info {
+    opacity: 1;
+    transition: opacity .15s linear;
+
+    & .project__headline {
+      opacity: 1;
+      transition: opacity .15s linear .5s, transform .5s cubic-bezier(.25, .5, .25, 1);
+    }
+  }
+} */

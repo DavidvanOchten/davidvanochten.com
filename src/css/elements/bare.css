@@ -1,0 +1,30 @@
+a {
+  display: inline-block;
+  color: var(--light-color);
+}
+
+body {
+  font-family: var(--primary-font);
+  font-size: var(--ms-r);
+  color: var(--light-color);
+  letter-spacing: var(--spacing);
+  line-height: var(--bsl);
+  background-color: var(--dark-color);
+}
+
+button {
+  padding: 0;
+  border: 0;
+  color: var(--light-color);
+  background-color: transparent;
+  outline: 0;
+}
+
+img,
+video {
+  width: 100%;
+}
+
+p {
+  hyphens: auto;
+}

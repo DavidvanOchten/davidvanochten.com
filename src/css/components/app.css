@@ -1,0 +1,12 @@
+.app {
+  &__toggle {
+    position: fixed;
+    top: var(--bsl);
+    left: var(--gutter);
+    z-index: 10;
+
+    & a {
+      transform: rotate(-90deg);
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.u-is-loading {
+  overflow: hidden;
+
+  & * {
+    cursor: progress;
+  }
+}

@@ -1,0 +1,5 @@
+.u-caps {
+  font-size: var(--ms-s);
+  letter-spacing: var(--spacing-wide);
+  text-transform: uppercase;
+}

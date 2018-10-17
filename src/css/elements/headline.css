@@ -1,0 +1,10 @@
+.headline {
+  display: inline-block;
+  height: calc(var(--bsl) * 8);
+  padding-right: 3px;
+  overflow: hidden;
+  font-family: var(--secondary-font);
+  font-size: calc(var(--bsl) * 10);
+  line-height: calc(var(--bsl) * 10);
+  letter-spacing: -3px;
+}

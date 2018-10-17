@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+functions/node_modules
+.vscode
+
+firebase.config.js
+firebase-debug.log
+public/static/fonts
+
+cloud-functions-emulator.log

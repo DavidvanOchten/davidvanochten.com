@@ -1,0 +1,42 @@
+:root {
+  /* Colors */
+  --light-color: #EFEFEF;
+  --dark-color: #000000;
+
+  --grey-color: #DDDDDD;
+
+  --primary-color: #FFD300;
+
+  /* Baseline */
+  --bsl: 1.5rem;
+
+  /* Gutter */
+  --gutter: calc(var(--bsl) / 2);
+
+  /* Typography */
+  --primary-font: "NeueHaasUnicaReg", "Helvetica Neue", sans-serif;
+  --secondary-font: "Timmons", "Helvetica Neue", sans-serif;
+  --spacing: 0.025rem;
+  --spacing-wide: 0.05rem;
+
+  /* Modular scale */
+  --ms-xs: 0.618rem;
+  --ms-s: 0.75rem;
+  --ms-r: 1rem;
+  --ms-m: 1.618rem;
+  --ms-l: 2.618rem;
+
+  /* Columns */
+  --col-1: calc(100vw / 12);
+  --col-2: calc((100vw / 12) * 2);
+  --col-3: calc((100vw / 12) * 3);
+  --col-4: calc((100vw / 12) * 4);
+  --col-5: calc((100vw / 12) * 5);
+  --col-6: calc((100vw / 12) * 6);
+  --col-7: calc((100vw / 12) * 7);
+  --col-8: calc((100vw / 12) * 8);
+  --col-9: calc((100vw / 12) * 9);
+  --col-10: calc((100vw / 12) * 10);
+  --col-11: calc((100vw / 12) * 11);
+  --col-12: calc((100vw / 12) * 12);
+}
