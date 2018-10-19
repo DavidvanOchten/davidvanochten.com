@@ -1,15 +1,10 @@
+::selection {
+  background-color: var(--light-color);
+}
+
 a {
   display: inline-block;
   color: var(--light-color);
-}
-
-body {
-  font-family: var(--primary-font);
-  font-size: var(--ms-r);
-  color: var(--light-color);
-  letter-spacing: var(--spacing);
-  line-height: var(--bsl);
-  background-color: var(--dark-color);
 }
 
 button {

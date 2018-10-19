@@ -28,18 +28,18 @@
     <link rel="stylesheet" href="/app.bundle.css">
   </head>
 
-  <body class="app">
+  <body class="site">
 
     {{!-- {{> splash}} --}}
     {{> header}}
 
-    <div class="layout">
+    {{!-- <div class="layout">
       <input type="checkbox">
       <label></label>
-    </div>
+    </div> --}}
 
-    <main role="main" data-site-content>
-      <div class="view" data-view="{{view}}">
+    <main class="site__content" role="main" data-site-content>
+      <div class="view view--{{view}}" data-view="{{view}}">
         {{{body}}}
       </div>
     </main>

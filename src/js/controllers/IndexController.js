@@ -69,6 +69,7 @@ const IndexController = (() => {
     }
 
     const clonedProject = index.projects[0].cloneNode(true);
+    clonedProject.dataset.project = 'clone';
     index.projectsList.appendChild(clonedProject);
     index.projects.push(clonedProject);
   };

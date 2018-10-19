@@ -10,7 +10,7 @@
 @import "elements/bare.css";
 @import "elements/headline.css";
 
-@import "components/app.css";
+@import "components/site.css";
 @import "components/parallax.css";
 @import "components/project.css";
 @import "components/projects.css";

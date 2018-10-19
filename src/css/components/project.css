@@ -12,18 +12,18 @@
     & .project__headline {
       opacity: 0;
       transform: translate3d(0, calc(var(--bsl) * -2), 0) skewY(-4deg);
-      transition: transform .75s cubic-bezier(.75, 0, .25, 1), opacity .5s linear;
+      transition: transform .75s cubic-bezier(.5, 0, .25, 1), opacity .25s linear .25s;
     }
 
     & .project__info {
       opacity: 0;
       transform: translate3d(0, var(--bsl), 0);
-      transition: transform .75s cubic-bezier(.75, 0, .25, 1), opacity .5s linear;
+      transition: transform .75s cubic-bezier(.5, 0, .25, 1), opacity .25s linear .25s;
     }
 
     & .project__thumbnail {
       &::after {
-         transition: transform .5s cubic-bezier(.75, 0, .25, 1) .25s;
+         transition: transform .5s cubic-bezier(.5, 0, .25, 1) .25s;
       }
 
       & img {
@@ -67,13 +67,21 @@
 
     & img,
     & video {
+      transform: scale(1.05);
       margin-bottom: calc(var(--bsl) * 3);
+      transition: transform 0s cubic-bezier(.5, 0, .25, 1) .5s;
     }
 
     &--is-active {
       opacity: 1;
       transform: translate3d(0, 0, 0);
       transition: opacity .5s linear;
+
+      & img,
+      & video {
+        transform: none;
+        transition: transform 1s cubic-bezier(.5, 0, .25, 1);
+      }
     }
   }
 
@@ -85,7 +93,7 @@
     padding-left: var(--gutter);
     transform-origin: center;
     will-change: transform;
-    transition: transform .75s cubic-bezier(.75, 0, .25, 1) .25s, opacity .5s linear .25s;
+    transition: transform .75s cubic-bezier(.5, 0, .25, 1) .25s, opacity .25s linear .25s;
     cursor: pointer;
 
     &:hover {
@@ -104,7 +112,7 @@
     width: var(--col-7);
     padding-right: var(--gutter);
     padding-left: var(--gutter);
-    transition: transform .75s cubic-bezier(.75, 0, .25, 1) .25s, opacity .5s linear .25s;
+    transition: transform .75s cubic-bezier(.5, 0, .25, 1) .25s, opacity .25s linear .25s;
   }
 
   &__thumbnail {
@@ -117,7 +125,7 @@
     overflow: hidden;
     background-color: #FFFFFF;
     transform-origin: top left;
-    transition: transform .5s cubic-bezier(.75, 0, .25, 1);
+    transition: transform .5s cubic-bezier(.5, 0, .25, 1);
     cursor: pointer;
 
     &::after {
@@ -129,7 +137,7 @@
       width: 100%;
       background: linear-gradient(transparent, var(--dark-color));
       transform: translate3d(0, 0, 0);
-      transition: transform .5s cubic-bezier(.75, 0, .25, 1);
+      transition: transform .5s cubic-bezier(.5, 0, .25, 1);
     }
 
     & img {
