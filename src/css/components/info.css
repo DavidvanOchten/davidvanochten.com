@@ -1,0 +1,23 @@
+.info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  transform: translate3d(-75vw, 0, 0);
+  transition: transform 1s cubic-bezier(.5, 0, .25, 1);
+
+  &__container {
+    width: var(--col-7);
+    padding: calc(var(--bsl) * 3) calc(var(--col-1) + var(--gutter));
+    transform-origin: bottom;
+  }
+
+  &__heading {
+    margin-bottom: var(--bsl);
+    font-size: var(--ms-l);
+    line-height: calc(var(--bsl) * 1.5);
+  }
+}

@@ -1,40 +1,42 @@
-@keyframes slideOut {
-  0% { transform: none; }
-  50% { transform: skewX(12deg); }
-  100% { transform: none; }
-}
-
-@keyframes slideIn {
-  0% { transform: none; }
-  50% { transform: skewX(-12deg); }
-  100% { transform: none; }
-}
-
 .view {
-  position: absolute;
-  width: 100vw;
-  transform: translate3d(0, 0, 0);
-  transition: transform 1.5s cubic-bezier(.75, 0, .25, 1), opacity 0s linear;
 
-  & .project {
-    transform-origin: bottom;
-    animation: slideIn 1.75s cubic-bezier(.5, 0, .25, 1);
-  }
-
-  &--is-hidden {
-    opacity: 0;
-    transition: transform 1.5s cubic-bezier(.75, 0, .25, 1), opacity 0s linear 1.5s;
-
-    &.view--index {
-      transform: translate3d(100vw, 0, 0);
-    }
-
-    &.view--info {
-      transform: translate3d(-100vw, 0, 0);
+  &--is-resetting {
+    & .info__container {
+      animation: slideLeft 1s cubic-bezier(.5, 0, .5, 1);
     }
 
     & .project {
-      animation: slideOut 1.75s cubic-bezier(.5, 0, .25, 1);
+      transform-origin: bottom;
+      animation: slideLeft 1s cubic-bezier(.5, 0, .5, 1);
+    }
+
+    & .project__headline,
+    & .project__info {
+      transform-origin: bottom;
+      animation: slideLeft2 1s cubic-bezier(.5, 0, .5, 1) forwards;
+    }
+  }
+
+  &--info {
+    & .info {
+      transform: translate3d(0, 0, 0);
+    }
+
+    & .info__container {
+      animation: slideRight 1s cubic-bezier(.5, 0, .5, 1);
+    }
+
+    & .projects {
+      transform: translate3d(50vw, 0, 0);
+    }
+
+    & .project {
+      animation: slideRight 1s cubic-bezier(.5, 0, .5, 1);
+    }
+
+    & .project__headline,
+    & .project__info {
+      animation: slideRight2 1s cubic-bezier(.5, 0, .5, 1) forwards;
     }
   }
 }

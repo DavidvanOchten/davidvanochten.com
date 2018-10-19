@@ -20,11 +20,10 @@
   --spacing-wide: 0.05rem;
 
   /* Modular scale */
-  --ms-xs: 0.618rem;
   --ms-s: 0.75rem;
   --ms-r: 1rem;
-  --ms-m: 1.618rem;
-  --ms-l: 2.618rem;
+  --ms-m: 1.333rem;
+  --ms-l: 1.777rem;
 
   /* Columns */
   --col-1: calc(100vw / 12);

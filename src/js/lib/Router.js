@@ -4,6 +4,7 @@ import Controllers from '../controllers/Controllers';
 import { appendView } from '../utils/appendView';
 import { removeView } from '../utils/removeView';
 import { handleFetchError } from '../utils/handleFetchError';
+import { Transform } from 'stream';
 
 const Router = () => {
   const router = {};
@@ -33,14 +34,23 @@ const Router = () => {
   };
 
   const _setNewView = () => {
-    removeView(router.view, router.activeViewClass)
-      .then(() => axios.get(router.targetUrl))
-      .then(resp => appendView(resp.data, router.siteContent))
-      .then(view => _activateNewView(view))
-      .catch(err => {
-        _disableUserInput(false);
-        handleFetchError(err);
-      });
+    router.view.classList.toggle('view--info');
+    router.view.classList.add('view--is-resetting');
+
+    // Use transitionend to toggle user input
+    setTimeout(() => {
+      router.view.classList.remove('view--is-resetting');
+      _disableUserInput(false);
+    }, 1000);
+
+    // removeView(router.view, router.activeViewClass)
+    //   .then(() => axios.get(router.targetUrl))
+    //   .then(resp => appendView(resp.data, router.siteContent))
+    //   .then(view => _activateNewView(view))
+    //   .catch(err => {
+    //     _disableUserInput(false);
+    //     handleFetchError(err);
+    //   });
   }
 
   const _onRouterLinkClick = (e) => {

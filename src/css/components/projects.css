@@ -1,4 +1,8 @@
 .projects {
+  background-color: var(--dark-color);
+  transform: translate3d(0, 0, 0);
+  transition: transform 1s cubic-bezier(.5, 0, .25, 1);
+
   &__counter {
     position: fixed;
     right: 0;
