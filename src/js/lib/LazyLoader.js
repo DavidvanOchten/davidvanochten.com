@@ -1,10 +1,5 @@
 const LazyLoader = (obj) => {
-
-  const lazyLoader = {
-    root: obj.element,
-    type: obj.type,
-    cb: obj.callback
-  };
+  const lazyLoader = {};
 
   const _setImage = () => {
     lazyLoader.root.src = lazyLoader.src;
@@ -26,9 +21,13 @@ const LazyLoader = (obj) => {
   };
 
   const construct = () => {
+    lazyLoader.root = obj.element;
+    lazyLoader.type = obj.type;
+    lazyLoader.cb = obj.callback;
+
     if (lazyLoader.type === undefined || lazyLoader.type === 'IMG') {
-      (window.innerWidth < 600 && lazyLoader.root.dataset.srcMd)
-        ? lazyLoader.src = lazyLoader.root.dataset.srcMd
+      (window.innerWidth < 600 && lazyLoader.root.dataset.srcS)
+        ? lazyLoader.src = lazyLoader.root.dataset.srcS
         : lazyLoader.src = lazyLoader.root.dataset.src;
 
       _loadImage()

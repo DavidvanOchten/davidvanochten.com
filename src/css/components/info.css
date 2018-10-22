@@ -6,18 +6,44 @@
   height: 100vh;
   width: 100vw;
   overflow-y: auto;
-  transform: translate3d(-75vw, 0, 0);
-  transition: transform 1s cubic-bezier(.5, 0, .25, 1);
 
   &__container {
-    width: var(--col-7);
+    width: var(--col-8);
     padding: calc(var(--bsl) * 3) calc(var(--col-1) + var(--gutter));
-    transform-origin: bottom;
+    opacity: 0;
+    transform-origin: top left;
+    transform: translate3d(0, calc(var(--bsl) * 2), 0) skewY(4deg);
+    transition: transform .75s cubic-bezier(.5, 0, .25, 1), opacity .25s linear;
+  }
+
+  &__copy {
+    margin-bottom: calc(var(--bsl) * 2);
+    margin-left: var(--col-1);
+
+    @media screen and (min-width: 1400px) {
+      margin-left: var(--col-2);
+    }
   }
 
   &__heading {
-    margin-bottom: var(--bsl);
-    font-size: var(--ms-l);
-    line-height: calc(var(--bsl) * 1.5);
+    margin-bottom: calc(var(--bsl) * 1);
+    font-family: var(--display-font);
+    font-size: var(--ms-xl);
+    line-height: calc(var(--bsl) * 6);
+    text-transform: uppercase;
+  }
+
+  &__section {
+    margin-left: var(--col-1);
+  }
+
+  &__toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    height: 100%;
+    width: var(--col-4);
+    cursor: pointer;
   }
 }

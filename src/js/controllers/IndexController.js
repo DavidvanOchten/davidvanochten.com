@@ -1,5 +1,6 @@
 import Project from '../lib/Project';
 import IntersectionTracker from '../lib/IntersectionTracker';
+
 import { beforeViewChange } from '../utils/beforeViewChange';
 
 const IndexController = (() => {
@@ -30,12 +31,24 @@ const IndexController = (() => {
 
     const trackedProjects = IntersectionTracker({
       content: index.projects,
-      list: index.projectsList,
+      container: index.projectsList,
       threshold: 0.5,
       callback: _updateProjectsCounter
     });
 
     trackedProjects.init();
+  };
+
+  const _checkForContentLoop = () => {
+    if (browser.isFirefox) {
+      return;
+    }
+
+    if (index.projectsList.scrollTop <= 0) {
+      index.projectsList.scrollTop = index.projectsList.scrollHeight - window.innerHeight;
+    } else if (index.projectsList.scrollTop >= index.projectsList.scrollHeight - window.innerHeight) {
+      index.projectsList.scrollTop = 1;
+    }
   };
 
   const _onScroll = () => {
@@ -49,18 +62,6 @@ const IndexController = (() => {
       requestAnimationFrame(_onScroll);
     }
     browser.ticking = true;
-  };
-
-  const _checkForContentLoop = () => {
-    if (browser.isFirefox) {
-      return;
-    }
-
-    if (index.projectsList.scrollTop <= 0) {
-      index.projectsList.scrollTop = index.projectsList.scrollHeight - window.innerHeight;
-    } else if (index.projectsList.scrollTop >= index.projectsList.scrollHeight - window.innerHeight) {
-      index.projectsList.scrollTop = 1;
-    }
   };
 
   const _cloneFirstProject = () => {
@@ -101,8 +102,6 @@ const IndexController = (() => {
     index.projectsCounterTotal = index.projectsCounter.querySelector('[data-projects-counter="total"]');
 
     _setProjectsCounter();
-
-    // Preload content
 
     index.projectsList.addEventListener('scroll', _requestTick);
     index.projectsList.addEventListener('resize', _requestTick);

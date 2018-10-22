@@ -1,3 +1,4 @@
+import LazyLoader from '../lib/LazyLoader';
 import { handleFetchError } from '../utils/handleFetchError';
 
 const Project = (obj) => {
@@ -39,8 +40,9 @@ const Project = (obj) => {
       _setTransformValues(project.thumbnail, {})
         .then(() => {
           project.root.classList.remove(project.rootClass);
-          project.thumbnail.classList.remove(project.thumbnailClass);
           project.container.classList.remove(project.containerClass);
+          project.gallery.classList.remove(project.galleryVisibleClass);
+          project.thumbnail.classList.remove(project.thumbnailClass);
 
           project.gallery.removeEventListener('transitionend', _transitionOutOfGallery);
           project.gallery.removeAttribute('style');
@@ -52,11 +54,11 @@ const Project = (obj) => {
 
   const _hideGallery = () => {
     project.gallery.addEventListener('transitionend', _transitionOutOfGallery);
-    project.gallery.classList.remove(project.galleryClass);
+    project.gallery.classList.remove(project.galleryActiveClass);
   };
 
   const _showGalleryContent = () => {
-    project.gallery.classList.add(project.galleryClass);
+    project.gallery.classList.add(project.galleryActiveClass);
     _disableUserInput(false);
   };
 
@@ -76,10 +78,11 @@ const Project = (obj) => {
   const _showGallery = () => {
     project.root.classList.add(project.rootClass);
     project.container.classList.add(project.containerClass);
+    project.gallery.classList.add(project.galleryVisibleClass);
 
     project.thumbnail.addEventListener('transitionend', _transitionIntoGallery);
     project.thumbnail.classList.add(project.thumbnailClass);
-  }
+  };
 
   const _onToggleClick = (e) => {
     if (project.isTransitioning) {
@@ -119,11 +122,13 @@ const Project = (obj) => {
 
     project.rootClass = 'project--is-active';
     project.containerClass = 'projects__list--is-inactive';
-    project.galleryClass = 'project__gallery--is-active';
+    project.galleryActiveClass = 'project__gallery--is-active';
+    project.galleryVisibleClass = 'project__gallery--is-visible';
     project.thumbnailClass = 'project__thumbnail--is-hidden';
     project.isTransitioning = false;
 
-    console.log('Project.js: Check Safari project counter and z-index problem with headline overlapping the gallery');
+    console.log('Project.js: z-index problem with headline overlapping the gallery');
+    console.log('Project.js: Check Safari video');
   };
 
   return {

@@ -1,10 +1,6 @@
 .view {
-
+/* Site content instead of view? */
   &--is-resetting {
-    & .info__container {
-      animation: slideLeft 1s cubic-bezier(.5, 0, .5, 1);
-    }
-
     & .project {
       transform-origin: bottom;
       animation: slideLeft 1s cubic-bezier(.5, 0, .5, 1);
@@ -18,16 +14,23 @@
   }
 
   &--info {
-    & .info {
-      transform: translate3d(0, 0, 0);
-    }
-
     & .info__container {
-      animation: slideRight 1s cubic-bezier(.5, 0, .5, 1);
+      opacity: 1;
+      transform: none;
+      transition: transform .75s cubic-bezier(.5, 0, .25, 1) .75s, opacity .25s linear .85s;
     }
 
     & .projects {
-      transform: translate3d(50vw, 0, 0);
+      transform: translate3d(75vw, 0, 0);
+      pointer-events: none;
+
+      & * {
+        pointer-events: none;
+      }
+    }
+
+    & .projects__list {
+      transform: translate3d(-25vw, 0, 0);
     }
 
     & .project {

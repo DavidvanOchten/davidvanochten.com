@@ -1,4 +1,5 @@
 .u-caps {
+  font-family: var(--secondary-font);
   font-size: var(--ms-s);
   letter-spacing: var(--spacing-wide);
   text-transform: uppercase;

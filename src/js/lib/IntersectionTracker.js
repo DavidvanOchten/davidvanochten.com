@@ -58,7 +58,7 @@ const IntersectionTracker = (obj) => {
         intersectionTracker.condition = '(topInView || bottomInView || inFullView)';
       } else {
         intersectionTracker.condition =
-          '(itemTop <= intersectionTracker.threshold && itemBottom >= intersectionTracker.threshold)';
+          '(itemTop <= intersectionTracker.threshold * window.innerHeight && itemBottom >= intersectionTracker.threshold * window.innerHeight)';
       }
 
       eval(intersectionTracker.condition)

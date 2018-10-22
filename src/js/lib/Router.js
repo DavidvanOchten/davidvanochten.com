@@ -60,15 +60,16 @@ const Router = () => {
       return;
     }
 
-    router.clickedLink = e.currentTarget;
-    router.targetUrl = router.clickedLink.href;
+    // router.clickedLink = e.currentTarget;
+    // router.targetUrl = router.clickedLink.href;
 
     _disableUserInput(true);
     _setNewView();
   };
 
   const _createRouterLinks = () => {
-    router.links = [].slice.call(document.querySelectorAll('a:not([data-bypass])'));
+    router.links = [].slice.call(document.querySelectorAll('[data-site-toggle]'));
+    // router.links = [].slice.call(document.querySelectorAll('a:not([data-bypass])'));
     router.links.forEach(link => link.addEventListener('click', _onRouterLinkClick));
   };
 

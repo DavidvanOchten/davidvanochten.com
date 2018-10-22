@@ -1,4 +1,5 @@
 .site {
+  overflow: hidden;
   font-family: var(--primary-font);
   font-size: var(--ms-r);
   color: var(--light-color);
@@ -6,14 +7,14 @@
   line-height: var(--bsl);
   background-color: var(--dark-color);
 
-  &__nav {
+  &__toggle {
     position: fixed;
     top: var(--bsl);
     left: var(--gutter);
     z-index: 15;
-  }
 
-  &__toggle {
-    transform: rotate(-90deg);
+    & button {
+      transform: rotate(-90deg);
+    }
   }
 }

@@ -34,14 +34,13 @@
 
   &__button {
     position: relative;
-    margin-top: var(--bsl);
 
     &::after {
       content: "";
       position: absolute;
       bottom: calc(var(--bsl) / -6);
       left: 0;
-      height: 1.5px;
+      height: 2px;
       width: 100%;
       background-color: var(--light-color);
     }
@@ -57,7 +56,9 @@
     top: 0;
     left: 0;
     height: 100vh;
+    overflow-x: hidden;
     overflow-y: auto;
+    visibility: hidden;
     opacity: 0;
     font-size: 0;
     line-height: 0;
@@ -83,6 +84,10 @@
         transition: transform 1s cubic-bezier(.5, 0, .25, 1);
       }
     }
+
+    &--is-visible {
+      visibility: visible;
+    }
   }
 
   &__headline {
@@ -96,11 +101,11 @@
     transition: transform .75s cubic-bezier(.5, 0, .25, 1) .25s, opacity .25s linear .25s;
     cursor: pointer;
 
-    &:hover {
+    /* &:hover {
       color: transparent;
       text-stroke: 1px white;
       -webkit-text-stroke: 1px white;
-    }
+    } */
   }
 
   &__info {

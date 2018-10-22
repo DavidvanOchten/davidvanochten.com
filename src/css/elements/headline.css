@@ -1,10 +1,8 @@
 .headline {
   display: inline-block;
-  height: calc(var(--bsl) * 8);
-  padding-right: 3px;
+  height: calc(var(--bsl) * 9);
   overflow: hidden;
-  font-family: var(--secondary-font);
+  font-family: var(--display-font);
   font-size: calc(var(--bsl) * 10);
   line-height: calc(var(--bsl) * 10);
-  letter-spacing: -3px;
 }
