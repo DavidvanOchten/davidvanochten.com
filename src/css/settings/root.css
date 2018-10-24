@@ -14,14 +14,14 @@
   --gutter: calc(var(--bsl) / 2);
 
   /* Typography */
-  --primary-font: "NeueHaasUnicaReg", "Helvetica Neue", sans-serif;
+  --primary-font: "Lyon Text", "NeueHaasUnicaReg", "Helvetica Neue", sans-serif;
   --secondary-font: "Druk Text", "Helvetica Neue", sans-serif;
   --display-font: "Druk XCond", "Helvetica Neue", sans-serif;
   --spacing: 0.025rem;
   --spacing-wide: 0.05rem;
 
   /* Modular scale */
-  --ms-s: 0.875rem;
+  --ms-s: 0.75rem;
   --ms-r: 1rem;
   --ms-m: 2.618rem;
   --ms-l: 4.236rem;

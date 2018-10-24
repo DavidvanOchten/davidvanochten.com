@@ -22,6 +22,16 @@
 
     &--is-inactive {
       overflow: hidden;
+
+      & .project:not(.project--is-active) {
+        pointer-events: none;
+
+        & .project__headline,
+        & .project__info {
+          opacity: 0;
+          transition: opacity .25s linear;
+        }
+      }
     }
   }
 }

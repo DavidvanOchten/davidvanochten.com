@@ -4,16 +4,17 @@
 
 a {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   overflow: hidden;
   font-family: var(--secondary-font);
+  line-height: calc(var(--bsl) / 3);
   color: var(--light-color);
   text-transform: uppercase;
 
   &::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -3px;
     left: 0;
     height: 2px;
     width: 100%;

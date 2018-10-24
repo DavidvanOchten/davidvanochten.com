@@ -8,12 +8,16 @@
   overflow-y: auto;
 
   &__container {
-    width: var(--col-8);
+    position: relative;
     padding: calc(var(--bsl) * 3) calc(var(--col-1) + var(--gutter));
     opacity: 0;
     transform-origin: top left;
-    transform: translate3d(0, calc(var(--bsl) * 2), 0) skewY(4deg);
+    transform: translate3d(0, calc(var(--bsl) * 3), 0) skewY(6deg);
     transition: transform .75s cubic-bezier(.5, 0, .25, 1), opacity .25s linear;
+  }
+
+  &__content {
+    width: calc(var(--col-6) - var(--gutter) * 2);
   }
 
   &__copy {
@@ -26,7 +30,7 @@
   }
 
   &__heading {
-    margin-bottom: calc(var(--bsl) * 1);
+    margin-bottom: calc(var(--bsl) * 1.5);
     font-family: var(--display-font);
     font-size: var(--ms-xl);
     line-height: calc(var(--bsl) * 6);

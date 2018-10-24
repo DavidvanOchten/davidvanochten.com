@@ -45,7 +45,11 @@ html {
   font-size: 100%;
 
   @media (--desktop-up) {
-    font-size: 120%;
+    font-size: 112.5%;
+  }
+
+  @media (--big-desktop-up) {
+    font-size: 125%;
   }
 }
 

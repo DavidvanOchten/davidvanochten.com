@@ -114,6 +114,7 @@
     left: var(--col-4);
     z-index: 1;
     display: flex;
+    align-items: baseline;
     width: var(--col-7);
     padding-right: var(--gutter);
     padding-left: var(--gutter);

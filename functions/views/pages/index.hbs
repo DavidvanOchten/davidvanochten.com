@@ -1,54 +1,55 @@
 <aside class="info">
   <div class="info__container">
-    <header>
-      <h1 class="info__heading">I got your back when you need a front</h1>
+    <div class="info__content">
+      <header>
+        <h1 class="info__heading">I got your back when you need a front</h1>
+        <div class="info__copy">
+          <p>I’m a Dutch developer and web designer. Lorem ipsum dolor sit amet, mei noster alienum probatus an, ea mel mollis persius evertitur, dolor em vocibus mel ne. Cum te libris instructior, aeter no eleifend sed in. Mea ipsum libris et, laboramus assueverit an vim.</p>
+          <p>The past couple of years I’ve worked with all kinds of companies—from international brands like Samsonite and Tommy Hilfiger to the more niche businesses. Currently doing the freelance thing.</p>
+        </div>
+      </header>
+      <section class="info__section">
+        <h1 class="u-caps">Services</h1>
+        <ul class="accordion">
+          <li class="accordion__item">
+            <section>
+              <button class="accordion__toggle">
+                <h1>Development</h1>
+              </button>
+            </section>
+          </li>
+          <li class="accordion__item">
+            <section>
+              <button class="accordion__toggle">
+                <h1>Motion</h1>
+              </button>
+            </section>
+          </li>
+          <li class="accordion__item">
+            <section>
+              <button class="accordion__toggle">
+                <h1>Design</h1>
+              </button>
+            </section>
+          </li>
+        </ul>
+      </section>
       <div class="info__copy">
-        <p>I’m a Dutch developer and web designer. Lorem ipsum dolor sit amet, mei noster alienum probatus an, ea mel mollis persius evertitur, dolor em vocibus mel ne. Cum te libris instructior, aeter no eleifend sed in. Mea ipsum libris et, laboramus assueverit an vim.</p>
-        <p>The past couple of years I’ve worked with all kinds of companies—from international brands like Samsonite and Tommy Hilfiger to the more niche businesses. Currently doing the freelance thing.</p>
+        <p>Available for new gigs — get in touch.<br>
+          <a href="mailto: dwvanochten@gmail.com">dwvanochten@gmail.com</a>
+        </p>
+        <ul>
+          <li>
+            <a href="" target="_blank">LinkedIn</a>
+          </li>
+          <li>
+            <a href="" target="_blank">Instagram</a>
+          </li>
+        </ul>
       </div>
-    </header>
-    <section class="info__section">
-      <h1 class="u-caps">Services</h1>
-      <ul class="accordion">
-        <li class="accordion__item">
-          <section>
-            <button class="accordion__toggle">
-              <h1>Development</h1>
-            </button>
-          </section>
-        </li>
-        <li class="accordion__item">
-          <section>
-            <button class="accordion__toggle">
-              <h1>Motion</h1>
-            </button>
-          </section>
-        </li>
-        <li class="accordion__item">
-          <section>
-            <button class="accordion__toggle">
-              <h1>Design</h1>
-            </button>
-          </section>
-        </li>
-      </ul>
-    </section>
-    {{!-- Contact --}}
-    <div class="info__copy">
-      <p>Available for new gigs — get in touch.<br>
-        <a href="mailto: dwvanochten@gmail.com">dwvanochten@gmail.com</a>
-      </p>
-      <ul>
-        <li>
-          <a href="" target="_blank">LinkedIn</a>
-        </li>
-        <li>
-          <a href="" target="_blank">Instagram</a>
-        </li>
-      </ul>
     </div>
+    <div class="info__toggle" data-info-toggle></div>
   </div>
-  <div class="info__toggle" data-info-toggle></div>
 </aside>
 
 <div class="projects">
@@ -82,7 +83,7 @@
           </ul>
           <div>
             <p>This slick little Melbourne based architecture studio needed a new website to compliment their work. Designed by Confetti, I took care of the code for this bad boy.</p>
-            <button class="project__button u-caps" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
+            <button class="project__button" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
           </div>
         </div>
       </div>
@@ -111,7 +112,7 @@
           </ul>
           <div>
             <p>IMA is an influencer marketing agency based in Amsterdam. The company received a major brand overhaul and I was asked to design their website to match their hot new looks.</p>
-            <button class="project__button u-caps" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
+            <button class="project__button" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
           </div>
         </div>
       </div>
@@ -140,7 +141,7 @@
           </ul>
           <div>
             <p>Butch takes care of undies for the burly boys Down Under. Get your briefs and jockstraps while they’re hot. I built this Shopify webshop from scratch. Design by Confetti.</p>
-            <button class="project__button u-caps" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
+            <button class="project__button" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
           </div>
         </div>
       </div>
@@ -167,13 +168,12 @@
       <div class="parallax__layer parallax__layer--2">
         <div class="project__info">
           <ul class="project__data u-caps">
-            <li>Design</li>
-            <li>Development</li>
+            <li>Design + Development</li>
             <li>2016</li>
           </ul>
           <div>
             <p>IMS is a platform created for marketing agency IMA that let’s them manage their business — from organising influencers to monitoring projects. I took care of the design and worked on the end of the app.</p>
-            <button class="project__button u-caps" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
+            <button class="project__button" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@
           </ul>
           <div>
             <p>IMA is an influencer marketing agency based in Amsterdam. The company received a major brand overhaul and I was asked to design their website to match their hot new looks.</p>
-            <button class="project__button u-caps" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
+            <button class="project__button" data-project-toggle>Gallery [<span data-project-gallery-count></span>]</button>
           </div>
         </div>
       </div>
