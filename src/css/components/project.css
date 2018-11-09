@@ -27,7 +27,7 @@
       }
 
       & img {
-        transition: opacity .5s linear .25s;
+        transition: opacity .25s linear .25s;
       }
     }
   }
@@ -66,23 +66,34 @@
     transition: transform 0s linear .25s, opacity .5s linear;
     cursor: pointer;
 
-    & img,
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @supports (object-fit: contain) {
+      & video {
+        object-fit: contain;
+        min-height: 100vh;
+      }
+    }
+
+    /* & img,
     & video {
       transform: scale(1.05);
       margin-bottom: calc(var(--bsl) * 3);
       transition: transform 0s cubic-bezier(.5, 0, .25, 1) .5s;
-    }
+    } */
 
     &--is-active {
       opacity: 1;
       transform: translate3d(0, 0, 0);
       transition: opacity .5s linear;
 
-      & img,
+      /* & img,
       & video {
         transform: none;
         transition: transform 1s cubic-bezier(.5, 0, .25, 1);
-      }
+      } */
     }
 
     &--is-visible {
@@ -139,8 +150,8 @@
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
-      width: 100%;
+      height: calc(100% + 2px);
+      width: calc(100% + 2px);
       background: linear-gradient(transparent, var(--dark-color));
       transform: translate3d(0, 0, 0);
       transition: transform .5s cubic-bezier(.5, 0, .25, 1);

@@ -30,7 +30,7 @@
   }
 
   &__heading {
-    margin-bottom: calc(var(--bsl) * 1.5);
+    margin-bottom: calc(var(--bsl) * 2);
     font-family: var(--display-font);
     font-size: var(--ms-xl);
     line-height: calc(var(--bsl) * 6);

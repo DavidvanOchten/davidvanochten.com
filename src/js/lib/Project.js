@@ -1,4 +1,3 @@
-import LazyLoader from '../lib/LazyLoader';
 import { handleFetchError } from '../utils/handleFetchError';
 
 const Project = (obj) => {
@@ -127,8 +126,11 @@ const Project = (obj) => {
     project.thumbnailClass = 'project__thumbnail--is-hidden';
     project.isTransitioning = false;
 
-    console.log('Project.js: z-index problem with headline overlapping the gallery');
-    console.log('Project.js: Check Safari video');
+    if (window.innerWidth / window.innerHeight > 1.7777777778) {
+      console.log('Use cover, height: 100vh; object-fit: cover; object-position: top;');
+    } else {
+      console.log('Use contain, height: 100vh;');
+    }
   };
 
   return {

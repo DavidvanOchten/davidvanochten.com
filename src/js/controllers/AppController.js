@@ -16,8 +16,6 @@ const AppController = (() => {
         //   }
         // }
       }).init();
-
-      console.log('[App controller] Add correct fonts');
     });
   };
 

@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/', (req, resp) => {
   resp.set('Cache-Control', 'public, max-age=300, s-maxage=600');
-  // TODO: Fetch work only
   axios.get('https://davidvanochten-admin.firebaseio.com/.json')
     .then(response => response.data)
     .then((data) => {

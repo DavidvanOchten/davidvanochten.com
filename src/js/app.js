@@ -7,7 +7,12 @@ const App = (() => {
   console.log('[App] Service Worker enabled > JS/CSS still disabled');
   console.log('[App] Check JSON-LD, canonical links and inline fonts');
 
-  createServiceWorker();
+  const isChrome = !!window.chrome && !!window.chrome.webstore;
+  const isFirefox = typeof InstallTrigger !== 'undefined';
+
+  if (isChrome || isFirefox) {
+    createServiceWorker();
+  }
 
   window.addEventListener('load', () => {
     const router = Router();
