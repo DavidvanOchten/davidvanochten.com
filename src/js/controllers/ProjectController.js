@@ -1,5 +1,6 @@
 import Toggle from '../lib/Toggle.js';
 import LazyLoader from '../lib/LazyLoader.js';
+import intersectionTracker from '../lib/IntersectionTracker.js';
 
 const ProjectController = (() => {
 
@@ -28,6 +29,17 @@ const ProjectController = (() => {
       element: item.querySelector('img'),
       callback: () => item.classList.add('gallery__item--isLoaded')
     }).init());
+
+    intersectionTracker({
+      content: gallery.items,
+      container: gallery.content,
+      flag: true,
+      callback: (content) => {
+        if (content.dataset.intersected === 'true') {
+          content.classList.add('gallery__item--isVisible');
+        }
+      }
+    }).init();
   }
 
   const construct = () => {
@@ -35,6 +47,7 @@ const ProjectController = (() => {
     project.column = document.querySelector('[data-toggle="column"]');
 
     gallery.root = document.querySelector('[data-gallery="project"]');
+    gallery.content = gallery.root.querySelector('[data-gallery="content"]');
     gallery.hero = gallery.root.querySelector('[data-gallery-hero]');
     gallery.items = [].slice.call(gallery.root.querySelectorAll('[data-gallery-item]'));
 

@@ -8,7 +8,7 @@
         </div>
         <ul class="project__details u-flex">
           <li class="u-mask">
-            <span class="reveal reveal--04 reveal--mask" data-reveal="mask">2014</span>
+            <span class="reveal reveal--04 reveal--mask" data-reveal="mask">2017</span>
           </li>
           <li class="u-mask">
             <span class="reveal reveal--05 reveal--mask" data-reveal="mask">Design / Development</span>
@@ -31,11 +31,11 @@
         <img class="lazyLoader__content" alt="{{headline}}" data-src="{{hero}}" data-gallery-hero>
       </div>
       <div class="gallery__banner">
-        <span>Open gallery +</span>
+        <span>Open gallery</span>
       </div>
     </div>
 
-    <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content">
+    <div class="gallery__content" aria-hidden="true" data-toggle="gallery-content" data-gallery="content">
       {{#each content}}
       <div class="gallery__item" data-gallery-item>
         {{!-- If video etc. --}}
@@ -44,10 +44,29 @@
         {{!-- Change alt tag. Save file name on save (without extention) --}}
       </div>
       {{/each}}
-      <div class="project__footer"> {{!-- Same as in column --}}
+      {{!-- <div class="project__footer">
         <strong class="headline">Next project</strong>
         <div>IMA</div>
-      </div>
+      </div> --}}
     </div>
   </div>
 </article>
+
+{{!-- Test --}}
+<style>
+  html {
+    font-size: 75%;
+  }
+
+  .menu__burger {
+    height: 12px;
+  }
+
+  .menu__burgerLine {
+    height: 1px;
+  }
+
+  .menu__burgerLine::after {
+    height: 1px;
+  }
+</style>

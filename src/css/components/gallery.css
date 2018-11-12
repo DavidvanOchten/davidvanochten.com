@@ -59,7 +59,7 @@
       z-index: 10;
       height: 100vh;
       width: var(--col-24);
-      padding-top: calc(var(--bsl) * 4);
+      padding: calc(var(--bsl) * 2);
       overflow: auto;
       background-color: var(--light);
       opacity: 0;
@@ -132,6 +132,13 @@
       animation: pulse .5s infinite alternate;
     }
 
+    & * {
+      opacity: 0;
+      transform: scale(1.15);
+      transform-origin: top;
+      transition: opacity .5s linear, transform 1s cubic-bezier(.5, 0, .25, 1);
+    }
+
     &--isLoaded {
       &::after,
       &::before {
@@ -140,6 +147,13 @@
 
       &::after {
         animation: none;
+      }
+    }
+
+    &--isVisible {
+      & * {
+        opacity: 1;
+        transform: none;
       }
     }
   }

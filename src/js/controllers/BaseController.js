@@ -12,6 +12,7 @@ const BaseController = (() => {
   const construct = () => {
     IntersectionTracker({
       content: [].slice.call(document.querySelectorAll('[data-reveal]')),
+      container: window,
       callback: _removeClass,
       flag: true
     }).init();

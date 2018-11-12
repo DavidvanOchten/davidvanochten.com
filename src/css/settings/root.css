@@ -21,8 +21,8 @@
   --radius: calc(var(--bsl) / 6);
 
   /* Typography */
-  --primary-font: 'Neue Haas Unica W01 Light', 'Helvetica Neue', sans-serif; 
-  --secondary-font: 'Neue Haas Unica W01 Regular', 'Helvetica Neue', sans-serif; 
+  --primary-font: 'Theinhardt', 'Neue Haas Unica W01 Light', 'Helvetica Neue', sans-serif;
+  --secondary-font: 'Theinhardt', 'Neue Haas Unica W01 Regular', 'Helvetica Neue', sans-serif;
   --spacing: 0.025rem;
   --spacing-wide: 0.05rem;
 
