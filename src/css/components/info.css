@@ -24,7 +24,7 @@
     margin-bottom: calc(var(--bsl) * 2);
     margin-left: var(--col-1);
 
-    @media screen and (min-width: 1400px) {
+    @media screen and (min-width: 900px) {
       margin-left: var(--col-2);
     }
   }

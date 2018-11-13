@@ -160,6 +160,7 @@
     & img {
       height: 100%;
       object-fit: cover;
+      object-position: left;
       transition: opacity .5s linear;
     }
 
