@@ -3,9 +3,3 @@
   src: url("/static/fonts/neue-haas-unica-regular.woff2") format("woff2"),
        url("/static/fonts/neue-haas-unica-regular.woff") format("woff");
 }
-
-@font-face {
-  font-family:"Timmons";
-  src: url("/static/fonts/timmons.woff2") format("woff2"),
-       url("/static/fonts/timmons.woff") format("woff");
-}

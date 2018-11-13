@@ -1,6 +1,6 @@
 /* Strictly for development/design purposes */
 
-.layout {
+.guides {
   position: fixed;
   top: var(--bsl);
   right: var(--bsl);

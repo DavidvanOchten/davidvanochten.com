@@ -53,6 +53,11 @@ html {
   }
 }
 
+img,
+video {
+  width: 100%;
+}
+
 input,
 textarea {
   padding: 0;

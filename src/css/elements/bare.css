@@ -2,43 +2,6 @@
   background-color: var(--light-color);
 }
 
-a {
-  position: relative;
-  /* display: inline-block; */
-  overflow: hidden;
-  font-family: var(--secondary-font);
-  line-height: calc(var(--bsl) / 3);
-  color: var(--light-color);
-  text-transform: uppercase;
-
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    height: 2px;
-    width: 100%;
-    background-color: var(--light-color);
-    /* transition: transform 1s cubic-bezier(.5, 0, .25, 1); */
-  }
-}
-
-button {
-  padding: 0;
-  border: 0;
-  font-family: var(--secondary-font);
-  color: var(--light-color);
-  text-transform: uppercase;
-  background-color: transparent;
-  outline: 0;
-}
-
-img,
-video {
-  width: 100%;
-}
-
 p {
-  margin-bottom: var(--bsl);
   hyphens: auto;
 }
