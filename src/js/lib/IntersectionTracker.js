@@ -6,6 +6,8 @@ const IntersectionTracker = obj => {
 
   const _intersectionObserverCB = entries => {
     entries.forEach(entry => {
+      console.log(entry.intersectionRatio, obj.threshold);
+
       if (entry.intersectionRatio >= obj.threshold && entry.isIntersecting) {
         entry.target.dataset.intersected = "true";
 

@@ -52,6 +52,10 @@
   &__content {
     /* Different approach for mobile. Slide up below gallery__header? */
     /* Disable click on gallery */
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
     @media (--tablet-landscape-up) {
       position: fixed;
       top: 0;
@@ -101,7 +105,7 @@
 
   &__item {
     position: relative;
-    margin-bottom: calc(var(--bsl) * 4);
+    padding: calc(var(--bsl) * 4);
 
     &::before {
       content: "";
