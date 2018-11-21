@@ -12,7 +12,7 @@ const AppController = (() => {
         type: item.tagName
         // callback: () => {
         //   if (window.getComputedStyle(item).width) {
-        //     item.parentNode.classList.add('u-loaded');
+        //     item.parentNode.classList.add('lazy--is-loaded');
         //   }
         // }
       }).init();

@@ -1,112 +1,48 @@
-import Project from '../lib/Project';
 import IntersectionTracker from '../lib/IntersectionTracker';
-
-import { beforeViewChange } from '../utils/beforeViewChange';
+import Project from '../lib/Project';
 
 const IndexController = (() => {
-  const browser = {};
   const index = {};
 
-  const _updateProjectsCounter = (content) => {
-    if (content.dataset.intersected === 'true') {
-      index.projectsCounterCurrent.textContent = `0${content.dataset.projectId}`;
-    }
-  };
-
-  const _setProjectsCounter = () => {
-    if (browser.isFirefox) {
-      index.projectsCounterTotal.textContent = `0${index.projects.length}`;
-      index.projects.forEach((project, i) => project.dataset.projectId = i + 1);
-    } else {
-      index.projectsCounterTotal.textContent = `0${index.projects.length - 1}`;
-
-      index.projects.forEach((project, i) => {
-        project.dataset.projectId = i + 1;
-
-        if (i === index.projects.length - 1) {
-          project.dataset.projectId = 1;
-        }
-      });
-    }
-
-    const trackedProjects = IntersectionTracker({
-      content: index.projects,
-      container: index.projectsList,
-      threshold: 0.5,
-      callback: _updateProjectsCounter
-    });
-
-    trackedProjects.init();
-  };
-
-  const _checkForContentLoop = () => {
-    if (browser.isFirefox) {
-      return;
-    }
-
-    if (index.projectsList.scrollTop <= 0) {
-      index.projectsList.scrollTop = index.projectsList.scrollHeight - window.innerHeight;
-    } else if (index.projectsList.scrollTop >= index.projectsList.scrollHeight - window.innerHeight) {
-      index.projectsList.scrollTop = 1;
-    }
-  };
-
-  const _onScroll = () => {
-    browser.ticking = false;
-
-    _checkForContentLoop();
-  };
-
-  const _requestTick = () => {
-    if (!browser.ticking) {
-      requestAnimationFrame(_onScroll);
-    }
-    browser.ticking = true;
-  };
-
-  const _cloneFirstProject = () => {
-    if (browser.isFirefox) {
-      return;
-    }
-
-    const clonedProject = index.projects[0].cloneNode(true);
-    clonedProject.dataset.project = 'clone';
-    index.projectsList.appendChild(clonedProject);
-    index.projects.push(clonedProject);
-  };
-
-  const _remove = () => {
-    index.projectsList.removeEventListener('scroll', _requestTick);
-    index.projectsList.removeEventListener('resize', _requestTick);
+  const _moveProjectsCursor = (e) => {
+    index.projectsCursor.style.transform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
+    index.projectsCursor.style.webkitTransform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
   };
 
   const construct = () => {
-    browser.ticking = false;
-    browser.isFirefox = navigator.userAgent.indexOf('Firefox') > -1;
+    index.currentYear = document.querySelector('[data-year]');
+    index.currentYear.textContent = new Date().getFullYear();
 
-    index.projectsList = document.querySelector('[data-projects-list]');
-    index.projectsList.scrollTop = 1;
+    index.info = document.querySelector('[data-info]');
+    index.infoTrigger = document.querySelector('[data-info-trigger]');
+
+    index.infoTrigger.addEventListener('click', () => {
+      window.scroll({
+        top: index.info.getBoundingClientRect().top,
+        behavior: "smooth"
+      });
+    });
 
     index.projects = [].slice.call(document.querySelectorAll('[data-project]'));
-    _cloneFirstProject();
-
     index.projects.forEach(project => {
       Project({
-        element: project,
-        container: index.projectsList
+        element: project
       }).init();
     });
 
-    index.projectsCounter = document.querySelector('[data-projects-counter]');
-    index.projectsCounterCurrent = index.projectsCounter.querySelector('[data-projects-counter="current"]');
-    index.projectsCounterTotal = index.projectsCounter.querySelector('[data-projects-counter="total"]');
+    IntersectionTracker({
+      content: index.projects,
+      threshold: 0,
+      flag: true,
+      callback: (content) => {
+        if (content.dataset.intersected === 'true') {
+          content.querySelector('[data-project-thumbnail]').classList.add('project__thumbnail--is-visible');
+        }
+      }
+    }).init();
 
-    _setProjectsCounter();
-
-    index.projectsList.addEventListener('scroll', _requestTick);
-    index.projectsList.addEventListener('resize', _requestTick);
-
-    beforeViewChange('[data-site-content]', _remove);
+    index.projectsCursor = document.querySelector('[data-projects-pointer]');
+    document.body.addEventListener('mousemove', _moveProjectsCursor);
   };
 
   return {

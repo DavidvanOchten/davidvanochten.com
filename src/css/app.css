@@ -8,7 +8,15 @@
 @import "generic/resets.css";
 
 @import "elements/bare.css";
+@import "elements/cta.css";
 
-/* @import "components/accordion.css"; */
+@import "components/compilation.css";
+@import "components/gallery.css";
+@import "components/info.css";
+@import "components/project.css";
+@import "components/projects.css";
+@import "components/site-footer.css";
+@import "components/site-header.css";
 
 @import "utils/is-loading.css";
+@import "utils/no-scroll.css";

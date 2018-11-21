@@ -1,0 +1,16 @@
+.cta {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  font-family: var(--secondary-font);
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: var(--dark-color);
+  }
+}

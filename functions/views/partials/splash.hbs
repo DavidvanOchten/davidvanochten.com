@@ -1,19 +1,111 @@
 <div class="splash splash--is-visible" data-splash>
-  <div class="splash__header">
-    <div class="splash__title" data-splash-title>
-      {{!-- <span>L</span>
-      <span>o</span>
-      <span>a</span>
-      <span>d</span>
-      <span>i</span>
-      <span>n</span>
-      <span>g</span> --}}
-    </div>
-    <p class="splash__subtitle">
-      <span data-progress>00</span>%
-    </p>
-  </div>
+  <style>
+    .splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      height: 100vh;
+      width: 100vw;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0s linear 1.5s;
+    }
 
-  <script>document.body.style.overflow='hidden';var progress={};progress.counter=0;progress.factor=1;progress.maxVal=1;progress.minVal=0.1;progress.damping=60;progress.element=document.querySelector('[data-progress]');progress.interval=setInterval(function(){progress.counter=progress.counter+progress.factor;progress.maxVal=Math.max((100-progress.counter)/progress.damping,progress.minVal)
-progress.factor=Math.min(Math.max(Math.abs(Math.sin(100-progress.counter)),0.01),progress.maxVal);(progress.counter<9)?progress.element.textContent='0'+Math.ceil(progress.counter):progress.element.textContent=Math.ceil(progress.counter);if(progress.counter>=88){clearInterval(progress.interval)}},16);window.addEventListener('load',function(){clearInterval(progress.interval);progress.element.textContent=100});var splash={};splash.root=document.querySelector("[data-splash]"),splash.title=splash.root.querySelector("[data-splash-title]"),window.addEventListener("load",function(){splash.title.classList.add("splash__title--loaded"),splash.root.addEventListener("transitionend",function(t){t.target===splash.root&&t.target.parentNode.removeChild(splash.root)}),setTimeout(function(){document.body.removeAttribute("style"),splash.root.classList.remove("splash--isVisible")},1500)});</script>
+    .splash--is-visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .splash__column {
+      width: 100%;
+      background-color: white;
+      transform: translate3d(0, 100vh, 0);
+      transition: transform 1s cubic-bezier(.75, 0, .25, 1);
+    }
+
+    .splash--is-visible .splash__column {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .splash__column:nth-child(3) {
+      transition-delay: .10s;
+    }
+
+    .splash__column:nth-child(4) {
+      transition-delay: .16s;
+    }
+
+    .splash__column:nth-child(5) {
+      transition-delay: .2s;
+    }
+
+    .splash__column:nth-child(6) {
+      transition-delay: .23s;
+    }
+
+    .splash__column:nth-child(7) {
+      transition-delay: .26s;
+    }
+
+    .splash__column:nth-child(8) {
+      transition-delay: .29s;
+    }
+
+    .splash__column:nth-child(9) {
+      transition-delay: .32s;
+    }
+
+    .splash__column:nth-child(10) {
+      transition-delay: .35s;
+    }
+
+    .splash__column:nth-child(11) {
+      transition-delay: .38s;
+    }
+
+    .splash__column:nth-child(12) {
+      transition-delay: .41s;
+    }
+
+    .splash__column:nth-child(13) {
+      transition-delay: .44s;
+    }
+
+  </style>
+
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+  <div class="splash__column"></div>
+
+  <script>
+    document.body.style.overflow = 'hidden';
+
+    var splash = {};
+    splash.root = document.querySelector("[data-splash]");
+
+    window.addEventListener("load", function() {
+        splash.root.addEventListener("transitionend", function(e) {
+            if (e.target === splash.root) {
+              e.target.parentNode.removeChild(splash.root);
+            }
+        });
+
+        setTimeout(function() {
+          document.body.removeAttribute("style");
+          splash.root.classList.remove("splash--is-visible");
+        }, 1500)
+    });
+  </script>
 </div>

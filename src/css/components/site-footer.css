@@ -1,0 +1,6 @@
+.site-footer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100vw;
+  padding: var(--bsl) var(--gutter);
+}

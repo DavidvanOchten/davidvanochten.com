@@ -1,11 +1,9 @@
 :root {
   /* Colors */
-  --light-color: #EFEFEF;
-  --dark-color: #000000;
+  --light-color: #FFFFFF;
+  --dark-color: #212121;
 
-  --grey-color: #DDDDDD;
-
-  --primary-color: #FFD300;
+  --grey-color: #F3F3F3;
 
   /* Baseline */
   --bsl: 1.5rem;
@@ -14,14 +12,13 @@
   --gutter: calc(var(--bsl) / 2);
 
   /* Typography */
-  --primary-font: "Lyon Text", "NeueHaasUnicaReg", "Helvetica Neue", sans-serif;
-  --secondary-font: "Druk Text", "Helvetica Neue", sans-serif;
-  --display-font: "Druk XCond", "Helvetica Neue", sans-serif;
+  --primary-font: "Unica R", "Helvetica Neue", sans-serif;
+  --secondary-font: "Unica M", "Helvetica Neue", sans-serif;
   --spacing: 0.025rem;
   --spacing-wide: 0.05rem;
 
   /* Modular scale */
-  --ms-s: 0.75rem;
+  --ms-s: 0.875rem;
   --ms-r: 1rem;
   --ms-m: 2.618rem;
   --ms-l: 4.236rem;

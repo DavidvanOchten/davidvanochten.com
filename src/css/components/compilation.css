@@ -1,0 +1,19 @@
+.compilation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--col-1);
+
+  &__trigger {
+    position: sticky;
+    top: var(--bsl);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: var(--col-1);
+    width: 100%;
+    padding-bottom: calc(var(--bsl) / 2);
+    transform: rotate(-90deg);
+  }
+}

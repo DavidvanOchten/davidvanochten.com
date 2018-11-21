@@ -1,5 +1,5 @@
-import Router from './lib/Router.js';
 import Smoothscroll from 'smoothscroll-polyfill';
+import Controllers from './controllers/Controllers';
 
 import { createServiceWorker } from './utils/createServiceWorker.js';
 
@@ -15,10 +15,10 @@ const App = (() => {
   }
 
   window.addEventListener('load', () => {
-    const router = Router();
-    router.init();
-
     Smoothscroll.polyfill();
+
+    Controllers['app'].init();
+    Controllers['index'].init();
   });
 
 })();

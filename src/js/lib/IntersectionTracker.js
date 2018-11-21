@@ -1,4 +1,4 @@
-import { beforeViewChange } from '../utils/beforeViewChange.js';
+// import { beforeViewChange } from '../utils/beforeViewChange.js';
 
 const IntersectionTracker = (obj) => {
   const intersectionTracker = {};
@@ -57,8 +57,7 @@ const IntersectionTracker = (obj) => {
 
         intersectionTracker.condition = '(topInView || bottomInView || inFullView)';
       } else {
-        intersectionTracker.condition =
-          '(itemTop <= intersectionTracker.threshold * window.innerHeight && itemBottom >= intersectionTracker.threshold * window.innerHeight)';
+        intersectionTracker.condition = '(itemTop <= intersectionTracker.threshold * window.innerHeight && itemBottom >= intersectionTracker.threshold * window.innerHeight)';
       }
 
       eval(intersectionTracker.condition)
@@ -100,7 +99,6 @@ const IntersectionTracker = (obj) => {
   const construct = () => {
     intersectionTracker.content = obj.content;
     intersectionTracker.container = obj.container || window;
-    // intersectionTracker.threshold = obj.threshold * window.innerHeight || 0;
     intersectionTracker.threshold = obj.threshold || 0;
     intersectionTracker.cb = obj.callback;
     intersectionTracker.useFlag = obj.flag;
@@ -108,7 +106,7 @@ const IntersectionTracker = (obj) => {
     browser.ticking = false;
 
     _selectIntersectionTechnique();
-    beforeViewChange('[data-site-content]', _remove);
+    // beforeViewChange('[data-site-content]', _remove);
   };
 
   return {

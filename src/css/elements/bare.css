@@ -2,6 +2,27 @@
   background-color: var(--light-color);
 }
 
+a,
+button {
+  font-family: var(--secondary-font);
+}
+
+body {
+  font-family: var(--primary-font);
+  letter-spacing: var(--spacing);
+  background-color: var(--grey-color);
+}
+
+button {
+  border: none;
+  text-align: left;
+  outline: 0;
+}
+
 p {
   hyphens: auto;
+}
+
+small {
+  font-size: var(--ms-s);
 }
