@@ -1,30 +1,43 @@
 .project {
   display: flex;
+  flex-direction: column;
   flex-shrink: 0;
+  width: 100%;
   padding-right: var(--gutter);
   padding-left: var(--gutter);
+
+  @media (--tablet-landscape-down) {
+    margin-bottom: calc(var(--bsl) * 4);
+  }
 
   &--is-active {
     z-index: 10;
   }
 
   &--full {
-    align-items: flex-end;
-    width: var(--col-8);
-    margin-bottom: calc(var(--bsl) * 6);
+    @media (--tablet-landscape-up) {
+      flex-direction: row;
+      align-items: flex-end;
+      width: var(--col-8);
+      margin-bottom: calc(var(--bsl) * 6);
+    }
 
     & .project__header {
-      flex-shrink: 0;
-      width: var(--col-4);
-      padding: 0 var(--gutter);
+      @media (--tablet-landscape-up) {
+        flex-shrink: 0;
+        width: var(--col-4);
+        padding: 0 var(--gutter);
+      }
     }
 
     & .project__thumbnail {
-      width: calc(var(--col-4) - (var(--gutter) * 2));
-      margin-right: var(--gutter);
+      @media (--tablet-landscape-up) {
+        width: calc(var(--col-4) - (var(--gutter) * 2));
+        margin-right: var(--gutter);
+      }
 
       &::after {
-        transform: translate3d(100%, 0, 0);
+        transform: translate3d(calc(100% + 1px), 0, 0);
         transform-origin: left;
       }
 
@@ -37,21 +50,26 @@
   }
 
   &--offset {
-    margin-left: var(--col-1);
+    @media (--tablet-landscape-up) {
+      margin-left: var(--col-1);
+    }
   }
 
   &--wide {
-    flex-direction: column;
-    width: var(--col-6);
+    @media (--tablet-landscape-up) {
+      width: var(--col-6);
+    }
 
     & .project__copy {
       padding-left: var(--gutter);
     }
 
     & .project__header {
-      display: flex;
-      justify-content: space-between;
-      padding-top: var(--bsl);
+      @media (--tablet-landscape-up) {
+        display: flex;
+        justify-content: space-between;
+        padding-top: var(--bsl);
+      }
     }
 
     & .project__headline {
@@ -74,8 +92,10 @@
   }
 
   &--narrow {
-    flex-direction: column-reverse;
-     width: var(--col-4);
+    @media (--tablet-landscape-up) {
+      flex-direction: column-reverse;
+      width: var(--col-4);
+    }
 
     & .project__thumbnail {
       &::after {
@@ -119,6 +139,10 @@
 
   &__header {
     padding-bottom: var(--bsl);
+
+    @media (--tablet-landscape-down) {
+      padding-top: calc(var(--bsl) / 2);
+    }
   }
 
   &__headline {

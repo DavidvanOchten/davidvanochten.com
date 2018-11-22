@@ -1,18 +1,27 @@
 .info {
-  display: flex;
-  margin-left: var(--col-4);
+  @media (--tablet-landscape-up) {
+    display: flex;
+    margin-left: var(--col-4);
+  }
 
   &__container {
-    width: var(--col-4);
     padding-right: var(--gutter);
     padding-left: var(--gutter);
+
+    @media (--tablet-landscape-up) {
+      width: var(--col-4);
+    }
   }
 
   &__header {
-    width: var(--col-2);
+    margin-bottom: calc(var(--bsl) / 2);
     padding-right: var(--gutter);
     padding-left: var(--gutter);
     font-family: var(--secondary-font);
+
+    @media (--tablet-landscape-up) {
+      width: var(--col-2);
+    }
   }
 
   &__section {

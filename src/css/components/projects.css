@@ -2,11 +2,15 @@
   position: relative;
 
   &__container {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: calc(var(--bsl) * 5) 0 calc(var(--bsl) * 10) var(--col-1);
+    margin: calc(var(--bsl) * 2) 0 calc(var(--bsl) * 6);
+
+    @media (--tablet-landscape-up) {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: calc(var(--bsl) * 5) 0 calc(var(--bsl) * 10) var(--col-1);
+    }
   }
 
   &__pointer {
