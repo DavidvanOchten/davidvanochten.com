@@ -58,12 +58,14 @@ const Project = (obj) => {
   const _setVideo = (bool) => {
     if (bool === true) {
       project.video.play();
+      project.pointer.classList.add('projects__pointer--gallery');
       project.pointer.classList.add('projects__pointer--is-visible');
 
       if (project.parent.dataset.mutedVideos === 'false') {
         _setVolume(true);
       }
     } else {
+      project.pointer.classList.remove('projects__pointer--gallery');
       project.pointer.classList.remove('projects__pointer--is-visible');
 
       if (project.parent.dataset.mutedVideos === 'false') {
@@ -74,12 +76,7 @@ const Project = (obj) => {
     }
   };
 
-  // const _moveCursor = (e) => {
-  //   project.pointer.style.transform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
-  //   project.pointer.style.webkitTransform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
-  // };
-
-  const _hideCursor = (bool) => {
+  const _hidePointerHint = (bool) => {
     (bool === true)
       ? project.pointer.classList.add('projects__pointer--close')
       : project.pointer.classList.remove('projects__pointer--close');
@@ -115,6 +112,9 @@ const Project = (obj) => {
           project.gallery.classList.remove(project.galleryVisibleClass);
           project.thumbnail.classList.remove(project.thumbnailClass);
 
+          project.thumbnail.addEventListener('mouseover', _togglePointerHint);
+          project.thumbnail.addEventListener('mouseout', _togglePointerHint);
+
           project.gallery.removeEventListener('transitionend', _transitionOutOfGallery);
           project.gallery.removeAttribute('style');
           _disableUserInput(false);
@@ -127,7 +127,6 @@ const Project = (obj) => {
     if (project.video) {
       _setVideo(false);
       window.removeEventListener('wheel', _onWheel);
-      // project.galleryContainer.removeEventListener('mousemove', _moveCursor);
     }
 
     project.gallery.addEventListener('transitionend', _transitionOutOfGallery);
@@ -158,13 +157,21 @@ const Project = (obj) => {
   };
 
   const _showGallery = () => {
+    project.pointer.classList.toggle('projects__pointer--is-visible');
+
+    if (project.pointer.classList.contains('projects__pointer--video')) {
+      project.pointer.classList.toggle('projects__pointer--video');
+    }
+
+    project.thumbnail.removeEventListener('mouseover', _togglePointerHint);
+    project.thumbnail.removeEventListener('mouseout', _togglePointerHint);
+
     project.root.classList.add(project.rootClass);
     project.parent.classList.add(project.parentClass);
     project.gallery.classList.add(project.galleryVisibleClass);
 
     if (project.video) {
       window.addEventListener('wheel', _onWheel, { passive: true });
-      // project.galleryContainer.addEventListener('mousemove', _moveCursor);
     }
 
     project.thumbnail.addEventListener('transitionend', _transitionIntoGallery);
@@ -198,6 +205,14 @@ const Project = (obj) => {
       : _showGallery();
   };
 
+  const _togglePointerHint = (e) => {
+    project.pointer.classList.toggle('projects__pointer--is-visible');
+
+    if (e.currentTarget.closest('[data-project]').dataset.project === 'video') {
+      project.pointer.classList.toggle('projects__pointer--video');
+    }
+  };
+
   const construct = () => {
     project.parent = obj.parent || document.body;
     project.root = obj.element;
@@ -206,21 +221,24 @@ const Project = (obj) => {
     project.pointer = document.querySelector('[data-projects-pointer]');
     project.thumbnail = project.root.querySelector('[data-project-thumbnail]');
     project.video = project.gallery.querySelector('video') || false;
-
-    project.toggles = [].slice.call(project.root.querySelectorAll('[data-project-toggle]'));
-    project.toggles.forEach(toggle => toggle.addEventListener('click', _onToggleClick));
+    project.isTransitioning = false;
 
     project.rootClass = 'project--is-active';
     project.parentClass = 'u-no-scroll';
     project.galleryActiveClass = 'project__gallery--is-active';
     project.galleryVisibleClass = 'project__gallery--is-visible';
     project.thumbnailClass = 'project__thumbnail--is-hidden';
-    project.isTransitioning = false;
+
+    project.toggles = [].slice.call(project.root.querySelectorAll('[data-project-toggle]'));
+    project.toggles.forEach(toggle => toggle.addEventListener('click', _onToggleClick));
+
+    project.thumbnail.addEventListener('mouseover', _togglePointerHint);
+    project.thumbnail.addEventListener('mouseout', _togglePointerHint);
 
     if (project.video) {
       project.video.volume = 0;
-      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hideCursor(true));
-      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hideCursor(false));
+      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hidePointerHint(true));
+      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hidePointerHint(false));
 
       project.galleryContainer.addEventListener('click', () => {
         if (project.parent.dataset.mutedVideos === 'true') {

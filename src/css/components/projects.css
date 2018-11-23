@@ -26,17 +26,16 @@
     pointer-events: none;
 
     & div {
-      transition: transform .25s cubic-bezier(.5, 0, .25, 1), opacity .25s linear;
+      transition: transform 0s linear .25s, opacity .25s linear;
 
       &::after {
-        content: "Unmute";
+        content: "Play";
         display: block;
       }
-    }
 
-    &--mute {
-      & div {
-        transform: translate3d(0, -50%, 0);
+      &::before {
+        content: "Open";
+        display: block;
       }
     }
 
@@ -46,9 +45,41 @@
       }
     }
 
+    &--gallery {
+      & div {
+        transition: transform .25s cubic-bezier(.5, 0, .25, 1), opacity .25s linear;
+
+        &::after {
+          content: "Unmute";
+        }
+
+        &::before {
+          content: "Mute";
+        }
+      }
+
+      &.projects__pointer--mute {
+        & div {
+          transform: translate3d(0, -50%, 0);
+        }
+      }
+    }
+
     &--is-visible {
       opacity: 1;
-      transition: transform .75s cubic-bezier(0, .5, .25, 1), opacity .25s linear .5s;
+    }
+
+    /* &--mute {
+      & div {
+        transform: translate3d(0, -50%, 0);
+      }
+    } */
+
+    &--video {
+      & div {
+        transform: translate3d(0, -50%, 0);
+        transition: opacity .25s linear;
+      }
     }
   }
 }
