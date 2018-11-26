@@ -29,12 +29,12 @@
       transition: transform 0s linear .25s, opacity .25s linear;
 
       &::after {
-        content: "Play";
+        content: "Video";
         display: block;
       }
 
       &::before {
-        content: "Open";
+        content: "Gallery";
         display: block;
       }
     }
