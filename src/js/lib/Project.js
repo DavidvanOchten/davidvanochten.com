@@ -1,78 +1,16 @@
+import Video from '../lib/Video';
 import { handleFetchError } from '../utils/handleFetchError';
 
-const Project = (obj) => {
+const Project = (element) => {
   const project = {};
-  const user = {};
 
   const _disableUserInput = (bool) => {
     if (bool === true) {
       project.isTransitioning = true;
-      project.parent.classList.add('u-is-loading');
+      document.body.classList.add('u-is-loading');
     } else {
       project.isTransitioning = false;
-      project.parent.classList.remove('u-is-loading');
-    }
-  };
-
-  const _onWheel = (e) => {
-    window.clearTimeout(user.isWheeling);
-
-    user.isWheeling = setTimeout(() => {
-      project.video.playbackRate = 1;
-      project.video.style.filter = '';
-
-      if (project.parent.dataset.mutedVideos === 'false') {
-        project.video.volume = 1;
-      }
-    }, 100);
-
-    if (e.deltaY > 1) {
-      project.video.volume = 0;
-      project.video.style.filter = 'grayscale(1)';
-
-      (e.deltaY > 50)
-        ? project.video.playbackRate = 5
-        : project.video.playbackRate = 1 + e.deltaY / 10;
-    }
-  };
-
-  const _setVolume = (bool, cb) => {
-    let volume = (bool === true) ? 0 : 1;
-    const volumeCondition = (bool === true) ? 'volume >= 1' : 'volume <= 0';
-    const volumeDirection = (bool === true) ? 'volume + 0.05' : 'volume - 0.05';
-
-    const controlVolume = setInterval(() => {
-      volume = parseFloat((eval(volumeDirection)).toFixed(2));
-      project.video.volume = volume;
-
-      if (eval(volumeCondition)) {
-        clearInterval(controlVolume);
-
-        if (cb) {
-          cb();
-        }
-      }
-    }, 50);
-  };
-
-  const _setVideo = (bool) => {
-    if (bool === true) {
-      project.video.play();
-      project.pointer.classList.add('projects__pointer--gallery');
-      project.pointer.classList.add('projects__pointer--is-visible');
-
-      if (project.parent.dataset.mutedVideos === 'false') {
-        _setVolume(true);
-      }
-    } else {
-      project.pointer.classList.remove('projects__pointer--gallery');
-      project.pointer.classList.remove('projects__pointer--is-visible');
-
-      if (project.parent.dataset.mutedVideos === 'false') {
-        _setVolume(false, () => {
-          project.video.pause();
-        });
-      }
+      document.body.classList.remove('u-is-loading');
     }
   };
 
@@ -107,13 +45,17 @@ const Project = (obj) => {
     if (e.target === project.gallery) {
       _setTransformValues(project.thumbnail, {})
         .then(() => {
+          document.body.classList.remove('u-no-scroll');
           project.root.classList.remove(project.rootClass);
-          project.parent.classList.remove(project.parentClass);
           project.gallery.classList.remove(project.galleryVisibleClass);
           project.thumbnail.classList.remove(project.thumbnailClass);
 
           project.thumbnail.addEventListener('mouseover', _togglePointerHint);
           project.thumbnail.addEventListener('mouseout', _togglePointerHint);
+
+          if (document.body.dataset.mutedVideos === 'true' && project.videoElement) {
+            project.video.setVideo(false);
+          }
 
           project.gallery.removeEventListener('transitionend', _transitionOutOfGallery);
           project.gallery.removeAttribute('style');
@@ -124,9 +66,14 @@ const Project = (obj) => {
   };
 
   const _hideGallery = () => {
-    if (project.video) {
-      _setVideo(false);
-      window.removeEventListener('wheel', _onWheel);
+    if (project.videoElement) {
+      if (document.body.dataset.mutedVideos === 'false') {
+        project.video.setVideo(false);
+      }
+
+      // Improve this pointer thing (naming)
+      project.pointer.classList.remove('projects__pointer--gallery');
+      project.pointer.classList.remove('projects__pointer--is-visible');
     }
 
     project.gallery.addEventListener('transitionend', _transitionOutOfGallery);
@@ -136,8 +83,12 @@ const Project = (obj) => {
   const _showGalleryContent = () => {
     project.gallery.classList.add(project.galleryActiveClass);
 
-    if (project.video) {
-      _setVideo(true);
+    if (project.videoElement) {
+      project.video.setVideo(true);
+
+      // Improve this pointer thing (naming)
+      project.pointer.classList.add('projects__pointer--gallery');
+      project.pointer.classList.add('projects__pointer--is-visible');
     }
 
     _disableUserInput(false);
@@ -157,22 +108,18 @@ const Project = (obj) => {
   };
 
   const _showGallery = () => {
+    document.body.classList.add('u-no-scroll');
     project.pointer.classList.toggle('projects__pointer--is-visible');
 
     if (project.pointer.classList.contains('projects__pointer--video')) {
       project.pointer.classList.toggle('projects__pointer--video');
     }
 
-    project.thumbnail.removeEventListener('mouseover', _togglePointerHint);
-    project.thumbnail.removeEventListener('mouseout', _togglePointerHint);
-
     project.root.classList.add(project.rootClass);
-    project.parent.classList.add(project.parentClass);
     project.gallery.classList.add(project.galleryVisibleClass);
 
-    if (project.video) {
-      window.addEventListener('wheel', _onWheel, { passive: true });
-    }
+    project.thumbnail.removeEventListener('mouseover', _togglePointerHint);
+    project.thumbnail.removeEventListener('mouseout', _togglePointerHint);
 
     project.thumbnail.addEventListener('transitionend', _transitionIntoGallery);
     project.thumbnail.classList.add(project.thumbnailClass);
@@ -214,17 +161,15 @@ const Project = (obj) => {
   };
 
   const construct = () => {
-    project.parent = obj.parent || document.body;
-    project.root = obj.element;
+    project.root = element;
     project.gallery = project.root.querySelector('[data-project-gallery]');
     project.galleryContainer = project.gallery.querySelector('[data-project-gallery-container]');
     project.pointer = document.querySelector('[data-projects-pointer]');
     project.thumbnail = project.root.querySelector('[data-project-thumbnail]');
-    project.video = project.gallery.querySelector('video') || false;
+    project.videoElement = project.gallery.querySelector('video') || false;
     project.isTransitioning = false;
 
     project.rootClass = 'project--is-active';
-    project.parentClass = 'u-no-scroll';
     project.galleryActiveClass = 'project__gallery--is-active';
     project.galleryVisibleClass = 'project__gallery--is-visible';
     project.thumbnailClass = 'project__thumbnail--is-hidden';
@@ -235,20 +180,31 @@ const Project = (obj) => {
     project.thumbnail.addEventListener('mouseover', _togglePointerHint);
     project.thumbnail.addEventListener('mouseout', _togglePointerHint);
 
-    if (project.video) {
-      project.video.volume = 0;
+    if (project.videoElement) {
+      project.video = Video(project.videoElement);
+      project.video.init();
+
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (isSafari) {
+        // video.element.muted = true;
+        project.video.muteVideo(true);
+        project.pointer.classList.add('projects__pointer--mute');
+        document.body.dataset.mutedVideos = 'true';
+      }
+
       project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hidePointerHint(true));
       project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hidePointerHint(false));
 
       project.galleryContainer.addEventListener('click', () => {
-        if (project.parent.dataset.mutedVideos === 'true') {
-          _setVolume(true);
+        if (document.body.dataset.mutedVideos === 'true') {
+          project.video.muteVideo(false);
           project.pointer.classList.remove('projects__pointer--mute');
-          project.parent.dataset.mutedVideos = 'false';
+          document.body.dataset.mutedVideos = 'false';
         } else {
-          _setVolume(false);
+          project.video.muteVideo(true);
           project.pointer.classList.add('projects__pointer--mute');
-          project.parent.dataset.mutedVideos = 'true';
+          document.body.dataset.mutedVideos = 'true';
         }
       });
     }
