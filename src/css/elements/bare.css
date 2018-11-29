@@ -3,7 +3,8 @@
 }
 
 a,
-button {
+button,
+*[role="button"] {
   font-family: var(--secondary-font);
   color: var(--dark-color);
 

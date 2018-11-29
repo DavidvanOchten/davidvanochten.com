@@ -17,6 +17,7 @@
 @import "components/projects.css";
 @import "components/site-footer.css";
 @import "components/site-header.css";
+@import "components/splash.css";
 
 @import "utils/is-loading.css";
 @import "utils/no-scroll.css";

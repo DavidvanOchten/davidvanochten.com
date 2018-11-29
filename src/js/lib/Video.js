@@ -48,7 +48,6 @@ const Video = (element) => {
       if (browser.isChrome) {
         window.removeEventListener('wheel', _onWheel);
       }
-
     }
   };
 
@@ -78,8 +77,14 @@ const Video = (element) => {
     browser.cursor = document.querySelector('[data-cursor]');
     browser.isChrome = !!window.chrome && !!window.chrome.webstore;
     browser.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    browser.isMobile = window.matchMedia('(pointer: coarse)');
 
-    if (browser.isSafari) {
+    if (browser.isMobile.matches) {
+      video.element.muted = true;
+      return;
+    }
+
+    if (browser.isSafari ) {
       // video.element.muted = true;
       muteVideo(true);
       browser.cursor.classList.add('cursor--mute');

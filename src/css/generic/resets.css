@@ -16,6 +16,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: none;
 }
 
 button {
@@ -32,6 +33,10 @@ input[type="submit"] {
   cursor: pointer;
 }
 
+*[role="button"] {
+  display: inline-block;
+}
+
 fieldset {
   padding: 0;
   margin: 0;
@@ -45,7 +50,7 @@ fieldset {
 }
 
 html {
-  font-size: 87.5%;
+  /* font-size: 87.5%; */
 
   @media (--desktop-up) {
     font-size: 93.75%;

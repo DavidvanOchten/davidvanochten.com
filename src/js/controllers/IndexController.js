@@ -25,13 +25,13 @@ const IndexController = (() => {
       });
     });
 
+    index.compilation = Compilation('data-compilation');
+    index.compilation.init();
+
     index.projects = [].slice.call(document.querySelectorAll('[data-project]'));
     index.projects.forEach(project => {
       Project(project).init();
     });
-
-    index.compilation = Compilation('data-compilation');
-    index.compilation.init();
 
     IntersectionTracker({
       content: index.projects,

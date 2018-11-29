@@ -87,14 +87,14 @@ const IntersectionTracker = (obj) => {
       : _useEvents();
   };
 
-  const _remove = () => {
-    intersectionTracker.container.removeEventListener('scroll', _requestTick);
-    intersectionTracker.container.removeEventListener('resize', _requestTick);
+  // const _remove = () => {
+  //   intersectionTracker.container.removeEventListener('scroll', _requestTick);
+  //   intersectionTracker.container.removeEventListener('resize', _requestTick);
 
-    if (intersectionTracker.io) {
-      intersectionTracker.io.disconnect();
-    }
-  };
+  //   if (intersectionTracker.io) {
+  //     intersectionTracker.io.disconnect();
+  //   }
+  // };
 
   const construct = () => {
     intersectionTracker.content = obj.content;

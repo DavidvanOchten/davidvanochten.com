@@ -10,6 +10,10 @@
   will-change: transform;
   pointer-events: none;
 
+  @media (pointer: coarse) {
+    display: none;
+  }
+
   & div {
     transition: transform 0s linear .25s, opacity .25s linear;
 

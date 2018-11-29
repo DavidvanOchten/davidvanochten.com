@@ -43,6 +43,7 @@
     width: 100vw;
     overflow-x: hidden;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     font-size: 0;
     line-height: 0;
 

@@ -53,6 +53,10 @@ const Project = (element) => {
   };
 
   const _hideGallery = () => {
+    if (browser.isMobile.matches) {
+      project.galleryContainer.removeEventListener('scroll', _requestTick);
+    }
+
     if (project.videoElement) {
       if (document.body.dataset.mutedVideos === 'false') {
         project.video.setVideo(false);
@@ -92,9 +96,33 @@ const Project = (element) => {
     }
   };
 
+
+
+  const _handleMobileScroll = () => {
+    browser.ticking = false;
+
+    if (project.galleryContainer.scrollTop < 1) {
+      project.galleryContainer.scrollTop = 1;
+    } else if (project.galleryContainer.scrollHeight - project.galleryContainer.scrollTop === project.galleryContainer.clientHeight) {
+      project.galleryContainer.scrollTop = project.galleryContainer.scrollHeight - project.galleryContainer.clientHeight - 1;
+    }
+  };
+
+  const _requestTick = (e) => {
+    if (!browser.ticking) {
+      requestAnimationFrame(_handleMobileScroll);
+    }
+    browser.ticking = true;
+  };
+
+
   const _showGallery = () => {
     document.body.classList.add('u-no-scroll');
     browser.cursor.classList.toggle('cursor--is-visible');
+
+    if (browser.isMobile.matches) {
+      project.galleryContainer.addEventListener('scroll', _requestTick);
+    }
 
     if (browser.cursor.classList.contains('cursor--video')) {
       browser.cursor.classList.toggle('cursor--video');
@@ -147,6 +175,7 @@ const Project = (element) => {
 
   const construct = () => {
     browser.cursor = document.querySelector('[data-cursor]');
+    browser.isMobile = window.matchMedia('(pointer: coarse)');
 
     project.root = element;
     project.gallery = project.root.querySelector('[data-project-gallery]');
