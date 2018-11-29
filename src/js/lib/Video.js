@@ -7,7 +7,7 @@ const Video = (element) => {
 
     browser.isWheeling = setTimeout(() => {
       video.element.playbackRate = 1;
-      video.element.style.filter = '';
+      video.element.removeAttribute('style');
 
       if (document.body.dataset.mutedVideos === 'false') {
         video.element.volume = 1;
@@ -17,6 +17,7 @@ const Video = (element) => {
     if (e.deltaY > 1) {
       video.element.volume = 0;
       video.element.style.filter = 'grayscale(1)';
+      video.element.style.opacity = '.5';
 
       (e.deltaY > 50)
         ? video.element.playbackRate = 5
@@ -28,14 +29,14 @@ const Video = (element) => {
     if (bool === true) {
       video.element.play();
 
-      window.addEventListener('wheel', _onWheel, { passive: true });
-
       if (document.body.dataset.mutedVideos === 'false') {
         muteVideo(false);
       }
-    } else {
-      window.removeEventListener('wheel', _onWheel);
 
+      if (browser.isChrome) {
+        window.addEventListener('wheel', _onWheel, { passive: true });
+      }
+    } else {
       if (document.body.dataset.mutedVideos === 'false') {
         muteVideo(true, () => {
           video.element.pause();
@@ -43,6 +44,11 @@ const Video = (element) => {
       } else {
         video.element.pause();
       }
+
+      if (browser.isChrome) {
+        window.removeEventListener('wheel', _onWheel);
+      }
+
     }
   };
 
@@ -70,6 +76,7 @@ const Video = (element) => {
     video.element.volume = 0;
 
     browser.cursor = document.querySelector('[data-cursor]');
+    browser.isChrome = !!window.chrome && !!window.chrome.webstore;
     browser.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (browser.isSafari) {

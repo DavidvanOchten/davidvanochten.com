@@ -12,4 +12,30 @@
       margin: calc(var(--bsl) * 5) 0 calc(var(--bsl) * 10) var(--col-1);
     }
   }
+
+  &__compilation {
+    @media (--tablet-landscape-up) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: var(--col-1);
+    }
+  }
+
+  &__compilation-trigger {
+    padding: var(--gutter);
+
+    @media (--tablet-landscape-up) {
+      position: sticky;
+      top: var(--bsl);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: var(--col-1);
+      width: 100%;
+      padding-right: 0;
+      transform: rotate(-90deg);
+    }
+  }
 }

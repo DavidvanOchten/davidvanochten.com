@@ -1,33 +1,10 @@
 import IntersectionTracker from '../lib/IntersectionTracker';
 import Project from '../lib/Project';
-import Video from '../lib/Video';
+import Compilation from '../lib/Compilation';
 
 const IndexController = (() => {
   const index = {};
   const browser = {};
-
-  const _onToggleClick = (e) => {
-    // if (project.isTransitioning) {
-    //   return;
-    // }
-
-    e.preventDefault();
-    // _disableUserInput(true);
-
-    document.body.classList.toggle('u-no-scroll');
-    index.compilationGallery.classList.toggle('gallery--is-active');
-
-    (index.compilationGallery.classList.contains('gallery--is-active'))
-      ? index.compilationVideo.setVideo(true)
-      : index.compilationVideo.setVideo(false);
-
-
-
-    // REUSING A LOT OF PROJECT CODE... MAKE GENERIC??
-    browser.cursor.classList.toggle('cursor--light');
-    browser.cursor.classList.toggle('cursor--gallery');
-    browser.cursor.classList.toggle('cursor--is-visible');
-  };
 
   const _moveCursor = (e) => {
     browser.cursor.style.transform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
@@ -53,23 +30,8 @@ const IndexController = (() => {
       Project(project).init();
     });
 
-
-
-
-
-    // Separate file?
-    index.compilation = document.querySelector('[data-compilation]');
-    index.compilationGallery = document.querySelector('[data-compilation-gallery]');
-    index.compilationToggles = [].slice.call(index.compilation.querySelectorAll('[data-compilation-toggle]'));
-    index.compilationToggles.forEach(toggle => toggle.addEventListener('click', _onToggleClick));
-
-    // Clean up this selector
-    index.compilationVideo = Video(index.compilationGallery.querySelector('video'));
-    index.compilationVideo.init();
-
-
-
-
+    index.compilation = Compilation('data-compilation');
+    index.compilation.init();
 
     IntersectionTracker({
       content: index.projects,

@@ -64,6 +64,8 @@
       cursor: pointer;
 
       & video {
+        transition: opacity .25s linear;
+
         @media (--tablet-landscape-up) {
           width: var(--col-10);
         }

@@ -24,12 +24,6 @@
     }
   }
 
-  &--close {
-    & div {
-      opacity: 0;
-    }
-  }
-
   &--gallery {
     & div {
       transition: transform .25s cubic-bezier(.5, 0, .25, 1), opacity .25s linear;
@@ -47,6 +41,12 @@
       & div {
         transform: translate3d(0, -50%, 0);
       }
+    }
+  }
+
+  &--is-hidden {
+    & div {
+      opacity: 0;
     }
   }
 

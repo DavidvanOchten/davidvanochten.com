@@ -1,25 +1,11 @@
 import Video from '../lib/Video';
+import { disableUserInput } from '../utils/disableUserInput';
 import { handleFetchError } from '../utils/handleFetchError';
+import { hideCursor } from '../utils/hideCursor';
 
 const Project = (element) => {
   const project = {};
   const browser = {};
-
-  const _disableUserInput = (bool) => {
-    if (bool === true) {
-      project.isTransitioning = true;
-      document.body.classList.add('u-is-loading');
-    } else {
-      project.isTransitioning = false;
-      document.body.classList.remove('u-is-loading');
-    }
-  };
-
-  const _hidePointerHint = (bool) => {
-    (bool === true)
-      ? browser.cursor.classList.add('cursor--close')
-      : browser.cursor.classList.remove('cursor--close');
-  };
 
   const _setTransformValues = (element, values) => {
     return new Promise(resolve => {
@@ -60,7 +46,7 @@ const Project = (element) => {
 
           project.gallery.removeEventListener('transitionend', _transitionOutOfGallery);
           project.gallery.removeAttribute('style');
-          _disableUserInput(false);
+          disableUserInput(false);
         })
         .catch(err => handleFetchError(err));
     }
@@ -90,7 +76,7 @@ const Project = (element) => {
       browser.cursor.classList.add('cursor--is-visible');
     }
 
-    _disableUserInput(false);
+    disableUserInput(false);
   };
 
   const _transitionIntoGallery = (e) => {
@@ -125,12 +111,12 @@ const Project = (element) => {
   };
 
   const _onToggleClick = (e) => {
-    if (project.isTransitioning) {
+    if (document.body.classList.contains('u-is-loading')) {
       return;
     }
 
     e.preventDefault();
-    _disableUserInput(true);
+    disableUserInput(true);
 
     project.thumnbnailData = project.thumbnail.getBoundingClientRect();
 
@@ -167,7 +153,6 @@ const Project = (element) => {
     project.galleryContainer = project.gallery.querySelector('[data-project-gallery-container]');
     project.thumbnail = project.root.querySelector('[data-project-thumbnail]');
     project.videoElement = project.gallery.querySelector('video') || false;
-    project.isTransitioning = false;
 
     project.rootClass = 'project--is-active';
     project.galleryActiveClass = 'gallery--is-active';
@@ -184,8 +169,8 @@ const Project = (element) => {
       project.video = Video(project.videoElement);
       project.video.init();
 
-      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hidePointerHint(true));
-      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hidePointerHint(false));
+      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => hideCursor(true));
+      project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => hideCursor(false));
     }
   };
 
