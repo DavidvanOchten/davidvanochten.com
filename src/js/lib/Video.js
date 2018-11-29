@@ -1,11 +1,11 @@
 const Video = (element) => {
   const video = {};
-  const user = {};
+  const browser = {};
 
   const _onWheel = (e) => {
-    window.clearTimeout(user.isWheeling);
+    window.clearTimeout(browser.isWheeling);
 
-    user.isWheeling = setTimeout(() => {
+    browser.isWheeling = setTimeout(() => {
       video.element.playbackRate = 1;
       video.element.style.filter = '';
 
@@ -68,6 +68,28 @@ const Video = (element) => {
   const construct = () => {
     video.element = element;
     video.element.volume = 0;
+
+    browser.cursor = document.querySelector('[data-cursor]');
+    browser.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    if (browser.isSafari) {
+      // video.element.muted = true;
+      muteVideo(true);
+      browser.cursor.classList.add('cursor--mute');
+      document.body.dataset.mutedVideos = 'true';
+    }
+
+    video.element.parentNode.addEventListener('click', () => {
+      if (document.body.dataset.mutedVideos === 'true') {
+        muteVideo(false);
+        browser.cursor.classList.remove('cursor--mute');
+        document.body.dataset.mutedVideos = 'false';
+      } else {
+        muteVideo(true);
+        browser.cursor.classList.add('cursor--mute');
+        document.body.dataset.mutedVideos = 'true';
+      }
+    });
   };
 
   return {

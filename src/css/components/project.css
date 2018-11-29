@@ -74,8 +74,10 @@
     }
 
     & .project__headline {
-      flex-shrink: 0;
-      width: var(--col-2);
+      @media (--tablet-landscape-up) {
+        flex-shrink: 0;
+        width: var(--col-2);
+      }
     }
 
     & .project__thumbnail {
@@ -117,21 +119,8 @@
   }
 
   &__gallery {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
     visibility: hidden;
-    background-color: var(--light-color);
-    opacity: 0;
-    transform: translate3d(-100vw,0,0);
     transition: transform 0s linear .25s, opacity .5s linear;
-
-    &--is-active {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      transition: opacity .5s linear;
-    }
 
     &--is-visible {
       visibility: visible;

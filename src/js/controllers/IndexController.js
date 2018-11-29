@@ -4,6 +4,7 @@ import Video from '../lib/Video';
 
 const IndexController = (() => {
   const index = {};
+  const browser = {};
 
   const _onToggleClick = (e) => {
     // if (project.isTransitioning) {
@@ -13,44 +14,24 @@ const IndexController = (() => {
     e.preventDefault();
     // _disableUserInput(true);
 
-    console.log('Do something with the reel');
-    index.compilationContent.classList.toggle('compilation__content--is-visible');
     document.body.classList.toggle('u-no-scroll');
-    index.compilationVideo.setVideo(true);
+    index.compilationGallery.classList.toggle('gallery--is-active');
+
+    (index.compilationGallery.classList.contains('gallery--is-active'))
+      ? index.compilationVideo.setVideo(true)
+      : index.compilationVideo.setVideo(false);
 
 
 
     // REUSING A LOT OF PROJECT CODE... MAKE GENERIC??
-
-
-
-    // project.thumbnail.addEventListener('mouseover', _togglePointerHint);
-    // project.thumbnail.addEventListener('mouseout', _togglePointerHint);
-
-    // if (project.videoElement) {
-    //   project.video = Video(project.videoElement);
-    //   project.video.init();
-
-    //   project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hidePointerHint(true));
-    //   project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hidePointerHint(false));
-
-    //   project.galleryContainer.addEventListener('click', () => {
-    //     if (document.body.dataset.mutedVideos === 'true') {
-    //       project.video.muteVideo(false);
-    //       project.pointer.classList.remove('projects__pointer--mute');
-    //       document.body.dataset.mutedVideos = 'false';
-    //     } else {
-    //       project.video.muteVideo(true);
-    //       project.pointer.classList.add('projects__pointer--mute');
-    //       document.body.dataset.mutedVideos = 'true';
-    //     }
-    //   });
-    // }
+    browser.cursor.classList.toggle('cursor--light');
+    browser.cursor.classList.toggle('cursor--gallery');
+    browser.cursor.classList.toggle('cursor--is-visible');
   };
 
-  const _moveProjectsCursor = (e) => {
-    index.projectsCursor.style.transform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
-    index.projectsCursor.style.webkitTransform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
+  const _moveCursor = (e) => {
+    browser.cursor.style.transform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
+    browser.cursor.style.webkitTransform = `translate3d(${e.clientX + 15}px, ${e.clientY - 5}px, 0)`;
   };
 
   const construct = () => {
@@ -78,11 +59,12 @@ const IndexController = (() => {
 
     // Separate file?
     index.compilation = document.querySelector('[data-compilation]');
-    index.compilationContent = document.querySelector('[data-compilation-content]');
+    index.compilationGallery = document.querySelector('[data-compilation-gallery]');
     index.compilationToggles = [].slice.call(index.compilation.querySelectorAll('[data-compilation-toggle]'));
     index.compilationToggles.forEach(toggle => toggle.addEventListener('click', _onToggleClick));
 
-    index.compilationVideo = Video(index.compilationContent.querySelector('video'));
+    // Clean up this selector
+    index.compilationVideo = Video(index.compilationGallery.querySelector('video'));
     index.compilationVideo.init();
 
 
@@ -100,8 +82,8 @@ const IndexController = (() => {
       }
     }).init();
 
-    index.projectsCursor = document.querySelector('[data-projects-pointer]');
-    document.body.addEventListener('mousemove', _moveProjectsCursor);
+    browser.cursor = document.querySelector('[data-cursor]');
+    document.body.addEventListener('mousemove', _moveCursor);
   };
 
   return {

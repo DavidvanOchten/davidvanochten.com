@@ -3,6 +3,7 @@ import { handleFetchError } from '../utils/handleFetchError';
 
 const Project = (element) => {
   const project = {};
+  const browser = {};
 
   const _disableUserInput = (bool) => {
     if (bool === true) {
@@ -16,8 +17,8 @@ const Project = (element) => {
 
   const _hidePointerHint = (bool) => {
     (bool === true)
-      ? project.pointer.classList.add('projects__pointer--close')
-      : project.pointer.classList.remove('projects__pointer--close');
+      ? browser.cursor.classList.add('cursor--close')
+      : browser.cursor.classList.remove('cursor--close');
   };
 
   const _setTransformValues = (element, values) => {
@@ -71,9 +72,8 @@ const Project = (element) => {
         project.video.setVideo(false);
       }
 
-      // Improve this pointer thing (naming)
-      project.pointer.classList.remove('projects__pointer--gallery');
-      project.pointer.classList.remove('projects__pointer--is-visible');
+      browser.cursor.classList.remove('cursor--gallery');
+      browser.cursor.classList.remove('cursor--is-visible');
     }
 
     project.gallery.addEventListener('transitionend', _transitionOutOfGallery);
@@ -86,9 +86,8 @@ const Project = (element) => {
     if (project.videoElement) {
       project.video.setVideo(true);
 
-      // Improve this pointer thing (naming)
-      project.pointer.classList.add('projects__pointer--gallery');
-      project.pointer.classList.add('projects__pointer--is-visible');
+      browser.cursor.classList.add('cursor--gallery');
+      browser.cursor.classList.add('cursor--is-visible');
     }
 
     _disableUserInput(false);
@@ -109,10 +108,10 @@ const Project = (element) => {
 
   const _showGallery = () => {
     document.body.classList.add('u-no-scroll');
-    project.pointer.classList.toggle('projects__pointer--is-visible');
+    browser.cursor.classList.toggle('cursor--is-visible');
 
-    if (project.pointer.classList.contains('projects__pointer--video')) {
-      project.pointer.classList.toggle('projects__pointer--video');
+    if (browser.cursor.classList.contains('cursor--video')) {
+      browser.cursor.classList.toggle('cursor--video');
     }
 
     project.root.classList.add(project.rootClass);
@@ -153,24 +152,25 @@ const Project = (element) => {
   };
 
   const _togglePointerHint = (e) => {
-    project.pointer.classList.toggle('projects__pointer--is-visible');
+    browser.cursor.classList.toggle('cursor--is-visible');
 
     if (e.currentTarget.closest('[data-project]').dataset.project === 'video') {
-      project.pointer.classList.toggle('projects__pointer--video');
+      browser.cursor.classList.toggle('cursor--video');
     }
   };
 
   const construct = () => {
+    browser.cursor = document.querySelector('[data-cursor]');
+
     project.root = element;
     project.gallery = project.root.querySelector('[data-project-gallery]');
     project.galleryContainer = project.gallery.querySelector('[data-project-gallery-container]');
-    project.pointer = document.querySelector('[data-projects-pointer]');
     project.thumbnail = project.root.querySelector('[data-project-thumbnail]');
     project.videoElement = project.gallery.querySelector('video') || false;
     project.isTransitioning = false;
 
     project.rootClass = 'project--is-active';
-    project.galleryActiveClass = 'project__gallery--is-active';
+    project.galleryActiveClass = 'gallery--is-active';
     project.galleryVisibleClass = 'project__gallery--is-visible';
     project.thumbnailClass = 'project__thumbnail--is-hidden';
 
@@ -184,29 +184,8 @@ const Project = (element) => {
       project.video = Video(project.videoElement);
       project.video.init();
 
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-      if (isSafari) {
-        // video.element.muted = true;
-        project.video.muteVideo(true);
-        project.pointer.classList.add('projects__pointer--mute');
-        document.body.dataset.mutedVideos = 'true';
-      }
-
       project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseover', (e) => _hidePointerHint(true));
       project.gallery.querySelector('[data-project-toggle]').addEventListener('mouseout', (e) => _hidePointerHint(false));
-
-      project.galleryContainer.addEventListener('click', () => {
-        if (document.body.dataset.mutedVideos === 'true') {
-          project.video.muteVideo(false);
-          project.pointer.classList.remove('projects__pointer--mute');
-          document.body.dataset.mutedVideos = 'false';
-        } else {
-          project.video.muteVideo(true);
-          project.pointer.classList.add('projects__pointer--mute');
-          document.body.dataset.mutedVideos = 'true';
-        }
-      });
     }
   };
 

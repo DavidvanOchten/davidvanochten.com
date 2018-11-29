@@ -5,6 +5,11 @@
 a,
 button {
   font-family: var(--secondary-font);
+  color: var(--dark-color);
+
+  &:active {
+    color: var(--dark-color);
+  }
 }
 
 body {
