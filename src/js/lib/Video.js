@@ -52,6 +52,8 @@ const Video = (element) => {
   };
 
   const muteVideo = (bool, cb) => {
+    video.isTransitioning = true;
+
     let volume = (bool === false) ? 0 : 1;
     const volumeCondition = (bool === false) ? 'volume >= 1' : 'volume <= 0';
     const volumeDirection = (bool === false) ? 'volume + 0.05' : 'volume - 0.05';
@@ -62,6 +64,7 @@ const Video = (element) => {
 
       if (eval(volumeCondition)) {
         clearInterval(controlVolume);
+        video.isTransitioning = false;
 
         if (cb) {
           cb();
@@ -92,6 +95,10 @@ const Video = (element) => {
     }
 
     video.element.parentNode.addEventListener('click', () => {
+      if (video.isTransitioning) {
+        return;
+      }
+
       if (document.body.dataset.mutedVideos === 'true') {
         muteVideo(false);
         browser.cursor.classList.remove('cursor--mute');

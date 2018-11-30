@@ -12,7 +12,7 @@
 
   &--is-active {
     position: relative;
-    z-index: 25;
+    z-index: 15;
   }
 
   &--full {
