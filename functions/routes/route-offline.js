@@ -7,8 +7,8 @@ router.get("/offline", (req, resp) => {
   resp.set("Cache-Control", "public, max-age=300, s-maxage=600");
   resp.render("pages/offline", {
     canonical: req.originalUrl,
-    title: "Offline",
-    description: "test",
+    title: "Are you still online?",
+    description: "Offline page",
     view: "offline"
   });
 });

@@ -14,7 +14,7 @@
   <div class="projects__container">
     <article class="project project--wide" data-project="video">
       <div class="project__content">
-        <button class="project__thumbnail" data-project-thumbnail data-project-toggle>
+        <button class="project__thumbnail" aria-label="Show video" data-project-thumbnail data-project-toggle>
           {{!-- Set srcset --}}
           <img src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/tra-hero%20(1).jpg?alt=media&token=93bb1367-57e6-4c56-8daa-6d35afa719a0" alt="">
         </button>
@@ -37,7 +37,7 @@
 
     <article class="project project--narrow" data-project="video">
       <div class="project__content">
-        <button class="project__thumbnail" data-project-thumbnail data-project-toggle>
+        <button class="project__thumbnail" aria-label="Show video" data-project-thumbnail data-project-toggle>
           <img src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/butch-hero%20(1).jpg?alt=media&token=f2b304fe-edd7-4b40-961e-836d77626ff6" alt="">
         </button>
 
@@ -58,7 +58,7 @@
 
     <article class="project project--full project--offset" data-project="video">
       <div class="project__content">
-        <button class="project__thumbnail" data-project-thumbnail data-project-toggle>
+        <button class="project__thumbnail" aria-label="Show video" data-project-thumbnail data-project-toggle>
           <img src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/mood-hero%20(1).jpg?alt=media&token=ac9c85d4-ff3a-4ec4-a483-c77588ca2ab5" alt="">
         </button>
 
@@ -80,18 +80,17 @@
 
     <article class="project project--narrow" data-project>
       <div class="project__content">
-        <button class="project__thumbnail" data-project-thumbnail data-project-toggle>
+        <button class="project__thumbnail" aria-label="Open gallery" data-project-thumbnail data-project-toggle>
           <img src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/ims-hero%20(1).jpg?alt=media&token=8d3abcbf-610e-4ca4-b968-2ef15338e10c" alt="">
         </button>
 
         <div class="project__gallery gallery" data-project-gallery>
           <button class="gallery__toggle" data-project-toggle><span>Close</span></button>
           <div class="gallery__container" data-project-gallery-container>
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ims/landscape/intro@2x.jpg" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.cards.png?alt=media&token=22f95731-e823-4bc2-bb08-5538733940a8" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.modal.png?alt=media&token=9d6da231-476f-44dc-aa3b-ef2a200d0425" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.user-interface.png?alt=media&token=c6286e1c-785b-426e-9729-783e24fe3517" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ims/landscape/dashboard@2x.jpg" alt="">
+            <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/dashboard-opt%402x.png?alt=media&token=332113d1-2299-4c5c-a47f-fa5ca1c46ae4" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.card.png?alt=media&token=55ca1081-3f8e-4b2b-b0a9-ae2ac83eee55" alt="">
           </div>
           {{!-- Set data-src and data-src-s per image --}}
@@ -107,21 +106,26 @@
 
     <article class="project project--wide" data-project>
       <div class="project__content">
-        <button class="project__thumbnail" data-project-thumbnail data-project-toggle>
+        <button class="project__thumbnail" aria-label="Open gallery" data-project-thumbnail data-project-toggle>
           <img src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/ima-hero%20(1).jpg?alt=media&token=797c34cb-895c-45fd-98a4-cd461ce17fbb" alt="">
         </button>
 
         <div class="project__gallery gallery" data-project-gallery>
           <button class="gallery__toggle" data-project-toggle><span>Close</span></button>
           <div class="gallery__container" data-project-gallery-container>
+
+
+
+            {{!-- Resize images to fix Safari jank (2000px width?) --}}
+
+
             <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/home@2x.jpg" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/grid@2x.jpg" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/work@2x.jpg" alt="">
+            <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/grid-l-opt%402x.jpg?alt=media&token=e81c42a7-576f-47bf-9aea-686d1dbde490" alt="">
+            <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/work-opt%402x.jpg?alt=media&token=7a1e5dff-8cfe-4e67-a3d9-2a119d942ce0" alt="">
             <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/news@2x.jpg" alt="">
             <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/mobile@2x.jpg" alt="">
             <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/contact@2x.jpg" alt="">
           </div>
-          {{!-- Set data-src and data-src-s per image --}}
         </div>
       </div>
       <header class="project__header">
@@ -147,10 +151,10 @@
     </div>
     <ul class="info__section">
       <li>
-        <a class="cta" href="https://www.linkedin.com/in/davidvanochten/" target="_blank">LinkedIn</a>
+        <a class="cta" href="https://www.linkedin.com/in/davidvanochten/" target="_blank" rel="noreferrer">LinkedIn</a>
       </li>
       <li>
-        <a class="cta" href="https://www.instagram.com/davidvanochten/" target="_blank">Instagram</a>
+        <a class="cta" href="https://www.instagram.com/davidvanochten/" target="_blank" rel="noreferrer">Instagram</a>
       </li>
     </ul>
   </div>

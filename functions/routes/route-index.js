@@ -13,7 +13,6 @@ router.get('/', (req, resp) => {
 
       return resp.render('pages/index', {
         canonical: req.originalUrl,
-        view: 'index',
         title: 'Selected work',
         description: data.home.description,
         projects: projects.slice(0, data.home.workItems)

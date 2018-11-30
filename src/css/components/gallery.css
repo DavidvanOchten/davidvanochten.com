@@ -43,12 +43,13 @@
     width: 100vw;
     overflow-x: hidden;
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    /* padding-top: calc(var(--bsl) * 2); */
+    padding: calc(var(--bsl) * 4) var(--col-1);
     font-size: 0;
     line-height: 0;
 
-    @media (--tablet-landscape-down) {
-      padding-top: calc(var(--bsl) * 2);
+    @media (pointer: coarse) {
+      -webkit-overflow-scrolling: touch;
     }
 
     @media (--tablet-landscape-up) {
@@ -67,9 +68,9 @@
       & video {
         transition: opacity .25s linear;
 
-        @media (--tablet-landscape-up) {
+        /* @media (--tablet-landscape-up) {
           width: var(--col-10);
-        }
+        } */
       }
     }
 

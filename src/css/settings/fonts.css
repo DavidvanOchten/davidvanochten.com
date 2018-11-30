@@ -1,11 +1,13 @@
 @font-face {
   font-family:"Unica R";
+  font-display: swap;
   src: url("/static/fonts/neue-haas-unica-regular.woff2") format("woff2"),
        url("/static/fonts/neue-haas-unica-regular.woff") format("woff");
 }
 
 @font-face {
   font-family:"Unica M";
+  font-display: swap;
   src: url("/static/fonts/neue-haas-unica-medium.woff2") format("woff2"),
        url("/static/fonts/neue-haas-unica-medium.woff") format("woff");
 }

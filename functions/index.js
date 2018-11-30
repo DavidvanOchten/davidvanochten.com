@@ -34,8 +34,7 @@ app.use(require(path.join(__dirname, "/routes/route-offline")));
 app.use((req, res, next) => {
   res.status(404).render("pages/error", {
     title: "Page not found",
-    description: "404 - Page not found",
-    view: "error"
+    description: "404 - Page not found"
   });
 });
 

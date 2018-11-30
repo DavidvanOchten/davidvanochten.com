@@ -4,7 +4,6 @@ import Controllers from './controllers/Controllers';
 import { createServiceWorker } from './utils/createServiceWorker.js';
 
 const App = (() => {
-  console.log('[App] Service Worker enabled > JS/CSS still disabled');
   console.log('[App] Check JSON-LD and inline fonts');
 
   const isChrome = !!window.chrome && !!window.chrome.webstore;

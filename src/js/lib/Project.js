@@ -96,8 +96,6 @@ const Project = (element) => {
     }
   };
 
-
-
   const _handleMobileScroll = () => {
     browser.ticking = false;
 

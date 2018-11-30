@@ -18,19 +18,19 @@
     document.body.style.overflow = 'hidden';
 
     var splash = {};
-    splash.root = document.querySelector("[data-splash]");
+    splash.root = document.querySelector('[data-splash]');
 
-    window.addEventListener("load", function() {
-        splash.root.addEventListener("transitionend", function(e) {
-            if (e.target === splash.root) {
-              e.target.parentNode.removeChild(splash.root);
-            }
-        });
+    window.addEventListener('load', function() {
+      splash.root.addEventListener('transitionend', function(e) {
+          if (e.target === splash.root) {
+            e.target.parentNode.removeChild(splash.root);
+          }
+      });
 
-        setTimeout(function() {
-          document.body.removeAttribute("style");
-          splash.root.classList.remove("splash--is-visible");
-        }, 1500)
+      setTimeout(function() {
+        document.body.removeAttribute('style');
+        splash.root.classList.remove('splash--is-visible');
+      }, 1000);
     });
   </script>
 </div>
