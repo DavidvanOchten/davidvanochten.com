@@ -1,7 +1,8 @@
 .info {
+
   @media (--tablet-landscape-up) {
     display: flex;
-    margin-left: var(--col-4);
+    margin-left: var(--col-3);
   }
 
   &__container {

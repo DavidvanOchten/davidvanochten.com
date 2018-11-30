@@ -7,9 +7,16 @@
   justify-content: space-between;
   height: 100vh;
   width: 100vw;
-  pointer-events: none;
+  font-family: "Unica R", "Helvetica Neue", sans-serif;
   opacity: 0;
   transition: opacity 0s linear 1.5s;
+  pointer-events: none;
+
+  &--is-loaded {
+    & .splash__row div {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
 
   &--is-visible {
     opacity: 1;
@@ -27,48 +34,73 @@
     transition: transform 1s cubic-bezier(.75, 0, .25, 1);
 
     @media (--tablet-landscape-up) {
-      &:nth-child(3) {
+      &:nth-child(4) {
         transition-delay: .10s;
       }
 
-      &:nth-child(4) {
+      &:nth-child(5) {
         transition-delay: .16s;
       }
 
-      &:nth-child(5) {
+      &:nth-child(6) {
         transition-delay: .2s;
       }
 
-      &:nth-child(6) {
+      &:nth-child(7) {
         transition-delay: .23s;
       }
 
-      &:nth-child(7) {
+      &:nth-child(8) {
         transition-delay: .26s;
       }
 
-      &:nth-child(8) {
+      &:nth-child(9) {
         transition-delay: .29s;
       }
 
-      &:nth-child(9) {
+      &:nth-child(10) {
         transition-delay: .32s;
       }
 
-      &:nth-child(10) {
+      &:nth-child(11) {
         transition-delay: .35s;
       }
 
-      &:nth-child(11) {
+      &:nth-child(12) {
         transition-delay: .38s;
       }
 
-      &:nth-child(12) {
+      &:nth-child(13) {
         transition-delay: .41s;
       }
 
-      &:nth-child(13) {
+      &:nth-child(14) {
         transition-delay: .44s;
+      }
+    }
+  }
+
+  &__header {
+    position: absolute;
+    top: var(--bsl);
+    left: 25vw;
+    z-index: 10;
+  }
+
+  &__headline {
+    font-family: "Unica M", "Helvetica Neue", sans-serif;
+  }
+
+  &__row {
+    overflow: hidden;
+
+    & div {
+      transition: transform .5s cubic-bezier(.5, 0, .25, 1) .25s;
+    }
+
+    &:nth-child(1) {
+      & div {
+        transition-delay: .5s;
       }
     }
   }

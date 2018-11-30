@@ -26,7 +26,7 @@ const LazyLoader = (obj) => {
     lazyLoader.cb = obj.callback;
 
     if (lazyLoader.type === undefined || lazyLoader.type === 'IMG') {
-      (window.innerWidth < 600 && lazyLoader.root.dataset.srcS)
+      (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 600 && lazyLoader.root.dataset.srcS)
         ? lazyLoader.src = lazyLoader.root.dataset.srcS
         : lazyLoader.src = lazyLoader.root.dataset.src;
 

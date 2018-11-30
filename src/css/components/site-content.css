@@ -1,0 +1,7 @@
+.site-content {
+  padding-top: calc(var(--bsl) * 2);
+
+  @media (--tablet-landscape-up) {
+    padding-top: calc(var(--bsl) * 5);
+  }
+}

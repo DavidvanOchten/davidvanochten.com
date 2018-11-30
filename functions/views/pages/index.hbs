@@ -87,13 +87,17 @@
         <div class="project__gallery gallery" data-project-gallery>
           <button class="gallery__toggle" data-project-toggle><span>Close</span></button>
           <div class="gallery__container" data-project-gallery-container>
+
+
+            {{!-- Add data-src-s to all gallery images --}}
+
+
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.cards.png?alt=media&token=22f95731-e823-4bc2-bb08-5538733940a8" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.modal.png?alt=media&token=9d6da231-476f-44dc-aa3b-ef2a200d0425" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.user-interface.png?alt=media&token=c6286e1c-785b-426e-9729-783e24fe3517" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/dashboard-opt%402x.png?alt=media&token=332113d1-2299-4c5c-a47f-fa5ca1c46ae4" alt="">
             <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/cases%2F-LCH9LgvKO_PIuKx8-4H%2Fcontent%2Fo0wjtk-_min.card.png?alt=media&token=55ca1081-3f8e-4b2b-b0a9-ae2ac83eee55" alt="">
           </div>
-          {{!-- Set data-src and data-src-s per image --}}
         </div>
       </div>
       <header class="project__header">
@@ -114,17 +118,24 @@
           <button class="gallery__toggle" data-project-toggle><span>Close</span></button>
           <div class="gallery__container" data-project-gallery-container>
 
-
-
             {{!-- Resize images to fix Safari jank (2000px width?) --}}
+            {{!-- Or set data-src-s for all Safari browsers? --}}
 
-
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/home@2x.jpg" alt="">
-            <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/grid-l-opt%402x.jpg?alt=media&token=e81c42a7-576f-47bf-9aea-686d1dbde490" alt="">
-            <img data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/work-opt%402x.jpg?alt=media&token=7a1e5dff-8cfe-4e67-a3d9-2a119d942ce0" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/news@2x.jpg" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/mobile@2x.jpg" alt="">
-            <img data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/contact@2x.jpg" alt="">
+            {{!-- Add data-src-s to all gallery images --}}
+            <img alt=""
+                 data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/home@2x.jpg" data-src-s="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/home.jpg">
+            <img alt=""
+                 data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/grid-l-opt%402x.jpg?alt=media&token=e81c42a7-576f-47bf-9aea-686d1dbde490">
+            <img alt=""
+                 data-src="https://firebasestorage.googleapis.com/v0/b/davidvanochten-admin.appspot.com/o/work-opt%402x.jpg?alt=media&token=7a1e5dff-8cfe-4e67-a3d9-2a119d942ce0">
+            <img alt=""
+                 data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/news@2x.jpg" data-src-s="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/news.jpg">
+            <img alt=""
+                 data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/mobile@2x.jpg"
+                 data-src-s="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/mobile.jpg">
+            <img alt=""
+                 data-src="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/contact@2x.jpg"
+                 data-src-s="https://mysterious-wildwood-85591.herokuapp.com/media/work/ima/landscape/contact.jpg">
           </div>
         </div>
       </div>
