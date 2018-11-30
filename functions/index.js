@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, "/static"), {
 app.use(require(path.join(__dirname, "/routes/route-index")));
 app.use(require(path.join(__dirname, "/routes/route-offline")));
 
-app.use((req, res, next) => {
+app.use((req, res) => {
   res.status(404).render("pages/error", {
     title: "Page not found",
     description: "404 - Page not found"
