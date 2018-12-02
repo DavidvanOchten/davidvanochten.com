@@ -4,8 +4,6 @@ import Controllers from './controllers/Controllers';
 import { createServiceWorker } from './utils/createServiceWorker.js';
 
 const App = (() => {
-  console.log('[App] Check JSON-LD and inline fonts');
-
   const isChrome = !!window.chrome && !!window.chrome.webstore;
   const isFirefox = typeof InstallTrigger !== 'undefined';
 

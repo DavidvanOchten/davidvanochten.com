@@ -11,7 +11,7 @@ router.get('/', (req, resp) => {
     description: 'Portfolio of David van Ochten, a Dutch developer and digital designer. He’s got your back when you need a front.'
   });
 
-  // See below: Firebase database not used at the moment
+  // Code below: Firebase database not used at the moment
 
   // axios.get('https://davidvanochten-admin.firebaseio.com/.json')
   //   .then(response => response.data)

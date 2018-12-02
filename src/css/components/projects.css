@@ -25,6 +25,7 @@
   }
 
   &__compilation-trigger {
+    margin-bottom: var(--bsl);
     padding: var(--gutter);
 
     @media (--tablet-landscape-up) {
