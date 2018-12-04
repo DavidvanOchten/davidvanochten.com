@@ -20,7 +20,7 @@
       flex-direction: row;
       align-items: flex-end;
       width: var(--col-8);
-      margin-bottom: calc(var(--bsl) * 6);
+      margin-bottom: calc(var(--bsl) * 7);
     }
 
     & .project__header {

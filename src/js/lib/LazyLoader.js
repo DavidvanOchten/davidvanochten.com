@@ -24,15 +24,16 @@ const LazyLoader = (obj) => {
     lazyLoader.root = obj.element;
     lazyLoader.type = obj.type;
     lazyLoader.cb = obj.callback;
+    lazyLoader.useSrcS = obj.useSrcS || false;
 
     if (lazyLoader.type === undefined || lazyLoader.type === 'IMG') {
-      (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 600 && lazyLoader.root.dataset.srcS)
+      (lazyLoader.root.dataset.srcS && (window.matchMedia('(pointer: coarse)').matches && window.innerWidth < 600) || lazyLoader.useSrcS)
         ? lazyLoader.src = lazyLoader.root.dataset.srcS
         : lazyLoader.src = lazyLoader.root.dataset.src;
 
       _loadImage()
         .then(() => _setImage())
-        .catch(err => console.log('[LazyLoader.js] Error: ', err));
+        .catch(err => console.log('[LazyLoader] Error: ', err));
     }
 
     if (lazyLoader.type === 'VIDEO') {

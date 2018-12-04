@@ -4,7 +4,7 @@
 @import "tools/custom-media.css";
 @import "tools/custom-selectors.css";
 
-@import "generic/guides.css";
+/* @import "generic/guides.css"; */
 @import "generic/resets.css";
 
 @import "elements/bare.css";

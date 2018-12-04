@@ -37,8 +37,13 @@ const Project = (element) => {
           project.gallery.classList.remove(project.galleryVisibleClass);
           project.thumbnail.classList.remove(project.thumbnailClass);
 
-          project.thumbnail.addEventListener('mouseover', _togglePointerHint);
-          project.thumbnail.addEventListener('mouseout', _togglePointerHint);
+          project.toggles.forEach(toggle => {
+            toggle.addEventListener('mouseover', _togglePointerHint);
+            toggle.addEventListener('mouseout', _togglePointerHint);
+          });
+
+          // project.thumbnail.addEventListener('mouseover', _togglePointerHint);
+          // project.thumbnail.addEventListener('mouseout', _togglePointerHint);
 
           if (document.body.dataset.mutedVideos === 'true' && project.videoElement) {
             project.video.setVideo(false);
@@ -129,8 +134,13 @@ const Project = (element) => {
     project.root.classList.add(project.rootClass);
     project.gallery.classList.add(project.galleryVisibleClass);
 
-    project.thumbnail.removeEventListener('mouseover', _togglePointerHint);
-    project.thumbnail.removeEventListener('mouseout', _togglePointerHint);
+    project.toggles.forEach(toggle => {
+      toggle.removeEventListener('mouseover', _togglePointerHint);
+      toggle.removeEventListener('mouseout', _togglePointerHint);
+    });
+
+    // project.thumbnail.removeEventListener('mouseover', _togglePointerHint);
+    // project.thumbnail.removeEventListener('mouseout', _togglePointerHint);
 
     project.thumbnail.addEventListener('transitionend', _transitionIntoGallery);
     project.thumbnail.classList.add(project.thumbnailClass);
@@ -187,10 +197,14 @@ const Project = (element) => {
     project.thumbnailClass = 'project__thumbnail--is-hidden';
 
     project.toggles = [].slice.call(project.root.querySelectorAll('[data-project-toggle]'));
-    project.toggles.forEach(toggle => toggle.addEventListener('click', _onToggleClick));
+    project.toggles.forEach(toggle => {
+      toggle.addEventListener('click', _onToggleClick);
+      toggle.addEventListener('mouseover', _togglePointerHint);
+      toggle.addEventListener('mouseout', _togglePointerHint);
+    });
 
-    project.thumbnail.addEventListener('mouseover', _togglePointerHint);
-    project.thumbnail.addEventListener('mouseout', _togglePointerHint);
+    // project.thumbnail.addEventListener('mouseover', _togglePointerHint);
+    // project.thumbnail.addEventListener('mouseout', _togglePointerHint);
 
     if (project.videoElement) {
       project.video = Video(project.videoElement);

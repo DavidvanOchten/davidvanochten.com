@@ -38,6 +38,12 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  // Removes Chrome error (bug?)
+  // https://stackoverflow.com/questions/48463483/what-causes-a-failed-to-execute-fetch-on-serviceworkerglobalscope-only-if
+  if (e.request.cache === 'only-if-cached' && e.request.mode !== 'same-origin') {
+    return;
+  }
+
   e.respondWith(
     fetch(e.request)
       .then(resp => {

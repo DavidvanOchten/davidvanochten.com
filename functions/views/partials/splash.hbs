@@ -23,7 +23,7 @@
   <div class="splash__column"></div>
   <div class="splash__column"></div>
 
-  <script>document.body.style.overflow='hidden';var splash={};var progress={};splash.root=document.querySelector('[data-splash]');progress.counter=0;progress.factor=1;progress.maxVal=1;progress.minVal=0.1;progress.damping=60;progress.element=document.querySelector('[data-progress]');progress.interval=setInterval(function(){progress.counter=progress.counter+progress.factor;progress.maxVal=Math.max((100-progress.counter)/progress.damping,progress.minVal)
+  <script>document.body.style.overflow='hidden';var splash={};var progress={};splash.root=document.querySelector('[data-splash]');progress.counter=0;progress.factor=1;progress.maxVal=1;progress.minVal=0.1;progress.damping=50;progress.element=document.querySelector('[data-progress]');progress.interval=setInterval(function(){progress.counter=progress.counter+progress.factor;progress.maxVal=Math.max((100-progress.counter)/progress.damping,progress.minVal)
 progress.factor=Math.min(Math.max(Math.abs(Math.sin(100-progress.counter)),0.01),progress.maxVal);(progress.counter<9)?progress.element.textContent='0'+Math.ceil(progress.counter):progress.element.textContent=Math.ceil(progress.counter);if(progress.counter>=88){clearInterval(progress.interval);progress.element.textContent=88}},16);window.addEventListener('load',function(){clearInterval(progress.interval);progress.element.textContent=100;splash.root.classList.add('splash--is-loaded');splash.root.addEventListener('transitionend',function(e){if(e.target===splash.root){e.target.parentNode.removeChild(splash.root)}});setTimeout(function(){document.body.removeAttribute('style');splash.root.classList.remove('splash--is-visible')},1000)})</script>
 </div>
 
@@ -39,7 +39,7 @@ progress.factor=Math.min(Math.max(Math.abs(Math.sin(100-progress.counter)),0.01)
   progress.factor = 1;
   progress.maxVal = 1;
   progress.minVal = 0.1;
-  progress.damping = 60;
+  progress.damping = 50;
   progress.element = document.querySelector('[data-progress]');
 
   progress.interval = setInterval(function () {
