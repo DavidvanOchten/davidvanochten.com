@@ -28,8 +28,8 @@
 
     @media (--tablet-landscape-up) {
       width: 1440px;
-      background-image: -webkit-linear-gradient(left, rgba(255, 0, 0, 0.15) 0, rgba(255, 0, 0, 0.15) 119px, transparent 0), -webkit-linear-gradient(top, transparent 23px, rgba(33, 150, 243, 0.5) 24px);
-      background-size: 120px 24px;
+      background-image: -webkit-linear-gradient(left, rgba(255, 0, 0, 0.15) 0, rgba(255, 0, 0, 0.15) 119px, transparent 0), -webkit-linear-gradient(top, transparent 22px, rgba(33, 150, 243, 0.5) 22.5px);
+      background-size: 120px 22.5px;
     }
   }
 }

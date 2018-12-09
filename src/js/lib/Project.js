@@ -174,7 +174,9 @@ const Project = (element) => {
   };
 
   const _togglePointerHint = (e) => {
-    browser.cursor.classList.toggle('cursor--is-visible');
+    (e.type === 'mouseover')
+      ? browser.cursor.classList.add('cursor--is-visible')
+      : browser.cursor.classList.remove('cursor--is-visible');
 
     if (e.currentTarget.closest('[data-project]').dataset.project === 'video') {
       browser.cursor.classList.toggle('cursor--video');

@@ -9,7 +9,7 @@
   --bsl: 1.5rem;
 
   /* Gutter */
-  --gutter: calc(var(--bsl) / 2);
+  --gutter: 1rem;
 
   /* Typography */
   --primary-font: "Unica R", "Helvetica Neue", sans-serif;
