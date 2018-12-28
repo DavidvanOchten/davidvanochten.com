@@ -1,5 +1,5 @@
-const DYNAMIC_CACHE = 'dynamic_01';
-const STATIC_CACHE = 'static_01';
+const DYNAMIC_CACHE = 'dynamic';
+const STATIC_CACHE = 'static';
 const STATIC_FILES = [
   '/offline',
   '/app.bundle.css',
