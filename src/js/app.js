@@ -4,10 +4,14 @@ import Controllers from './controllers/Controllers';
 import { createServiceWorker } from './utils/createServiceWorker.js';
 
 const App = (() => {
-  const isChrome = !!window.chrome && !!window.chrome.webstore;
-  const isFirefox = typeof InstallTrigger !== 'undefined';
+  // const isChrome = !!window.chrome && !!window.chrome.webstore;
+  // const isFirefox = typeof InstallTrigger !== 'undefined';
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
-  if (isChrome || isFirefox) {
+  console.log(isSafari);
+
+  if (!isSafari) {
+    console.log('Service worker init');
     createServiceWorker();
   }
 
